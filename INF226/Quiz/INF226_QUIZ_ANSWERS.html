@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>INF226 QUIZ ANSWERS</title>
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        
+    </head>
+    <body class="vscode-light">
+        <h1 id="inf226-quiz-answers">INF226 QUIZ ANSWERS</h1>
+<ol>
+<li>
+<p>What is the definition of software security?</p>
+<ul>
+<li>When a program functions according to the intentions in an adverserial enviroment</li>
+</ul>
+</li>
+<li>
+<p>What does software security logic consist of? And what are some examples of these?</p>
+<ul>
+<li>Requirements
+<ul>
+<li>Capture the intentions of the software</li>
+<li>Spelling out our intentions</li>
+<li>Examples:
+<ul>
+<li>Availability of the service</li>
+<li>Capacity</li>
+<li>Integrity of data</li>
+<li>Authentication of data</li>
+<li>Recoverability</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Assumptions
+<ul>
+<li>Spelling out our knowlegde of the software until it runs</li>
+<li>Examples:
+<ul>
+<li>Assumptions pointing towards problems:
+<ul>
+<li>User input cannot be trusted to have a property X</li>
+<li>IP adresses can be spoofed</li>
+<li>Computers has finite resources</li>
+<li>Programmers write bugs</li>
+</ul>
+</li>
+<li>Assumptions pointing towards solutions:
+<ul>
+<li>Checking the input so we know it has a desired property</li>
+<li>An attacker cant guess a random 128 bit number</li>
+<li>Semantics of a program</li>
+<li>Correct type checker</li>
+<li>Robust internet routing</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mechanisms
+<ul>
+<li>Satisfying the requirements given the assumptions</li>
+<li>Examples:
+<ul>
+<li>Choice of programming language</li>
+<li>Rate limiting</li>
+<li>Sanity checks on user inputs</li>
+<li>Access control lists</li>
+<li>Optimisation of algorithms</li>
+<li>Encryption</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is a vulnerability?</p>
+<ul>
+<li>A circumstance where the program fails to behave as intended. When the program fails to be secure.</li>
+</ul>
+</li>
+<li>
+<p>What are the vulnerability disclosure and what stances are there?</p>
+<ul>
+<li>Information given to the public about a security related problem</li>
+<li>No disclosure
+<ul>
+<li>No details are given to the public</li>
+</ul>
+</li>
+<li>Coordinated disclosure
+<ul>
+<li>Some details are given to the public once fixes has been made to the software</li>
+</ul>
+</li>
+<li>Full disclosure
+<ul>
+<li>All details are given public</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is an exploit?</p>
+<ul>
+<li>A procedure taking advantage of a vulnerability, demonstrating the vulnerability of the program</li>
+</ul>
+</li>
+<li>
+<p>What is an RCE vulnerability?</p>
+<ul>
+<li>Remote Code Execution. When an attacker gets permission to run code on a victims machine</li>
+</ul>
+</li>
+<li>
+<p>How does the call stack work?</p>
+<ul>
+<li>The stack stores return addresses for function call</li>
+<li>On call the pointer is pushed on the stack</li>
+<li>When function closes, the pointer is popped from the stack</li>
+</ul>
+</li>
+<li>
+<p>How does an attacker use an shell-code exploit?</p>
+<ul>
+<li>By filling the buffer with hes own code and overwriting the return pointer to point to hes own code. This can spawn a shell, giving the attacker RCE access to the machine</li>
+</ul>
+</li>
+<li>
+<p>For what reasong could an attacker use NO-OP sled?</p>
+<ul>
+<li>When the attacker does not know the adress of the buffer.</li>
+</ul>
+</li>
+<li>
+<p>What is ROP?</p>
+<ul>
+<li>Return oriented programming. When the attacker uses prexisting code in the program instad of uploading a shell</li>
+</ul>
+</li>
+<li>
+<p>How can a programmer prevent a buffer overflow attack?</p>
+<ul>
+<li>Write better C code(self explaining)</li>
+<li>Static analysis</li>
+<li>Stack canaries
+<ul>
+<li>Secret value placed on the stack every time the program is run</li>
+<li>Checks if the number from pointer has been modified on function returning</li>
+<li>Terminates if modification is detected</li>
+</ul>
+</li>
+<li>W^X
+<ul>
+<li>OS enforcing writeable memory cannot be executed</li>
+<li>Prevents loading shell in writeable buffers</li>
+</ul>
+</li>
+<li>Address space layout randomisation
+<ul>
+<li>Randomising the layout when allocating memory in the system</li>
+<li>Makes the attacker guess the locations of functions and libraries</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What are some of the best practises to avoid buffer overflow?</p>
+<ul>
+<li>Use memory safe languages</li>
+<li>Memory safe abstractions in unsafe languages(e.g vectors and smart pointers in C++)</li>
+<li>Use the compiler to find vulnerabilities</li>
+<li>Run static analysis to identify bugs</li>
+</ul>
+</li>
+<li>
+<p>What is memory safety?</p>
+<ul>
+<li>Each part of the program is only given access to the memory locations they are permitted</li>
+</ul>
+</li>
+<li>
+<p>What should and shouldn't a function access in a program?</p>
+<ul>
+<li>A function should access:
+<ol>
+<li>Arguments from the caller</li>
+<li>Global variables</li>
+<li>Local variables</li>
+</ol>
+</li>
+<li>A functions should not access variables from another function</li>
+</ul>
+</li>
+<li>
+<p>How does one break memory-safety?</p>
+<ul>
+<li>Using:
+<ul>
+<li>Pointer arithmetics</li>
+<li>Unconstrained casting</li>
+<li>No bounds-check on array access</li>
+<li>Unsafe pointer de-allocation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Name some memory safe and not memory safe languages</p>
+<ul>
+<li>Safe:
+<ul>
+<li>Java, C#, most scripting languages</li>
+</ul>
+</li>
+<li>Unsafe:
+<ul>
+<li>Assembly</li>
+<li>C</li>
+<li>C++</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>How does theses languages achieve memory safety?</p>
+<ul>
+<li>Garbage collection (Lisp, JAVA, Haskell,..)</li>
+<li>Resource allocation in RAII and borrows checker (Rust)</li>
+</ul>
+</li>
+<li>
+<p>What is undefines behaviour?</p>
+<ul>
+<li>When code does not behave according to language standard</li>
+</ul>
+</li>
+<li>
+<p>What are some problems with sql?</p>
+<ul>
+<li>Confusing between data and queries</li>
+<li>Strings are used to represent data and queries</li>
+</ul>
+</li>
+<li>
+<p>How do you prevent SQLi attacks?</p>
+<ul>
+<li>Prepared statments</li>
+</ul>
+</li>
+<li>
+<p>What is STRIDE?</p>
+<ul>
+<li>Used for developing threat models</li>
+<li>Spoofing</li>
+<li>Tampering</li>
+<li>Repudiation</li>
+<li>Information disclosure</li>
+<li>Denial of service</li>
+<li>Elevation of privilegde</li>
+</ul>
+</li>
+<li>
+<p>What is DREAD?</p>
+<ul>
+<li>Used for ranking threats
+<ul>
+<li>Damage potential</li>
+<li>Reproducibility</li>
+<li>Exploitation</li>
+<li>Affected users</li>
+<li>Discoverability</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is functional decomposistion?</p>
+<ul>
+<li>An overview of the components in a system</li>
+<li>A detailed map over comunication between components</li>
+<li>Description of the function of each of the components</li>
+</ul>
+</li>
+<li>
+<p>What is a threat model?</p>
+<ul>
+<li>Applicates our assumptions about a system</li>
+<li>What threats apllies to the system?</li>
+<li>Trust between components?</li>
+<li>Which threats apply where?</li>
+</ul>
+</li>
+<li>
+<p>What is a trust boundary?</p>
+<ul>
+<li>When data is comunicated between components, it crosses a trust boundry</li>
+</ul>
+</li>
+<li>
+<p>How do you analize defence in depth?</p>
+<ul>
+<li>Find out what components are affected</li>
+<li>Are there any linchpins?</li>
+<li>Detect failures</li>
+<li>Migitate failures</li>
+</ul>
+</li>
+<li>
+<p>What is trusting trust?</p>
+<ul>
+<li>Trusting someone else on something because they claim it is to be trusted</li>
+<li>At one point we have to start trusting the people making the software</li>
+</ul>
+</li>
+<li>
+<p>Why is it important to trust a compiler and what can you do trust a compiler?</p>
+<ul>
+<li>A compiler could recognize code and compile backdoors without the user knowing</li>
+<li>To trust a compiler:
+<ul>
+<li>Read the source code</li>
+<li>Trust the compiler who compiled the compiler</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>How do you test a compiler?</p>
+<ul>
+<li>Get an independent compiler to compare with the test compiler</li>
+<li>Compile the source code using both compilers and copile the executeables</li>
+<li>Compare the results</li>
+<li>The binaries for each of the executeables will be different, but if they are functionally equivavalent, one can trust the compiler</li>
+</ul>
+</li>
+<li>
+<p>What is CVE?</p>
+<ul>
+<li>Common Vulnerability Exposures</li>
+<li>A CVE is an entry stored in the CVE database consiting of a:
+<ul>
+<li>unique number</li>
+<li>description</li>
+<li>at least one public reference</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is CNA's?</p>
+<ul>
+<li>CVE numbering authorities</li>
+<li>Assigns numbers to CVE's</li>
+</ul>
+</li>
+<li>
+<p>What is CVSS?</p>
+<ul>
+<li>Common Vulnerability Scoring System</li>
+<li>Scores CVS from 1 - 10</li>
+</ul>
+</li>
+<li>
+<p>What are the metrics in CVSS?</p>
+<ol>
+<li>Base metrics
+<ul>
+<li>Access vectors
+<ul>
+<li>Local, network or adjacent network</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Impact metrics
+<ul>
+<li>Rates impact on a scale from None/Partial/Complete based on:
+<ul>
+<li>Confidentiality</li>
+<li>Integrity</li>
+<li>Availability</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Temporal metrics
+<ul>
+<li>Metrics who changes overtime</li>
+<li>Rated from:
+<ul>
+<li>Exploitability(Unproven, Proof-of-concept, Functional, High)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>What is CWE?</p>
+<ul>
+<li>Common Weakness Enumeration</li>
+<li>List of common weaknesses present in software</li>
+<li>More fine grained than OWASP's Top 10, but similar</li>
+<li>Structure:
+<ul>
+<li>Architecture components</li>
+<li>Development concepts</li>
+<li>Research concepts</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is NVD?</p>
+<ul>
+<li>National Vulnerability Database</li>
+<li>Contains analysis of known vulnerabilities
+<ul>
+<li>CVE number</li>
+<li>CWE numbers</li>
+<li>CVSS</li>
+<li>Versions affected</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is a static analysis and how do you perform it?</p>
+<ul>
+<li>Inspection of source code
+<ul>
+<li>Program flow analysis</li>
+<li>Constraints analysis</li>
+<li>Logic tests</li>
+<li>Linting</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is a dynamic analysis and how do you perform it?</p>
+<ul>
+<li>Inspection of running software
+<ul>
+<li>Fuzzers</li>
+<li>Crawlers</li>
+<li>Man-in-the-middle proxy</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is access control and what are the aspects of it?</p>
+<ul>
+<li>The decisions of what users are allowed to do within a system
+<ul>
+<li>Physical</li>
+<li>Logical</li>
+<li>Cryptographic</li>
+<li>Soscial</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is MAC?</p>
+<ul>
+<li>Mandatory Access Contorl</li>
+<li>Access control policies decided by a central authority</li>
+<li>For example OS's have MAC access over resources(CPU, memory, storage,...)</li>
+</ul>
+</li>
+<li>
+<p>What is DAC?</p>
+<ul>
+<li>Discretionary Access Control</li>
+<li>Users specifies permissions for their own objects</li>
+</ul>
+</li>
+<li>
+<p>What is a capability?</p>
+<ul>
+<li>A method of only giving capabilities needed for each object</li>
+</ul>
+</li>
+<li>
+<p>What are the access control models and how do they work?</p>
+<ol>
+<li>Access Control Lists
+<ul>
+<li>Permissions given to each object, giving different users different permissions for it</li>
+<li>Each object has its own set of permissions for each user</li>
+<li>Structured according to users and groups</li>
+</ul>
+</li>
+<li>Rôle based access control
+<ul>
+<li>A set of roles abstract the permissions from the users</li>
+<li>Actions are always performed by a rôle</li>
+<li>Users must reauthenticate to change rôles</li>
+</ul>
+</li>
+<li>Capability based access control
+<ul>
+<li>Users has their own capabilities</li>
+<li>A capability is a reference to an object and a set of permissions for that object</li>
+<li>A capability is used whenever the resrouce is accessed</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>What is the rôle of the OS?</p>
+<ul>
+<li>Orchestrate software</li>
+<li>Communicate with programs through system calls</li>
+<li>Different protections for different resources(memory, CPU, file systems, files/sockets/network connections)</li>
+</ul>
+</li>
+<li>
+<p>What is the confused deputy problem?</p>
+<ul>
+<li>A priviliedged process(deputy) is tricked by a prcoess with lower permissions, to do actions on behalf of it</li>
+<li>For example comilers and browser acting as a deputy</li>
+</ul>
+</li>
+<li>
+<p>What defines users and groups?</p>
+<ul>
+<li>Each user has a UID</li>
+<li>Each user is in a group that has a GID</li>
+<li>Prevents users to access each others memory</li>
+<li>Each file has a owner UID and a group GID</li>
+</ul>
+</li>
+<li>
+<p>What are file descriptors?</p>
+<ul>
+<li>The capabilities of accessing a file</li>
+<li>Each process has its own file-descriptor table</li>
+<li>OS checks permissions when opening files and creating descriptor</li>
+</ul>
+</li>
+<li>
+<p>What is, and why do we use Virtual Memory Mapping?</p>
+<ul>
+<li>Virtualize physical memory into pages and devide among processe</li>
+<li>Its inconvenient to let programs use physical memory</li>
+<li>Virtual memory is not decided at compile time, making guessing memory locations harder</li>
+<li>Memory fragmentations gets hidden from the program</li>
+</ul>
+</li>
+<li>
+<p>How does the UNIX file system devide directories?</p>
+<ul>
+<li>Into logical parts</li>
+</ul>
+</li>
+<li>
+<p>What is chroot?</p>
+<ul>
+<li>Changing of root directory</li>
+<li>Provides system virtualization</li>
+</ul>
+</li>
+<li>
+<p>What is the OpenBSD pledge?</p>
+<ul>
+<li>Mechanisms for restricting what system calls are allowed for each process</li>
+</ul>
+</li>
+<li>
+<p>What is OS virtualization?</p>
+<ul>
+<li>Abstracting away OS system calls, hardware or both to not be run directly on the OS's hardware</li>
+</ul>
+</li>
+<li>
+<p>What is Linux kernel namespaces?</p>
+<ul>
+<li>Grouping of processes so each groupt has individual:
+<ul>
+<li>Filesystem mount tables</li>
+<li>Process stables</li>
+<li>Network stack</li>
+<li>UID tables</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is Docker and what mechanisms does it provide?</p>
+<ul>
+<li>Containers
+<ul>
+<li>Runs programs separated from the OS using OS mechanisms</li>
+<li>Templated by images</li>
+<li>Construced and administrated through container daemon</li>
+</ul>
+</li>
+<li>Separation mechanisms
+<ul>
+<li>chroot</li>
+<li>Individual namespaces to containers</li>
+<li>CGroups to limit resources to containers</li>
+</ul>
+</li>
+<li>Capabilities
+<ul>
+<li>For each container</li>
+<li>Abstraction through OS level restrictions</li>
+<li>Only whitelisted capabilities allowed</li>
+</ul>
+</li>
+<li>Security configuration
+<ul>
+<li>Underlying OS level separation mechanisms</li>
+<li>Dockered daemon attack surface</li>
+<li>Security of container configuration</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What is the principle of least priviledge?</p>
+<ul>
+<li>No user or program should operate using the least amount of priviledge necessary to complete the job</li>
+</ul>
+</li>
+<li>
+<p>How does SSH practice priviledge separation?</p>
+<ul>
+<li>With monitors and slaves:
+<ul>
+<li><strong>Monitors</strong>
+<ul>
+<li>Priviledged</li>
+<li>Provides interface for slaves to perform priviledged actions</li>
+<li>Validated requests</li>
+<li>Performs actions on slaves behalf</li>
+</ul>
+</li>
+<li><strong>Slaves</strong>
+<ul>
+<li>Unpriviledged</li>
+<li>Does most of the work</li>
+<li>Calls monitor when priviledged operations must be performed</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>How does one implement a Monitor/Slave pattern?</p>
+<ol>
+<li>Identifying priviledged operations
+<ul>
+<li>eg file access, accessing crypto keys, databases,...</li>
+</ul>
+</li>
+<li>Separate request types
+<ul>
+<li>Information</li>
+<li>Capabilites</li>
+<li>Change of identity</li>
+</ul>
+</li>
+<li>Devide into phases
+<ul>
+<li>Pre authentication</li>
+<li>Post authetication</li>
+</ul>
+</li>
+<li>Define Slave/Monitor connection
+<ul>
+<li>On connection, the service spawns a new connection between slave/monitor pair</li>
+</ul>
+</li>
+<li>Define Slave/Master communication
+<ul>
+<li>Communicate through IPC mechanisms
+<ul>
+<li>Pipe</li>
+<li>Shared memory</li>
+<li>Socket-pair</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Mechanisms for changing of identity</li>
+<li>Retain slave state</li>
+</ol>
+</li>
+<li>
+<p>What priviledged does SSHD have?</p>
+<ul>
+<li>Diffie-Hellman</li>
+<li>User validation</li>
+<li>Password authentication</li>
+<li>Public key authentication</li>
+<li>Transferrable shared memory</li>
+<li><strong>Priviledged operations in SSHD</strong>:
+<ul>
+<li>Renewing crypto keys</li>
+<li>Pseudo terminal creation (PTY)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Why doesn't increasing the password alphabet, increase security?</p>
+<ul>
+<li>The length only grows constant with the size of the alphabet</li>
+</ul>
+</li>
+<li>
+<p>What is NIST?</p>
+<ul>
+<li>Standard for password creation</li>
+<li>Allows atleast 64 characters</li>
+<li>Compares passwords with lists of known password</li>
+</ul>
+</li>
+<li>
+<p>What are the uses of a hash function?</p>
+<ul>
+<li>Checksumming data</li>
+<li>Data identifier</li>
+<li>Hashing passwords</li>
+<li>Signature verification/generation</li>
+<li>Building crypto primitives</li>
+</ul>
+</li>
+<li>
+<p>What is the ideal hash function?</p>
+<ul>
+<li>Small input = large output</li>
+<li>Collision free</li>
+<li>One way</li>
+<li>Quick to compute</li>
+</ul>
+</li>
+<li>
+<p>What is a rainbow table?</p>
+<ul>
+<li>Tool to derive password by looking at hash</li>
+<li>Time-space tradeoff when creating look-up table for hash values to plaintext</li>
+<li>Precomputed table for reversing crypographic functions</li>
+<li>Used for cracking passwords</li>
+</ul>
+</li>
+<li>
+<p>What is hashing salt?</p>
+<ul>
+<li>A randomly generated string stored in the password hash making it harder to crack</li>
+</ul>
+</li>
+<li>
+<p>What is a key derivation function?</p>
+<ul>
+<li>Functions to derive plaintext passwords from hashes</li>
+</ul>
+</li>
+<li>
+<p>What is naïve key derivation?</p>
+<ul>
+<li>Generated byte strings placed before and after hash</li>
+<li>Making the attacker guess the second string</li>
+<li>Second strings works as cost parameter</li>
+</ul>
+</li>
+<li>
+<p>What is SCrypt?</p>
+<ul>
+<li>A maximum memory hard key derivation function</li>
+</ul>
+</li>
+<li>
+<p>What is authetication?</p>
+<ul>
+<li>The act of verifying the identity of actors in the system</li>
+</ul>
+</li>
+<li>
+<p>What is 2FA authentication?</p>
+<ul>
+<li>Additional authentication measures to passwords</li>
+</ul>
+</li>
+<li>
+<p>What &quot;is trust upon first use&quot;?</p>
+<ul>
+<li>Trust user first time they log in because it is unlikely there is a man-in-the-middle on inital authentication</li>
+<li>Use this authetication for the next sessions</li>
+</ul>
+</li>
+<li>
+<p>What is a CA?</p>
+<ul>
+<li>A Central Authority trusted to verify public keys and issue certificated for the keys</li>
+</ul>
+</li>
+<li>
+<p>What are the requirements for a session ID?</p>
+<ul>
+<li>Session ID must not be guessable</li>
+<li>Session ID must not be leaked</li>
+</ul>
+</li>
+<li>
+<p>Why is a stram cipher mallabe?</p>
+<ul>
+<li>Fixed input and output length</li>
+<li>Same key gives same output</li>
+</ul>
+</li>
+<li>
+<p>What is a keyed hash function?</p>
+<ul>
+<li>A function producing a hash dependent on a key</li>
+<li>Used to authenticate keys</li>
+<li>Provides autheticity and integrity</li>
+</ul>
+</li>
+<li>
+<p>What is TLS?</p>
+<ul>
+<li>Transport Layer Security</li>
+<li>Provides confidentiality, authetication and forward secrecy</li>
+<li>Uses HTTPS</li>
+</ul>
+</li>
+<li>
+<p>What is cross-site scripting?</p>
+<ul>
+<li>When an attacker gets a users browser to unintentionally serve javascript to the users session</li>
+</ul>
+</li>
+<li>
+<p>How can an attacker inject malicous scripts?</p>
+<ul>
+<li>With user data visible for other users</li>
+<li>URL variables</li>
+<li>User data from post requests</li>
+<li>Evaluating user data in client side script</li>
+</ul>
+</li>
+<li>
+<p>How did the Samy Worm work?</p>
+<ul>
+<li>MySpace protections only covered common HTML tags</li>
+<li>Samy spread through CSS through any useable tag</li>
+<li>Used post request to update user profiles</li>
+</ul>
+</li>
+<li>
+<p>How does XSS through XML HTTP requests work?</p>
+<ul>
+<li>Malicous scripts makes HTTP request to the current origin</li>
+<li>When sucessfully injected, the attacker has the same rights as the user hijacked</li>
+</ul>
+</li>
+<li>
+<p>How do you prevent XSS?</p>
+<ol>
+<li>Filtering input
+<ul>
+<li>Only for simple things</li>
+<li>Dissallow characters</li>
+</ul>
+</li>
+<li>Escaping output
+<ul>
+<li>HTML bodies</li>
+<li>Quoted attributes</li>
+<li>Unquoted attributes</li>
+<li>Quoted strings in javascript</li>
+<li>CSS attribute values</li>
+<li>JSON data</li>
+<li>Use libraries for this, do not implement yourselves</li>
+</ul>
+</li>
+<li>Text formatting
+<ul>
+<li>HTML sanitisers</li>
+<li>Use markup languages with safe conversion</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>What is CSRF?</p>
+<ul>
+<li>Cross-site-request forgery</li>
+<li>Tricks the broswer to use its session cookie to approve actions initiated by a third party site</li>
+<li>Forces user to execute actions to another site than they are currently autheticated on</li>
+<li>Targets state changes</li>
+<li>Browser requests automatically include credentials</li>
+<li>Sites have a hard time distinguishing between a forges request and a legitimate request from a user</li>
+</ul>
+</li>
+<li>
+<p>What requests should be protected from CSRF?</p>
+<ul>
+<li>Links</li>
+<li>Forms</li>
+<li>Pretty much all other GET/POST</li>
+</ul>
+</li>
+<li>
+<p>Why should a developer not set a anti-CSRF token in a cookie and where should he place it instead?</p>
+<ul>
+<li>Attacker could set the cookie from within the domain</li>
+<li>Place token on all forms</li>
+</ul>
+</li>
+<li>
+<p>What flags should be set to secure the session token?</p>
+<ol>
+<li>Secure
+<ul>
+<li>Sends the cookie through HTTPS only</li>
+</ul>
+</li>
+<li>SameSite
+<ul>
+<li>Cookie is either always sent(None)</li>
+<li>Only sent when the request is from the same origin(Strict)</li>
+<li>Only sendt with GET request(LAX)</li>
+</ul>
+</li>
+<li>HttpOnly
+<ul>
+<li>Prevents stealing cookie with javascript</li>
+<li>Cookie is always sendt in HTTP header, making it not available to scripts</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>What is CSP?</p>
+<ul>
+<li>Content Security Policy</li>
+<li>Set in HTTP header</li>
+<li>Controls which sources content is allowed to come from</li>
+<li>Limits inline scripts</li>
+</ul>
+</li>
+<li>
+<p>What approaches can be used to define capabilities?</p>
+<ul>
+<li>Enforced be a supervisor</li>
+<li>Unguessable capatilities(random tokens, crypto signature,..)</li>
+</ul>
+</li>
+<li>
+<p>What properties can a capability have?</p>
+<ol>
+<li>Transferable
+<ul>
+<li>Should be transferable between users</li>
+<li>Capabilities generally dont care who uses them</li>
+</ul>
+</li>
+<li>Abstraction</li>
+<li>Memory Safe
+<ul>
+<li>Endownment: A user might have instrisic capabilities given at creation</li>
+<li>Creation: User gets capabilities to access an object he creates</li>
+<li>Introduction: User transers a capability to another user</li>
+</ul>
+</li>
+<li>Revokability
+<ul>
+<li>The creator of a capability should be able to revoke it</li>
+</ul>
+</li>
+<li>anti-CSRF
+<ul>
+<li>Limits permissions to a specifies request type</li>
+</ul>
+</li>
+<li>Collaboration
+<ul>
+<li>Run a program with shared capabilities to access shared resources</li>
+</ul>
+</li>
+<li>Universal persistence
+<ul>
+<li>The state of the resource stays the same so it is never restarted</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>What is Capsicum?</p>
+<ul>
+<li>Provides capability based security based security for UNIX programs</li>
+<li>Extends the UNIX api's without replacing them or compromise performance</li>
+</ul>
+</li>
+<li>
+<p>What capabilities does Capsicum provide?</p>
+<ul>
+<li>Capabilities of file descriptors with a set of access rights
+<ul>
+<li>Around 60</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>What does capability mode in Capsicum do?</p>
+<ul>
+<li>Restricts access to global name spaces
+<ul>
+<li>PID</li>
+<li>File paths</li>
+<li>POSIX IPC</li>
+<li>System clocks/times</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>How does Capsicum enforce the restriction in capability mode?</p>
+<ul>
+<li>By restricing kernel primitives</li>
+<li>In capability mode, the only availabe PID is the process's own PID</li>
+<li>Child processes can only be accessed through capabilities</li>
+</ul>
+</li>
+<li>
+<p>What is serialization and deserialization?</p>
+<ul>
+<li>Serialization: The process of turning objects of a programming language into byte arrays for transport</li>
+<li>Deserialization: Turning transported byte arrays back into objects</li>
+</ul>
+</li>
+<li>
+<p>Why is incorrect deserialization dangerous?</p>
+<ul>
+<li>The deserialized code is at the forefront of the program. Without is being properly deserialized, it could lead to bugs and give an attacker RCE access</li>
+</ul>
+</li>
+<li>
+<p>What are the entries in the secure software development cycle?</p>
+<ol>
+<li>Requirements
+<ul>
+<li>Map security and privacy requirements</li>
+</ul>
+</li>
+<li>Design
+<ul>
+<li>Threat modeling</li>
+<li>Security design preview</li>
+</ul>
+</li>
+<li>Implementations
+<ul>
+<li>Static analysis</li>
+<li>Peer review</li>
+</ul>
+</li>
+<li>Testing
+<ul>
+<li>Security test cases</li>
+<li>Dynamic analysis</li>
+</ul>
+</li>
+<li>Deployment
+<ul>
+<li>Final Security review</li>
+<li>Application security monitoring and response plan</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>What are the non functional requirements and what does each entry contain?</p>
+<ol>
+<li><strong>Security and privacy</strong>
+<ul>
+<li>The program functions according to the intentions in an adverserial enviroment</li>
+</ul>
+</li>
+<li><strong>Availability, capacity, performance and efficiency</strong>
+<ul>
+<li><em>Availability</em>
+<ul>
+<li>The proporting of time a system spends in a functional state and not in downtime</li>
+<li>Do decrease downtime and increase availability:</li>
+<li>Write secure software</li>
+<li>Not having bugs</li>
+<li>Redundance</li>
+<li>Rely less on service</li>
+<li>Testing</li>
+<li>Scalability</li>
+</ul>
+</li>
+<li><em>Capacity</em>
+<ul>
+<li>The Maximum number of simultanious users/transactions*</li>
+</ul>
+</li>
+<li><em>Performance and effiency</em>
+<ul>
+<li>The ability to increase capacity and make use of scarce resources</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Extensibility, maintainability, portability and scalability</strong>
+<ul>
+<li><em>Portability</em>
+<ul>
+<li>The ability of the software to run on different systems with little adaptation</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Recoverability</strong>
+<ul>
+<li>How easy it is for the system to recover from disruptive events</li>
+</ul>
+</li>
+<li><strong>Manageability and serviceability</strong>
+<ul>
+<li>How easy it is to develop, deploy and maintain the code</li>
+</ul>
+</li>
+<li><em>Cohesion</em>
+<ul>
+<li>The degree to which parts of system/module belong together</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>What should be reviewed during a security review?</p>
+<ul>
+<li>Security design</li>
+<li>Peer review</li>
+<li>Final security review before deployment</li>
+</ul>
+</li>
+<li>
+<p>What aspects of program should be logged?</p>
+<ul>
+<li>Authenticated events</li>
+<li>Attempted intrusions</li>
+<li>Violations of invariants</li>
+<li>Unusual behaviour</li>
+<li>Performance statistics</li>
+</ul>
+</li>
+<li>
+<p>What is a program state and why is it important to security?</p>
+<ul>
+<li>
+<p>Program state consists of:</p>
+<ul>
+<li>Variables</li>
+<li>File descriptors</li>
+<li>Cookies</li>
+<li>Client storage</li>
+</ul>
+</li>
+<li>
+<p>If a program reaches an unanticipated state, bugs could occur</p>
+</li>
+</ul>
+</li>
+<li>
+<p>What is preservation of invariants?</p>
+<ul>
+<li>The methods of an object ensures the internal state is a valid representation</li>
+</ul>
+</li>
+<li>
+<p>What is immutability?</p>
+<ul>
+<li>An object can not be changed after creation</li>
+<li>Provides security since an attacker could not change objects to alter the state</li>
+</ul>
+</li>
+<li>
+<p>How can a program achieve immutability?</p>
+</li>
+</ol>
+
+    </body>
+    </html>

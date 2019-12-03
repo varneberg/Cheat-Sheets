@@ -1,0 +1,2766 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>**INF214 Cheat Sheet**</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.2;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+       
+            <a href="#inf214-cheat-sheet"><strong>INF214 Cheat Sheet</strong></a>
+                <ul>
+                    <details>
+                    <summary><strong><a href="#processes-and-synchronization">Processes and Synchronization</a></strong></summary>
+                        <ul>
+                            <details>
+                            <summary><a href="#terms">Terms</a></summary>
+                                <ul>
+                                    <li><a href="#state">State</a></li>
+                                    <li><a href="#atomic-action">Atomic Action</a></li>
+                                    <li><a href="#interference">Interference</a></li>
+                                    <li><a href="#noninterference">Noninterference</a></li>
+                                    <li><a href="#race-condition">Race Condition</a></li>
+                                    <li><a href="#unnecessary-delay">Unnecessary delay</a></li>
+                                    <li><a href="#eventual-entry">Eventual Entry</a></li>
+                                    <li><a href="#properties">Properties</a></li>
+                                    <li><a href="#assertions">Assertions</a></li>
+                                    <li><a href="#pre-condition">Pre Condition</a></li>
+                                    <li><a href="#post-condition">Post Condition</a></li>
+                                    <li><a href="#fine-grained-atomicity">Fine-Grained Atomicity</a></li>
+                                    <li><a href="#coarse-grained-atomicity">Coarse-Grained Atomicity</a></li>
+                                    <li><a href="#at-most-once-property">At-Most-Once Property</a></li>
+                                    <li><a href="#partial-correctness">Partial Correctness</a></li>
+                                    <li><a href="#total-correctness">Total Correctness</a></li>
+                                    <li><a href="#mutual-exclusion">Mutual exclusion</a></li>
+                                    <li><a href="#critical-reference">Critical Reference</a></li>
+                                    <li><a href="#critical-section">Critical Section</a></li>
+                                </ul>
+                            </li>
+                            </details>
+                            <details>
+                            <summary><a href="#logic">Logic</a></summary>
+                                <ul>
+                                    <li><a href="#composition-rule">Composition Rule</a></li>
+                                    <li><a href="#if-statement-rule">If Statement Rule</a></li>
+                                    <li><a href="#while-statement-rule">While Statement Rule</a></li>
+                                    <li><a href="#await-statement-rule">Await Statement Rule</a></li>
+                                    <li><a href="#co-statment-rule">CO Statment Rule</a></li>
+                                </ul>
+                            
+                            </li>
+                            </details>
+                            <details>
+                            <summary><a href="#fairness">Fairness</a></summary>
+                                <ul>
+                                    <li><a href="#unconditional-fairness">Unconditional fairness</a></li>
+                                    <li><a href="#weak-fairness">Weak fairness</a></li>
+                                    <li><a href="#strong-fairness">Strong fairness</a></li>
+                                </ul>
+                            </li>
+                        </details>
+                        </ul>
+                        
+                    </li>
+                    </details>
+                    <details>
+                        <summary><strong><a href="#locks-and-barriers">Locks and Barriers</a></strong></summary>
+                            <ul>
+                                <details>
+                                <summary><a href="#locks">Locks</a></summary>
+                                    <ul>
+                                        <li><a href="#deadlock">Deadlock</a></li>
+                                        <li><a href="#livelock">Livelock</a></li>
+                                        <li><a href="#spinlock">Spinlock</a></li>
+                                    </ul>
+                                </li>
+                                </details>
+
+                            <details>
+                                
+                               <summary><a href="#fair-solutions-algorithms">Fair Solutions Algorithms</a></summary>
+                                    <ul>
+                                        <li><a href="#the-ticket-algorithm">The Ticket Algorithm</a></li>
+                                    </ul>
+                                </li>
+                                
+                            </ul>
+                        </details>
+                      
+                    </li>
+                    </details>
+                    <details>
+                    <summary><strong><a href="#barriers">Barriers</a></strong></summary>
+                        <ul>
+                            <details>
+                            <summary><a href="#barrier-implementation">Barrier Implementation</a></summary>
+                                <ul>
+                                    <li><a href="#bad-shared-counter">(BAD) Shared counter</a></li>
+                                    <li><a href="#flags-and-coordinator">Flags and Coordinator</a></li>
+                                    <li><a href="#symmetric-barriers">Symmetric Barriers</a></li>
+                                </ul>
+                        </ul>
+                    </li>
+                    </details>
+                    <details>
+                    <summary><strong><a href="#semaphores">Semaphores</a></strong></summary>
+                        <ul>
+                            <li><a href="#semaphore-definition">Semaphore Definition</a></li>
+                            <li><a href="#syntax">Syntax</a></li>
+                            <li><a href="#mutual-exclusion-with-semaphores">Mutual Exclusion With Semaphores</a></li>
+                            <li><a href="#barrier-with-semaphores">Barrier With Semaphores</a></li>
+                            <li><a href="#split-binary-semaphores">Split Binary Semaphores</a></li>
+                        </ul>
+                    </li>
+                    </details>
+                    <details>
+                        <summary><strong><a href="#monitors">Monitors</a></strong></summary>
+                        <ul>
+                            <li><a href="#monitor-properties">Monitor Properties</a></li>
+                        
+
+                            <li><a href="#monitor-implementation">Monitor-Implementation</a></li>
+                            <li><a href="#signalling">Signalling</a>
+
+                    </li>
+                    </details>
+                    <details>
+                    <summary><strong><a href="#alang">Alang</a></strong></summary>
+                        <ul>
+                    
+                                    <li><a href="#lambda-funcions">Lambda Funcions</a></li>
+                                    <li><a href="#processes-in-alang">Processes in alang</a></li>
+                                    <li><a href="#indexes-processes">Indexes Processes</a></li>
+                                    <li><a href="#co-function">CO Function</a></li>
+                            </li>
+                            <details>
+                            <summary><a href="#atomic-execution">Atomic Execution</a></summary>
+                                <ul>
+                                    <li><a href="#critical-sections">Critical Sections</a></li>
+                                    <li><a href="#atomic-variables">Atomic Variables</a></li>
+                                    <li><a href="#await-statement">AWAIT Statement</a></li>
+                                    
+                                </ul>
+                                
+                            </li>
+                            </details>
+                            <li><a href="#semaphores-1">Semaphores</a></li>
+                            <li><a href="#monitors-1">Monitors</a></li>
+                            <li><a href="#channels">Channels</a></li>
+                            <li><a href="#pointes">Pointes</a></li>
+                        </ul>
+                        
+                    </li>
+                    </details>
+                    <details>
+                    <summary><strong><a href="#c-concurrency">C++ Concurrency</a></strong></summary>
+                        <ul>
+                            <li><a href="#sequential-consistency">Sequential Consistency</a></li>
+                            <li><a href="#c-threads">C++ Threads</a></li>
+                            <li><a href="#mutex">Mutex</a></li>
+                            <li><a href="#types-of-mutexes">Types of mutexes</a></li>
+                            <details>
+                            <summary><a href="#examples">Examples</a></summary>
+                                <ul>
+                                    <li><a href="#try-lock-recursive-mutex-example">Try-Lock Recursive mutex example:</a></li>
+                                    <li><a href="#timed-mutex-example">Timed Mutex Example:</a></li>
+                                    <li><a href="#shared-mutex-example">Shared Mutex Example:</a></li>
+                                </ul>
+                            </li>
+                            </details>
+                            <details>
+                            <summary><a href="#mutex-wrappers">Mutex-Wrappers</a></summary>
+                                <ul>
+                                    <li><a href="#raii">RAII</a></li>
+                                    <li><a href="#lock-and-lockguard">lock and lock_guard:</a></li>
+                                    <li><a href="#uniquelock">unique_lock</a></li>
+                                    <li><a href="#scopedlock-wrapper">scoped_lock wrapper</a></li>
+                                </ul>
+                            </li>
+                            </details>
+                            <details>
+                            <summary><a href="#c-conditional-variables">C++ Conditional Variables</a></summary>
+                                <ul>
+                                    <li><a href="#thread-local-variables">Thread Local Variables</a></li>
+                                    <li><a href="#call-once">Call once</a></li>
+                                    <li><a href="#c-atomics">C++ Atomics</a></li>
+                                    <li><a href="#atomic-objects">Atomic Objects</a></li>
+                                    <li><a href="#compare-and-swap">Compare and Swap</a></li>
+                                    <li><a href="#task-based-parallelism">Task-Based Parallelism</a></li>
+                                </ul>
+                            </li>
+                            </details>
+                            <details>
+                            <summary><a href="#futures">Futures</a></summary>
+                                <ul>
+                                    <li><a href="#future-class">Future Class</a></li>
+                                    <li><a href="#sharedfuturet">shared_future<T></a></li>
+                                        <li><a href="#future-combinators">Future Combinators</a></li>
+                                        <li><a href="#futurethen">future::then</a></li>
+                                    </ul>
+                                </li>
+                            </details>
+                                <li><a href="#promise">Promise</a></li>
+                                <li><a href="#async">Async</a></li>
+                                <li><a href="#task-system-implementations">Task System Implementations</a></li>
+                                <li><a href="#number-of-threads">Number of threads</a></li>
+                                <li><a href="#compute-primes">Compute Primes</a></li>
+                            </ul>
+                        </li>
+                        </details>
+                        <details>
+                        <summary><strong><a href="#software-transactional-memory">Software Transactional Memory</a></strong></summary>
+                            <ul>
+                                <li><a href="#rollback">Rollback</a></li>
+                            </ul>
+                        </li>
+                        </details>
+                        <details>
+                        <summary><strong><a href="#message-passing-concurrency">Message Passing Concurrency</a></strong></summary>
+                            <ul>
+                                <li><a href="#channel">Channel</a></li>
+                                <li><a href="#client-server-with-message-passing">Client-Server with Message Passing</a></li>
+                                <li><a href="#synchronouse-message-passing">Synchronouse Message Passing</a></li>
+                            </ul>
+                        </li>
+                        </details>
+                        <details>
+                       <summary><strong><a href="#coroutine">Coroutine</a></strong></summary>
+                            <ul>
+                                <li><a href="#subroutine">Subroutine</a></li>
+                                <li><a href="#symmetric"><strong>Symmetric</strong></a></li>
+                                <li><a href="#asymmetric"><strong>Asymmetric</strong></a></li>
+                                <li><a href="#first-class-coroutines">First-class coroutines</a></li>
+                                <li><a href="#generators-iterators-coroutines">Generators-Iterators-Coroutines</a></li>
+                                <li><a href="#coroutine-frame">Coroutine Frame</a></li>
+                                <li><a href="#closing-coroutines">Closing coroutines</a></li>
+                                <li><a href="#suspending-coroutine">Suspending coroutine</a></li>
+                                <li><a href="#resuming-coroutine">Resuming coroutine</a></li>
+                            </ul>
+                        </li>
+                        </details>
+                        <details>
+                       <summary><strong><a href="#coding">Coding</a></strong></summary>
+                            <ul>
+                                <li><a href="#c-coding">C++ Coding</a></li>
+                                <li><a href="#ticket-algorithm">Ticket Algorithm</a></li>
+                                <li><a href="#semaphores-2">Semaphores</a></li>
+                                <li><a href="#semaphores-implementation">Semaphores implementation</a></li>
+                                <li><a href="#semaphores-banking-problem">Semaphores Banking Problem</a></li>
+                                <li><a href="#monitor">Monitor</a>
+                                    <ul>
+                                        <li><a href="#bridge-crossing-problem">Bridge Crossing Problem</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#message-passing-and-channels">Message Passing and Channels</a></li>
+                                <li><a href="#filters-with-quicksort">Filters With Quicksort</a></li>
+                                <li><a href="#saving-account">Saving Account</a></li>
+                            </ul>
+                        </li>
+                        </details>
+                    </ul>
+                </li>
+            </ul>
+
+
+            <h2 id="processes-and-synchronization">Processes and Synchronization</h2>
+
+            <h3 id="terms">Terms</h3>
+<h4 id="state">State</h4>
+<ul>
+<li>A value a variable has at a given time</li>
+</ul>
+<h4 id="atomic-action">Atomic Action</h4>
+<ul>
+<li>A sequence of one or more statements that appears to execute as a single, indivisible action</li>
+</ul>
+<h4 id="interference">Interference</h4>
+<ul>
+<li>The result of two processes reading and writing the same variable in an unpredictable order</li>
+</ul>
+<h4 id="noninterference">Noninterference</h4>
+<ul>
+<li>A relation between an atomic action and a critical assertion C in another process. Executing a does not interfere with c if it leaves c true if c is already true</li>
+</ul>
+<h4 id="race-condition">Race Condition</h4>
+<ul>
+<li>A scenario where to processes interacts with a shared variable, causing on process to write to the variable and continue executing. Thus racing ahead before the other process and changes the variable again before the other process sees the result of the first change</li>
+</ul>
+<h4 id="unnecessary-delay">Unnecessary delay</h4>
+<ul>
+<li>If a process is trying to enter its critical section and the other processes are executing their noncritical sections or have terminated, the process is not prevented from entering its critical section</li>
+</ul>
+<h4 id="eventual-entry">Eventual Entry</h4>
+<ul>
+<li>A process that is trying to enter its critical section, is eventually allowed to succeed</li>
+</ul>
+<h4 id="properties">Properties</h4>
+<ul>
+<li>Attribute that is true for every possible history of the program</li>
+<li><strong>Safety Property</strong>
+<ul>
+<li>A property where the program never enters a bad state, where the variables have undesired values</li>
+</ul>
+</li>
+<li><strong>Liveness Property</strong>
+<ul>
+<li>A property where the program eventually reaches a good state, variables have desired values</li>
+</ul>
+</li>
+</ul>
+<h4 id="assertions">Assertions</h4>
+<ul>
+<li>An assertion characterises an acceptable program state</li>
+</ul>
+<h4 id="pre-condition">Pre Condition</h4>
+<ul>
+<li>An assertion that is true when statement <strong>S</strong> finishes</li>
+</ul>
+<h4 id="post-condition">Post Condition</h4>
+<ul>
+<li>An assertion that is true when statement <strong>Q</strong> finished</li>
+</ul>
+<h4 id="fine-grained-atomicity">Fine-Grained Atomicity</h4>
+<ul>
+<li>No intermediate state is visible to the program</li>
+<li>An assignment appears to be atomic since no state from a process is visible to another process</li>
+</ul>
+<h4 id="coarse-grained-atomicity">Coarse-Grained Atomicity</h4>
+<ul>
+<li>Atomicity implemented using <a href="#critical-section">critical section</a> protocols</li>
+</ul>
+<h4 id="at-most-once-property">At-Most-Once Property</h4>
+<ul>
+<li>Attribute of an assignment <strong>x = e</strong> where x is not read by another process and e only contains at most one reference to a variable changed by another process, it does contains a <a href="#critical-reference">critical reference</a>, or</li>
+<li>x is not written by another process and e contains no references to a variable changed by another process</li>
+<li>There can be at most one shared variable that can at most be referenced once</li>
+<li>If the assignments meets AMO, it will appear <a href="#atomic-action">atomic</a></li>
+</ul>
+<h4 id="partial-correctness">Partial Correctness</h4>
+<ul>
+<li>The program is correct if the final state is correct</li>
+<li>If the initial program state satisfies P, then the final state will satisfy Q assuming S terminates</li>
+</ul>
+<h4 id="total-correctness">Total Correctness</h4>
+<ul>
+<li>Combines partial correction with termination. A program is totally correct if the program always terminates with the desired results</li>
+</ul>
+<h4 id="mutual-exclusion">Mutual exclusion</h4>
+<ul>
+<li>A synchronization ensuring statements in different processes can not execute at the same time</li>
+</ul>
+<h4 id="critical-reference">Critical Reference</h4>
+<ul>
+<li>Reference to a variable changed by another process</li>
+</ul>
+<h4 id="critical-section">Critical Section</h4>
+<ul>
+<li>A sequence of statements where shared variables are read and written by multiple processes</li>
+</ul>
+<h3 id="logic">Logic</h3>
+<ul>
+<li>
+<p>Formal logic system that allows one to state and prove properties of programs (PL system)</p>
+</li>
+<li>
+<p>Formulas of PL are called triples{#triples}</p>
+<ul>
+<li>Has the form <strong>{P} S {Q}</strong></li>
+<li>P and Q are <a href="#assertions">assertions</a></li>
+<li>P is the <a href="#precondition">pre condition</a> and Q the <a href="#postcondition">post condition</a></li>
+<li>Is true if execution of S has begun in a state satisfying P resulting in Q when the program terminates</li>
+<li>Executing <strong>S</strong> in state <strong>{P}</strong> == <strong>{Q}</strong></li>
+<li>Is <a href="#partial-correctness">partial correctness</a></li>
+</ul>
+</li>
+<li>
+<p>Hoare tripple</p>
+<ul>
+<li><strong>{P} C {Q}</strong></li>
+<li>P and Q are <a href="#assertions">assertions</a></li>
+<li>C is the command</li>
+<li>Provides logical axioms and interference rules causing the command to execute when the <a href="#precondition">pre condition</a> is met, and establishes the <a href="#postcondition">post condition</a>
+f a state should satisfy [<em>P</em>]{.math .inline}, then all previous
+states also has to satisdy [<em>P</em>]{.math .inline} with variable</li>
+</ul>
+</li>
+</ul>
+<h4 id="composition-rule">Composition Rule</h4>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mo stretchy="false">{</mo><mi>P</mi><mo stretchy="false">}</mo><msub><mi>S</mi><mn>1</mn></msub><mo stretchy="false">{</mo><mi>Q</mi><mo stretchy="false">}</mo><mo separator="true">,</mo><mo stretchy="false">{</mo><mi>Q</mi><mo stretchy="false">}</mo><msub><mi>S</mi><mn>2</mn></msub><mo stretchy="false">{</mo><mi>R</mi><mo stretchy="false">}</mo></mrow><mrow><mo stretchy="false">{</mo><mi>P</mi><mo stretchy="false">}</mo><msub><mi>S</mi><mn>2</mn></msub><mo separator="true">;</mo><msub><mi>S</mi><mn>2</mn></msub><mo stretchy="false">{</mo><mi>R</mi><mo stretchy="false">}</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">{ \frac{ \{{P}\} S_{1} \{{Q}\}, \{{Q}\} S_{2} \{{R}\}
+} { \{{P}\} S_2; S_2 \{{R}\}} }</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span><span class="mclose mtight">}</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mpunct mtight">;</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span></span><span class="mclose mtight">}</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span><span class="mclose mtight">}</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight">Q</span></span><span class="mclose mtight">}</span><span class="mpunct mtight">,</span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight">Q</span></span><span class="mclose mtight">}</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.00773em;">R</span></span><span class="mclose mtight">}</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></li>
+</ul>
+<h4 id="if-statement-rule">If Statement Rule</h4>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mo stretchy="false">{</mo><mi>P</mi><mo>∧</mo><mi>B</mi><mo stretchy="false">}</mo><mi>S</mi><mo stretchy="false">{</mo><mi>Q</mi><mo stretchy="false">}</mo><mo separator="true">,</mo><mo stretchy="false">(</mo><mi>P</mi><mo>∧</mo><mi mathvariant="normal">¬</mi><mi>B</mi><mo stretchy="false">)</mo><mo>→</mo><mi>Q</mi></mrow><mrow><mo stretchy="false">{</mo><mi>P</mi><mo stretchy="false">}</mo><mi>i</mi><mi>f</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mi>S</mi><mo separator="true">;</mo><mo stretchy="false">{</mo><mi>Q</mi><mo stretchy="false">}</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">{ \frac { \{ {P} \wedge {B} \} S \{{Q}\}, (P \wedge
+\neg B) \rightarrow Q } { \{{P}\} if (B) S; \{{Q}\} }}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span><span class="mclose mtight">}</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mpunct mtight">;</span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight">Q</span></span><span class="mclose mtight">}</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span><span class="mbin mtight">∧</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span><span class="mclose mtight">}</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight">Q</span></span><span class="mclose mtight">}</span><span class="mpunct mtight">,</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">∧</span><span class="mord mtight">¬</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span><span class="mrel mtight">→</span><span class="mord mathdefault mtight">Q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></li>
+</ul>
+<h4 id="while-statement-rule">While Statement Rule</h4>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mo stretchy="false">{</mo><mrow><mi>I</mi><mo>∧</mo><mi>B</mi></mrow><mo stretchy="false">}</mo><mi>S</mi><mo stretchy="false">{</mo><mi>I</mi><mo stretchy="false">}</mo></mrow><mrow><mo stretchy="false">{</mo><mi>I</mi><mo stretchy="false">}</mo><mi>w</mi><mi>h</mi><mi>i</mi><mi>l</mi><mi>e</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mi>S</mi><mo separator="true">;</mo><mo stretchy="false">{</mo><mrow><mi>I</mi><mo>∧</mo><mi mathvariant="normal">¬</mi><mi>B</mi></mrow><mo stretchy="false">}</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">{ \frac { \{ {I \wedge B } \} {S} \{ {I} \} } { \{ {I} \}
+while(B) S; \{ {I \wedge \neg B } \} } }</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span></span><span class="mclose mtight">}</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">h</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight" style="margin-right:0.01968em;">l</span><span class="mord mathdefault mtight">e</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mpunct mtight">;</span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span><span class="mbin mtight">∧</span><span class="mord mtight">¬</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span><span class="mclose mtight">}</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span><span class="mbin mtight">∧</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span><span class="mclose mtight">}</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span></span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07847em;">I</span></span><span class="mclose mtight">}</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></li>
+</ul>
+<h4 id="await-statement-rule">Await Statement Rule</h4>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mo stretchy="false">{</mo><mrow><mi>P</mi><mo>∧</mo><mi>B</mi></mrow><mo stretchy="false">}</mo><mi>S</mi><mo stretchy="false">{</mo><mi>Q</mi><mo stretchy="false">}</mo></mrow><mrow><mo stretchy="false">{</mo><mi>P</mi><mo stretchy="false">}</mo><mo stretchy="false">⟨</mo><mi>a</mi><mi>w</mi><mi>a</mi><mi>i</mi><mi>t</mi><mo stretchy="false">(</mo><mi>B</mi><mo stretchy="false">)</mo><mi>S</mi><mo separator="true">;</mo><mo stretchy="false">⟩</mo><mo stretchy="false">{</mo><mi>Q</mi><mo stretchy="false">}</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">{ \frac{ \{ {P \wedge B} \} S \{ {Q} \} } { \{ {P} \}
+\langle await (B) S; \rangle \{ {Q} \} } }</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span><span class="mclose mtight">}</span><span class="mopen mtight">⟨</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="mord mathdefault mtight">a</span><span class="mord mathdefault mtight">i</span><span class="mord mathdefault mtight">t</span><span class="mopen mtight">(</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span><span class="mclose mtight">)</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mpunct mtight">;</span><span class="mclose mtight">⟩</span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight">Q</span></span><span class="mclose mtight">}</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">∧</span><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span><span class="mclose mtight">}</span><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mathdefault mtight">Q</span></span><span class="mclose mtight">}</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></li>
+</ul>
+<h4 id="co-statment-rule">CO Statment Rule</h4>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><mo stretchy="false">{</mo><msub><mi>P</mi><mn>1</mn></msub><mo stretchy="false">}</mo><msub><mi>S</mi><mn>1</mn></msub><mo stretchy="false">{</mo><msub><mi>Q</mi><mn>1</mn></msub><mo stretchy="false">}</mo><mtext>are interference free</mtext></mrow><mrow><mo stretchy="false">{</mo><msub><mi>P</mi><mn>1</mn></msub><mo>∧</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo>∧</mo><msub><mi>P</mi><mi>n</mi></msub><mo stretchy="false">}</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">{ \frac{ \{ {P_{1}} \} S_{1} \{ {Q_{1}} \} \text{are
+interference free}} { \{ {P_{1}} \wedge . . . \wedge {P_{n}} \} }
+}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.53em;vertical-align:-0.52em;"></span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span><span class="mbin mtight">∧</span><span class="mord mtight">.</span><span class="mord mtight">.</span><span class="mord mtight">.</span><span class="mbin mtight">∧</span><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16454285714285719em;"><span style="top:-2.357em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">n</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span><span class="mclose mtight">}</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.13889em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span><span class="mclose mtight">}</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:-0.05764em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">{</span><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight">Q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31731428571428577em;"><span style="top:-2.357em;margin-left:0em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span><span class="mclose mtight">}</span><span class="mord text mtight"><span class="mord mtight">are interference free</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.52em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></li>
+</ul>
+<h3 id="fairness">Fairness</h3>
+<ul>
+<li><strong>An attribute of a program ensuring that every delayed process gets a chance to proceed</strong></li>
+<li>Concerned with guaranteeing that a process gets a chance to proceed regardless of the other processes</li>
+<li>A process is <strong>eligible</strong>{#eligible} if it is the next <a href="#atomic-action">atomic action</a> in the process that could be executed</li>
+<li>A scheduling policy determines which process will be executed next</li>
+</ul>
+<h4 id="unconditional-fairness">Unconditional fairness</h4>
+<ul>
+<li>A scheduling policy is unconditionally fair if every unconditionally atomic action is eligible for execution eventually</li>
+</ul>
+<h4 id="weak-fairness">Weak fairness</h4>
+<ul>
+<li>Unconditionally fair</li>
+<li>Action is continuously enabled and will eventually be executed</li>
+<li>If p holds from a point and on, then q will also hold eventually</li>
+<li>Not sufficient for ensuring every eligible await statement is executed eventually because the condition might change from <strong>true</strong> to <strong>false</strong> while a process is delayed, for this, <strong>strong fairness</strong> is required</li>
+</ul>
+<h4 id="strong-fairness">Strong fairness</h4>
+<ul>
+<li>Implies an action has to be continuously enabled infinitely often</li>
+<li>If p holds infinitely often, then eventually q will hold</li>
+<li>If an await statement is present in a program, even though the condition is false, the program will eventually terminate because the condition is infinitely often true</li>
+</ul>
+<h2 id="locks-and-barriers">Locks and Barriers</h2>
+<ul>
+<li>The <strong>Goal</strong> is to implement a system satisfying the following properties:
+<ul>
+<li><strong><a href="#mutual-exclusion">Mutual Exclusion</a></strong></li>
+<li><strong><a href="#deadlock">Absence of Deadlock</a>(Livelock)</strong> (<a href="#safety-property">safety property</a>)</li>
+<li><strong><a href="#unnecessary-delay">Absence of Unnecessary Delay</a></strong> (<a href="#safety-property">safety property</a>)</li>
+<li><strong><a href="#eventual-entry">Eventual Entry</a></strong></li>
+</ul>
+</li>
+<li>The first three are <a href="#safety-property">safety properties</a></li>
+<li>The last is a <a href="#liveness-property">liveness property</a></li>
+</ul>
+<h3 id="locks">Locks</h3>
+<h4 id="deadlock">Deadlock</h4>
+<ul>
+<li>A state where to processes wait for each other where none gets to execute</li>
+</ul>
+<h4 id="livelock">Livelock</h4>
+<ul>
+<li>A scenario where a process is waiting for a process to be <strong>true</strong>, that will never become true. Livelock is the busy-waiting analog of deadlock</li>
+</ul>
+<h4 id="spinlock">Spinlock</h4>
+<ul>
+<li>A boolean variable used with a busy-waiting to protect a critical section. A process wanting to enter, spins until it is allowed to enter</li>
+</ul>
+<h3 id="fair-solutions-algorithms">Fair Solutions Algorithms</h3>
+<h4 id="the-ticket-algorithm">The Ticket Algorithm</h4>
+<ul>
+<li>Name based on drawing tickets</li>
+<li><strong>Practical example:</strong> - Imagine a bakery where customers are served based on their arrival - When a customer arrives, he draws a ticket one larger than the previous customer - The customer waits until all the previous customers are served until it is his turn - Implemented by a number dispenser and a display displaying which customers turn it is - see <a href="#c++-ticket">C++ Ticket Algorithm</a></li>
+</ul>
+<h2 id="barriers">Barriers</h2>
+<ul>
+<li>Two solution to parallel computation:
+<ul>
+<li><strong>BAD</strong>: Using CO statements in the body of the iteration depending on the previous iteration and ignoring termination
+<ul>
+<li>Inefficient because it is costly to the memory to create and destroy processes than to implement process synchronization</li>
+</ul>
+</li>
+<li><strong>GOOD</strong> : Create the processes once at the beginning of the computation, then have them synchronize at the end of each computation.
+<ul>
+<li>This is what <strong>Barrier Synchronization</strong> is</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Computes disjoints parts of the solution in parallel</li>
+<li>Iterations are dependent of the result of the previous iteration</li>
+<li>Has a delay point(barrier) at the end of each iteration every process has to reach before any is allowed to pass</li>
+</ul>
+<h3 id="barrier-implementation">Barrier Implementation</h3>
+<h4 id="bad-shared-counter">(BAD) Shared counter</h4>
+<ul>
+<li>A counter that is initially 0, and when it reaches the desired n, all processes may pass
+<ul>
+<li><strong>AWAIT</strong></li>
+<li><strong>Not Efficient!</strong> since counter has to reset each time all processes pass</li>
+<li>Can be solved with two counters, but this adds complexity since a process might get delayed examining one of the counters</li>
+<li>Should only be used if target machine has <a href="#atomic-action">atomic</a> increment instructions</li>
+</ul>
+</li>
+</ul>
+<h3 id="flags-and-coordinator">Flags and Coordinator</h3>
+<ul>
+<li>
+<p>Solves the memory contention problem from shared counters by implementing count as a sum of n shared values</p>
+</li>
+<li>
+<p>Achieved by adding a creating a array of integers <strong>Arrive</strong> and a new set new set of shared variables called <strong>coordinator</strong></p>
+</li>
+<li>
+<p>Instead of having each worker sum and test values, set <strong>Arrive[i]</strong> to 1, each <strong>worker[i]</strong> delays waiting for <strong>continue[i]</strong> to become 1, this only has to wait for a single value to become true</p>
+</li>
+<li>
+<p>By calling this single value <strong>continue</strong>(which is an array of integers initialized as 0), a <strong>worker[i]</strong> only has to wait for <strong>continue[i]</strong> to be 1</p>
+</li>
+<li>
+<p>The <strong>coordinator</strong> waits for all elements of <strong>arrive</strong> to become 1 before letting before setting all elements of <strong>continue</strong> to be 1</p>
+</li>
+<li>
+<p><strong>Arrive</strong> and <strong>Continue</strong> are examples of <strong>Flag Variables</strong>{#flag-variables}</p>
+</li>
+<li>
+<p>A variable raised by one process to signal another that the synchronization is true -</p>
+</li>
+<li>
+<p><strong>Flag Synchronization</strong>{#flag-synchronization}</p>
+<ul>
+<li>A process that wait for synchronization flag to be set, is the one that should clear the flag
+<ul>
+<li>Ensures flag is not cleared before it has been seen to be set</li>
+</ul>
+</li>
+<li>A flag should not be set until it is known that it is clear
+<ul>
+<li>Ensures a process not setting the same flag again if it has already been set</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="symmetric-barriers">Symmetric Barriers</h3>
+<ul>
+<li>Each process has a flag it sets when it’s arriving at a barrier. It then waits for the other process to set its flag before clearing the other processes flag</li>
+<li>Communicating with a binary connection</li>
+<li><strong>Butterfly Barrier:</strong> -
+<ul>
+<li>Each process communicates with another process at each stage</li>
+<li>Processes are indirectly synchronized with each other</li>
+</ul>
+</li>
+</ul>
+<h2 id="semaphores">Semaphores</h2>
+<h3 id="semaphore-definition">Semaphore Definition</h3>
+<ul>
+<li>A program variable - Whose value is an integer &gt; 0</li>
+<li>Can <strong>only</strong> be updated</li>
+<li>Controlled by two operations:
+<ul>
+<li><strong>P</strong> : Wait for signal -
+<ul>
+<li>Wait until value &gt; 0, then decrease value by one</li>
+</ul>
+</li>
+<li><strong>V</strong> : Signal an event
+<ul>
+<li>Increase value by one</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="syntax">Syntax</h3>
+<pre><code class="language-cpp"><div>sem; <span class="hljs-comment">// init to null</span>
+sem s=k; <span class="hljs-comment">// init to k</span>
+sem s[n] = ([n]<span class="hljs-number">1</span>); <span class="hljs-comment">// array of semaphores</span>
+</div></code></pre>
+<ul>
+<li>By default a semaphore is initialized as 0, but it can be initialized as any non-negative integer</li>
+<li>A <strong>Binary Semaphore</strong> only takes in the values 0 and 1</li>
+</ul>
+<h3 id="mutual-exclusion-with-semaphores">Mutual Exclusion With Semaphores</h3>
+<pre><code class="language-cpp"><div>sem mutex = <span class="hljs-number">1</span>;
+process P[i=<span class="hljs-number">1</span> to m]{
+ <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>){
+ P(mutex);
+ CS(critical section)
+ V(mutex);
+ non-cs
+ }
+}
+</div></code></pre>
+<ul>
+<li>Semaphore initially 1, so that one process can enter the <a href="#critical-section">Critical Section</a></li>
+<li><strong>Always</strong> <strong>P</strong>before <strong>V</strong> so value stays &lt;=1</li>
+<li>Use one semaphore for each <a href="#flag-synchronization">synchronization flag</a>
+<ul>
+<li>A PS sets a flag by executing <strong>V</strong></li>
+<li>Then waits for a flag to be set, and clears it with <strong>P</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="barrier-with-semaphores">Barrier With Semaphores</h3>
+<ul>
+<li>Using to signaling semaphores</li>
+<li>Processes signal their arrival by executing a <strong>V</strong> operation on its own semaphore, then waiting for another process and executing a <strong>P</strong> operation on its semaphore</li>
+<li>Typical signaling pattern:</li>
+</ul>
+<pre><code class="language-cpp"><div>sem arrive1 = <span class="hljs-number">0</span>, arrive2 =<span class="hljs-number">0</span>;
+process P1 {
+ V(arrive1) <span class="hljs-comment">// signal arrival</span>
+ P(arrive2) <span class="hljs-comment">// wait for other process</span>
+}
+process P2{
+ V(arrive2) <span class="hljs-comment">// signal arrival</span>
+ P(arrive1) <span class="hljs-comment">// wait for other process</span>
+}
+</div></code></pre>
+<ul>
+<li>semaphores initialized to Ø
+<ul>
+<li>signal event <strong>V</strong></li>
+<li>wait for event <strong>P</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="split-binary-semaphores">Split Binary Semaphores</h3>
+<ul>
+<li>A set of semaphores where the <strong>sum</strong> of values &lt;= 1</li>
+<li><a href="#mutual-exclusion">Mutual Exclusion</a> of many PS’s, guiding which one can execute
+<ul>
+<li>Initialize one semaphore to 1, other to Ø</li>
+<li>Ensure that on every execution <strong>P(s1)</strong> is followed by <strong>V(s2)</strong> for some of the semaphores s1, s2</li>
+<li>All statements between <strong>P(s1)</strong> and <strong>P(s2)</strong> is executed in mutual exclusion</li>
+</ul>
+</li>
+<li>Has a shared buffer</li>
+<li><strong>Empty</strong> and <strong>Full</strong> are two semaphores indicating if the buffer is full or empty</li>
+</ul>
+<pre><code class="language-cpp"><div>typeT buf; <span class="hljs-comment">// buffer of some type T</span>
+sem empty = <span class="hljs-number">1</span>, full = <span class="hljs-number">0</span>;
+
+process Producer[i = <span class="hljs-number">1</span> to m] {
+ <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>){
+  …
+  <span class="hljs-comment">// produce some data and deposit it in the buffer</span>
+  P(empty);
+  buf = data;
+  V(full)
+ }
+}
+process Consumer[i = <span class="hljs-number">1</span> to m] {
+ <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>){
+  …
+  <span class="hljs-comment">// fetch result, then consume it</span>
+  P(full);
+  result = buf;
+  V(empty)
+  }
+ }
+
+
+</div></code></pre>
+<h2 id="monitors">Monitors</h2>
+<h3 id="monitor-properties">Monitor Properties</h3>
+<ul>
+<li>
+<p>Thread safe abstract data type with synchronization</p>
+</li>
+<li>
+<p>Encapsulates representation of an abstract object</p>
+</li>
+<li>
+<p>Allows implicit <a href="#mutual-exclusion">mutual exclusion</a>(at most one process can execute a function at any given time) and wait condition</p>
+</li>
+<li>
+<p>Has a <a href="#mutex-lock">mutex lock</a> and conditional variables</p>
+</li>
+<li>
+<p>Threads wait for certain conditions to be met</p>
+</li>
+<li>
+<p>Processes are active, while monitors are passive</p>
+</li>
+<li>
+<p><strong>Monitor invariant</strong></p>
+<ul>
+<li>Predicate that is true when no procedure is running, describes the valid good states
+<ul>
+<li>When an object is in a valid state, the class invariant holds</li>
+<li>Must hold after initialization, when procedure terminates and when wait suspends executing</li>
+<li>Assumes to hold at the beginning of procedure and after wait</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="monitor-implementation">Monitor-Implementation</h2>
+<p>monitor m {
+<br> permanent variables // shared by all processes
+<br> initialization
+<br> procedures // public
+<br>}</p>
+<h2 id="signalling">Signalling</h2>
+<ul>
+<li>
+<p>if cv’s queue is empty, no effect</p>
+</li>
+<li>
+<p>wake up a ps</p>
+</li>
+<li>
+<p>when ps calls signal, it is inside a monitor, making it two active ps’s: current and the one being awakened</p>
+</li>
+<li>
+<p>Two strategies for ps to not run simultaneously</p>
+<ul>
+<li>Signal and continue (SC), signaller continues running</li>
+<li>Signal and wait (SW), signalled starts executing</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-monitor-api">C++ Monitor API</h3>
+<ul>
+<li>cond cv; // declaration</li>
+<li>empty(cv); // check if empty queue</li>
+<li>wait(cv); // make ps wait in cv’s queue</li>
+<li>signal(cv); // wake up a ps in cv’s queue</li>
+<li>signal_all(cv); // wake up all ps in cv’s queue</li>
+</ul>
+<h2 id="alang">Alang</h2>
+<h3 id="basics">Basics</h3>
+<ul>
+<li><strong>compile with :</strong>
+<ul>
+<li>-std=c++2a</li>
+</ul>
+</li>
+</ul>
+<h4 id="lambda-funcions">Lambda Funcions</h4>
+<pre><code class="language-cpp"><div>[&amp;, i, j, k] { <span class="hljs-comment">/* body that uses i, j, and k */</span> }
+
+</div></code></pre>
+<h4 id="processes-in-alang">Processes in alang</h4>
+<pre><code class="language-cpp"><div>processes ps; <span class="hljs-comment">// ps will hold all processes</span>
+
+  ps += [&amp;] { <span class="hljs-comment">// define a task and start executing it</span>
+    <span class="hljs-keyword">while</span> (x == <span class="hljs-number">0</span>);
+</div></code></pre>
+<h4 id="indexes-processes">Indexes Processes</h4>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">int</span> sum = <span class="hljs-number">0</span>;
+{   <span class="hljs-comment">// note this extra scope</span>
+    processes ps;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">10</span>; ++i) ps += [&amp;,i]{ sum = sum + i; };
+  } <span class="hljs-comment">// ps goes out of scope here. Execution waits until all processes finished</span>
+
+  <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Sum is = "</span> &lt;&lt; sum &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<h4 id="co-function">CO Function</h4>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>;
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i : range(<span class="hljs-number">0</span>, <span class="hljs-number">1000000</span>)) 
+    CO([&amp;]{ x = x + <span class="hljs-number">1</span>; }, [&amp;]{ x = x + <span class="hljs-number">1</span>; });
+
+  <span class="hljs-built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="hljs-built_in">endl</span>;
+
+</div></code></pre>
+<h3 id="atomic-execution">Atomic Execution</h3>
+<h4 id="critical-sections">Critical Sections</h4>
+<ul>
+<li><a href="#critical-section">Definition</a></li>
+</ul>
+<pre><code class="language-cpp"><div>processes ps;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i : range(<span class="hljs-number">0</span>, <span class="hljs-number">10</span>)) ps += [&amp;, i] { 
+    enter_critical;
+    <span class="hljs-built_in">cout</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">"+"</span> &lt;&lt; i &lt;&lt; <span class="hljs-string">"="</span> &lt;&lt; i+i &lt;&lt; <span class="hljs-built_in">endl</span>; 
+    exit_critical;
+  };  
+</div></code></pre>
+<h4 id="atomic-variables">Atomic Variables</h4>
+<ul>
+<li><a href="#atomic-action">Definition</a></li>
+</ul>
+<pre><code class="language-cpp"><div> A&lt;<span class="hljs-keyword">int</span>&gt; x = <span class="hljs-number">0</span>; <span class="hljs-comment">// must use A&lt;int&gt;; otherwise ATOMIC has no effect</span>
+
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i : range(<span class="hljs-number">0</span>, <span class="hljs-number">100000</span>))
+    CO([&amp;]{ ATOMIC([&amp;]{x = x + <span class="hljs-number">1</span>;}); },
+       [&amp;]{ ATOMIC([&amp;]{x = x + <span class="hljs-number">1</span>;}); },
+       [&amp;]{ ATOMIC([&amp;]{x = x + <span class="hljs-number">1</span>;}); },
+       [&amp;]{ ATOMIC([&amp;]{x = x + <span class="hljs-number">1</span>;}); });
+
+  <span class="hljs-built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<pre><code class="language-cpp"><div> A&lt;<span class="hljs-keyword">int</span>&gt; x;
+  ATO
+    x = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">return</span>;
+    x = <span class="hljs-number">2</span>;
+  MIC;
+  <span class="hljs-built_in">cout</span> &lt;&lt; x &lt;&lt; <span class="hljs-built_in">endl</span>;
+</div></code></pre>
+<h4 id="await-statement">AWAIT Statement</h4>
+<pre><code class="language-cpp"><div>A&lt;<span class="hljs-keyword">int</span>&gt; x = <span class="hljs-number">0</span>;
+  CO([&amp;]{ ATO AWAIT (x == <span class="hljs-number">100</span>); x = <span class="hljs-number">-100</span>; MIC; },
+     [&amp;]{ ATO <span class="hljs-keyword">while</span> (x &lt; <span class="hljs-number">100</span>) x = x + <span class="hljs-number">1</span>; MIC; });
+  alang::logl(x);
+</div></code></pre>
+<h3 id="semaphores-1">Semaphores</h3>
+<ul>
+<li><a href="#semaphore-definition">Definition</a></li>
+</ul>
+<pre><code class="language-cpp"><div>semaphore sem1;     <span class="hljs-comment">// declare a semaphore, initialize to 0</span>
+semaphore sem2 = <span class="hljs-number">1</span>; <span class="hljs-comment">// declare a semaphore, initialize to 1</span>
+
+sem1.P(); <span class="hljs-comment">// P operation</span>
+sem1.V(); <span class="hljs-comment">// V operation</span>
+</div></code></pre>
+<pre><code class="language-cpp"><div>semaphore sem;
+
+  CO([&amp;]{ <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Waiting... "</span>; sem.P(); <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Got through."</span> &lt;&lt; <span class="hljs-built_in">endl</span>; },
+     [&amp;]{ sleep(<span class="hljs-number">1</span>s); <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Releasing... "</span>; sem.V(); });
+</div></code></pre>
+<h3 id="monitors-1">Monitors</h3>
+<ul>
+<li><a href="#monitor">Definition</a></li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">semon</span> :</span> monitor {
+  cond cv; <span class="hljs-comment">// declare a condition variable in the monitor</span>
+  <span class="hljs-keyword">int</span> s;   <span class="hljs-comment">// semaphore's value</span>
+<span class="hljs-keyword">public</span>:
+  semon(<span class="hljs-keyword">int</span> s=<span class="hljs-number">0</span>) : s(s) { <span class="hljs-keyword">if</span> (s&lt;<span class="hljs-number">0</span>) <span class="hljs-keyword">throw</span> <span class="hljs-string">"bad semaphore"</span>; }
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">P</span><span class="hljs-params">()</span> </span>{
+    SYNC;
+    <span class="hljs-keyword">while</span> (s == <span class="hljs-number">0</span>) { wait(cv); }
+    s = s - <span class="hljs-number">1</span>;
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">V</span><span class="hljs-params">()</span> </span>{
+    SYNC;
+    s = s + <span class="hljs-number">1</span>;
+    signal(cv);
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">value</span><span class="hljs-params">()</span> </span>{ SYNC; <span class="hljs-keyword">return</span> s; } <span class="hljs-comment">// not part of the semaphore API. Added so we can test.</span>
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  semon s = <span class="hljs-number">0</span>;
+  {
+    processes ps;
+    ps += [&amp;s]{            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100</span>; ++i) s.P(); };
+    ps += [&amp;s]{ sleep(<span class="hljs-number">1</span>s); <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">200</span>; ++i) s.V(); };
+  }
+  alang::logl(s.value());
+}
+</div></code></pre>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">m1</span> :</span> monitor {
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> </span>{ SYNC; }
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span> </span>{ SYNC; f(); } <span class="hljs-comment">// cannot call another procedure that is SYNCed</span>
+}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">m2</span> :</span> monitor {
+  helper() { <span class="hljs-comment">/* do some work */</span> }
+<span class="hljs-keyword">public</span>:
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">f</span><span class="hljs-params">()</span> </span>{ SYNC; helper(); } <span class="hljs-comment">// ok</span>
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">g</span><span class="hljs-params">()</span> </span>{ SYNC; helper(); } <span class="hljs-comment">// ok</span>
+}
+</div></code></pre>
+<h3 id="channels">Channels</h3>
+<ul>
+<li><a href="#channel">Definition</a></li>
+</ul>
+<pre><code class="language-cpp"><div>channel&lt;<span class="hljs-keyword">int</span>&gt; c1;
+channel&lt;<span class="hljs-keyword">int</span>, <span class="hljs-built_in">string</span>&gt; c2;
+channel&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;&gt; c3;
+channel&lt;channel&lt;<span class="hljs-keyword">int</span>&gt;*&gt; c4;
+</div></code></pre>
+<pre><code class="language-cpp"><div>
+
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"alang.hpp"</span></span>
+<span class="hljs-keyword">using</span> alang::channel;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  channel&lt;channel&lt;<span class="hljs-keyword">int</span>&gt;, <span class="hljs-keyword">int</span>&gt; request;
+
+  processes ps;
+
+  <span class="hljs-comment">// a server that doubles an integer</span>
+  ps += [&amp;request]{ 
+    channel&lt;<span class="hljs-keyword">int</span>&gt; cr; <span class="hljs-comment">// the channel for the response from the server</span>
+    <span class="hljs-keyword">int</span> i;
+    request.receive(cr, i);
+    cr.send(<span class="hljs-number">2</span>*i); 
+  };
+
+  <span class="hljs-comment">// a client process</span>
+  ps += [&amp;request]{ 
+    channel&lt;<span class="hljs-keyword">int</span>&gt; c; <span class="hljs-keyword">int</span> i;
+    request.send(c, <span class="hljs-number">1</span>); 
+    c.receive(i); 
+    logl(i);
+  };
+}
+</div></code></pre>
+<h3 id="pointes">Pointes</h3>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">int</span> x = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">int</span>&amp; y = x; <span class="hljs-comment">// y refers to x, y and x are aliased</span>
+<span class="hljs-keyword">int</span> z = y; <span class="hljs-comment">// z = 10, z is not aliased with x or y</span>
+</div></code></pre>
+<h2 id="c-concurrency">C++ Concurrency</h2>
+<ul>
+<li>A memory model defines the semantics of shared variables
+<ul>
+<li>A set of guarantees about the order a program reads and writes are observed by a thread
+<ul>
+<li>“Rules” a programmer has to follow when writing concurrent code</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Threads</strong>
+<ul>
+<li>Multiple threads can access the same shared variables</li>
+<li>Each thread has its own local variables</li>
+</ul>
+</li>
+</ul>
+<h3 id="sequential-consistency">Sequential Consistency</h3>
+<ul>
+<li>The result of an execution is the same for any order the operations from a processor
+<ul>
+<li>A sequential processor does <strong>NOT</strong> guarantee sequential consistency</li>
+<li>Each processor issues memory requests</li>
+<li>Processed from a FIFO(first-in, first-out) queue</li>
+<li>If a program has no <a href="#race-condition">data races</a>, it is sequentially consistent</li>
+<li>If else its behaviour is undefined</li>
+<li>None of todays architecture is sequential consistent * Because of performance optimization in hardware and</li>
+</ul>
+</li>
+</ul>
+<h3 id="c-threads">C++ Threads</h3>
+<ul>
+<li>Each instance of the <strong>thread</strong> class represents threads of execution</li>
+<li>Communicates through shared variables</li>
+<li>Only terminates from inside program, not outside</li>
+<li>Creating a thread object:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s1, <span class="hljs-built_in">string</span> s2)</span> </span>{
+<span class="hljs-built_in">cout</span> &lt;&lt; s1 &lt;&lt; s2; }
+<span class="hljs-built_in">std</span>::<span class="hljs-function">thread <span class="hljs-title">t1</span><span class="hljs-params">([]() {
+<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hello"</span>; })</span></span>;
+<span class="hljs-built_in">std</span>::<span class="hljs-function">thread <span class="hljs-title">t2</span><span class="hljs-params">(print, <span class="hljs-string">", "</span>, <span class="hljs-string">"World!"</span>)</span></span>;
+</div></code></pre>
+<ul>
+<li>A thread may be joinable
+<ul>
+<li>A joinable thread is potentially executing</li>
+<li>A not joinable thread is not executing</li>
+<li>Only not joinable threads can be safely destroyed</li>
+<li>Destructor of thread calls <strong>std::terminate()</strong></li>
+</ul>
+</li>
+<li>Example of joining thread:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s1, <span class="hljs-built_in">string</span> s2)</span> </span>{ <span class="hljs-built_in">cout</span> &lt;&lt; s1 &lt;&lt; s2; }
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+ <span class="hljs-built_in">std</span>::<span class="hljs-function">thread <span class="hljs-title">t1</span><span class="hljs-params">([]() {<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hello"</span>; })</span></span>;
+ <span class="hljs-built_in">std</span>::<span class="hljs-function">thread <span class="hljs-title">t2</span><span class="hljs-params">(print, <span class="hljs-string">", "</span>, <span class="hljs-string">"World!"</span>)</span></span>;
+ t1.join();
+ t2.join();
+ <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<ul>
+<li>Example of <strong>NOT</strong> joining threads:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;iostream&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt;</span></span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s1, <span class="hljs-built_in">string</span> s2)</span> </span>{ <span class="hljs-built_in">cout</span> &lt;&lt; s1 &lt;&lt; s2; }
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+ <span class="hljs-built_in">std</span>::<span class="hljs-function">thread <span class="hljs-title">t1</span><span class="hljs-params">([]() { <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hello"</span>; })</span></span>;
+ <span class="hljs-built_in">std</span>::<span class="hljs-function">thread <span class="hljs-title">t2</span><span class="hljs-params">(print, <span class="hljs-string">", "</span>, <span class="hljs-string">"World!"</span>)</span></span>;
+ <span class="hljs-comment">//    t1.join();</span>
+ <span class="hljs-comment">//    t2.join();</span>
+ <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}
+</div></code></pre>
+<ul>
+<li>Same example in alang:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"alang.hpp"</span></span>
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s1, <span class="hljs-built_in">string</span> s2)</span> </span>{ <span class="hljs-built_in">cout</span> &lt;&lt; s1 &lt;&lt; s2; }
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+ processes ps;ps += []() {
+ <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hello"</span>;
+ };
+  ps += []() {
+  print(<span class="hljs-string">", "</span>, <span class="hljs-string">"World!"</span>);
+  };
+  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+ }
+</div></code></pre>
+<ul>
+<li>Helper function:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pause_thread_s</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+ <span class="hljs-built_in">std</span>::this_thread::sleep_for(<span class="hljs-built_in">std</span>::chrono::seconds(n));
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">pause_thread_ms</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+ <span class="hljs-built_in">std</span>::this_thread::sleep_for(<span class="hljs-built_in">std</span>::chrono::milliseconds(n));
+}
+</div></code></pre>
+<ul>
+<li>
+<p>this_thread:
+_get_id gets threads id
+_ yield hints to the scheduler to reschedule</p>
+</li>
+<li>
+<p><strong>detach()</strong> lets a thread “loose”</p>
+</li>
+<li>
+<p>thread object becomes not joinable</p>
+</li>
+<li>
+<p>Example, removing “World!”:</p>
+</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">print</span><span class="hljs-params">(<span class="hljs-built_in">string</span> s1, <span class="hljs-built_in">string</span> s2)</span> </span>{ <span class="hljs-built_in">cout</span> &lt;&lt; s1 &lt;&lt; s2; }
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+ <span class="hljs-built_in">std</span>::thread([]() {
+ pause_thread_s(<span class="hljs-number">2</span>);
+ <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hello"</span>;}).detach();
+ <span class="hljs-built_in">std</span>::thread(print, <span class="hljs-string">", "</span>, <span class="hljs-string">"World!"</span>).detach();
+ pause_thread_s(<span class="hljs-number">1</span>);
+}
+</div></code></pre>
+<ul>
+<li>Thread constructor parameters:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">template</span> &lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Fn</span>, <span class="hljs-title">class</span>... <span class="hljs-title">Args</span>&gt;
+<span class="hljs-title">explicit</span> <span class="hljs-title">thread</span> (<span class="hljs-title">Fn</span>&amp;&amp; <span class="hljs-title">fn</span>, <span class="hljs-title">Args</span>&amp;&amp;... <span class="hljs-title">args</span>);</span>
+</div></code></pre>
+<ul>
+<li>Unhandled exceptions on thread terminates a program</li>
+</ul>
+<h3 id="mutex">Mutex</h3>
+<ul>
+<li>C++ protects access to shared data with:
+<ul>
+<li><a href="#mutual-exclusions">Mutexes</a></li>
+<li><a href="#locks">Locks</a></li>
+<li><a href="#atomic-action">Atomics</a></li>
+</ul>
+</li>
+<li>Mutual exclusion object
+<ul>
+<li>Thread gets ownership of a mutex by locking and releases it by unlocking</li>
+<li>Member functions</li>
+<li><strong>lock()</strong> - block until mutex is available, the lock and continue</li>
+<li><strong>try_lock()</strong> - lock if available, otherwise false
+<ul>
+<li><strong>unlock()</strong> - release ownership</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Code example:</li>
+</ul>
+<pre><code class="language-cpp"><div>
+<span class="hljs-keyword">int</span> acc = <span class="hljs-number">0</span>;
+mutex acc_mutex;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">acc_square</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x)</span> </span>{
+ <span class="hljs-keyword">int</span> tmp = x * x;
+ acc_mutex.lock();
+ acc += tmp;acc_mutex.unlock();
+ }
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+ <span class="hljs-built_in">map</span>&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; m;
+ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>; j&lt;<span class="hljs-number">1000</span>; ++j) {
+ acc = <span class="hljs-number">0</span>;
+  <span class="hljs-built_in">vector</span>&lt;thread&gt; ts;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">1</span>; i &lt;= <span class="hljs-number">10</span>; i++)
+  ts.push_back(thread(acc_square, i));
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; t : ts) t.join();
+  <span class="hljs-keyword">if</span> (m.count(acc) == <span class="hljs-number">0</span>)
+   m[acc] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">else</span> m[acc]++;
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> kv : m)
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"acc="</span> &lt;&lt; kv.first &lt;&lt; <span class="hljs-string">": "</span> &lt;&lt; kv.second &lt;&lt; <span class="hljs-string">" times\n"</span>;
+  }
+</div></code></pre>
+<h3 id="types-of-mutexes">Types of mutexes</h3>
+<ul>
+<li><strong>Recursive mutex</strong>
+_ Can be locked repeatedly by the same thread
+_ Released when unlocked the same amount of times</li>
+<li><strong>Timed Mutex</strong>
+<ul>
+<li>Only wait for a locked mutex a limited amount of time before it gives up</li>
+</ul>
+</li>
+<li><strong>Shared-timed-mutex, shared-recursive-mutex</strong>:
+_ Shared and exclusive access
+_ Use full when there is a lot of read activity, but writing has to be exclusive</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<h4 id="try-lock-recursive-mutex-example">Try-Lock Recursive mutex example:</h4>
+<pre><code class="language-cpp"><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">counter</span> {</span>
+ recursive_mutex mut;
+ <span class="hljs-keyword">int</span> c = <span class="hljs-number">0</span>;
+ <span class="hljs-keyword">public</span>:<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tick</span><span class="hljs-params">()</span> </span>{
+   mut.lock();
+    ++c;
+    mut.unlock();
+    }
+ <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">tickManyIfCan</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n)</span> </span>{
+ <span class="hljs-keyword">if</span> (mut.try_lock()) {
+ <span class="hljs-keyword">while</span> (n-- &gt; <span class="hljs-number">0</span>) tick();
+ mut.unlock();
+  }
+ }
+ <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">value</span><span class="hljs-params">()</span> </span>{
+ <span class="hljs-keyword">return</span> c;
+  }
+ };
+ <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">task</span><span class="hljs-params">(counter&amp; ctr)</span> </span>{
+ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100</span>; i++) {
+ pause_thread_ms(<span class="hljs-number">1</span>);
+ ctr.tickManyIfCan(<span class="hljs-number">10</span>);
+  }
+ }
+ <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+ counter ctr;
+ <span class="hljs-function">thread <span class="hljs-title">t1</span><span class="hljs-params">(task, ref(ctr))</span>, <span class="hljs-title">t2</span><span class="hljs-params">(task, ref(ctr))</span>, <span class="hljs-title">t3</span><span class="hljs-params">(task, ref(ctr))</span></span>;
+ t1.join(); t2.join(); t3.join();
+ <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"\nvalue = "</span> &lt;&lt; ctr.value();
+ }
+</div></code></pre>
+<h4 id="timed-mutex-example">Timed Mutex Example:</h4>
+<pre><code class="language-cpp"><div>timed_mutex mut;
+ <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">attempt</span> <span class="hljs-params">(atomic&lt;<span class="hljs-keyword">int</span>&gt;&amp; successes)</span> </span>{
+  <span class="hljs-keyword">if</span> (mut.try_lock_for(chrono::milliseconds(<span class="hljs-number">50</span>))) {
+  <span class="hljs-comment">// now we have the lock</span>
+  ++successes;
+  pause_thread_ms(<span class="hljs-number">2</span>);
+  mut.unlock();
+ }
+}
+ <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+  thread ts[<span class="hljs-number">100</span>];
+   atomic&lt;<span class="hljs-keyword">int</span>&gt; successes = <span class="hljs-number">0</span>;
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">100</span>; ++i)
+   ts[i] = thread(attempt, ref(successes));
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; t : ts)
+   t.join();
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"#successes = "</span> &lt;&lt; successes &lt;&lt; <span class="hljs-built_in">endl</span>;
+  }
+ <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+  run(); run(); run();
+ }
+</div></code></pre>
+<h4 id="shared-mutex-example">Shared Mutex Example:</h4>
+<pre><code class="language-cpp"><div> td::shared_mutex
+  s_mut;
+  timer tm;
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">reading</span><span class="hljs-params">(<span class="hljs-keyword">const</span> <span class="hljs-built_in">string</span>&amp; data, <span class="hljs-keyword">int</span> secs)</span> </span>{
+   s_mut.lock_shared();
+   pause_thread_s(secs);
+   alang::logl(<span class="hljs-string">"Reader "</span>, data, <span class="hljs-string">" "</span>, tm.elapsed());
+   s_mut.unlock_shared();
+ }
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">writing</span><span class="hljs-params">(<span class="hljs-built_in">string</span>&amp; data, <span class="hljs-built_in">string</span> d, <span class="hljs-keyword">int</span> secs)</span> </span>{
+   s_mut.lock();
+   pause_thread_s(secs);
+   data = d;
+   s_mut.unlock();
+   alang::logl(<span class="hljs-string">"Writer "</span>, d, <span class="hljs-string">" "</span>, tm.elapsed());
+  }
+  <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+   <span class="hljs-built_in">string</span> data = <span class="hljs-string">"A"</span>;
+   <span class="hljs-built_in">vector</span>&lt;thread&gt; ts;
+   tm.reset();
+   ts.emplace_back(reading, cref(data), <span class="hljs-number">3</span>);
+   ts.emplace_back(reading, cref(data), <span class="hljs-number">4</span>);
+   ts.emplace_back(writing, ref(data), <span class="hljs-string">"B"</span>, <span class="hljs-number">1</span>);
+   ts.emplace_back(writing, ref(data), <span class="hljs-string">"C"</span>, <span class="hljs-number">2</span>);
+   ts.emplace_back(reading, cref(data), <span class="hljs-number">0</span>);
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; t : ts) t.join();
+ }
+</div></code></pre>
+<h3 id="mutex-wrappers">Mutex-Wrappers</h3>
+<h4 id="raii">RAII</h4>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">int</span> c;
+mutex cm;
+ ...
+ {
+ lock_guard&lt;mutex&gt; lock(cm); <span class="hljs-comment">// mutex locked here</span>
+ foo(c);
+ } <span class="hljs-comment">// unlocked here when lock destroyed</span>
+
+</div></code></pre>
+<h4 id="lock-and-lockguard">lock and lock_guard:</h4>
+<ul>
+<li>Adopts an already locked mutex * <strong>std::lock()</strong> takes a given number of mutexes and locking them without <a href="#deadlock">deadlocking</a></li>
+</ul>
+<pre><code class="language-cpp"><div>container a, b; <span class="hljs-comment">// assume both have mutex member variable</span>
+{
+ <span class="hljs-built_in">std</span>::lock(a.mutex, b.mutex);
+ lock_guard&lt;mutex&gt; l1(a.mutex, <span class="hljs-built_in">std</span>::<span class="hljs-keyword">adopt_lock_t</span>);
+ lock_guard&lt;mutex&gt; l2(b.mutex, <span class="hljs-built_in">std</span>::<span class="hljs-keyword">adopt_lock_t</span>);
+ a.put(b.get()); <span class="hljs-comment">// maybe exceptions</span>
+ } <span class="hljs-comment">// locks released here</span>
+
+</div></code></pre>
+<h4 id="uniquelock">unique_lock</h4>
+<ul>
+<li>Can be given more policies
+<ul>
+<li><strong>adopt_lock_t</strong></li>
+<li><strong>defer_lock_t</strong></li>
+<li><strong>try_to_lock_t</strong></li>
+</ul>
+</li>
+<li>or a duration or time point
+<ul>
+<li>For how long or wait time to acquire lock</li>
+</ul>
+</li>
+<li>Moveable, transfers the mutex</li>
+<li>Unlocking and re locking possible</li>
+</ul>
+<pre><code class="language-cpp"><div>container a, b; <span class="hljs-comment">// assume both have mutex member variable</span>
+{
+ unique_lock&lt;mutex&gt; l1(a.mutex, <span class="hljs-keyword">defer_lock_t</span>);
+ unique_lock&lt;mutex&gt; l2(b.mutex, <span class="hljs-keyword">defer_lock_t</span>);
+ lock(l1, l2);
+ a.put(b.get());<span class="hljs-comment">// maybe exceptions</span>
+ }<span class="hljs-comment">// locks released here</span>
+
+</div></code></pre>
+<h4 id="scopedlock-wrapper">scoped_lock wrapper</h4>
+<ul>
+<li>Easiest mutex lock</li>
+<li>Can wrapt multiple mutexes from the constructor without deadlocking</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-built_in">std</span>::mutex m1, m2, m3;
+ ...
+{
+ <span class="hljs-built_in">std</span>::<span class="hljs-function">scoped_lock <span class="hljs-title">lock</span><span class="hljs-params">(m1, m2, m3)</span></span>;
+ <span class="hljs-comment">// critical section</span>
+} <span class="hljs-comment">// mutexes released here (in reverse order)</span>
+</div></code></pre>
+<ul>
+<li>Mutexes can be different types</li>
+<li>No need to specify mutex types(C++17’s class template argument deduction)</li>
+</ul>
+<h3 id="c-conditional-variables">C++ Conditional Variables</h3>
+<ul>
+<li>
+<p>Allows blocking a thread until notified</p>
+</li>
+<li>
+<p>Waiting methods from the <strong>conditional variable</strong> class puts the thread to sleep, to start waiting for a conditional variable</p>
+<ul>
+<li><strong>void wait(unique_lock<mutex>);</strong> see <a href="#unique-lock">unique-lock</a></li>
+<li><strong>void wait_for(unique_lock<mutex>, chrono::duration&lt;…&gt;);</strong> see <a href="#unique_lock">unique_lock</a></li>
+<li><strong>wait_until(unique_lock<mutex>, chrono::time_point&lt;…&gt;);</strong></li>
+</ul>
+</li>
+<li>
+<p>A thread starts waiting holding a lock, and wakes up holding a lock</p>
+<ul>
+<li>unique_lock associated with a mutex</li>
+</ul>
+</li>
+<li>
+<p>Notifies threads with:</p>
+<ul>
+<li><strong>void notify_one()</strong></li>
+<li><strong>void notify_all)()</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Spurious wakeup</strong></p>
+<ul>
+<li>Scheduler can wake up threads without a calling notifying function</li>
+</ul>
+</li>
+<li>
+<p>Example:</p>
+</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;condition_variable&gt;</span></span>
+mutex mut;
+condition_variable cv;
+<span class="hljs-keyword">int</span> resource = <span class="hljs-number">0</span>;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">worker</span> <span class="hljs-params">(<span class="hljs-keyword">int</span> amount)</span> </span>{
+ unique_lock&lt;mutex&gt; lock(mut);
+ <span class="hljs-keyword">while</span> (amount &gt; resource) cv.wait(lock);
+ resource -= amount;
+ <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Handled  "</span> &lt;&lt; amount &lt;&lt; <span class="hljs-string">", remains "</span> &lt;&lt; resource &lt;&lt; <span class="hljs-built_in">endl</span>;
+ }
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span> <span class="hljs-params">()</span>  </span>{
+ thread ts[<span class="hljs-number">10</span>];
+ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i)
+  ts[i] = thread(worker, i);
+
+  {
+   unique_lock&lt;mutex&gt; lock(mut);
+   pause_thread_s(<span class="hljs-number">1</span>);
+   resource = <span class="hljs-number">100</span>;} <span class="hljs-comment">// unlock here</span>
+   cv.notify_all();
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span>&amp; t : ts) t.join();
+  }
+</div></code></pre>
+<h4 id="thread-local-variables">Thread Local Variables</h4>
+<ul>
+<li><strong>thread_local</strong> * Each thread has an instance of thread_local variable</li>
+<li>Allocated when a thread begins and Deallocated when it terminates</li>
+<li>Can be namespace scope, block scope or static member variables</li>
+</ul>
+<h4 id="call-once">Call once</h4>
+<ul>
+<li>Allocates a piece of code to a single thread</li>
+<li><strong>call_once()</strong></li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">template</span>&lt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Callable</span>, <span class="hljs-title">class</span>... <span class="hljs-title">Args</span> &gt;
+<span class="hljs-title">void</span> <span class="hljs-title">call_once</span>(<span class="hljs-title">std</span>:</span>:once_flag&amp; flag, Callable&amp;&amp; f, Args&amp;&amp;... args);
+</div></code></pre>
+<ul>
+<li>Each call of call_once with the once_flag defines a group
+<ul>
+<li>Other threads block on <strong>call_once()</strong> so that once thread at a time can execute until the flag is set</li>
+</ul>
+</li>
+</ul>
+<h4 id="c-atomics">C++ Atomics</h4>
+<ul>
+<li><strong>atomic<T> x</strong>
+_ <strong>T</strong> cannot be arbitrary type, used for integral and pointer types
+_ Can be created an instance trivially copy type
+_ Can be implemented with hardware lock-free atomic op’s or:
+_ implemented using mutexes</li>
+</ul>
+<h4 id="atomic-objects">Atomic Objects</h4>
+<ul>
+<li><strong>Atomic assignment</strong>
+<ul>
+<li>T operator=(T)</li>
+<li>void store(T, memory_order = std::memory_order_seq_cst)</li>
+</ul>
+</li>
+<li><strong>Atomic read</strong>
+<ul>
+<li>operator T() const</li>
+<li>T load(memory_order = std::memory_order_seq_cst) const</li>
+</ul>
+</li>
+<li><strong>Atomic Swap</strong>
+<ul>
+<li>T exchange(T, memory_order = std::memory_order_seq_cst)</li>
+</ul>
+</li>
+<li><strong>Compare-and-swap</strong>
+<ul>
+<li>bool compare_exchange_weak (T&amp; expected, T desired, ...)</li>
+<li>bool compare_exchange_strong(T&amp; expected, T desired, ...)
+<ul>
+<li>(the...stands for memory order parameters)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Atomic bit manipulation and arithmetic for those T that make sense</strong>
+<ul>
+<li>fetch_and,fetch_or,fetch_xor,fetch_add,fetch_sub</li>
+</ul>
+</li>
+</ul>
+<h4 id="compare-and-swap">Compare and Swap</h4>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">bool</span> atomic&lt;T&gt;::compare_exchange_weak(T&amp; expected, T desired);
+</div></code></pre>
+<ul>
+<li>Use in a loop for as long as the value is expected</li>
+</ul>
+<h4 id="task-based-parallelism">Task-Based Parallelism</h4>
+<ul>
+<li>Abstracts over OS thread
+<ul>
+<li>Because OS threads are more expensive</li>
+<li>Decomposed into independent <strong>tasks</strong></li>
+</ul>
+</li>
+<li>Tasks are determined from <strong>dependency graphs</strong>
+<ul>
+<li><strong>Future/Promised</strong> and <a href="#async"><strong>async</strong></a> creates these graphs</li>
+<li><strong>Promise and Future</strong> are basic building blocks</li>
+<li>A packaged task wraps any function object with a promise-future channel</li>
+<li>A <strong>Future object</strong> is attached to the wrapped function object</li>
+<li>Calling the object resolves the promise with <strong>set_value</strong></li>
+<li>Exception sets with <strong>set_exception</strong> * <strong>async</strong> abstracts over a packaged task</li>
+</ul>
+</li>
+<li><strong>Implementation ideas:</strong>
+<ul>
+<li><strong>Thread pools</strong></li>
+<li><strong>Work stealing</strong></li>
+<li>Idle PS’s steal tasks from another PS’s queue</li>
+<li>Tasks should be freely migrated between threads</li>
+</ul>
+</li>
+</ul>
+<h3 id="futures">Futures</h3>
+<ul>
+<li>
+<p>Delayed value that promises that eventually a value will exist</p>
+<pre><code class="language-cpp"><div>future&lt;<span class="hljs-keyword">int</span>&gt; f = async([]{ <span class="hljs-keyword">return</span> hailstone(<span class="hljs-number">9780657631</span>) });
+</div></code></pre>
+</li>
+<li>
+<p>A future can be queried when a value is required * Could be blocking until value is not available yet</p>
+<pre><code class="language-cpp"><div> <span class="hljs-keyword">if</span> (f.get() == <span class="hljs-number">1</span>) { ... }
+</div></code></pre>
+</li>
+<li>
+<p>A placeholder for a result of a computation</p>
+<ul>
+<li><strong>Three States</strong>
+<ul>
+<li>Pending: Future has no value yet</li>
+<li>Fulfilled: The future value has been achieved</li>
+<li>Rejected: The future never got it's expected value</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="future-class">Future Class</h4>
+<ul>
+<li><strong>template<class T> class future;</strong>
+<ul>
+<li>Tis the type of the result (can be void)</li>
+<li>T must beMoveConstructible</li>
+<li>future<T>cannot be copied, only moved</li>
+</ul>
+</li>
+<li><strong>void wait() const;</strong>
+<ul>
+<li>blocks until future’s result available</li>
+<li>also wait_for() and wait_until()</li>
+</ul>
+</li>
+<li><strong>T get();</strong>
+<ul>
+<li>blocks until result available, then returns it</li>
+<li>get can only be called once</li>
+</ul>
+</li>
+<li><strong>bool valid() const;</strong>
+<ul>
+<li>has the value not been queried? (with get or share)</li>
+<li>does the future have a shared state</li>
+</ul>
+</li>
+<li><strong>std::shared_future<T> share();</strong> \
+<ul>
+<li>gets the value and moves the future’s value to a shared future</li>
+</ul>
+</li>
+</ul>
+<h4 id="sharedfuturet">shared_future<T></h4>
+<ul>
+<li>Same as <strong>future<T></strong> but can be copied
+<ul>
+<li>Many threads can wait</li>
+</ul>
+</li>
+<li>Construct shared_future object for each shared state</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">detect</span><span class="hljs-params">(<span class="hljs-keyword">int</span> x, shared_future&lt;<span class="hljs-keyword">int</span>&gt; y)</span> </span>{
+ <span class="hljs-keyword">static</span> <span class="hljs-built_in">std</span>::mutex iom;
+ <span class="hljs-keyword">if</span> (x == y.get()) {
+  <span class="hljs-function">unique_lock <span class="hljs-title">l</span><span class="hljs-params">(iom)</span></span>;
+   <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Found "</span> &lt;&lt; x &lt;&lt; <span class="hljs-built_in">endl</span>;
+   } <span class="hljs-keyword">else</span> {
+   unique_lock l(iom);
+    <span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Expecting "</span> &lt;&lt; x &lt;&lt; <span class="hljs-built_in">endl</span>;
+    }
+ }
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+ promise&lt;<span class="hljs-keyword">int</span>&gt; p;
+ shared_future&lt;<span class="hljs-keyword">int</span>&gt; f = p.get_future().share();
+ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j=<span class="hljs-number">0</span>; j&lt;<span class="hljs-number">10</span>; ++j)
+  thread(detect, j, f).detach();
+  pause_thread_s(<span class="hljs-number">1</span>);
+  p.set_value(<span class="hljs-number">7</span>);
+  pause_thread_s(<span class="hljs-number">1</span>);
+ }
+</div></code></pre>
+<h4 id="future-combinators">Future Combinators</h4>
+<ul>
+<li>
+<p><strong>when_any</strong></p>
+<ul>
+<li>Wait until at least one of a set of futures is ready:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-keyword">auto</span> f_or_g = when_any(async(f), async(g)); f_or_g.then([](future&lt;<span class="hljs-keyword">int</span>&gt; f) { ... });
+</div></code></pre>
+</li>
+<li>
+<p><strong>when_all</strong></p>
+<ul>
+<li>Wait until all futures of a set is ready:</li>
+</ul>
+<pre><code class="language-cpp"><div>future&lt;tuple&lt;future&lt;<span class="hljs-keyword">int</span>&gt;, future&lt;<span class="hljs-keyword">int</span>&gt;&gt;&gt; f_and_g = when_all(async(f), async(g));
+future&lt;<span class="hljs-keyword">int</span>&gt; futf, futg; tie(futf, futg) = f_and_g.get(); <span class="hljs-comment">// blocks</span>
+<span class="hljs-built_in">cout</span> &lt;&lt; futf.get() + futg.get();<span class="hljs-comment">// does not block</span>
+</div></code></pre>
+</li>
+</ul>
+<h4 id="futurethen">future::then</h4>
+<ul>
+<li>Used instead of blocking with <strong>get</strong> until a future is ready * Does not block</li>
+<li>Example:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;future&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+ future&lt;<span class="hljs-keyword">int</span>&gt; f1 = async([]{ <span class="hljs-keyword">return</span> hailstone(<span class="hljs-number">12342342</span>); });
+ future&lt;<span class="hljs-built_in">string</span>&gt; f2 = f1.then(
+ [](<span class="hljs-keyword">int</span> i) { <span class="hljs-keyword">return</span> to_string(i); }
+ };
+
+ <span class="hljs-built_in">cout</span> &lt;&lt; f2.get();
+}
+
+</div></code></pre>
+<h3 id="promise">Promise</h3>
+<ul>
+<li>Object</li>
+<li>Promise -&gt; Future is a one-off communication channel
+<ul>
+<li>Together has a shared state</li>
+<li>Ready flag</li>
+<li>Eventual result or exception when ready</li>
+<li>Only one future per promise</li>
+<li><strong>get_future</strong> can be called once</li>
+<li>or <a href="#shared-future">shared_future</a></li>
+<li><strong>set_value, set exception</strong></li>
+<li>set ready flag and value/exception</li>
+<li>unblock threads waiting for promise</li>
+<li>Destruction a promise</li>
+<li>Gives up shared state</li>
+<li>Deletes if no future waiting
+<ul>
+<li>Else throws <strong>broken_promise</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Synchronized with <strong>set_value</strong> and <strong>set_exception</strong>
+<ul>
+<li>e.g futures <strong>get</strong> and <strong>wait</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="async">Async</h3>
+<p>Two <strong>Overloads:</strong></p>
+<pre><code class="language-cpp"><div><span class="hljs-comment">// 1</span>
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Function</span>, <span class="hljs-title">class</span>... <span class="hljs-title">Args</span>&gt;
+<span class="hljs-title">std</span>:</span>:future&lt;<span class="hljs-keyword">typename</span> <span class="hljs-built_in">std</span>::result_of&lt;Function(Args...)&gt;::type&gt;
+async(Function&amp;&amp; f, Args&amp;&amp;... args);
+
+<span class="hljs-comment">// 2</span>
+<span class="hljs-keyword">template</span>&lt; <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Function</span>, <span class="hljs-title">class</span>... <span class="hljs-title">Args</span> &gt;
+<span class="hljs-title">std</span>:</span>:future&lt;<span class="hljs-keyword">typename</span> <span class="hljs-built_in">std</span>::result_of&lt;Function(Args...)&gt;::type&gt;
+async(<span class="hljs-built_in">std</span>::launch policy, Function&amp;&amp; f, Args&amp;&amp;... args);
+
+</div></code></pre>
+<ul>
+<li>Launch policy:
+<ul>
+<li><strong>launch::async</strong> executes a new thread with thread locals initialized</li>
+<li><strong>launch::deferred</strong> executes in the same thread at a <strong>get()</strong> call</li>
+</ul>
+</li>
+</ul>
+<h3 id="task-system-implementations">Task System Implementations</h3>
+<ul>
+<li>
+<p>Determine the benefits of multithreading</p>
+<ul>
+<li><strong>Amdahl’s Law:</strong></li>
+<li>$ S(n) = \frac{1}{1-p + \frac{p}{n}} $</li>
+<li>S is theoretical speedup</li>
+<li>n is the factor of increase in resources(number of cores)
+<ul>
+<li>p is the portion benefitting from the resources(unit is time)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Returning out results is a way for tasks to communicate</p>
+<ul>
+<li><strong>async</strong> schedules a packaged task and returns a future</li>
+<li>future becomes <strong>ready</strong> when task completes</li>
+</ul>
+</li>
+<li>
+<p>All following examples assumes these are included:</p>
+</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;thread&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;mutex&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;deque&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;unordered_map&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;functional&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;algorithm&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;string&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;future&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;type_traits&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::forward;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::move;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::function;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::thread;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::future;
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">lock_t</span> = <span class="hljs-built_in">std</span>::unique_lock&lt;<span class="hljs-built_in">std</span>::mutex&gt;;
+</div></code></pre>
+<h3 id="number-of-threads">Number of threads</h3>
+<ul>
+<li><strong>thread::hardware_concurrency()</strong>
+<ul>
+<li>May provide the number of cores currently in our system</li>
+</ul>
+</li>
+<li>Number of threads allocated for the task affects speedup</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-function"><span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> <span class="hljs-title">number_of_threads</span><span class="hljs-params">()</span> </span>{
+ <span class="hljs-keyword">return</span> <span class="hljs-built_in">std</span>::min(
+ <span class="hljs-number">32u</span>,
+ <span class="hljs-built_in">std</span>::max(<span class="hljs-number">1u</span>, thread::hardware_concurrency()));
+ }
+</div></code></pre>
+<h3 id="compute-primes">Compute Primes</h3>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"task-system-utilities.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">notification_queue</span> {</span>
+ <span class="hljs-built_in">std</span>::<span class="hljs-built_in">deque</span>&lt;function&lt;<span class="hljs-keyword">void</span>()&gt;&gt; _q;
+ <span class="hljs-built_in">std</span>::mutex                   _mutex;
+ <span class="hljs-built_in">std</span>::condition_variable      _ready;
+ <span class="hljs-keyword">bool</span>                         _done = <span class="hljs-literal">false</span>;
+  <span class="hljs-keyword">public</span>:
+   <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">done</span><span class="hljs-params">()</span> </span>{
+    {
+  <span class="hljs-keyword">lock_t</span> lock(_mutex); _done = <span class="hljs-literal">true</span>;
+     }
+  _ready.notify_all();
+   }
+
+   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">pop</span><span class="hljs-params">(function&lt;<span class="hljs-keyword">void</span>()&gt;&amp; f)</span> </span>{
+    <span class="hljs-keyword">lock_t</span> lock(_mutex);
+    <span class="hljs-keyword">while</span> (_q.empty() &amp;&amp; !_done) _ready.wait(lock);
+    <span class="hljs-keyword">if</span> (_q.empty()) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    f = move(_q.front());
+    _q.pop_front();<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+   }
+   <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> F&gt; <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">push</span><span class="hljs-params">(F&amp;&amp; f)</span> </span>{
+    {
+      <span class="hljs-keyword">lock_t</span> lock(_mutex);
+      _q.emplace_back(forward&lt;F&gt;(f));
+      }
+     _ready.notify_one();
+   }
+  };
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">task_system</span> {</span>
+ <span class="hljs-keyword">const</span> <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span>  _nthreads;
+ <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;thread&gt; _threads;
+ notification_queue  _q;
+ <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+   function&lt;<span class="hljs-keyword">void</span>()&gt; f;
+   <span class="hljs-keyword">if</span> (!_q.pop(f)) <span class="hljs-keyword">break</span>; <span class="hljs-comment">// !</span>
+   f();
+   }
+  }
+ <span class="hljs-keyword">public</span>:
+  task_system(<span class="hljs-keyword">int</span> nthreads = <span class="hljs-number">0</span>)
+  : _nthreads(nthreads &gt; <span class="hljs-number">0</span> ? nthreads : number_of_threads())
+  {
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> n = <span class="hljs-number">0</span>; n &lt; _nthreads; ++n) {
+  _threads.emplace_back([&amp;]{ run(); });
+  }
+ }
+ ~task_system() { _q.done(); <span class="hljs-keyword">for</span> (thread&amp; t: _threads) t.join(); }
+ <span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> F&gt;
+ <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">async</span><span class="hljs-params">(F&amp;&amp; f)</span> </span>{ _q.push(forward&lt;F&gt;(f)); }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">is_prime</span><span class="hljs-params">(<span class="hljs-keyword">long</span> num)</span> </span>{
+ <span class="hljs-keyword">long</span> limit = <span class="hljs-built_in">sqrt</span>(num);
+ <span class="hljs-keyword">if</span> (num &lt; <span class="hljs-number">2</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">long</span> i=<span class="hljs-number">2</span>; i&lt;=limit ; i++) {
+ <span class="hljs-keyword">if</span> (num % i == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+ } <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-built_in">std</span>::atomic&lt;<span class="hljs-keyword">int</span>&gt; found = <span class="hljs-number">0</span>;
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">count_primes</span><span class="hljs-params">(<span class="hljs-keyword">long</span> n)</span> </span>{
+ <span class="hljs-keyword">int</span> count = <span class="hljs-number">0</span>; <span class="hljs-keyword">while</span> (n-- &gt; <span class="hljs-number">1</span>) { <span class="hljs-keyword">if</span> (is_prime(n)) ++count; }
+ <span class="hljs-keyword">return</span> count;
+}
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ntasks = <span class="hljs-number">4096</span>;
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(<span class="hljs-keyword">int</span> nthreads)</span> </span>{
+ <span class="hljs-keyword">double</span> time;
+  timer tmr;
+  {
+   <span class="hljs-function">task_system <span class="hljs-title">ts</span><span class="hljs-params">(nthreads)</span></span>;
+   <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>; i&lt;ntasks; ++i)
+    ts.async([&amp;]{ found += count_primes(<span class="hljs-number">1000</span>);  });
+    }
+  time = tmr.elapsed();
+  logl(<span class="hljs-string">"time "</span>, time, <span class="hljs-string">" using "</span>, nthreads, <span class="hljs-string">" threads"</span>);
+ }
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>{
+ <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> n = <span class="hljs-number">1</span>; n &lt;= <span class="hljs-number">2048</span>; n *= <span class="hljs-number">2</span>)
+ test(n);
+ test(thread::hardware_concurrency());
+}
+</div></code></pre>
+<ul>
+<li>
+<p><strong>lock_t</strong> is defined as <strong><a href="#unique-lock">std::unique_lock<a href="std::mutex">std::mutex</a></a></strong></p>
+</li>
+<li>
+<p><strong>front</strong> accesses the first element, <strong>pop_front</strong> discards it</p>
+</li>
+<li>
+<p>Functions are moved, not copied</p>
+</li>
+</ul>
+<h2 id="software-transactional-memory">Software Transactional Memory</h2>
+<ul>
+<li>
+<p>Declare blocks of code that should execute atomically</p>
+</li>
+<li>
+<p>No locks</p>
+</li>
+<li>
+<p>Threads write without regard for other threads</p>
+</li>
+<li>
+<p>Keeps log of memory read/write</p>
+<ul>
+<li>Logs are read after execution and compared to the memory</li>
+<li>If execution has changed, the transaction is rolled back</li>
+<li>Otherwise commited</li>
+</ul>
+</li>
+<li>
+<p>Good for programmer because</p>
+<ul>
+<li>No need to keep track of locks(unless implemented)</li>
+<li>No deadlock</li>
+</ul>
+</li>
+<li>
+<p><strong>Pros</strong></p>
+<ul>
+<li><a href="#fine-grained-atomicity">Fine-Grained</a></li>
+<li>Good performance in dist. inviroments</li>
+</ul>
+</li>
+<li>
+<p><strong>Cons</strong></p>
+<ul>
+<li>Performance could be a lot worse than locking</li>
+</ul>
+</li>
+</ul>
+<h3 id="rollback">Rollback</h3>
+<ul>
+<li><strong>Occurs</strong>
+<ul>
+<li>On Read
+<ul>
+<li>if variable is locked</li>
+<li>Version greated than rv</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>On commit
+<ul>
+<li>If any log variable can not be loacked</li>
+<li>If any log variable locked or version higher than rv</li>
+</ul>
+</li>
+</ul>
+<h2 id="message-passing-concurrency">Message Passing Concurrency</h2>
+<ul>
+<li><strong>Distributed Memory Architectures</strong>
+<ul>
+<li>
+<p>Processors has private memory</p>
+</li>
+<li>
+<p>Connects with other PS's with <strong>interconnect</strong> network</p>
+</li>
+<li>
+<p>Processes communicate by sending messages and recieving messages through <strong>shared channels</strong></p>
+<ul>
+<li>Via <strong>RPC</strong> og <strong>rendez-vous</strong></li>
+<li>Big Picture:</li>
+</ul>
+<pre><code class="language-cpp"><div>
+                                    (implicit mutual exclusion)
+                                 --&gt; [Monitors]        --&gt;
+[Busy Waiting] --&gt; [Semaphores]                             [RPC/Rendez-vous]
+                                 --&gt; [Message Passing] --&gt;
+                                    (each semaphore carries data)
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="channel">Channel</h3>
+<ul>
+<li>
+<p>Communication path between processes</p>
+</li>
+<li>
+<p>chan c(type1, id1,....,typen,idn)</p>
+</li>
+<li>
+<pre><code class="language-cpp"><div>  <span class="hljs-function">chan <span class="hljs-title">c1</span><span class="hljs-params">(<span class="hljs-keyword">int</span> acc-id, <span class="hljs-keyword">int</span> ctr, <span class="hljs-keyword">int</span> amount)</span> 
+</span></div></code></pre>
+</li>
+<li>
+<p><strong>Primitives</strong></p>
+<ul>
+<li>Send
+<ul>
+<li>c(e1,e2,....,en)</li>
+<li>Channel has c Space</li>
+<li>Blocks if channel is full</li>
+</ul>
+</li>
+<li>recieve
+<ul>
+<li>c(var1,var2,...,varn)</li>
+<li>Removes the message if C has atleast one</li>
+<li>Blocks if empty</li>
+</ul>
+</li>
+<li>empty(c)</li>
+</ul>
+</li>
+<li>
+<p><strong>Channel abstraction</strong></p>
+<ul>
+<li>One way</li>
+<li>FIFO Queue</li>
+<li>Atomic access to queue</li>
+<li>Error-free</li>
+<li>Typed</li>
+</ul>
+</li>
+<li>
+<p><strong>Filters</strong></p>
+<ul>
+<li>One-way interaction pattern</li>
+<li>A PS who recieves message from input channel</li>
+<li>Sends to output(function of input and initial state) channels</li>
+</ul>
+</li>
+</ul>
+<h3 id="client-server-with-message-passing">Client-Server with Message Passing</h3>
+<pre><code class="language-cpp"><div>    <span class="hljs-function">chan <span class="hljs-title">request</span><span class="hljs-params">(<span class="hljs-keyword">int</span> clientID, typesofinpit)</span></span>;
+    chan reply[n] (typesofresults)
+    Process Server{
+        <span class="hljs-keyword">int</span> clientID;
+        <span class="hljs-comment">// initializstion, permanent variables </span>
+        <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>){
+            <span class="hljs-function">recieve <span class="hljs-title">request</span><span class="hljs-params">(clientID, input values)</span></span>;
+            <span class="hljs-comment">// body </span>
+            send reply[clientID, result values]
+        }
+    }
+    process client[i=<span class="hljs-number">0</span> to n<span class="hljs-number">-1</span>]{
+        send request(i,args);
+        recieve reply[i] (res_args)
+    }
+    monitor Server{
+        permanenet variables;
+        initialization code;
+        <span class="hljs-function">procesdure <span class="hljs-title">op</span><span class="hljs-params">(input_args)</span></span>{<span class="hljs-comment">/* body; */</span> }
+    }
+</div></code></pre>
+<h3 id="synchronouse-message-passing">Synchronouse Message Passing</h3>
+<ul>
+<li><strong>Sync_Send</strong>
+<ul>
+<li>c(e1,e2,....,en)</li>
+<li>Blocks until message is recieved</li>
+<li>Sender and reciever synchroniza on sending and recieving a message</li>
+</ul>
+</li>
+<li><strong>Perks</strong>
+<ul>
+<li>Fixed channel size(no memory for message data)
+<ul>
+<li>At most one pending recieves message</li>
+<li>At most one undelievered message</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Draws</strong>
+<ul>
+<li>
+<p>Reduced parallelism</p>
+</li>
+<li>
+<p>Higher <a href="#deadlock">deadlock</a> risk</p>
+<ul>
+<li>Deadlock example:</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-function">chan <span class="hljs-title">in1</span><span class="hljs-params">(<span class="hljs-keyword">int</span>)</span>,<span class="hljs-title">in2</span><span class="hljs-params">(<span class="hljs-keyword">int</span>)</span></span>;
+process P1{
+    <span class="hljs-keyword">int</span> v1,v2 = <span class="hljs-number">1</span>;
+    sync_send
+}
+process P2 {
+    <span class="hljs-keyword">int</span> v1,v2 = <span class="hljs-number">2</span>; 
+    <span class="hljs-function">sync_send <span class="hljs-title">in1</span> <span class="hljs-params">(v2)</span></span>;
+    <span class="hljs-function">recieve <span class="hljs-title">in2</span><span class="hljs-params">(v1)</span>:
+}
+
+
+</span></div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="coroutine">Coroutine</h2>
+<ul>
+<li>
+<p>Control abstraction for co-operative, or non-preemptive multitasking</p>
+</li>
+<li>
+<p>Generalization of <a href="#subroutine">subroutines</a></p>
+<ul>
+<li>Suspending the execution</li>
+<li>Resuming a suspended execution</li>
+</ul>
+</li>
+<li>
+<p>Coroutines are in progress simultaneously, but not executed at the same time</p>
+</li>
+<li>
+<p>Five transfer of control events:</p>
+<ul>
+<li>Call
+<ul>
+<li>Activation frame/record pushed on to the stack</li>
+</ul>
+</li>
+<li>Return
+<ul>
+<li>Activation frame/record is popped from the stack</li>
+</ul>
+</li>
+<li>Suspend
+<ul>
+<li>Suspends execution, saves the frame/record, remembers the current point and transfer execution back to caller</li>
+</ul>
+</li>
+<li>Resume
+<ul>
+<li>Restores saved frame/record</li>
+</ul>
+</li>
+<li>Destroy
+<ul>
+<li>Deallocates saved frame/record</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Corollary: activation frame lifetime are not nested</p>
+<ul>
+<li>Heap allocation</li>
+</ul>
+</li>
+<li>
+<p>Can run asynchronously with caller</p>
+</li>
+<li>
+<p>Caller can wait for suspension/return</p>
+</li>
+</ul>
+<pre><code class="language-javascript"><div><span class="hljs-function"><span class="hljs-keyword">function</span>* <span class="hljs-title">primes</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">let</span> primes = [];
+    <span class="hljs-keyword">let</span> c = <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+        <span class="hljs-keyword">let</span> composite = <span class="hljs-literal">false</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> p <span class="hljs-keyword">of</span> primes) {
+            <span class="hljs-keyword">if</span> (c % p == <span class="hljs-number">0</span>) {
+                 composite = <span class="hljs-literal">true</span>;
+                  <span class="hljs-keyword">break</span>;
+                   }
+                  }
+                  <span class="hljs-keyword">if</span> (!composite) { 
+                      primes.push(c);
+                       <span class="hljs-keyword">yield</span> c;
+                    }
+                    ++c;
+            }
+    }
+<span class="hljs-keyword">let</span> p = primes();
+<span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) {
+    <span class="hljs-keyword">let</span> r = p.next();
+    <span class="hljs-keyword">if</span> (r.value &gt; <span class="hljs-number">20</span>) <span class="hljs-keyword">break</span>;
+    <span class="hljs-built_in">console</span>.log(r.value);
+    }
+
+</div></code></pre>
+<h3 id="subroutine">Subroutine</h3>
+<ul>
+<li>
+<p>Has a call and return</p>
+</li>
+<li>
+<p>Call</p>
+<ul>
+<li>Pushes a new frame to stack</li>
+<li>Suspends caller</li>
+<li>jumps to the beginning of the function</li>
+</ul>
+</li>
+<li>
+<p>Return</p>
+<ul>
+<li>passes return value to caller</li>
+<li>Pops the frame</li>
+<li>Resumes caller’s execution</li>
+</ul>
+</li>
+<li>
+<p>Has register for top of stack and allocates/deallocates(modify) the top of the stack</p>
+</li>
+</ul>
+<h3 id="symmetric"><strong>Symmetric</strong></h3>
+<ul>
+<li>Singe control transfer operator that specifies target</li>
+</ul>
+<h3 id="asymmetric"><strong>Asymmetric</strong></h3>
+<ul>
+<li>Similar to subroutines, transferred back to caller</li>
+<li>Symmetric/Asymmetric equally expensive, so can emulate each other</li>
+</ul>
+<h3 id="first-class-coroutines">First-class coroutines</h3>
+<ul>
+<li>
+<p>“Behaves like any value</p>
+</li>
+<li>
+<p>Can be store in variable</p>
+</li>
+<li>
+<p>Passed as parameter</p>
+</li>
+<li>
+<p>Returned from function</p>
+</li>
+<li>
+<p>Be yielded</p>
+</li>
+<li>
+<p><strong>Stackfull</strong></p>
+<ul>
+<li>coroutines can suspend in nested functions</li>
+</ul>
+</li>
+<li>
+<p><strong>Stackless</strong> coroutines can only suspend at top level</p>
+<ul>
+<li>Must create new coroutine layer</li>
+</ul>
+</li>
+</ul>
+<h3 id="generators-iterators-coroutines">Generators-Iterators-Coroutines</h3>
+<ul>
+<li>
+<p>Is iterator if it implements next() with:</p>
+<ul>
+<li>no arguments</li>
+<li>returns object p such that
+<ul>
+<li>p.done : boolean</li>
+</ul>
+</li>
+<li>if p.done == false, then p.value is returned by the iterator</li>
+</ul>
+</li>
+<li>
+<p>An object is iterable if it has the computed property [Symbol.iterator], which is a nullary function returning an iterator</p>
+</li>
+</ul>
+<h3 id="coroutine-frame">Coroutine Frame</h3>
+<ul>
+<li>Located in the iterator object</li>
+<li>Local variables are iterator objects’s member variables</li>
+</ul>
+<h3 id="closing-coroutines">Closing coroutines</h3>
+<ul>
+<li>Breaking out of the iterator loop, closes the iterator</li>
+<li>Generators are close able iterators</li>
+<li>Resources can be cleansed at close</li>
+<li>Generators/Iterators are iterables and iterators</li>
+</ul>
+<h3 id="suspending-coroutine">Suspending coroutine</h3>
+<ul>
+<li>yield communicates data from a coroutine to its caller when the coroutine is suspended</li>
+<li>yield e also receives data when coroutine resumed</li>
+</ul>
+<h3 id="resuming-coroutine">Resuming coroutine</h3>
+<ul>
+<li>
+<p>yield e is an expression, its value is the value sent to coroutine when it is resumed</p>
+</li>
+<li>
+<p>yield e can resume with an exception sent from its caller(ASYNC/AWAIT)</p>
+</li>
+<li>
+<p>Functions defined as async can contain await statements</p>
+</li>
+<li>
+<p>await e evaluates e to a promise, and waits until the promise is resolved</p>
+</li>
+<li>
+<p>The resolved promise’s value is the value of the expression await e</p>
+</li>
+<li>
+<p>A rejected promise turns into an exception</p>
+</li>
+</ul>
+<h2 id="coding">Coding</h2>
+<h3 id="c-coding">C++ Coding</h3>
+<h3 id="ticket-algorithm">Ticket Algorithm</h3>
+<ul>
+<li><a href="#ticket-algorithm">Explanation of the algorithm</a></li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"alang.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;vector&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> <span class="hljs-built_in">std</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> n = <span class="hljs-number">4</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> nCustomers = <span class="hljs-number">4</span>; <span class="hljs-comment">// this many customers</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> nRounds = <span class="hljs-number">5</span>;    <span class="hljs-comment">// each use service this many times</span>
+A&lt;<span class="hljs-keyword">int</span>&gt; current_number = <span class="hljs-number">0</span>, next_served = <span class="hljs-number">0</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">take_ticket_and_wait</span><span class="hljs-params">(<span class="hljs-keyword">int</span> i)</span>
+</span>{
+    <span class="hljs-comment">// take a ticket, print the received ticket number, and block until it is your turn</span>
+    <span class="hljs-comment">// return the recived ticket number</span>
+    <span class="hljs-keyword">int</span> myturn;
+    ATO myturn = current_number;
+    current_number = current_number + <span class="hljs-number">1</span>;MIC;
+    alang::<span class="hljs-built_in">log</span>(<span class="hljs-string">"\nProcess "</span>, i, <span class="hljs-string">" got turn: "</span>, myturn);
+    <span class="hljs-function">ATO <span class="hljs-title">AWAIT</span><span class="hljs-params">(myturn == next_served)</span></span>;MIC;
+    <span class="hljs-keyword">return</span> myturn;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">release_ticket</span><span class="hljs-params">()</span>
+</span>{
+    <span class="hljs-comment">// let the next process proceed</span>
+    ATO next_served = next_served + <span class="hljs-number">1</span>; MIC;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span>
+</span>{
+    {
+        processes ps;
+
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i : range(<span class="hljs-number">0</span>, nCustomers))
+        {
+            ps += [&amp;, i] {
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j : range(<span class="hljs-number">0</span>, nRounds))
+                {
+                    <span class="hljs-keyword">int</span> turn = take_ticket_and_wait(i);
+                    <span class="hljs-comment">// Perform task</span>
+                    alang::logl(<span class="hljs-string">"\nProcess "</span>, i, <span class="hljs-string">" runs on turn "</span>, turn);
+                    release_ticket();
+                }
+            };
+        }
+    }
+}
+</div></code></pre>
+<p><strong>Output:</strong>
+<br>Process 1 got turn 0
+<br>Process 0 got turn 1
+<br>Process 2 got turn 2
+<br>Process 3 got turn 3
+<br>Process 1 runs on turn 0
+<br>Process 1 got turn 4
+<br>Process 0 runs on turn 1
+<br>Process 0 got turn 5
+<br>Process 2 runs on turn 2
+<br>Process 2 got turn 6
+<br>Process 3 runs on turn 3
+<br>Process 3 got turn 7
+<br>Process 1 runs on turn 4
+<br>Process 1 got turn 8
+<br>Process 0 runs on turn 5
+<br>Process 0 got turn 9
+<br>Process 2 runs on turn 6
+<br>Process 2 got turn 10
+<br>Process 3 runs on turn 7
+<br>Process 3 got turn 11
+<br>Process 1 runs on turn 8
+<br>Process 1 got turn 12
+<br>Process 0 runs on turn 9
+<br>Process 0 got turn 13
+<br>Process 2 runs on turn 10
+<br>Process 2 got turn 14
+<br>Process 3 runs on turn 11
+<br>Process 3 got turn 15
+<br>Process 1 runs on turn 12
+<br>Process 1 got turn 16
+<br>Process 0 runs on turn 13
+<br>Process 0 got turn 17
+<br>Process 2 runs on turn 14
+<br>Process 2 got turn 18
+<br>Process 3 runs on turn 15
+<br>Process 3 got turn 19
+<br>Process 1 runs on turn 16
+<br>Process 0 runs on turn 17
+<br>Process 2 runs on turn 18
+<br>Process 3 runs on turn 19</p>
+<h3 id="semaphores-2">Semaphores</h3>
+<ul>
+<li>See <a href="semaphores">semaphores</a></li>
+</ul>
+<h3 id="semaphores-implementation">Semaphores implementation</h3>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"alang.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">barrier</span>
+{</span>
+    alang::semaphore arrive, depart;
+    <span class="hljs-keyword">int</span> ctr, n;
+
+<span class="hljs-keyword">public</span>:
+    barrier(<span class="hljs-keyword">int</span> n) : arrive(<span class="hljs-number">1</span>), depart(<span class="hljs-number">0</span>), ctr(<span class="hljs-number">0</span>), n(n) {}
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">set</span><span class="hljs-params">()</span></span>{
+        arrive.P();
+        <span class="hljs-keyword">if</span>(ctr &gt; n){
+            arrive.V();
+        } <span class="hljs-keyword">else</span> {
+            depart.V();
+        }
+        depart.P();
+        <span class="hljs-keyword">if</span>(ctr &gt; <span class="hljs-number">0</span>){depart.V();}
+             <span class="hljs-keyword">else</span>{
+                 arrive.V();
+             }
+        }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">launch_processes</span><span class="hljs-params">(processes &amp;ps, barrier &amp;b, <span class="hljs-keyword">int</span> stages, <span class="hljs-keyword">int</span> n)</span></span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; n; ++i)
+    {
+        ps += [&amp;, i, stages] {
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> s = <span class="hljs-number">0</span>; s &lt; stages; ++s)
+            {
+                logl(<span class="hljs-string">"Stage "</span>, s, <span class="hljs-string">", process "</span>, i);
+                b.<span class="hljs-built_in">set</span>();
+            }
+        };
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    {
+        <span class="hljs-function">barrier <span class="hljs-title">b</span><span class="hljs-params">(<span class="hljs-number">4</span>)</span></span>;
+        processes ps;
+        launch_processes(ps, b, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>);
+    }
+}
+
+</div></code></pre>
+<p><strong>Output:</strong>
+Stage 0, process 0
+Stage 1, process 0
+Stage 2, process 0
+Stage 0, process 1
+Stage 1, process 1
+Stage 2, process 1
+Stage 0, process 3
+Stage 1, process 3
+Stage 2, process 3
+Stage 0, process 2
+Stage 1, process 2
+Stage 2, process 2</p>
+<h3 id="semaphores-banking-problem">Semaphores Banking Problem</h3>
+<ul>
+<li>Multiple threads trying to deposit and withdraw from bank accounts</li>
+</ul>
+<pre><code class="language-cpp"><div>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"alang.hpp"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">bank_account</span>
+{</span>
+    alang::semaphore sem;
+    <span class="hljs-keyword">int</span> balance;
+    <span class="hljs-keyword">int</span> number;
+
+<span class="hljs-keyword">public</span>:
+    bank_account(<span class="hljs-keyword">int</span> n) :sem(<span class="hljs-number">1</span>), balance(<span class="hljs-number">0</span>), number(n) {}
+
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">get_number</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> number; }
+    <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">get_balance</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> balance; }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">deposit</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sum)</span></span>{
+        sem.P();
+        balance = balance + sum;
+        sem.V();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">withdraw</span><span class="hljs-params">(<span class="hljs-keyword">int</span> sum)</span></span>{
+        sem.P();
+        balance = balance - sum;
+        sem.V();
+    }
+
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">transfer_to</span><span class="hljs-params">(bank_account &amp;b, <span class="hljs-keyword">int</span> sum)</span></span>{
+        <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span> -&gt; number &lt; b.number){
+        sem.P();
+        b.sem.P();
+        balance = balance - sum;
+        b.balance = b.balance + sum;
+        b.sem.V();
+        sem.V();
+        }<span class="hljs-keyword">else</span>{
+            sem.P();
+            b.sem.P();
+            balance = balance - sum;
+            b.balance = b.balance + sum;
+            sem.V();
+            b.sem.V();
+        }
+    }
+};
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>&lt;bank_account *&gt; vec;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i)
+    {
+        vec.push_back(<span class="hljs-keyword">new</span> bank_account(i));
+    }
+    {
+        processes ps;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">100</span>; ++i)
+        {
+            ps += [i, &amp;vec] {
+                <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">10</span>; ++j)
+                {
+                    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> k = <span class="hljs-number">0</span>; k &lt; <span class="hljs-number">10</span>; ++k)
+                    {
+                        vec[j]-&gt;deposit(<span class="hljs-number">100</span>);
+                        vec[k]-&gt;withdraw(<span class="hljs-number">100</span>);
+                        vec[j]-&gt;withdraw(<span class="hljs-number">100</span>);
+                        vec[k]-&gt;deposit(<span class="hljs-number">100</span>);
+                        <span class="hljs-keyword">if</span> (j != k)
+                            vec[j]-&gt;transfer_to(*(vec[k]), <span class="hljs-number">10</span>);
+                    }
+                }
+            };
+        }
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i){
+        alang::logl(<span class="hljs-string">"Account "</span>, i, <span class="hljs-string">" has balance "</span>, vec[i]-&gt;get_balance());
+    }
+}
+
+</div></code></pre>
+<p><strong>Output</strong>
+<br>Account 0 has balance -70
+<br>Account 1 has balance -240
+<br>Account 2 has balance 0
+<br>Account 3 has balance -210
+<br>Account 4 has balance 30
+<br>Account 5 has balance 110
+<br>Account 6 has balance 90
+<br>Account 7 has balance 90
+<br>Account 8 has balance -300
+<br>Account 9 has balance 240</p>
+<h3 id="monitor">Monitor</h3>
+<h4 id="bridge-crossing-problem">Bridge Crossing Problem</h4>
+<ul>
+<li>Cars has to drive over a bridge</li>
+<li>Only cars allowed in the same direction is allowed to drive at once</li>
+<li>Cars can drive past each other</li>
+<li>Cars coming from the opposite direction has to wait until the cars on the bridge have passed</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"alang.hpp"</span></span>
+<span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;array&gt;</span></span>
+
+<span class="hljs-keyword">using</span> alang::logl;
+<span class="hljs-keyword">using</span> alang::prandom;
+<span class="hljs-keyword">using</span> alang::sleep_ms;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">array</span>;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span>;
+
+<span class="hljs-comment">// "?" is a conditional statment in c++. If north is true, north is return, otherwise south</span>
+<span class="hljs-keyword">enum</span> direction{ north = <span class="hljs-number">0</span>, south = <span class="hljs-number">1</span>};
+<span class="hljs-function">direction <span class="hljs-title">opposite</span><span class="hljs-params">(direction dir)</span></span>{<span class="hljs-keyword">return</span> (dir == north ? south : north);}
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">bridge</span> :</span>  monitor{
+    <span class="hljs-keyword">private</span>:
+        <span class="hljs-built_in">array</span>&lt;<span class="hljs-keyword">int</span>, 2&gt; ncars = { <span class="hljs-number">0</span>,<span class="hljs-number">0</span> }; <span class="hljs-comment">// creates an array to see how many cars going in each direction</span>
+        <span class="hljs-comment">// invariant ncars[north] == 0 || ncars[south] == 0</span>
+        cond empty_bridge;
+    <span class="hljs-keyword">public</span>:
+        bridge() {}
+            <span class="hljs-built_in">array</span>&lt;<span class="hljs-keyword">int</span>, 2&gt; bridge_status(){
+                SYNC;
+                <span class="hljs-keyword">return</span> ncars;
+            }
+
+            <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">car_arrive</span><span class="hljs-params">(direction dir)</span></span>{
+                SYNC;
+                <span class="hljs-keyword">while</span>(ncars[opposite(dir)] != <span class="hljs-number">0</span>){
+                    wait(empty_bridge);
+                }
+                ++(ncars[dir]);
+            }
+
+            <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">car_leave</span><span class="hljs-params">(direction dir)</span></span>{
+            {
+                SYNC;
+                --(ncars[dir]);
+            }
+            <span class="hljs-keyword">if</span>(ncars[dir]==<span class="hljs-number">0</span>)
+                signal_all(empty_bridge);
+            }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">auto</span> <span class="hljs-title">car</span><span class="hljs-params">(bridge &amp;b,
+         <span class="hljs-keyword">int</span> max_crossings,     <span class="hljs-comment">// cross at most this many times</span>
+         <span class="hljs-keyword">int</span> min_crossing_time, <span class="hljs-comment">// crossing takes at least this long</span>
+         <span class="hljs-keyword">int</span> max_crossing_time, <span class="hljs-comment">// crossing takes at most this long</span>
+         <span class="hljs-keyword">int</span> min_idle_time,     <span class="hljs-comment">// wait at least this long before trying to cross again</span>
+         <span class="hljs-keyword">int</span> max_idle_time)</span></span>{ <span class="hljs-comment">// wait at most this long before trying to cross again</span>
+
+    <span class="hljs-keyword">return</span> [=, &amp;b] {
+        direction dir = <span class="hljs-keyword">static_cast</span>&lt;direction&gt;(prandom(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)); <span class="hljs-comment">// Casts a random direction</span>
+        <span class="hljs-keyword">int</span> n = prandom(max_crossings);
+
+        <span class="hljs-keyword">while</span>(n-- &gt; <span class="hljs-number">0</span>)
+        {
+            sleep_ms(prandom(min_idle_time, max_idle_time)); <span class="hljs-comment">// Random idle time</span>
+            b.car_arrive(dir); <span class="hljs-comment">// car arrives on bridge</span>
+            <span class="hljs-built_in">array</span>&lt;<span class="hljs-keyword">int</span>, 2&gt; counts = b.bridge_status(); <span class="hljs-comment">// car on bridge checks car distrubution(invariant)</span>
+            assert(counts[north] == <span class="hljs-number">0</span> || counts[south] == <span class="hljs-number">0</span>); <span class="hljs-comment">// checks if it is empty</span>
+
+            <span class="hljs-keyword">if</span>(counts[north] &gt; <span class="hljs-number">0</span>)
+                logl(<span class="hljs-built_in">string</span>(counts[north], <span class="hljs-string">'N'</span>));
+            <span class="hljs-keyword">else</span>
+                 logl(<span class="hljs-built_in">string</span>(counts[south], <span class="hljs-string">'S'</span>));
+
+            alang::sleep_ms(alang::prandom(min_crossing_time, max_crossing_time)); <span class="hljs-comment">//random crossing time for car</span>
+            b.car_leave(dir); <span class="hljs-comment">// bye bye car</span>
+
+            counts = b.bridge_status(); <span class="hljs-comment">// checks bridge status againg</span>
+            assert(counts[north] == <span class="hljs-number">0</span> || counts[south] == <span class="hljs-number">0</span>);
+
+            dir = opposite(dir); <span class="hljs-comment">// car turns back</span>
+        }
+    };
+}
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    bridge b;{
+        processes ps;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++){
+            ps += car(b, <span class="hljs-number">8</span>, <span class="hljs-number">1</span>, <span class="hljs-number">10</span>, <span class="hljs-number">2</span>, <span class="hljs-number">20</span>);
+             <span class="hljs-comment">// 10 cars, 8 crossings each, each crossing takes 1-10ms, each car waits 2-20 ms</span>
+        }
+    }
+}
+
+</div></code></pre>
+<p><strong>Output:</strong>
+<br>N
+<br>NN
+<br>S
+<br>SS
+<br>SSS
+<br>SSS
+<br>N
+<br>NN
+<br>NNN
+<br>S
+<br>...</p>
+<h3 id="message-passing-and-channels">Message Passing and Channels</h3>
+<ul>
+<li>P1 sends random numbers to P2</li>
+<li>When P1 generates -1, P2 sends back the sum of the numbers sent by P1</li>
+</ul>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"alang.hpp"</span></span>
+
+alang::channel&lt;<span class="hljs-keyword">int</span>&gt; c1, c2;
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    processes ps;
+    ps += [] {
+        <span class="hljs-keyword">int</span> sum, m;
+        <span class="hljs-keyword">while</span>(m != <span class="hljs-number">-1</span>){
+			m = alang::prandom(<span class="hljs-number">-1</span>, <span class="hljs-number">10</span>);
+            c1.send(m);
+            alang::logl(<span class="hljs-string">"Sent "</span>, m);
+    	}
+		c2.receive(sum);
+		alang::logl(<span class="hljs-string">"Recieved sum "</span>, sum);
+	};
+
+    ps += [] {
+        <span class="hljs-keyword">int</span> sum, m = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>){
+			c1.receive(m);
+			alang::logl(<span class="hljs-string">"Recieved "</span>, m);
+			<span class="hljs-keyword">if</span>(m == <span class="hljs-number">-1</span>)	<span class="hljs-keyword">break</span>;
+			sum += m;
+			}
+		alang::logl(<span class="hljs-string">"Sending sum "</span>, sum);
+		c2.send(sum);
+    };
+}
+
+</div></code></pre>
+<h3 id="filters-with-quicksort">Filters With Quicksort</h3>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"alang.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> d_channel = alang::channel&lt;<span class="hljs-keyword">int</span>&gt;;
+<span class="hljs-keyword">using</span> alang::channel;
+<span class="hljs-keyword">using</span> alang::prandom;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>;
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> EOS = <span class="hljs-number">-1</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">partition_filter</span><span class="hljs-params">(<span class="hljs-keyword">int</span> pivot, d_channel in1, d_channel out1, d_channel out2)</span></span>{
+    <span class="hljs-keyword">int</span> r;
+    in1.receive(r);
+    <span class="hljs-keyword">while</span>(r != EOS){
+        <span class="hljs-keyword">if</span>(r &lt;= pivot)
+            out1.send(r);
+        <span class="hljs-keyword">else</span> 
+            out2.send(r);
+        in1.receive(r);
+    }
+    out1.send(EOS);
+    out2.send(EOS);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">merge_filter</span><span class="hljs-params">(d_channel in1, d_channel in2, d_channel out)</span></span>{
+    <span class="hljs-keyword">int</span> v1, v2;
+    in1.receive(v1);
+    in2.receive(v2);
+    <span class="hljs-keyword">while</span> (v1 != EOS &amp;&amp; v2 != EOS){
+        <span class="hljs-keyword">if</span> (v1 &lt;= v2){
+            out.send(v1);
+            in1.receive(v1);
+        } <span class="hljs-keyword">else</span>{
+            out.send(v2);
+            in2.receive(v2);
+        }
+    }<span class="hljs-keyword">while</span> (v1 != EOS)  {
+        out.send(v1);
+        in1.receive(v1);
+    }   <span class="hljs-keyword">while</span> (v2 != EOS)  {
+        out.send(v2);
+        in2.receive(v2);
+    }
+    out.send(EOS);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">quick_sort</span><span class="hljs-params">(d_channel in, d_channel out)</span></span>{
+    <span class="hljs-keyword">int</span> pivot;
+    in.receive(pivot);
+    <span class="hljs-keyword">if</span>(pivot == EOS){
+        out.send(EOS);
+        <span class="hljs-keyword">return</span>;
+    }
+    d_channel sort1, sort2, o1, o2;
+
+    processes ps;
+    ps += [&amp;]() { partition_filter(pivot, in, o1, o2); };
+    ps += [&amp;]() { quick_sort(o1, sort1); };
+    ps += [&amp;]() { sort2.send(pivot); quick_sort(o2,sort2); };
+    ps += [&amp;]() { merge_filter(sort1, sort2, out); };
+}
+
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> EOS = <span class="hljs-number">-1</span>;
+    <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt; vin, vout;{
+        d_channel in, out; <span class="hljs-comment">// note: channels are defined before ps, so that they are destructed after ps</span>
+        processes ps;
+
+        ps += [&amp;] { quick_sort(in, out); };
+
+        ps += [&amp;] {
+            <span class="hljs-keyword">int</span> p;
+            <span class="hljs-keyword">do</span>{
+                p = prandom(<span class="hljs-number">-1</span>, <span class="hljs-number">10</span>);
+                vin.push_back(p);
+                in.send(p);
+            } <span class="hljs-keyword">while</span> (p != EOS);
+        };
+        ps += [&amp;] {
+            <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>){
+                <span class="hljs-keyword">int</span> p;
+                out.receive(p);
+                vout.push_back(p);
+                <span class="hljs-keyword">if</span> (p == EOS)<span class="hljs-keyword">break</span>;
+            }
+        };
+    }
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i : vin)
+        <span class="hljs-built_in">log</span>(i, <span class="hljs-string">" "</span>);
+    logl();
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> i : vout)
+        <span class="hljs-built_in">log</span>(i, <span class="hljs-string">" "</span>);
+    logl();
+}
+
+</div></code></pre>
+<h3 id="saving-account">Saving Account</h3>
+<pre><code class="language-cpp"><div><span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">"alang.hpp"</span></span>
+
+<span class="hljs-keyword">using</span> alang::channel;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::to_string;
+<span class="hljs-keyword">using</span> <span class="hljs-built_in">std</span>::<span class="hljs-built_in">vector</span>;
+
+<span class="hljs-keyword">using</span> money = <span class="hljs-keyword">int</span>;
+<span class="hljs-keyword">using</span> option = <span class="hljs-keyword">int</span>;
+<span class="hljs-keyword">using</span> reply = money;
+
+channel &lt;channel&lt;reply&gt; , option, money&gt; request;
+
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> DEPOSIT = <span class="hljs-number">0</span>, WITHDRAW = <span class="hljs-number">1</span>, KILL = <span class="hljs-number">2</span>;
+
+<span class="hljs-keyword">auto</span> bankServer = [] {
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">deque</span>&lt;<span class="hljs-built_in">std</span>::pair&lt;channel&lt;reply&gt;, money&gt;&gt; <span class="hljs-built_in">queue</span>;
+    <span class="hljs-keyword">int</span> balance = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">while</span>(<span class="hljs-literal">true</span>)
+    {
+        channel&lt;reply&gt; reply_channel;
+        
+        option op;
+        money amount;
+
+        request.receive(reply_channel, op, amount);
+        <span class="hljs-keyword">switch</span> (op)
+        {
+
+        <span class="hljs-keyword">case</span> DEPOSIT:
+            balance += amount;
+            reply_channel.send(balance);
+
+            <span class="hljs-keyword">while</span>(!<span class="hljs-built_in">queue</span>.empty())
+            {
+                <span class="hljs-keyword">auto</span> p = <span class="hljs-built_in">queue</span>.front();
+                <span class="hljs-keyword">if</span>(p.second &lt; balance)
+                {
+                    balance -= p.second;
+                    p.first.send(balance);
+                    <span class="hljs-built_in">queue</span>.pop_front();
+                }<span class="hljs-keyword">else</span>{
+                    <span class="hljs-keyword">break</span>;
+                }
+            }
+            <span class="hljs-keyword">break</span>;
+
+        <span class="hljs-keyword">case</span> WITHDRAW:
+            <span class="hljs-keyword">if</span>(amount &gt; balance)
+            {
+                <span class="hljs-built_in">queue</span>.push_back(<span class="hljs-built_in">std</span>::make_pair(reply_channel, amount));
+                
+            }
+            <span class="hljs-keyword">else</span>{
+                balance -= amount;
+                reply_channel.send(amount);
+            }  
+            <span class="hljs-keyword">break</span>;
+
+        <span class="hljs-keyword">case</span> KILL: <span class="hljs-keyword">return</span>;
+        }
+    }
+};
+
+<span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>{
+    processes ps;
+    ps += [] {
+        reply r;
+        channel&lt;reply&gt; ch;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i)
+        {
+            request.send(ch, DEPOSIT, <span class="hljs-number">100</span>);
+            ch.receive(r);
+            logl(r);
+        }
+    };
+    ps += [] {
+        reply r;
+        channel&lt;reply&gt; ch;
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; ++i)
+        {
+            request.send(ch, WITHDRAW, <span class="hljs-number">100</span>);
+            ch.receive(r);
+            logl(r);
+        }
+    };
+    ps += bankServer;
+    sleep(<span class="hljs-number">100</span>ms);
+    request.send(channel&lt;reply&gt;(), KILL, <span class="hljs-number">0</span>);
+
+}
+
+
+</div></code></pre>
+
+    </body>
+    </html>
