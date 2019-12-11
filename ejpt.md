@@ -1,5 +1,41 @@
 # EJPT Cheat Sheet
 
+## 1 Introduction
+
+### 1.1 Terms
+
+- White hat: Legal hacker
+- Black hat: Illegal hacker
+- User: A computer system user
+- Malicous user: A user misusing systems and applications for attack
+- Root/Admin: Users with maximum priviledge
+- Security through obscurity: Security of design provide security
+- Attack: Action aimed at misusing or taking control over a computer system
+- Priviledge escalation: When a malicous user gains elevated priviledges over a system
+- Dos: Denial of service
+- RCE: Remote code execution
+- Shellcode A custom code providing the attacker a shell on a victims machine
+
+### 1.2 Crytography
+
+- Clear text is data sent without any encryption
+  - Lets attacker eavesdrop
+  - Should not be used for critical or sensitive data
+  - If no other alternative, use only on trusted networks
+
+- Cryptographic protocols encrypts the data
+  - Attackers are not able to eavesdrop
+  - Should always be used for sensitive or private data
+
+- Use clear-text protocols on untrusted networks?
+  - Wrap(tunnel) a cleartext protocol into a cryptographic one
+
+### 1.3 VPN
+
+- Virtual private network
+- Used cryptography to extend private network over a public network
+  - Client
+
 ## 2 Networking
 
 ### 2.1 Protocols
@@ -131,4 +167,3 @@
 
 - Broadcast MAC address
   - A frame with this address is delivered to all the hosts in the local network
-
