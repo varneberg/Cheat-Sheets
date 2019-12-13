@@ -35,6 +35,7 @@
 - Virtual private network
 - Used cryptography to extend private network over a public network
   - Client
+TODO
 
 ## 2 Networking
 
@@ -167,3 +168,85 @@
 
 - Broadcast MAC address
   - A frame with this address is delivered to all the hosts in the local network
+
+### 2.7 DNS
+
+- Domain Name System
+- Application layer protocol
+- Converts human-readable names to IP addresses
+
+- A DNS name can be broken down into:
+  - Top level domain(TLD)
+  - Domain name
+  - Subdomain name
+  - Host name
+
+- Name resolution performed by resolvers
+  - Servers contacting top level domain and follows the hiarchy to resolve the name of the host
+  - ISP or publicly available
+- OS must contact a resolver to break down DNS into IP address
+
+- DNS resolution algorithm:
+  1. Resolver contacts root name servers
+  2. Then asks TLD name server what the authoritive name server is that can give information about the domain it seeks
+  3. If there are more subdomains, step 2 is performed again on the authorotive DNS server for every subdomain
+  4. Finally the resolver asks for the name resolution for the host part
+
+- IP addresses of the root servers are hardcoded in to the configuration of the resolver, and needs to be updated to work
+
+- DNS can also reverse an IP address to a DNS name
+
+### 2.8 Wireshark
+
+#### NIC Promiscuous Mode
+
+- Network interface cards
+- A NIC will accept and process any packet it recieves
+- To sniff other ethernet traffic, ARP poisoning or Mac flooding must be performed
+- **Capture filters** downsizes the amount of traffic gathered
+- **Display filters** allows granular filters to every field of the captured packets
+
+## 3 Web Applications
+
+### 3.1 HTTP
+
+- Hyper text transfer protocol
+- Transfers web pages and web application data
+- Works on top of the TCP protocol
+
+- HTTP message format:
+  - Headers\r\n
+  - \n\n
+  - Message Body\r\n
+
+- HTTP Header fields:
+  - **Request method**
+    - Type of request(GET, PUT, TRACE, HEAD, POST, etc)
+  - **Host**
+    - Internet hostname and port number
+  - **User-Agent**
+    - Client software and OS issuing request
+  - **Accept**
+    - What  document type it is expecting in response
+  - **Accept Language**
+    - Specific human language in response
+  - **Accept Encoding**
+    - Restricts content encoding
+  - **Connection**
+    - Desired properties for current connection
+
+- Server sends response after client request:
+  - **Status Line**
+    - Status codes
+  - **Date**
+    - Date and time request message was originated
+  - **Cache-Control**
+    - Tells the client about cached content
+  - **Content-Type** 
+    - Tells the client how to intereperet the message
+  - **Content-Encoding**
+    - Extends content type
+  - **Server**
+    - Contains header of server who generated response
+  - **Content-Length**
+    - Length of content in bytes
