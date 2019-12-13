@@ -33,10 +33,60 @@
 ### 1.3 VPN
 
 - Virtual private network
-- Used cryptography to extend private network over a public network
-  - Client
-TODO
+- Uses cryptography to extend private network over a public network
+  - Client --(VPN)--> Internet --> Private network
 
+### 1.4 Binary Arithmethic Codes
+
+#### 1.4.1 Binary Conversion
+
+- 0 and 1
+- 1 + 1 = 10
+- 111 + 1 = 1000
+
+- From decimal to and from binary:
+  - $293 = 3*10^0 + 9*10^1 + 2*10^2$
+  - $1101 = 1*2^0 + 0*2^1 + 1*2^2 + 1*2^3 = 13$
+  - Divide by 2 and keep note of remainder
+  - Do the same with previous and keep note of remainder
+  - Do thid until remainder is 0
+  - What is 13?
+    - $13/2 = 6$ (1)
+    - $6/2  = 3$ (0)
+    - $3/2  = 1$ (1)
+    - $1/2  = 0$ (1)
+    - **1101**
+
+#### 1.4.2 Logical Operators
+
+- **NOT**
+  - Flips bits
+  - **NOT** 1101 = 0010
+- **AND** 
+  - IF both bits are 1, resulting bit is 1. Otherwise 0
+  - 1001 **AND** 1100 = 1000
+- **OR**
+  - If atleast one bit is 1, the resulting bit is 1
+  - 1001 **OR** 1100 = 1101
+- **XOR**
+  - If just one of the bits are 1, resulting bit is 1
+  - 1001 **XOR** 1100 = 0101
+
+### 1.5 Hexadecimal
+
+- 1 to 9, A-F
+- Add 0x or h at the end to distinguish
+- Converting hexadecimals to decimals:
+  - 0x3a1 = 0x(3101) = $1*16^0 + 10*16^1 + 3*16^2 = 929$
+  - $1019 = 1019 / 16 = 63,6875$
+    - $0,6875*16 = 11$
+  - $63/16 = 3,9375$
+    - $0,9375*16 = 15$
+  - $3/16 = 0,1875$
+    - $0,1875 * 16 = 3$
+  - **=0x3FB**
+- Use converters online for this instead
+  
 ## 2 Networking
 
 ### 2.1 Protocols
@@ -250,3 +300,92 @@ TODO
     - Contains header of server who generated response
   - **Content-Length**
     - Length of content in bytes
+
+### 3.2 HTTPS
+
+- HTTP Secure
+- HTTPS over TLS
+- Encryption layer
+  - Cannot sniff application layer communication
+  - Cannot alter application layer data
+  - Server and client can authenticate eachother
+
+- An adjacent network user will not be able to recognize:
+  - Request headers, body and domain
+  - Response headers, body
+- He coulf be able to recognize:
+  - Target IP
+  - Target Port
+  - DNS
+
+- Does not protect against web application flaws!
+
+### 3.3 HTTP Cookies
+
+- Textual information stored in the servers cookie jar
+- A cookie contains the following attributes:
+  - The actual content
+    - ID=value 
+  - An expiration date
+    - expires=.......
+  - A path
+    - path=/...../..
+  - The domain
+    - domain=.example.com
+  - Optional flags:
+    - Http only flag
+    - Secure flag
+
+#### 3.3.1 Cookie Domain
+
+- Cookies are sent only to their valid domain/path if they are not expired and according to their flags
+- The domain field sets the scope of the cookie, browser only sends cookie if it is for the right domain
+- When a cookie has the domain attribute set to:
+  - domain=example.com or .example.com, the browser will send the cookie to the site and whatever else subdomains within the scope
+
+- If the server does not specify the domain attribute, the browser automatically set the domain of the server domain, and set the host  only domain flag
+
+#### 3.3.2 Cookie Expiration
+
+- Expires is the validity timer for the cookie
+- Browsers will not send expired cookies to servers
+
+#### 3.3.3 Cookie Http-Only Attribute
+
+- Prevents any other language than HTTP to read from the cookie
+
+#### 3.3.4 Cookie Secure Attribute
+
+- Secure flag creates secure cookies only sent over HTTPS
+
+#### 3.3.5 Cookie Protocol
+
+- Servers sends Set-Cookie response in header field. telling the browser to install the cookie
+- For every subsequen request the browser considers:
+  - Domain
+  - Path
+  - Expiration
+  - Flags
+- If all pass, the browser will insert a cookie: header in the request
+  
+### 3.4 Sessions
+
+- Server side stored variables
+- Identified by an ID or Token
+- Clients presents this ID for all requests, being recognized by the server
+
+- Web servers install session ID's by using session cookies
+  - Single parameter referring to the session
+  - Each language has their own session parameter name
+
+- Session IDs can also transmitted via GET requests
+
+#### 3.5 Same Origin Policy
+
+- Prevents JavaScript code from getting or setting properties on resource coming from a different origin
+- To determine if JavaScript can access a source, the browser uses:
+  - Protocol
+  - Hostname
+  - Port
+- All must match!
+- Only works for the actual script, HTML tags are still vulnerable
