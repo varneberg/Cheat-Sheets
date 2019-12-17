@@ -86,7 +86,7 @@
     - $0,1875 * 16 = 3$
   - **=0x3FB**
 - Use converters online for this instead
-  
+
 ## 2 Networking
 
 ### 2.1 Protocols
@@ -218,6 +218,118 @@
 
 - Broadcast MAC address
   - A frame with this address is delivered to all the hosts in the local network
+
+#### 2.4.1 Switches
+
+- Switches works with mac adresses
+- Multiple interfaces
+- Forwarding table
+- Learns of new hosts dynamically by inspecting packet headers
+
+#### 2.4.2 Forwarding tables
+
+- Content addressable memory table(CAM)
+- Contains:
+  - MAC addresses
+  - Interface tied to MAC addresses and a time to live(TTL)
+- Stored in the devices RAM, and is constantly refreshed
+- TTL is how long an entry will stay in the table
+- TTL is important because CAM's have finite sizes
+- Source MAC addresses are compared in the to the entries in the CAM table for all packets
+  - If source is not in the table, the switch will add a new MAC interface binding in the table
+  - If it exists in the table, TTL is updated
+  - Updates if MAC is bound to another interface
+
+#### 2.4.3 Forwarding
+
+- To forward a packet:
+  1. Switch reads destination MAC address of frame
+  2. Looks in the CAM table
+  3. Forwards to corresponding interface
+  4. If no entry with that MAC address, the switch forwards the frame to all interfaces
+
+#### 2.4.4 Address Resolution Protocol(ARP)
+
+- Makes hosts able to build correct IP address - MAC address bindings
+  
+- Host A wants to send traffic to B, but only knows the IP address of B:
+  1. A builds an ARP request containing the IP of B and FF:FF:FF:FF as destination MAC address. This makes the switch forward it to all hosts
+  2. Every host recieves the requests
+  3. B replies with an ARP reply to A, telling it's MAC
+  4. A then saves the the IP-MAC in its ARP cache
+
+#### 2.4.5 Hubs
+
+- Just repeaters forwarding packets by repeating the electrical signal it recieves
+
+### 2.5 TPC/UDP
+
+- Transmission control protocol 
+- User datagram protcol
+
+- IP protocol suite using TCP is called TCP/IP
+- Characteristics of TCP and UDP:
+  - TCP:
+    - Lower throughput
+    - Connection oriented
+    - Guarantees delievry
+  - UDP:
+    - Better throughput
+    - Connectionless
+    - Does not guarantee packet delivry
+
+#### 2.5.1 Ports
+
+- Used to identify single network process on a machine
+- **IP** : **Port**
+  - 0.0.0.0:80
+
+#### 2.5.2 TCP and UDP Headers
+
+- Two fields
+  - Source
+  - Destination ports
+- Tells the server or client what port to use
+
+#### 2.5.3 TCP Three Way Handshake
+
+- Header fiels involved:
+  - Sequence number
+  - Acknowledgment number
+  - SYN and ACK flags
+
+- Procedure:
+  1. Client sends TCP packet with SYN flag enabled and a random sequence number
+  2. Server responds with SYN and ACK flags set, and a random sequence number
+     - ACK number is always an increment of recieved SYN
+  3. Client completes synchronization by sending ACK
+
+### 2.6 Firewalls and Network Defence
+
+#### 2.6.1 Firewalls
+
+- Software filtering packets
+- Access control on different layers of the OSI model
+- Filters according to rules:
+  - Source IP
+  - Destination IP
+  - Protocol
+  - Source port
+  - Destination port
+  - etc..
+
+- Packet filters inspects headers to determine what to do:
+  - Allow
+  - Drop - No notifying to server
+  - Deny - Notifying server
+
+- **Problem**: Headers give no information on content data of packet
+
+- Attack example:
+  - Company hosts a web server
+  - Firewall allows all incoming traffic from internet and direct it to port 80
+  - Application exploits go through because firewall can not see the difference between web browsing and web exploit
+//TODO
 
 ### 2.7 DNS
 
@@ -389,3 +501,117 @@
   - Port
 - All must match!
 - Only works for the actual script, HTML tags are still vulnerable
+
+## 4 Scripting
+
+### 4.1 Important Windows Commands
+
+- **Output redirection:**
+  - echo aaa > output.txt
+
+- **Execute two commands regardless of eachother:**
+  - [Command1] & [Command2]
+
+- **Execute two commands where the other executes if the other succeeds:**
+  - [Command1] && [Command2]
+
+- **To create larger command line scripts, save them as .bat with one command per line**
+
+- **List all files in a directory:**
+  - for %i (*.*) do @echo FILE: %
+
+## 5 Information Gathering
+
+### 5.1 Open-Source Intelligence
+
+#### 5.1.1 Social Networks
+
+- Easiest way to gather information about employees
+- Important to select the correct social media depending on client
+- Integration between social media profiles can help you find important information on one site, unnavailable on the other
+  - Twitter and LinkedIn can be used to autheticate eachother
+  - LinkedIn displays full name along with email
+
+#### 5.1.2 Public Sites Information Gathering
+
+- **CrunchBase**
+  - Information about founder, investors, employees, buyouts and acquisitions
+
+- **Government sites**
+
+- **Whois**
+  - Command on OSX and Linux
+  - Displays information stored in the whois database
+  - Used on internet domains
+
+#### 5.1.3 Browsing Client´s Sites
+
+- Products
+- Services
+- Technologies
+- Company culture
+- Employees profiles
+
+#### 5.1.4 Email Patterns 
+
+- Many companies uses internal email schemas for employees
+- Often:
+  - name.surename@company.com
+  - surname.name@company.com
+
+- Some systems informs the sender if an email address does not exist
+  - Gather names of employees in the company
+  - Try different combinations of first- and surnames
+  - Send non suspicous mails to the different addresses and observe what the addresses return
+  - If some of the addresses return a failed mail request notification, you can disregard it, and find the actual addresses
+
+### 5.2 Subdomain Enumeration
+
+- Enumerate to find new resources
+- Widens the attack surface
+- Common for companies to share the same top level domain name
+  - e.g careers.company.com, mail.company.com
+  - May be outdated
+
+- Passive subdomain enumeration
+  - Identifying subdomains without directly interracting with the target
+  - Interracting through open sources such as search engines
+  - Google for example may index pages that were not meant to be indexed
+    - site:company.com
+
+- **dnsdumpster.com**
+- **sublist3r**
+  - Collects DNS data
+
+## 6 Footprinting and Scanning
+
+### 6.1 Mapping Networks
+
+- Enumeration process to find nodes from IPs
+  - What is a client and server?
+
+- Ping sweeping:
+  - Sending echo requests(IMCP packets) to hosts to see who is alive
+  - It it replies with an echo reply packet, the host is alive
+  - Fping
+    - Linux ping sweeper
+      - *Fping -a -g 10.54.12.0/24*
+
+#### 6.1.1 nmap
+
+- **-sn**
+  - Ping scan
+    - *nmap -sn 200.200.0.0/16*
+- **-il**
+  - Save host list to file and use as input
+    - *nmap -sn -iL hostslist.txt*
+- **-Pn**
+  - Skips the ping scan
+  - If you allready know the targets are alive
+- **-O**
+  - OS fingerprinting
+  - Determining which OS the host is running
+  - Sends a series of specifically crafted requests to hosts and examines every bit to find OS signatures
+    - *nmap -Pn -O <target(s)>*
+  - Limit to promising hosts
+    - *nmap -O --osscan-limit <targets>*
