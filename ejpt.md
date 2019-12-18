@@ -588,7 +588,7 @@
 ### 6.1 Mapping Networks
 
 - Enumeration process to find nodes from IPs
-  - What is a client and server?
+  - Who is a client and server?
 
 - Ping sweeping:
   - Sending echo requests(IMCP packets) to hosts to see who is alive
@@ -596,8 +596,10 @@
   - Fping
     - Linux ping sweeper
       - *Fping -a -g 10.54.12.0/24*
+  - Nmap
+    - *nmap [scan type] [options] [target]
 
-#### 6.1.1 nmap
+### 6.3 Nmap Ping Scan
 
 - **-sn**
   - Ping scan
@@ -608,6 +610,9 @@
 - **-Pn**
   - Skips the ping scan
   - If you allready know the targets are alive
+
+### 6.4 nmap OS Fingerprinting
+
 - **-O**
   - OS fingerprinting
   - Determining which OS the host is running
@@ -615,3 +620,93 @@
     - *nmap -Pn -O <target(s)>*
   - Limit to promising hosts
     - *nmap -O --osscan-limit <targets>*
+
+### 6.5 nmap Port Scan
+
+- Discover services and daemons listening on different ports
+- Determine which TCP or UDP ports are open on the target host
+
+- When a port scanner tries to connect to an open TCP port
+  - The TCP three way handshake is completed
+  - This means the port is open
+  - The scanner sends a RST+ACK to close the connection
+
+- When a port scanner tries to connect to a closed TCP port
+  - The scanner tries to complete the three way handsake by sending a SYN packet
+  - The server replies with a packet with RST-ACK packet
+  - This means the port is closed
+
+- Every TCP connect gets recorded in the daemon logs
+  - To be more stealthy, use TCP SYN scans
+  - A well-configured IDS will still detect it
+  - Only sends a SYN packet instead of full TCP handshake
+  - If scanner recieves SYN+ACK packet, port is marked as open
+
+- Common nmap scan types
+  - **-sT** - TCP connect scan
+  - **-sS** - TCPSYN scan
+  - **-sV** - version detection scan
+    - Reads the banner from the daemon on the port
+  - **-p** - Specifies port range
+
+- Scan targets can be specified with
+  - DNS names
+  - IP address lists
+  - CIDR notation
+  - Wildcards
+  - Ranges
+  - Octets lists
+  - Input files
+
+### 6.6 Spotting Firewalls
+
+- Pings could be blocked
+  - **-Pn** - Skips ping scanning and treats ports as alive
+
+- Some ports are almost always open on a networkl even if they appear closed
+
+- Be aware of false positives
+
+- If scan is successfull agains a web server, nmap should not have any difficulty to spot the version
+  - Could mean a firewall is in place
+  - tcpwrapped
+    - TCP handshake was complete, but remote host closed connection withouth recieving any data
+  - **--reason** - Could be used to explain why a port is open or closed
+
+### 6.7 Masscann
+
+- Used on larger networks with more IPs 
+- Faster than nmap, but less accurate
+- Can be used for a general network map, and then nmap for fine graining the results
+
+## 7 Vulnerability Assessment
+
+- Finding vulnerabilities without executing the exploitation phase
+
+### 7.1 Vulnerability Scanner
+
+- Scanner performs probes on
+  - Port daemons
+  - Configuration files of OS, software, network devices, etc
+  - Windows registry entries
+
+- Compares result to its database
+- Scanners vendor keeps the tool up to date by updating database
+- Scanners do not work on custom applications, perform manual testing for these
+
+- How they work:
+  1. Determine if target hosts are alive and which ports are open
+  2. For every port found, the scanner sends special probes to determine application
+  3. For each detected service, the scanner looks queries its database and looks for matches
+  4. The scanner sends probes to verify the vulnerability exists
+
+### 7.2 Nessus
+
+- Vulnerabilty scanner
+- Client and server components
+  - Client
+    - Provides interface
+  - Server
+    - Scans by sending probes to systems and applications
+    - Compares results to database
+  - Can run both on one machine
