@@ -11,13 +11,13 @@
 * Uses self contained, independent components with their own state
 * Virtual DOM
 	* Only update what’s needed, not update everything not touched
-* JSX 
+* JSX
 	* Javascript with HTML like syntax
 
 ## React State
 
  * Components can have sate which is an object that determines how that component renders and behaves
- 
+
  ```js
  state = {
  	title: ‘xxx’
@@ -26,7 +26,7 @@
  }
 
  ```
- 
+
 ## Create React App
 
 * npx create-react-app .
@@ -58,9 +58,18 @@ Class Post extends React.Component {
 ## Default Files and Folders
 
 * **index.html**
-	* Everything on React runs from this page
-	* <div id=”root></div> - Everything runs from this div
+  * Everything on React runs from this page
+	<div id=”root></div> - Everything runs from this div
+
 * **index.js**
-	* Entry point of react
- 
- 
+* Entry point of react
+
+## General notes
+
+* Components
+  * What state is this component going to manage
+  * What is the UI going to look like for this component
+
+* Think about two things when developing
+  * State of components
+  * How it looks

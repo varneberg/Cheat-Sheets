@@ -1,0 +1,4746 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>INF115_Summary.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="inf115">INF115</h1>
+<ul>
+<li>Kapittel 1 - Introduksjon](#kapittel-1---introduksjon
+<ul>
+<li><a href="#databaseobjekter">Databaseobjekter</a></li>
+<li><a href="#systemkatalog">Systemkatalog</a></li>
+<li><a href="#lagrede-programmer">Lagrede programmer</a></li>
+<li><a href="#database-livsl%C3%B8p">Database-livsløp</a></li>
+</ul>
+</li>
+<li><a href="#kapittel-2---sp%C3%B8rringer-mot-%c3%a9n-tabell">Kapittel 2 - Spørringer mot én tabell</a></li>
+<li><a href="#kapittel-3---lage-og-bruke-tabeller">Kapittel 3 - Lage og bruke tabeller</a>
+<ul>
+<li><a href="#datatyper">Datatyper</a></li>
+<li><a href="#oprette-nye-tabeller">Oprette nye tabeller</a></li>
+<li><a href="#prim%C3%A6rn%C3%B8kler">Primærnøkler</a></li>
+<li><a href="#sammensatte-prim%C3%A6rn%C3%B8kler">Sammensatte primærnøkler</a></li>
+<li><a href="#autonummererte-n%C3%B8kler">Autonummererte nøkler</a></li>
+<li><a href="#h%c3%a5ndtering-av-nullmerker">Håndtering av nullmerker</a></li>
+<li><a href="#unike-kolonner">Unike kolonner</a></li>
+<li><a href="#kandidatn%C3%B8kkel">Kandidatnøkkel</a></li>
+<li><a href="#standarverdi">Standarverdi</a></li>
+<li><a href="#fremmedn%C3%B8kler">Fremmednøkler</a></li>
+<li><a href="#massesletting">Massesletting</a></li>
+<li><a href="#check">CHECK</a></li>
+<li><a href="#begrensning-med-fremmedn%C3%B8kler">Begrensning med fremmednøkler</a></li>
+<li><a href="#innsettingssp%C3%B8rringer">Innsettingsspørringer</a></li>
+<li><a href="#slettesp%C3%B8rringer">Slettespørringer</a></li>
+<li><a href="#oppdateringssp%C3%B8rringer">Oppdateringsspørringer</a></li>
+<li><a href="#csv-filer">CSV filer</a></li>
+<li><a href="#transaksjoner">Transaksjoner</a></li>
+<li><a href="#endre-og-slette-databaser">Endre og slette databaser</a></li>
+<li><a href="#databaser-og-databaseobjekter">Databaser og Databaseobjekter</a></li>
+<li><a href="#sql-scripts">SQL Scripts</a></li>
+</ul>
+</li>
+<li><a href="#kapittel-4---sp%C3%B8rringer-mot-flere-tabeller">Kapittel 4 - Spørringer mot flere tabeller</a>
+<ul>
+<li><a href="#kryssprodukt">Kryssprodukt</a></li>
+<li><a href="#indre-koblinger">Indre koblinger</a>
+<ul>
+<li><a href="#likekoblinger">Likekoblinger</a></li>
+</ul>
+</li>
+<li><a href="#kortnavn">Kortnavn</a></li>
+<li><a href="#syntax-for-likekoblinger">Syntax for likekoblinger</a></li>
+<li><a href="#naturlig-kobling">Naturlig kobling</a></li>
+<li><a href="#kobler-tre-eller-flere-tabeller">Kobler tre eller flere tabeller</a></li>
+<li><a href="#grupperinger-og-likekoblinger">Grupperinger og likekoblinger</a></li>
+<li><a href="#egenkoblinger">Egenkoblinger</a></li>
+<li><a href="#generelle-koblinger">Generelle koblinger</a></li>
+<li><a href="#mengdeoperasjoner-og-ytre-koblinger">Mengdeoperasjoner og ytre koblinger</a>
+<ul>
+<li><a href="#venstre-og-h%C3%B8yre-ytre-kobling">Venstre og høyre ytre kobling</a></li>
+<li><a href="#union-snitt-og-differanse">Union, snitt og differanse</a></li>
+<li><a href="#full-ytrekobling">Full ytrekobling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#kapittel-5---avanserte-sp%C3%B8rringer">Kapittel 5 - Avanserte spørringer</a>
+<ul>
+<li><a href="#case">Case</a></li>
+<li><a href="#erstatte-nullmerker">Erstatte nullmerker</a></li>
+<li><a href="#views">Views</a></li>
+<li><a href="#delsp%C3%B8rringer">Delspørringer</a></li>
+<li><a href="#vekselvirkende-delsp%C3%B8rringer">Vekselvirkende delspørringer</a></li>
+<li><a href="#operatorer-for-delsp%C3%B8rringer">Operatorer for delspørringer</a></li>
+<li><a href="#delsp%C3%B8rringer-i-select">Delspørringer i SELECT</a></li>
+<li><a href="#delsp%C3%B8rringer-i-from">Delspørringer i FROM</a></li>
+<li><a href="#delsp%C3%B8rringer-i-insert-update-og-delete">Delspørringer i INSERT, UPDATE og DELETE</a></li>
+<li><a href="#aggregeringssytemer">Aggregeringssytemer</a></li>
+<li><a href="#cube">CUBE</a></li>
+<li><a href="#krysstabellsp%C3%B8rringer">Krysstabellspørringer</a></li>
+<li><a href="#rangering-og-topp-10">Rangering og topp 10</a></li>
+<li><a href="#rekursjon">Rekursjon</a></li>
+</ul>
+</li>
+<li><a href="#kapittel-6---relasjonsmodellen">Kapittel 6 - Relasjonsmodellen</a>
+<ul>
+<li><a href="#representasjonsuavhengighet">Representasjonsuavhengighet</a></li>
+<li><a href="#relasjoner">Relasjoner</a></li>
+<li><a href="#mengde">Mengde</a></li>
+<li><a href="#logiske-konnektiver">Logiske konnektiver</a></li>
+<li><a href="#mengde-definisjon">Mengde definisjon</a></li>
+<li><a href="#mendge-restriksjon">Mendge restriksjon</a></li>
+<li><a href="#den-tomme-mengde">Den tomme mengde</a></li>
+<li><a href="#delmengde">Delmengde</a></li>
+<li><a href="#ekte-delmengde">Ekte delmengde</a>
+<ul>
+<li><a href="#integritetesregler">Integritetesregler</a>
+<ul>
+<li><a href="#funksjon">Funksjon</a></li>
+<li><a href="#funksjonell-avhengighet">Funksjonell avhengighet</a></li>
+<li><a href="#supern%C3%B8kkel">Supernøkkel</a></li>
+<li><a href="#minimal-supern%C3%B8kkel">Minimal supernøkkel</a></li>
+<li><a href="#entitetsintegritet">Entitetsintegritet</a></li>
+<li><a href="#unionskompatibilitet">Unionskompatibilitet</a></li>
+<li><a href="#referanseintegritet">Referanseintegritet</a></li>
+</ul>
+</li>
+<li><a href="#relasjonsalgebra">Relasjonsalgebra</a>
+<ul>
+<li><a href="#seleksjon">Seleksjon</a></li>
+<li><a href="#projeksjon">Projeksjon</a></li>
+<li><a href="#mengdeopreatorer">Mengdeopreatorer</a></li>
+<li><a href="#koblinger">Koblinger</a></li>
+<li><a href="#divisjon">Divisjon</a></li>
+<li><a href="#tilordning">Tilordning</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#kapittel-7---datamodellering-med-er">Kapittel 7 - Datamodellering med ER</a>
+<ul>
+<li><a href="#er-diagrammer-og-databasetabeller">ER-Diagrammer og databasetabeller</a></li>
+<li><a href="#kravanalyse">Kravanalyse</a></li>
+<li><a href="#entiteter-og-attributter">Entiteter og attributter</a></li>
+<li><a href="#forhold">Forhold</a>
+<ul>
+<li><a href="#kardinalitet">Kardinalitet</a></li>
+<li><a href="#en-til-en">En-til-en</a></li>
+<li><a href="#en-til-mange">En-til-mange</a></li>
+<li><a href="#mange-til-mange">Mange-til-mange</a></li>
+<li><a href="#maksimums--og-minimumskardinalitet">Maksimums- og minimumskardinalitet</a></li>
+<li><a href="#roller-og-navn-p%c3%a5-forhold">Roller og navn på forhold</a></li>
+<li><a href="#prim%C3%A6rn%C3%B8kler-og-ikke-identifiserende-forhold">Primærnøkler og ikke-identifiserende forhold</a></li>
+<li><a href="#svake-entiteter-og-identifiserende-forhold">Svake entiteter og identifiserende forhold</a></li>
+<li><a href="#attributter-til-forhold-og-koblingsentiteter">Attributter til forhold og koblingsentiteter</a></li>
+</ul>
+</li>
+<li><a href="#datamodellering-med-uml">Datamodellering med UML</a>
+<ul>
+<li><a href="#aggregering">Aggregering</a></li>
+<li><a href="#komposisjon">Komposisjon</a></li>
+</ul>
+</li>
+<li><a href="#subtyper">Subtyper</a></li>
+<li><a href="#abstraksjonsmekanismer">Abstraksjonsmekanismer</a></li>
+<li><a href="#chen-notasjon">Chen-notasjon</a></li>
+<li><a href="#forhold-i-chen-notasjon">Forhold i Chen-notasjon</a>
+<ul>
+<li><a href="#svake-entiteter-i-chen">Svake entiteter i Chen</a>
+<a href="#ikke-atom%C3%A6re-attributter-i-chen">Ikke atomære attributter i Chen</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><a href="#kapittel-8---fra-modell-til-database">Kapittel 8 - Fra modell til database</a>
+<ul>
+<li><a href="#oppsummeringer-av-enkle-regler">Oppsummeringer av enkle regler</a></li>
+<li><a href="#en-til-mange-forhold">En-til-mange forhold</a></li>
+<li><a href="#oversettelse-av-svake-entiteter-og-identifierserende-forhold">Oversettelse av svake entiteter og identifierserende forhold</a></li>
+<li><a href="#mange-til-mange-forhold">Mange-til-mange forhold</a></li>
+<li><a href="#en-til-en-forhold">En-til-en forhold</a></li>
+<li><a href="#h%c3%a5ndtere-minimumskardinalitet-i-databaser">Håndtere minimumskardinalitet i databaser</a></li>
+<li><a href="#todo-subtyper">TODO Subtyper</a></li>
+<li><a href="#todo-ikke-atmo%C3%A6re-attributter">TODO Ikke-atmoære attributter</a></li>
+<li><a href="#normalisering">Normalisering</a>
+<ul>
+<li><a href="#reduans-og-funksjonelle-avnhengiheter">Reduans og funksjonelle avnhengiheter</a></li>
+<li><a href="#dekomponere-tabeller">Dekomponere tabeller</a></li>
+<li><a href="#1nf">1NF</a></li>
+<li><a href="#2nf">2NF</a></li>
+<li><a href="#3nf">3NF</a></li>
+<li><a href="#boyce-codd-normalform-bcnf">Boyce-Codd NormalForm (BCNF)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#kapittel-9---filer-og-indekser">Kapittel 9 - Filer og indekser</a>
+<ul>
+<li><a href="#lagringsmedier">Lagringsmedier</a>
+<ul>
+<li><a href="#minnehierarkiet">Minnehierarkiet</a></li>
+<li><a href="#overf%C3%B8ring-mellom-minne-og-disk">Overføring mellom minne og disk</a></li>
+<li><a href="#raid">RAID</a></li>
+</ul>
+</li>
+<li><a href="#filstruktur-og-s%C3%B8kemetoder">Filstruktur og søkemetoder</a>
+<ul>
+<li><a href="#representasjon-av-poster">Representasjon av poster</a></li>
+<li><a href="#ikke-sorterte-filer">Ikke sorterte filer</a></li>
+<li><a href="#sorterte-filer">Sorterte filer</a></li>
+<li><a href="#hashing">Hashing</a></li>
+</ul>
+</li>
+<li><a href="#indekser">Indekser</a>
+<ul>
+<li><a href="#prim%C3%A6rindekser">Primærindekser</a></li>
+<li><a href="#sekund%C3%A6rindekser">Sekundærindekser</a></li>
+<li><a href="#flerniv%c3%a5indekser">Flernivåindekser</a></li>
+<li><a href="#bitmap-indekser">Bitmap-indekser</a></li>
+<li><a href="#indekser-med-sql">Indekser med SQL</a></li>
+</ul>
+</li>
+<li><a href="#retningslinjer-for-fysisk-design">Retningslinjer for fysisk design</a>
+<ul>
+<li><a href="#valg-av-datatyper">Valg av datatyper</a></li>
+<li><a href="#valg-av-filstruktur-og-indekser">Valg av filstruktur og indekser</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#kapittel-10---transaksjoner">Kapittel 10 - Transaksjoner</a>
+<ul>
+<li><a href="#h%c3%a5ndtering-av-feilsituasjoner">Håndtering av feilsituasjoner</a>
+<ul>
+<li><a href="#definisjoner-av-transkasjoner">Definisjoner av transkasjoner</a></li>
+<li><a href="#kontrollerte-avbrudd-og-feilsituasjoner">Kontrollerte avbrudd og feilsituasjoner</a></li>
+<li><a href="#transaksjonsloggen">Transaksjonsloggen</a></li>
+<li><a href="#gjennoppbygging-med-transaksjonslogg">Gjennoppbygging med transaksjonslogg</a></li>
+</ul>
+</li>
+<li><a href="#flerbruksdatabaser">Flerbruksdatabaser</a>
+<ul>
+<li><a href="#prosesser">Prosesser</a></li>
+<li><a href="#acid-egenskapene">ACID-egenskapene</a></li>
+<li><a href="#les---beregn---skriv">Les - beregn - skriv</a></li>
+<li><a href="#utfordringer-med-samtidige-brukere">Utfordringer med samtidige brukere</a></li>
+<li><a href="#l%c3%a5semekanismer">Låsemekanismer</a></li>
+<li><a href="#serialiserende-forl%C3%B8p">Serialiserende forløp</a></li>
+<li><a href="#tofasel%c3%a5sing">Tofaselåsing</a></li>
+<li><a href="#vrangl%c3%a5sdeadlock">Vranglås(Deadlock)</a></li>
+<li><a href="#isolasjonsniv%c3%a5er-og-optimistisk-l%c3%a5sing">Isolasjonsnivåer og optimistisk låsing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#kapittel-11---databaseadministrasjon">Kapittel 11 - Databaseadministrasjon</a>
+<ul>
+<li><a href="#oppbygningen-av-et-databasesystem">Oppbygningen av et databasesystem</a>
+<ul>
+<li><a href="#data-og-metadata">Data og metadata</a></li>
+<li><a href="#oppgavene-til-et-dbhs">Oppgavene til et DBHS</a></li>
+<li><a href="#oppgavene-til-databaseadministratoren">Oppgavene til databaseadministratoren</a></li>
+<li><a href="#sikkerhetskopiering-og-gjenoppbygging">SIkkerhetskopiering og gjenoppbygging</a></li>
+<li><a href="#brukeradministrasjon">Brukeradministrasjon</a></li>
+<li><a href="#http">HTTP</a></li>
+</ul>
+</li>
+<li><a href="#databaser-og-applikasjoner">Databaser og applikasjoner</a>
+<ul>
+<li><a href="#fysisk-og-logisk-arkitektur">Fysisk og logisk arkitektur</a></li>
+<li><a href="#plattform-og-utviklingsstakker">Plattform og utviklingsstakker</a></li>
+</ul>
+</li>
+<li><a href="#introduksjon-til-php">Introduksjon til PHP</a>
+<ul>
+<li><a href="#dynamiske-nettsider">Dynamiske nettsider</a></li>
+<li><a href="#behandle-html-skjemaer">Behandle HTML-skjemaer</a></li>
+<li><a href="#behandle-skjemadata">Behandle skjemadata</a></li>
+</ul>
+</li>
+<li><a href="#databaseprogrammer-i-php">Databaseprogrammer i PHP</a></li>
+<li><a href="#programmering-i-php">Programmering i PHP</a>
+<ul>
+<li><a href="#dagens-dato">Dagens dato</a></li>
+<li><a href="#variabler-i-php">Variabler i PHP</a></li>
+<li><a href="#gjennoml%C3%B8p-med-foreach">Gjennomløp med foreach</a></li>
+<li><a href="#produsere-en-html-tabell">Produsere en HTML-tabell</a></li>
+<li><a href="#isset-og-arraykeyexists">isset og array_key_exists</a></li>
+<li><a href="#opprette-databaseforbindelse">Opprette databaseforbindelse</a></li>
+<li><a href="#select-sp%C3%B8rringer-i-php">SELECT-spørringer i PHP</a></li>
+<li><a href="#databaseforbindelse">Databaseforbindelse</a></li>
+<li><a href="#fra-sp%C3%B8rreresultat-til-html-tabell">Fra spørreresultat til HTML-tabell</a></li>
+<li><a href="#update-og-delete">UPDATE og DELETE</a></li>
+<li><a href="#autonummerering">Autonummerering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="kapittel-1---introduksjon">Kapittel 1 - Introduksjon</h2>
+<ul>
+<li>DIK(W)-pyramiden: Data information knowledge wisdom</li>
+</ul>
+<h3 id="databaseobjekter">Databaseobjekter</h3>
+<ul>
+<li>
+<p>Tabeller</p>
+<ul>
+<li>Lagret data</li>
+</ul>
+</li>
+<li>
+<p>Spørringer og views</p>
+<ul>
+<li>Spørringer definerer tabeller ved å legge til eller slette data</li>
+<li>View en en virtuell tabell definert ved en spørring</li>
+</ul>
+</li>
+</ul>
+<h3 id="systemkatalog">Systemkatalog</h3>
+<ul>
+<li>
+<p>Metadata</p>
+<ul>
+<li>Data om data lagret i systemkatalogen</li>
+</ul>
+</li>
+<li>
+<p>Access rights</p>
+</li>
+</ul>
+<h3 id="lagrede-programmer">Lagrede programmer</h3>
+<ul>
+<li>SQL kombinert med andre språk</li>
+</ul>
+<h3 id="database-livsl%C3%B8p">Database-livsløp</h3>
+<ol>
+<li>Forstudie</li>
+<li>Analyse</li>
+<li>Design</li>
+<li>Implementasjon</li>
+<li>Testing</li>
+<li>Produksjon</li>
+</ol>
+<h2 id="kapittel-2---sp%C3%B8rringer-mot-%C3%A9n-tabell">Kapittel 2 - Spørringer mot én tabell</h2>
+<h2 id="kapittel-3---lage-og-bruke-tabeller">Kapittel 3 - Lage og bruke tabeller</h2>
+<h3 id="datatyper">Datatyper</h3>
+<ul>
+<li>CHAR(n), VARCHAR(n)</li>
+<li>SMALLINT, INTEGER, BIGINT</li>
+<li>NUMERIC(p,s), DECIMAL</li>
+<li>FLOAT, DOUBLE</li>
+<li>DATE, TIME, TIMESTAMP</li>
+<li>INTERVAL</li>
+<li>BOOLEAN</li>
+<li>CLOB(n), BLOB(n)</li>
+</ul>
+<h3 id="opprette-nye-tabeller">Opprette nye tabeller</h3>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Vare
+  (
+      VNr <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">5</span>),
+      Betegnelse <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">50</span>),
+      Pris <span class="hljs-built_in">DECIMAL</span>(<span class="hljs-number">8</span>,<span class="hljs-number">2</span>),
+      KatNr <span class="hljs-built_in">SMALLINT</span>,
+      Antall <span class="hljs-built_in">INTEGER</span>,
+      Hylle <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">3</span>),
+      <span class="hljs-keyword">CONSTRAINT</span> VarePN PRIMARY <span class="hljs-keyword">KEY</span>(VNr)
+  )
+
+</div></code></pre>
+</li>
+</ul>
+<h3 id="prim%C3%A6rn%C3%B8kler">Primærnøkler</h3>
+<ul>
+<li>Skal ikke inneholde nullmerker eller repitisjoner</li>
+<li>CONSTRAINT definerer primærnøkkelen og sjekker for nullmerker eller repitisjoner</li>
+<li>Fjerne primærnøkkel med:</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Vare <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> VarePN
+    eller
+    <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Vare <span class="hljs-keyword">DROP</span> PRIMARY <span class="hljs-keyword">KEY</span>
+</div></code></pre>
+<ul>
+<li>Når primærnøkkelen består av en enkel kolonne:</li>
+</ul>
+<pre class="hljs"><code><div>    VNr CHAR(5) PRIMARY KEY
+</div></code></pre>
+<h3 id="sammensatte-prim%C3%A6rn%C3%B8kler">Sammensatte primærnøkler</h3>
+<ul>
+<li>Kombinerer flere kolonner for å lage primærnøkler</li>
+<li>Når det er repitisjoner i en eller flere primærnøkler, vil det ikke forekomme repitsjoner i kombinasjonen av de to kolonnene</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Ordreline(
+        OrdreNr <span class="hljs-built_in">INTEGER</span>,
+        VNr <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">5</span>),
+        PrisPrEnhet <span class="hljs-built_in">DECIMAL</span>(<span class="hljs-number">8</span>,<span class="hljs-number">2</span>),
+        Antall <span class="hljs-built_in">INTEGER</span>,
+        <span class="hljs-keyword">CONSTRAINT</span> OrdrelinjePN
+            PRIMARY <span class="hljs-keyword">KEY</span> (OrdreNR, VNr)
+        )
+</div></code></pre>
+<h3 id="autonummererte-n%C3%B8kler">Autonummererte nøkler</h3>
+<ul>
+<li>
+<p>Ofte surrogatnøkler(Entydig identifikasjon)</p>
+</li>
+<li>
+<p>Systemet fyller inn verdier automatisk i kolonnene</p>
+</li>
+<li>
+<p>Kan bruke sekvenser som legger inn nye tall for hver rad</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Kategori(
+        KatNr <span class="hljs-built_in">SMALLINT</span> AUTO_INCREMENT
+        Navn <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">50</span>),
+        <span class="hljs-keyword">CONSTRAINT</span> KategoriPN PRIMARY <span class="hljs-keyword">KEY</span> (KatNr)
+    )
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="h%C3%A5ndtering-av-nullmerker">Håndtering av nullmerker</h3>
+<ol>
+<li>
+<p>Filtrere ut nullmerker i spørring:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(Pris)
+<span class="hljs-keyword">FROM</span> Vare
+
+eller
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SUM</span>(Pris) / <span class="hljs-keyword">COUNT</span>(Pris)
+<span class="hljs-keyword">FROM</span> Vare
+
+eller
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">SUM</span>(Pris) / <span class="hljs-keyword">COUNT</span>(*)
+<span class="hljs-keyword">FROM</span> Vare
+<span class="hljs-keyword">WHERE</span> Pris <span class="hljs-keyword">IS</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Omorganisere data i en annen data i en annen database</p>
+</li>
+</ol>
+<h3 id="unike-kolonner">Unike kolonner</h3>
+<ul>
+<li>
+<p>Kontrollerer at ikke samme verdi er skrevet inn i samme kolonne</p>
+</li>
+<li>
+<pre class="hljs"><code><div>      Epost VARCHAR(100) UNIQUE
+</div></code></pre>
+</li>
+</ul>
+<h3 id="kandidatn%C3%B8kkel">Kandidatnøkkel</h3>
+<ul>
+<li>Er en kolonne man kan definere med både NOT NULL og UNIQUE, en mulig primærnøkkel</li>
+</ul>
+<h3 id="standarverdi">Standarverdi</h3>
+<ul>
+<li>
+<p>Kolonner fyller ut en standar verdi automatisk når en ny rad blir lagt til</p>
+</li>
+<li>
+<pre class="hljs"><code><div>      Antall INTEGER DEFAULT 0
+</div></code></pre>
+</li>
+</ul>
+<h3 id="fremmedn%C3%B8kler">Fremmednøkler</h3>
+<ul>
+<li>
+<p>Logisk sammenkoling av tabeller</p>
+</li>
+<li>
+<p>Tar en primærnøkkel fra en tabell og bruker i den andre slik at den er begge steder</p>
+</li>
+<li>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Ordrelinje
+    (
+      OrdreNr <span class="hljs-built_in">INTEGER</span>,
+      VNr <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">5</span>),
+      PrisPrEnhet <span class="hljs-built_in">DECIMAL</span>(<span class="hljs-number">8</span>,<span class="hljs-number">2</span>),
+      Antall <span class="hljs-built_in">INTEGER</span>,
+      <span class="hljs-keyword">CONSTRAINT</span> OrdrelinjePN
+          PRIMARY <span class="hljs-keyword">KEY</span>(OrdreNr, VNr),
+      <span class="hljs-keyword">CONSTRAINT</span> OrdrelinjeOrdreFN
+          <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (OrdreNR)
+          <span class="hljs-keyword">REFERENCES</span> Ordre (OrdreNr),
+      <span class="hljs-keyword">CONSTRAINT</span> OrdrelinjeVareFN
+          <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> (VNr)
+          <span class="hljs-keyword">REFERENCES</span> Vare (VNr)
+  )
+
+</div></code></pre>
+</li>
+<li>
+<p>VNr er primærnøkel i Vare og fremmednøkkel i Ordrelinje</p>
+</li>
+<li>
+<p>En-til-mange forhold</p>
+</li>
+<li>
+<p>I <strong>sammensatte primærnøkler</strong>, må enten alle eller ingen av kolonnene inneholder nullmerker</p>
+</li>
+</ul>
+<h3 id="massesletting">Massesletting</h3>
+<pre class="hljs"><code><div>CONSTRAINT OrdrelinjeVareFN
+FOREIGN KEY(VNr)
+ON <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">CASCADE</span> elle
+</div></code></pre>
+<ul>
+<li>ON DELETE kan erstattes med ON UPDATE</li>
+<li>ON CASADE kan erstatte med SET NULL</li>
+</ul>
+<h3 id="check">CHECK</h3>
+<ul>
+<li>Valideringsspørring</li>
+</ul>
+<pre class="hljs"><code><div>      CONSTRAINT Prisregel
+        <span class="hljs-keyword">CHECK</span> (Pris &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">AND</span> Pris &lt; <span class="hljs-number">10000</span>)
+</div></code></pre>
+<h3 id="begrensning-med-fremmedn%C3%B8kler">Begrensning med fremmednøkler</h3>
+<ul>
+<li>Begrenser lovlige farger:</li>
+</ul>
+<pre class="hljs"><code><div>        CONSTRAINT Fargeregel
+            <span class="hljs-keyword">CHECK</span> (Farge <span class="hljs-keyword">IN</span>(<span class="hljs-string">'rød'</span>, <span class="hljs-string">'blå'</span>, <span class="hljs-string">'gul'</span>))
+</div></code></pre>
+<ul>
+<li>I tilfelle over ville det vært nødvendig å redefinere hele tabellen dersom en skulle lagt til noe nytt i lovlige farger</li>
+<li>Lag en ny tabell og innfør samme regel som over, bare med en fremmednøkkel til den nye tabellen i stedet</li>
+</ul>
+<pre class="hljs"><code><div>        <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Lovligfarge
+        (
+            Farge <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">50</span>),
+            <span class="hljs-keyword">CONSTRAINT</span> FargePN PRIMARY <span class="hljs-keyword">KEY</span> (Farge)
+        )
+</div></code></pre>
+<h3 id="innsettingssp%C3%B8rringer">Innsettingsspørringer</h3>
+<ul>
+<li>
+<p>Sette inn i spesefikke kolonner:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Vare(VNr, Betegnelse, Pris)
+    <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'44304'</span>, <span class="hljs-string">'CREOX gul'</span>, <span class="hljs-number">29.50</span>)
+
+</div></code></pre>
+</li>
+<li>
+<p>Sette inn i hele tabellen:</p>
+</li>
+<li>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Vare
+    <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'44304'</span>, <span class="hljs-string">'CREOX blå'</span>, <span class="hljs-number">29.50</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-number">53</span>, <span class="hljs-string">'C38'</span>)
+
+</div></code></pre>
+</li>
+<li>
+<p>Sett inn ny rad:</p>
+</li>
+<li>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Kategori(Navn)
+    <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'Modellfly'</span>)
+
+</div></code></pre>
+</li>
+<li>
+<p>Kopiere fra en tabell til en annen:</p>
+</li>
+<li>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Kategori (KatNR)
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> KatNr <span class="hljs-keyword">FROM</span> Vare
+
+</div></code></pre>
+</li>
+<li>
+<p>Kopiere ting fra gammel database og legge det i en en ny:</p>
+</li>
+<li>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> GamleOrdre
+    <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Ordre <span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">YEAR</span>(OrdreDato) &lt; <span class="hljs-number">2020</span>
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="slettesp%C3%B8rringer">Slettespørringer</h3>
+<ul>
+<li>
+<pre class="hljs"><code><div>      <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Vare
+      <span class="hljs-keyword">WHERE</span> KatNr = <span class="hljs-number">3</span> <span class="hljs-keyword">AND</span> Pris &gt; <span class="hljs-number">100</span>
+</div></code></pre>
+</li>
+</ul>
+<h3 id="oppdateringssp%C3%B8rringer">Oppdateringsspørringer</h3>
+<ul>
+<li>
+<pre class="hljs"><code><div>      <span class="hljs-keyword">UPDATE</span> Vare
+      <span class="hljs-keyword">SET</span> Antall = <span class="hljs-number">0</span>, Pris = Pris * <span class="hljs-number">1.05</span>
+      <span class="hljs-keyword">WHERE</span> KatNr = <span class="hljs-number">3</span>
+
+</div></code></pre>
+</li>
+</ul>
+<h3 id="csv-filer">CSV filer</h3>
+<ul>
+<li>
+<p>Export:</p>
+</li>
+<li>
+<pre class="hljs"><code><div>      <span class="hljs-keyword">SELECT</span> *
+      <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">OUTFILE</span> <span class="hljs-string">'kunde.csv'</span>
+      <span class="hljs-keyword">FIELDS</span> <span class="hljs-keyword">TERMINATED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">';'</span>
+      <span class="hljs-keyword">LINES</span> <span class="hljs-keyword">TERMINATED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">'\r\n'</span>
+      <span class="hljs-keyword">FROM</span> Kunde
+
+</div></code></pre>
+</li>
+<li>
+<p>Import:</p>
+</li>
+</ul>
+<pre class="hljs"><code><div>        <span class="hljs-keyword">LOAD</span> <span class="hljs-keyword">DATA</span> <span class="hljs-keyword">INFILE</span> <span class="hljs-string">'kunde.csv'</span>
+        <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">TABLE</span> Kunde
+        <span class="hljs-keyword">FIELDS</span> <span class="hljs-keyword">TERMINATED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">';'</span>
+        <span class="hljs-keyword">LINES</span> <span class="hljs-keyword">TERMINATED</span> <span class="hljs-keyword">BY</span> <span class="hljs-string">'\r\n'</span>
+        <span class="hljs-keyword">IGNORE</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ROWS</span>
+</div></code></pre>
+<h3 id="transaksjoner">Transaksjoner</h3>
+<ul>
+<li>
+<pre class="hljs"><code><div>      <span class="hljs-keyword">START</span> <span class="hljs-keyword">TRANSACTION</span>
+
+      <span class="hljs-keyword">UPDATE</span> Vare <span class="hljs-keyword">SET</span> KatNr = <span class="hljs-number">16</span> <span class="hljs-keyword">WHERE</span> KatNr = <span class="hljs-number">15</span>;
+
+      <span class="hljs-keyword">UPDATE</span> Kategori
+      <span class="hljs-keyword">SET</span> Navn = <span class="hljs-string">'Blomsterfrø og blomseterløker'</span>
+      <span class="hljs-keyword">WHERE</span> KatNr = <span class="hljs-number">16</span>;
+
+      <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Kategori <span class="hljs-keyword">WHERE</span> KatNr = <span class="hljs-number">15</span>;
+
+      <span class="hljs-keyword">COMMIT</span>
+
+</div></code></pre>
+</li>
+</ul>
+<h3 id="endre-og-slette-databaser">Endre og slette databaser</h3>
+<ul>
+<li>
+<pre class="hljs"><code><div>      <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Vare
+          <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">COLUMN</span> Farge <span class="hljs-built_in">CHAR</span>(<span class="hljs-number">15</span>);
+
+      <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Orderlinje
+          <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">COLUMN</span> PrisPerEnhet;
+
+      <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Vare
+          <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> Makspris
+          <span class="hljs-keyword">CHECK</span> <span class="hljs-keyword">CONSTRAINT</span> MaksPris;
+
+      (MYSQL)
+
+      <span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Kunde <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span> OrdreKundeFN;
+
+      <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> Vare
+
+</div></code></pre>
+</li>
+</ul>
+<h3 id="databaser-og-databaseobjekter">Databaser og Databaseobjekter</h3>
+<ul>
+<li>
+<pre class="hljs"><code><div>      <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">DATABASE</span> HobbyHuset;
+
+      (Indekser brukes til å effektivisere søk)
+
+      <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> EtternavnIndx <span class="hljs-keyword">ON</span> Kunde (Etternavn)
+
+      (Views er virtuelle tabeller)
+
+      <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> Maling <span class="hljs-keyword">AS</span>
+          <span class="hljs-keyword">SELECT</span> *
+          <span class="hljs-keyword">FROM</span> Vare
+          <span class="hljs-keyword">WHERE</span> KatNr = <span class="hljs-number">2</span>
+
+</div></code></pre>
+</li>
+</ul>
+<h3 id="sql-scripts">SQL Scripts</h3>
+<ul>
+<li>Sekvens av SQL spørringer</li>
+</ul>
+<h2 id="kapittel-4---sp%C3%B8rringer-mot-flere-tabeller">Kapittel 4 - Spørringer mot flere tabeller</h2>
+<h3 id="kryssprodukt">Kryssprodukt</h3>
+<ul>
+<li>For å unngå redundans(gjentatt informasjon)</li>
+<li>Resultatet av to tabeller</li>
+<li>Uten betingelser i spørringene blir resultattabellen fra spørringen alle radene i alle tabellene ganget med hverandre</li>
+<li>Inneholder alle mulige radkombinasjoner</li>
+</ul>
+<h3 id="indre-koblinger">Indre koblinger</h3>
+<ul>
+<li>Spørringer for å unngå for stort kryssprodukt</li>
+</ul>
+<h4 id="likekoblinger">Likekoblinger</h4>
+<ul>
+<li>Restriksjon for kryssprodukt</li>
+<li>To kolonner er unionkompitable hvis kolonnene inneholder samme slags data(er i samme domene)</li>
+<li>Likekoblinger er radene i T1 og T2 som har samme verdi i koblingskolonnene
+<ul>
+<li>T1.X = T2.Y</li>
+</ul>
+</li>
+<li>Kan være sammensatte gitt at de er unionskompitable</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> *
+    <span class="hljs-keyword">FROM</span> Ordre, Kunde
+    <span class="hljs-keyword">WHERE</span> Ordre.KNr = Kunde.KNr;
+</div></code></pre>
+<h3 id="kortnavn">Kortnavn</h3>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> OrdreNr, OrdreDato, O.KNr, Etternavn
+    <span class="hljs-keyword">FROM</span> Ordre <span class="hljs-keyword">AS</span> O, Kunde <span class="hljs-keyword">AS</span> k
+    <span class="hljs-keyword">WHERE</span> O.KNr = K.KNr;
+</div></code></pre>
+<h4 id="syntax-for-likekoblinger">Syntax for likekoblinger</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Likekoblingen mellom Kunde og Ordre</span>
+
+    <span class="hljs-keyword">SELECT</span> OrdreNr, OrdreDato, O.KNr, Etternavn
+    <span class="hljs-keyword">FROM</span> Ordre <span class="hljs-keyword">AS</span> O <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Kunde <span class="hljs-keyword">AS</span> K <span class="hljs-keyword">ON</span> O.KNr = K.KNr
+
+<span class="hljs-comment"># Finne koblinger mellom Ansatt og Kunde med samme postnummer der det ikke er noen fremmednøkler</span>
+
+    <span class="hljs-keyword">SELECT</span> KNr, K.Etternavn, AnsNr, A.PostNr
+    <span class="hljs-keyword">FROM</span> Kunde <span class="hljs-keyword">AS</span> K <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Ansatt <span class="hljs-keyword">AS</span> A <span class="hljs-keyword">ON</span> K.PostNr = A.Post.Nr
+
+
+<span class="hljs-comment"># Koblingskolonnene trenger ikke ha samme navn i tabellene</span>
+<span class="hljs-comment"># Finner ut om det er endret noe pris på noen varer samme dag som kunden la inn en ny ordre</span>
+
+    <span class="hljs-keyword">SELECT</span> VNr, Dato, AnsNr, GammelPris
+    <span class="hljs-keyword">FROM</span> Ordre <span class="hljs-keyword">AS</span> O <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> PrisHistorikk <span class="hljs-keyword">AS</span> PH
+    <span class="hljs-keyword">ON</span> O.OrdreDato = PH.Dato
+    <span class="hljs-keyword">WHERE</span> O.KNr = <span class="hljs-number">5009</span>
+</div></code></pre>
+<h4 id="naturlig-kobling">Naturlig kobling</h4>
+<ul>
+<li>Likekobling basert på tabeller med parvis samme navn på kolonner der vi bare tar med av kolonnene fra hvert par</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> *
+    <span class="hljs-keyword">FROM</span> Ansatt <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> Poststed
+
+
+    <span class="hljs-comment">#Samme som over, bare med en likekobling</span>
+
+    <span class="hljs-keyword">SELECT</span> Ansatt.*, Poststed.Poststed
+    <span class="hljs-keyword">FROM</span> Ansatt <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Poststed
+    <span class="hljs-keyword">ON</span> Ansatt.PostNr = Poststed.PostNr
+</div></code></pre>
+<h4 id="kobler-tre-eller-flere-tabeller">Kobler tre eller flere tabeller</h4>
+<ul>
+<li>Leses innenfra og utover</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> Ordre.*, Fornavn, Etternavn, Poststed
+    <span class="hljs-keyword">FROM</span> Ordre <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span>
+        ( Kunde <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Poststed
+        <span class="hljs-keyword">ON</span> Kunde.PostNr = Poststed.PostNr )
+    <span class="hljs-keyword">ON</span> Ordre.KNr = Kunde.KNr;
+</div></code></pre>
+<h4 id="grupperinger-og-likekoblinger">Grupperinger og likekoblinger</h4>
+<ul>
+<li>Finner samlet salg for varer i en bestemt kategori</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> V.VNr,
+    <span class="hljs-keyword">SUM</span>(OL.Antall * OL.PrisPrEnhet) <span class="hljs-keyword">AS</span> SamletSalg
+    <span class="hljs-keyword">FROM</span> Ordrelinje <span class="hljs-keyword">AS</span> OL, Vare <span class="hljs-keyword">AS</span> V
+    <span class="hljs-keyword">WHERE</span> OL.VNr = V.VNr <span class="hljs-keyword">AND</span> V.KatNr = <span class="hljs-number">3</span>
+    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> V.VNr
+</div></code></pre>
+<ul>
+<li>Samme spørring men, med informasjon om kunden</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> K.KNr, Etternavn, <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> Antall
+    <span class="hljs-keyword">FROM</span> Kunde <span class="hljs-keyword">AS</span> K, Ordre <span class="hljs-keyword">AS</span> O
+    <span class="hljs-keyword">WHERE</span> K.KNr = O.KNr
+    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> K.KNr, Etternavn
+</div></code></pre>
+<h4 id="egenkoblinger">Egenkoblinger</h4>
+<ul>
+<li>Likekobling mellom to &quot;kopier&quot; av den samme tabellen</li>
+<li>Brukes for sammenlikning av radene i en tabell</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-comment"># Finne navnet på lederer til alle ansatt</span>
+
+    <span class="hljs-keyword">SELECT</span> A1.AnsNr, A1.Etternavn, A1.Fornavn,
+     A2.AnsNr <span class="hljs-keyword">AS</span> LederNr, A2.Etternavn <span class="hljs-keyword">AS</span> LederNavn
+    <span class="hljs-keyword">FROM</span> Ansatt <span class="hljs-keyword">AS</span> A1, Ansatt <span class="hljs-keyword">AS</span> A2
+    <span class="hljs-keyword">WHERE</span> A1.Leder = A2.AnsNr
+    <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> A2.Etternavn, A1.Etternavn, A1.Fornavn
+</div></code></pre>
+<h4 id="generelle-koblinger">Generelle koblinger</h4>
+<ul>
+<li>Bruker &quot;=&quot;, &quot;&lt;=&quot;, &quot;=&gt;&quot; eller &quot;&lt;&gt;&quot; for å plukke ut kombinasjoner</li>
+</ul>
+<pre class="hljs"><code><div>
+    <span class="hljs-comment"># Sjekker om det er flere kunder i samme kjernefamilie uten å skrive ut medlemmer flere ganger</span>
+
+    <span class="hljs-keyword">SELECT</span> *
+    <span class="hljs-keyword">FROM</span> Kunde <span class="hljs-keyword">AS</span> K1, Kunde <span class="hljs-keyword">AS</span> K2
+    <span class="hljs-keyword">WHERE</span> K1.Etternavn = K2.Etternavn
+    <span class="hljs-keyword">AND</span> K1.Adresse = K2.Adresse
+    <span class="hljs-keyword">AND</span> K1.KNr &lt; K2.KNr
+</div></code></pre>
+<h3 id="mengdeoperasjoner-og-ytre-koblinger">Mengdeoperasjoner og ytre koblinger</h3>
+<h4 id="venstre-og-h%C3%B8yre-ytre-kobling">Venstre og høyre ytre kobling</h4>
+<ul>
+<li>Ytre koblinger tar med de resultatene vi er interessert i som matcher direkte med spørringer vår, men også samtlige resultater fra listen som ikke direkte går under matchen vår</li>
+<li>&quot;Ekstra rader fra en likekobling&quot;</li>
+<li>Venstre og høyre avhengig av hvilken tabell vi er interessert i de ekstra radene fra</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> *
+    <span class="hljs-keyword">FROM</span> Ordre <span class="hljs-keyword">AS</span> O
+    <span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> Kunde <span class="hljs-keyword">AS</span> K
+    <span class="hljs-keyword">ON</span> K.KNr = O.KNr
+
+
+    <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> T1
+    <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> T2
+    <span class="hljs-keyword">ON</span> T1.X = T2.Y
+
+    <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> T2
+    <span class="hljs-keyword">RIGHT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> T1
+    <span class="hljs-keyword">ON</span> T1.X = T2.Y
+
+
+    <span class="hljs-comment">#ytre kobling med nullmerker</span>
+
+    <span class="hljs-keyword">SELECT</span> K.KNr, Etternavn, <span class="hljs-keyword">COUNT</span>(O.OrdreNr) <span class="hljs-keyword">AS</span> Antall
+    <span class="hljs-keyword">FROM</span> Kunde <span class="hljs-keyword">AS</span> K <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> Ordre <span class="hljs-keyword">AS</span> O
+        <span class="hljs-keyword">ON</span> K.KNr = O.KNr
+    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> K.KNr, Etternavn
+</div></code></pre>
+<h3 id="union-snitt-og-differanse">Union, snitt og differanse</h3>
+<ul>
+<li>To spørringer er unionskompatible hvis de har like mange kolonner, og kolonnene er parvis unionskompitabl</li>
+<li>Trenger ikke ha like navn</li>
+<li><strong>UNION</strong> slår sammen unionkompatible resultater</li>
+<li><strong>INTERSECT</strong> slår sammen til en &quot;både&quot; funksjon</li>
+<li><strong>EXCEPT</strong> beregner mengdedifferanse</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">#OR</span>
+
+<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">DISTINCT</span> KNr
+<span class="hljs-keyword">FROM</span> Ordre
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">YEAR</span>(OrdreDato) = <span class="hljs-number">2018</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">YEAR</span>(OrdreDato) = <span class="hljs-number">2019</span>
+    (kunne erstattet <span class="hljs-keyword">OR</span> med <span class="hljs-keyword">AND</span> og fått bådei <span class="hljs-number">2018</span> og <span class="hljs-number">2019</span>)
+
+
+<span class="hljs-comment">#UNION</span>
+
+<span class="hljs-keyword">SELECT</span> KNr <span class="hljs-keyword">FROM</span> Ordre2018
+<span class="hljs-keyword">UNION</span>
+<span class="hljs-keyword">SELECT</span> KNr <span class="hljs-keyword">FROM</span> Ordre2019
+</div></code></pre>
+<h3 id="full-ytrekobling">Full ytrekobling</h3>
+<ul>
+<li>Tilsvarer en venstre og høyre ytrekobling</li>
+</ul>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">SELECT</span> VNr, Betegnelse, Navn
+    <span class="hljs-keyword">FROM</span> Vare <span class="hljs-keyword">AS</span> V <span class="hljs-keyword">FULL</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> Kategori <span class="hljs-keyword">AS</span> K
+    <span class="hljs-keyword">ON</span> V.KatNr = K.KatNr
+</div></code></pre>
+<h2 id="kapittel-5---avanserte-sp%C3%B8rringer">Kapittel 5 - Avanserte spørringer</h2>
+<h3 id="case">Case</h3>
+<ul>
+<li>Hvis betingelsen er sann, gjør A</li>
+<li>Ellers gjør B</li>
+<li>(<strong>IF</strong> i mysql)</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> VNr, Betegnelse, Pris,
+<span class="hljs-keyword">CASE</span>
+    <span class="hljs-keyword">WHEN</span> Pris&lt;<span class="hljs-number">100</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'Billig'</span>
+    <span class="hljs-keyword">WHEN</span> Pris &lt;=<span class="hljs-number">500</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'Middels'</span>
+    <span class="hljs-keyword">ELSE</span> <span class="hljs-string">'Dyr'</span>
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">AS</span> Prisklasse
+<span class="hljs-keyword">FROM</span> Vare
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> AnsNr, Etternavn,
+    <span class="hljs-keyword">CASE</span> Kjønn
+        <span class="hljs-keyword">WHEN</span> <span class="hljs-string">'K'</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'Kvinne'</span>
+        <span class="hljs-keyword">WHEN</span> <span class="hljs-string">'M'</span> <span class="hljs-keyword">THEN</span> <span class="hljs-string">'Mann'</span>
+    <span class="hljs-keyword">END</span>
+<span class="hljs-keyword">FROM</span> Ansatt
+</div></code></pre>
+<h3 id="erstatte-nullmerker">Erstatte nullmerker</h3>
+<ul>
+<li>COALESCE</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> AnsNr, Etternavn, <span class="hljs-keyword">COALESCE</span>(Kjønn, <span class="hljs-string">'U'</span>) <span class="hljs-keyword">AS</span> Kjønn
+<span class="hljs-keyword">FROM</span> Ansatt
+</div></code></pre>
+<h3 id="views">Views</h3>
+<ul>
+<li>Virtuell tabell</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> Keramikk(VNr,Navn,Antall) <span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">SELECT</span> VNr, Betegnelse, Antall
+    <span class="hljs-keyword">FROM</span> Vare
+    <span class="hljs-keyword">WHERE</span> KatNr=<span class="hljs-number">3</span>
+</div></code></pre>
+<ul>
+<li>
+<p>(Burde ikke inneholde <strong>ORDER BY</strong>)</p>
+</li>
+<li>
+<p>Slette view:</p>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">VIEW</span> Keramikk
+</div></code></pre>
+<ul>
+<li>Ikke alle views kan oppdateres:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> AntallVarerPrKategori <span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">SELECT</span> KatNr, <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> ANTALL
+    <span class="hljs-keyword">FROM</span> Vare
+    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> KatNr
+</div></code></pre>
+<ul>
+<li>Views basert på spørringer mot flere tabeller:</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> VarerMedKategoriNavn(VNr, VKatNr, Navn) <span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">SELECT</span> V.VNr, V.Betegnelse , V.KatNr, K.KatNr, K.Navn
+    <span class="hljs-keyword">FROM</span> Vare <span class="hljs-keyword">AS</span> V, Kategori <span class="hljs-keyword">AS</span> K
+    <span class="hljs-keyword">WHERE</span> V.KatNr = K.KatNr;
+
+<span class="hljs-keyword">UPDATE</span> VArerMedKategoriNavn
+<span class="hljs-keyword">SET</span> VKatNr = <span class="hljs-number">3</span>
+<span class="hljs-keyword">WHERE</span> VNr = <span class="hljs-string">'10820'</span>;
+</div></code></pre>
+<ul>
+<li>Konstruksjoner som tilsier at views ikke er oppdaterbare
+<ol>
+<li>Det brukes <strong>DISTINCT</strong> , <strong>GROUP BY</strong> eller mengdefunksjon</li>
+<li>Pimærnøkkel er ikke med i <strong>SELECT</strong></li>
+<li><strong>SELECT</strong> inneholder uttrykk med funksjoner eller konstanter</li>
+<li>Delspørringer og koblinger av flere tabeller kan gjøre at viewet ikke er oppdaterbart</li>
+</ol>
+</li>
+</ul>
+<h3 id="delsp%C3%B8rringer">Delspørringer</h3>
+<ul>
+<li>Kan ha flere spørringer i andre deler av hovedspørringen</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> VNr, Pris
+<span class="hljs-keyword">FROM</span> Vare
+<span class="hljs-keyword">WHERE</span> Pris &lt; (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">AVG</span>(Pris) <span class="hljs-keyword">FROM</span> Vare);
+
+<span class="hljs-keyword">SELECT</span> V1.VNr, V1.Pris
+<span class="hljs-keyword">FROM</span> Vare <span class="hljs-keyword">AS</span> V1, Vare <span class="hljs-keyword">AS</span> V2
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> V1.VNr, V1.Pris
+<span class="hljs-keyword">HAVING</span> V1.Pris &lt; <span class="hljs-keyword">AVG</span>(V2.Pris);
+</div></code></pre>
+<h3 id="vekselvirkende-delsp%C3%B8rringer">Vekselvirkende delspørringer</h3>
+<ul>
+<li>Hovedspørring og delspørringer samarbeider</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">#Finne billigste vare i hver kategori</span>
+<span class="hljs-keyword">SELECT</span> V1.VNr,V1.Pris
+<span class="hljs-keyword">FROM</span> Vare <span class="hljs-keyword">AS</span> V1
+<span class="hljs-keyword">WHERE</span> V1.Pris =
+    (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MIN</span>(V2.Pris) <span class="hljs-keyword">FROM</span> Vare <span class="hljs-keyword">AS</span> V2
+    <span class="hljs-keyword">WHERE</span> V1.KatNr = V2.KatNr)
+</div></code></pre>
+<h3 id="operatorer-for-delsp%C3%B8rringer">Operatorer for delspørringer</h3>
+<ul>
+<li><strong>IN</strong>
+<ul>
+<li>Er en verdi i mengden?</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> Kunde
+<span class="hljs-keyword">WHERE</span> KNr <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> KNr <span class="hljs-keyword">FROM</span> Ordre);
+
+<span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> Vare
+<span class="hljs-keyword">WHERE</span> KatNr <span class="hljs-keyword">IN</span> (<span class="hljs-number">2</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>);
+</div></code></pre>
+<ul>
+<li><strong>SOME</strong>
+<ul>
+<li>Er kriteriet sant for noen av verdiene som kommer ut?</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">#Finne navn for kunder som har det samme navn som en eller flere andre kunder</span>
+
+<span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> Kunde <span class="hljs-keyword">AS</span> K1
+<span class="hljs-keyword">WHERE</span> Etternavn = <span class="hljs-keyword">SOME</span>
+    (<span class="hljs-keyword">SELECT</span> Etternavn <span class="hljs-keyword">FROM</span> Kunde <span class="hljs-keyword">AS</span> K2
+    <span class="hljs-keyword">WHERE</span> K1.KNr &lt;&gt; K2.KNr)
+</div></code></pre>
+<ul>
+<li>
+<p><strong>ANY</strong></p>
+<ul>
+<li>Kan brukes istedenfor  <strong>SOME</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>ALL</strong></p>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> Vare <span class="hljs-keyword">AS</span> V
+<span class="hljs-keyword">WHERE</span> Pris &lt; <span class="hljs-keyword">ALL</span>
+    (<span class="hljs-keyword">SELECT</span> Gammelpris <span class="hljs-keyword">FROM</span> Prishistorikk <span class="hljs-keyword">AS</span> H
+    <span class="hljs-keyword">WHERE</span> V.VNr = H.VNr)
+</div></code></pre>
+<ul>
+<li><strong>EXISTS</strong>
+<ul>
+<li>Sjekke om en delspørring  gir et tomt resultat</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> Vare <span class="hljs-keyword">AS</span> V
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span>
+    (<span class="hljs-keyword">SELECT</span> *
+        <span class="hljs-keyword">FROM</span> Ordrelinje <span class="hljs-keyword">AS</span> OL
+        <span class="hljs-keyword">WHERE</span> V.VNr = OL.VNr
+</div></code></pre>
+<h3 id="delsp%C3%B8rringer-i-select">Delspørringer i SELECT</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> KNr, Etternavn, Fornavn,
+    (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(OrdreDato)
+    <span class="hljs-keyword">FROM</span> Ordre <span class="hljs-keyword">AS</span> O
+    <span class="hljs-keyword">WHERE</span> O.KNR = K.KNR) <span class="hljs-keyword">AS</span> Dato
+<span class="hljs-keyword">FROM</span> Kunde <span class="hljs-keyword">AS</span> K
+</div></code></pre>
+<h3 id="delsp%C3%B8rringer-i-from">Delspørringer i FROM</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> Kunde.*, SisteOrdreDato
+<span class="hljs-keyword">FROM</span> Kunde,
+    (<span class="hljs-keyword">SELECT</span> KNr, <span class="hljs-keyword">MAX</span>(OrdreDato) <span class="hljs-keyword">AS</span> Dato
+    <span class="hljs-keyword">FROM</span> Ordre <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> KNr) <span class="hljs-keyword">AS</span> SisteOr
+<span class="hljs-keyword">WHERE</span> Kunde.KNr = SisteOrdre.KNr
+</div></code></pre>
+<h3 id="delsp%C3%B8rringer-i-insert-update-og-delete">Delspørringer i INSERT, UPDATE og DELETE</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">UPDATE</span> Vare
+<span class="hljs-keyword">SET</span> Pris= Pris*<span class="hljs-number">1.1</span>
+<span class="hljs-keyword">WHERE</span> VNr <span class="hljs-keyword">IN</span>
+    (SEL
+    <span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> VNr
+    <span class="hljs-keyword">HAVING</span> <span class="hljs-keyword">COUNT</span>(*) &gt; <span class="hljs-number">25</span>);
+
+<span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">FROM</span> Kunde
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">EXISTS</span>
+    (<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> Ordre
+    <span class="hljs-keyword">WHERE</span> Ordre.KNr = Kunde.KNr);
+
+<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Prishistorikk(VNr, Dato, GammelPris)
+    <span class="hljs-keyword">SELECT</span> VNr, <span class="hljs-keyword">CURDATE</span>(), Pris
+    <span class="hljs-keyword">FROM</span> Vare
+</div></code></pre>
+<h3 id="aggregeringssytemer">Aggregeringssytemer</h3>
+<ul>
+<li>
+<p><strong>OLTP</strong></p>
+<ul>
+<li>On-line transactional processing</li>
+<li>System med hyppige oppdateringer</li>
+<li>24/7</li>
+<li>Raske</li>
+</ul>
+</li>
+<li>
+<p><strong>OLAP</strong></p>
+<ul>
+<li>On-line analytical processing</li>
+<li>Data aggregert over tid</li>
+<li>Få oppdateringer</li>
+<li>ad hoc spørringer mot systemet</li>
+</ul>
+</li>
+</ul>
+<h3 id="cube">CUBE</h3>
+<ul>
+<li>Datarepresentasjon</li>
+<li>Tankeverktøy</li>
+<li>Tre dimensjoner</li>
+<li>Skjeringspunkt mellom aksene</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> VNr, FylkeNr, <span class="hljs-keyword">SUM</span>(Antall) <span class="hljs-keyword">AS</span> Samlet
+<span class="hljs-keyword">FROM</span> Salgstall
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> <span class="hljs-keyword">CUBE</span>(VNr, FylkeNr)
+</div></code></pre>
+<h3 id="krysstabellsp%C3%B8rringer">Krysstabellspørringer</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">#Sammenlikner stilling og kjønn</span>
+
+<span class="hljs-keyword">SELECT</span> Stilling, Kjønn
+    <span class="hljs-keyword">COUNT</span>(*) <span class="hljs-keyword">AS</span> Antall, <span class="hljs-keyword">AVG</span>(Årslønn) <span class="hljs-keyword">AS</span> Snitt
+<span class="hljs-keyword">FROM</span> Ansatt
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Stilling, Kjønn;
+
+<span class="hljs-keyword">SELECT</span> Stilling
+    <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">AVG</span>(<span class="hljs-keyword">IF</span>(Kjønn=<span class="hljs-string">'K'</span>, Årslønn, <span class="hljs-literal">NULL</span>)), <span class="hljs-number">2</span>) <span class="hljs-keyword">AS</span> K,
+    <span class="hljs-keyword">ROUND</span>(<span class="hljs-keyword">AVG</span>(<span class="hljs-keyword">IF</span>(Kjønn=<span class="hljs-string">'M'</span>, Årslønn, <span class="hljs-literal">NULL</span>)), <span class="hljs-number">2</span>) <span class="hljs-keyword">AS</span> M
+<span class="hljs-keyword">FROM</span> Ansatt
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> Stilling;
+</div></code></pre>
+<h3 id="rangering-og-topp-10">Rangering og topp 10</h3>
+<ul>
+<li><strong>RANK</strong></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> *, <span class="hljs-keyword">RANK</span>() <span class="hljs-keyword">OVER</span> (<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Pris) <span class="hljs-keyword">AS</span> Rangering
+<span class="hljs-keyword">FROM</span> Vare
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Pris;
+</div></code></pre>
+<ul>
+<li><strong>LIMIT</strong></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">SELECT</span> *
+<span class="hljs-keyword">FROM</span> Vare
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> Pris <span class="hljs-keyword">DESC</span>
+<span class="hljs-keyword">LIMIT</span> <span class="hljs-number">10</span>
+</div></code></pre>
+<h3 id="rekursjon">Rekursjon</h3>
+<ul>
+<li>&quot;Bruker seg selv&quot;</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-comment">#Finner slektstre</span>
+
+<span class="hljs-keyword">SELECT</span>
+    S1.PNr, S1.Navn, S1.Far, S1.Mor, S2.Far <span class="hljs-keyword">AS</span> Farfar,
+    S2.Mor <span class="hljs-keyword">AS</span> Farmor,
+    S3.Far <span class="hljs-keyword">AS</span> Morfar, S3.Mor <span class="hljs-keyword">AS</span> Mormor
+
+<span class="hljs-keyword">FROM</span>
+    (Slekt <span class="hljs-keyword">AS</span> S1
+        <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> Slekt <span class="hljs-keyword">AS</span> S2
+        <span class="hljs-keyword">ON</span> S1.Far = S2.PNr)
+    <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> Slekt <span class="hljs-keyword">AS</span> S3
+    <span class="hljs-keyword">ON</span> S1.Mor = S3.PNr  
+</div></code></pre>
+<h2 id="kapittel-6---relasjonsmodellen">Kapittel 6 - Relasjonsmodellen</h2>
+<h3 id="representasjonsuavhengighet">Representasjonsuavhengighet</h3>
+<ul>
+<li>
+<p><strong>Representasjonsuanvhengighet</strong></p>
+<ol>
+<li>Ingen to kolonner har samme navn</li>
+<li>Rekkfølgen til kolonnene har ingen ting å si</li>
+<li>Rekefølgen av radene har ingenting å si</li>
+<li>Det finnes ikke to like rader</li>
+<li>Alle verdier er atomære</li>
+</ol>
+</li>
+<li>
+<p><strong>Nøstede tabeller</strong></p>
+<ul>
+<li>Noen tabeller må ha ekstra kolonner for å ikke inneholde to like rader</li>
+<li>Gjør tabellene atmoære</li>
+</ul>
+</li>
+</ul>
+<h3 id="relasjoner">Relasjoner</h3>
+<h4 id="mengde">Mengde</h4>
+<ul>
+<li>en samling elementer</li>
+<li>$x \in S$</li>
+</ul>
+<h4 id="logiske-konnektiver">Logiske konnektiver</h4>
+<ul>
+<li><strong>Og:</strong> $\land$</li>
+<li><strong>Eller:</strong> $\lor$</li>
+<li><strong>Ikke:</strong> $\lnot$</li>
+<li>&quot;x er mindre enn 0 <em>og</em> det er <em>ikke</em> slik at y er større enn 0&quot;
+<ul>
+<li>$x&lt;0 \land \lnot(y&gt;0)$</li>
+</ul>
+</li>
+</ul>
+<h4 id="mengde-definisjon">Mengde definisjon</h4>
+<ul>
+<li>$S = {1,2,3,4,5}$</li>
+</ul>
+<h4 id="mendge-restriksjon">Mendge restriksjon</h4>
+<ul>
+<li>$T = {x |x\in S \land x&lt;3}$</li>
+<li>For alle elementene $x$, er $x$ både i $S$ og under 3</li>
+</ul>
+<h4 id="den-tomme-mengde">Den tomme mengde</h4>
+<ul>
+<li>$\empty$</li>
+</ul>
+<h4 id="delmengde">Delmengde</h4>
+<ul>
+<li>$S \subseteq T$</li>
+<li>Alle elementer i $S$ er også i $T$</li>
+</ul>
+<h4 id="ekte-delmengde">Ekte delmengde</h4>
+<ul>
+<li>
+<p>$S \subset T$</p>
+</li>
+<li>
+<p>Alle elementer av $S$ er i $T$, men ikke motsatt</p>
+</li>
+<li>
+<p>$S \subseteq T \land T \subseteq S$</p>
+<ul>
+<li>$S=T$</li>
+</ul>
+</li>
+<li>
+<p><strong>Eksempler</strong></p>
+<ul>
+<li><strong>Sanne utsagn</strong>
+<ul>
+<li>${1,3} \subset {1,2,3}$</li>
+<li>${1,2} \subseteq {1,3}$</li>
+</ul>
+</li>
+<li><strong>Falskt utsagn</strong>
+<ul>
+<li>${1,3} \subset {1,3}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Union</strong></p>
+<ul>
+<li>$S \cup T = {x|x \in S \lor x \in T }$</li>
+<li>Inneholder alle elementene fra $S$ og $T$</li>
+</ul>
+</li>
+<li>
+<p><strong>Snitt</strong></p>
+<ul>
+<li>$S \cap T = {x | x \in S \land x \in T }$</li>
+<li>Inneholder alle elementene som både er i $S$ og $T$</li>
+</ul>
+</li>
+<li>
+<p><strong>Differanse</strong></p>
+<ul>
+<li>$S-T = {x|x \in S \land x \notin T }$</li>
+</ul>
+</li>
+<li>
+<p><strong>Kartesisk produkt</strong></p>
+<ul>
+<li>$S \times T$</li>
+<li>Samling av alle ordnete par hvor $x \in S$ og $y \in T$</li>
+<li>&quot;Kryssproduktet&quot;</li>
+<li><strong>Ordnete tupler</strong>
+<ul>
+<li>$S_1 \times \dots \times S_n$</li>
+<li>$S_1 \times \dots \times S_n = {(x_1,...,x_n) | x_1 \in S_1 \land \dots \land x_n \in S_n}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Relasjoner</strong></p>
+<ul>
+<li>TODO venndiagramm</li>
+<li><strong>Strukturen</strong> til relasjoner er bestemt ved en anttall attributter ${A_1, \dots ,A_n }$
+<ul>
+<li><strong>Attributtene</strong> har hver et navn og et domene</li>
+<li>Tenk en tabellen er en relasjon med attributter som kolonner med INTEGER, VARCHAR(50), VARCHAR(100) som domene)</li>
+</ul>
+</li>
+<li><strong>tupler</strong>
+<ul>
+<li>$(a_1,a_2,\dots,a_n)$</li>
+<li>Innholdet til en relasjon</li>
+<li>Hver tuppel tilordner en verdi til hver av attributtene i relasjonen</li>
+<li>Koblingen mellom attributter og verdier:
+<ul>
+<li>(AnsNr:1m Fornavn:Per, Etternavn:Hansen)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Graden</strong> til en relasjon er gitt ved antall attributter</li>
+<li><strong>Kardinaliteten</strong> tilsvarer antall tupler</li>
+</ul>
+</li>
+<li>
+<p><strong>Domener</strong></p>
+<ul>
+<li>Hvert domene inneholder en mengde atomære verdier</li>
+<li>Atmoær = ikke kan deles opp</li>
+</ul>
+</li>
+<li>
+<p><strong>Relasjonsdatabase</strong></p>
+<ul>
+<li>En mengde relasjoner</li>
+</ul>
+</li>
+</ul>
+<h3 id="integritetesregler">Integritetesregler</h3>
+<h4 id="funksjon">Funksjon</h4>
+<ul>
+<li>$f: A \rightarrow B$</li>
+<li>Relasjon over $A$ og $B$</li>
+<li>Hvis $(a_1,b_1)$ og $(a_2,b_2)$ er i $f$ og $a_1 = a_2$, så er $b_1 = b_2$
+<ul>
+<li>For en bestemt verdi $a$ i $A$, så er det nøyaktig en verdi $b$ i $B$ slik at $(a,b)$ er med i $f$</li>
+<li>$f(a)=b$</li>
+</ul>
+</li>
+</ul>
+<h4 id="funksjonell-avhengighet">Funksjonell avhengighet</h4>
+<ul>
+<li>Tabell $T(A,B,C)$</li>
+<li>Det er funksjonell avhengighet dersom $B \rightarrow C$, hvis for alle tupler $(a_1,b_1,c_1)$ og $(a_2,b_2,c_2)$ slik at $b_1=b_2$ medfører $c_1=c_2$</li>
+<li>$B$ bestemmer $C$</li>
+<li>For hver B-verdi finnes det kun en C-verdi</li>
+</ul>
+<h4 id="supern%C3%B8kkel">Supernøkkel</h4>
+<ul>
+<li>Gitt en relasjon $R(A_1,\dots,A_n)$</li>
+<li>En samling attributter $K \subseteq {A_1,\dots,A_n}$ er en supernøkkel for $R$ hvis for hver attributt $A_i$ har at $K \rightarrow A_i$</li>
+</ul>
+<h4 id="minimal-supern%C3%B8kkel">Minimal supernøkkel</h4>
+<ul>
+<li>En kandidatnøkkel for $R$ er en minimal supernøkkel for $R$</li>
+<li>Hvis $K$ er en kandidatnøkkel for $R$, vil ingen ekte delmengde $L \subset K$ være en kandidatnøkkel for $R$</li>
+</ul>
+<h4 id="entitetsintegritet">Entitetsintegritet</h4>
+<ul>
+<li>Hver relasjon skal ha nøyaktig en primærnøkkel som ikke skal ha nullmerker eller to like verdier</li>
+<li>Entitetsintegriteten sjekkes
+<ul>
+<li>Når en ny rad settes inn</li>
+<li>Når en primærnlkkelverdi blir oppdatert</li>
+</ul>
+</li>
+</ul>
+<h4 id="unionskompatibilitet">Unionskompatibilitet</h4>
+<ul>
+<li>To attributter er unionskompitable hvis de har samme domene</li>
+</ul>
+<h4 id="referanseintegritet">Referanseintegritet</h4>
+<ul>
+<li>En fremmednøkkel er et attributt $A$ som er unionskompitabel med en primærnøkkel $B$, slik at alle verdier i $A$ også er verdier i $B$</li>
+<li>Verdiene i $A$ er en delmengde av verdiene i $B$</li>
+</ul>
+<h3 id="relasjonsalgebra">Relasjonsalgebra</h3>
+<ul>
+<li>Mattematisk programmeringsspråk for å behandle relasjoner</li>
+<li>Bygd opp av opperatorer</li>
+</ul>
+<h4 id="seleksjon">Seleksjon</h4>
+<ul>
+<li>$\sigma$</li>
+<li>Seleksjon er å velge tupler(rader) fra en relasjon(tabell) ved betingelser</li>
+<li><strong>WHERE</strong></li>
+<li>$\sigma_{kolonne + betingelse}(tabell)$
+<ul>
+<li>$\sigma_{Budsjett &lt; 10000}(Prosjekt)$</li>
+<li>$\sigma_{Budsjett &lt; 10000 \land Leder=2}(Prosjekt)$</li>
+</ul>
+</li>
+</ul>
+<h4 id="projeksjon">Projeksjon</h4>
+<ul>
+<li>$\Pi$</li>
+<li><strong>SELECT</strong></li>
+<li>Velger attributter fra en relasjon</li>
+<li>$\Pi_{kolonne1, kolonne2}(tabell)$
+<ul>
+<li><strong>SELECT</strong> kolonne1, kolonne2 <strong>FROM</strong> tabell</li>
+</ul>
+</li>
+</ul>
+<h4 id="mengdeopreatorer">Mengdeopreatorer</h4>
+<ul>
+<li>
+<p><strong>Union</strong></p>
+<ul>
+<li>$R \cup S = { t | t \in R \lor t \in S}$</li>
+<li><strong>UNION</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Snitt</strong></p>
+<ul>
+<li>$R \cap S = { t | t \in R \land t \in S}$</li>
+<li><strong>INTERSECT</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Differanse</strong></p>
+<ul>
+<li>$R - S = { t | t \in R \land t \notin S}$</li>
+<li><strong>EXCEPT</strong></li>
+</ul>
+</li>
+<li>
+<p>Binære operatorer</p>
+<ul>
+<li>Kombinerer to relasjoner til en ny</li>
+</ul>
+</li>
+<li>
+<p>$\Pi_{Startdato}(Prosjekt) \cup \Pi_{Sluttdato}(Prosjekt)$</p>
+<ul>
+<li>Alle datoer som enten er start eller sluttdato for et prosjekt</li>
+</ul>
+</li>
+<li>
+<p>$\Pi_{Leder}(Prosjekt) \cap \Pi_{AnsNr}(Arbeid)$</p>
+<ul>
+<li>Bruk av snitt for å finne prosjektledere med registrerte timer på et prosjekt</li>
+</ul>
+</li>
+<li>
+<p>$\Pi_{AnsNr}(Ansatt) - \Pi_{AnsNr}(Arbeid)$</p>
+<ul>
+<li>Ansattnummer til ansatte som ikke har deltatt i prosjekter</li>
+</ul>
+</li>
+</ul>
+<h4 id="koblinger">Koblinger</h4>
+<ul>
+<li>
+<p><strong>Like kobling</strong></p>
+<ul>
+<li>$\bowtie$</li>
+<li>$Prosjekt \bowtie_{Prosjekt.Leder = Ansatt.AnsNr}Ansatt$</li>
+<li>Hvert prosjekt koblet med sin prosjektleder</li>
+</ul>
+</li>
+<li>
+<p><strong>Naturlige koblinger</strong></p>
+<ul>
+<li>Bruker også $\bowtie$, bare uten betegnelse</li>
+<li>$Ansatt \bowtie Arbeid$</li>
+</ul>
+</li>
+<li>
+<p><strong>Ytre koblinger</strong></p>
+<ul>
+<li><strong>⟖</strong></li>
+<li><strong>⟕</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="divisjon">Divisjon</h4>
+<ul>
+<li>$\div$</li>
+<li>$R \div S$
+<ul>
+<li>Resultatet vil inneholde alle attributtene som er i $R$, men ikke $S$</li>
+<li>Radene vil være samtilige rader i $R$ som matcher $S$</li>
+<li>Tilsvarer <strong>NOT EXISTS</strong></li>
+</ul>
+</li>
+<li>$\Pi_{AnsNr, PNr}(Arbeid) \div \Pi_{PNr}(Prosjekt)$</li>
+</ul>
+<h4 id="tilordning">Tilordning</h4>
+<ul>
+<li>$\leftarrow$</li>
+<li>Sette navn på mellomresultater</li>
+<li>$R1 \leftarrow \sigma_{Budsjett&lt;10000}(Prosjekt) \Pi_{PNr, Budsjett}</li>
+<li>$\rho$</li>
+<li>Gir nytt eller endrer på navn til tabeller</li>
+<li>$\rho_{Timeliste(AnsattNr, ProsjektNr, Timer)}(Arbeid)$
+<ul>
+<li>Endrer navn på relasjonen Arbeid til Timeliste</li>
+</ul>
+</li>
+<li>Tilsvarer <strong>AS</strong></li>
+</ul>
+<h2 id="kapittel-7---datamodellering-med-er">Kapittel 7 - Datamodellering med ER</h2>
+<h3 id="er-diagrammer-og-databasetabeller">ER-Diagrammer og databasetabeller</h3>
+<ul>
+<li>Forlag(<u>Navn</u>, Kontakt, Telefon)</li>
+<li>EBok(<u>BokNr</u>, ISBN, Tittel, Forfatter, UtgittÅr, AntallKopier, Navn*)</li>
+<li>Utlån(<u>BokNr*,LNr*,UtlånsDato</u>, ErLevert)</li>
+<li>Låner(<u>LNr</u>, Fornavn, Etternavn, Epost)</li>
+</ul>
+<p><img src="./summary-pictures/kap7_1.png"> </img></p>
+<h3 id="kravanalyse">Kravanalyse</h3>
+<ul>
+<li><strong>Kravanalyse</strong> systematiserer hvilke data som er hensiktsmessig og nødvendig å lagre i en database</li>
+<li><strong>Faktainnsamling</strong> er en liste med krav til et system</li>
+</ul>
+<h3 id="entiteter-og-attributter">Entiteter og attributter</h3>
+<ul>
+<li><strong>Entitet</strong> er et objekt vi ønsker å lagre informasjon om(tabell)</li>
+<li><strong>Attributter</strong> er egenskapene tildelt entitene(kolonner)</li>
+<li><strong>Domene</strong> er datatypen tildelt domenet, som feks VARCHAR</li>
+<li><strong>Entitetstyper</strong> representerer samlinger av forekomster, ergo en &quot;entry&quot; i en rad</li>
+</ul>
+<h3 id="forhold">Forhold</h3>
+<ul>
+<li>Linje mellom entiteter</li>
+</ul>
+<h4 id="kardinalitet">Kardinalitet</h4>
+<ul>
+<li>Forhold mellom entiteter</li>
+</ul>
+<h4 id="en-til-en">En-til-en</h4>
+<ul>
+<li><img src="./summary-pictures/en-til-en.png" width="50%"> </img></li>
+</ul>
+<h4 id="en-til-mange">En-til-mange</h4>
+<ul>
+<li>
+<p>Vertikal strek uten kråkefot betyr en eller flere</p>
+</li>
+<li>
+<p><img src="./summary-pictures/en-til-mange.png" width="50%"> </img></p>
+</li>
+</ul>
+<h4 id="mange-til-mange">Mange-til-mange</h4>
+<ul>
+<li><img src="./summary-pictures/mange-til-mange.png" width="50%"> </img></li>
+</ul>
+<h4 id="maksimums--og-minimumskardinalitet">Maksimums- og minimumskardinalitet</h4>
+<ul>
+<li>Utrykker hvor mange forekomster av entitet A som kan eller må knyttes til B og omvendt</li>
+<li>Merk at relasjonen her har en hvit '&lt;&gt;', som tilsvarer kråkefot med hvit sirkel
+<ul>
+<li>&quot;0 eller fler&quot;</li>
+</ul>
+</li>
+</ul>
+<h4 id="roller-og-navn-p%C3%A5-forhold">Roller og navn på forhold</h4>
+<ul>
+<li>
+<p><strong>Navn</strong> spesifiserer forhold for å klargjøre lettere hva forholdet betyr</p>
+</li>
+<li>
+<p>Kan leses som verb: &quot;En ansatt leder en avdeling&quot;</p>
+</li>
+<li>
+<p><img src="./summary-pictures/roller-og-navn.png" width="50%"> </img></p>
+</li>
+<li>
+<p><strong>Roller</strong> er alternativ navngivning som faller litt mer naturlig</p>
+</li>
+<li>
+<p><img src="./summary-pictures/roller-og-navn2.png" width="50%"> </img></p>
+</li>
+</ul>
+<h4 id="prim%C3%A6rn%C3%B8kler-og-ikke-identifiserende-forhold">Primærnøkler og ikke-identifiserende forhold</h4>
+<ul>
+<li>
+<p>Alle entiteter skal ha en identifikator(primærnøkkel)</p>
+</li>
+<li>
+<p>Entiteter kan identifisere seg ved hjelp av andre entiteter</p>
+</li>
+<li>
+<p>Kunde og ordre er et ikke-identifiserbart forhold siden de har begge sine egne identifikatorer</p>
+</li>
+<li>
+<p>De blir ikke identifisert av hverandre</p>
+</li>
+<li>
+<p><img src="./summary-pictures/ikke-identifiserbare-forhold.png" width="50%"> </img></p>
+</li>
+</ul>
+<h4 id="svake-entiteter-og-identifiserende-forhold">Svake entiteter og identifiserende forhold</h4>
+<ul>
+<li>
+<p><strong>Svake</strong> entiteter er avhengige av andre entiteter for å eksistere</p>
+</li>
+<li>
+<p>Identifikatoren til en svak entitet er delvis eller helt arvet fra en annen identitet</p>
+</li>
+<li>
+<p>Svake identiteter kan arve attributtre fra andre svake identiteter</p>
+</li>
+<li>
+<p>Forholdet mot svake enheter er <strong>identifiserende</strong></p>
+</li>
+<li>
+<p>Forsvinner entiteten som har forhold mot den svake identiteten, vil den svake forsvinne</p>
+</li>
+<li>
+<p>Identifikatorene går i <em>arv</em></p>
+</li>
+<li>
+<p><img src="./summary-pictures/svake-entiteter.png" width="50%"> </img></p>
+</li>
+<li>
+<p>Identifikator sammensatt av kolonner fra flere entiteter(tabeller)</p>
+</li>
+<li>
+<p><img src="./summary-pictures/sammensatt-svak-identifikator.png" width="50%"> </img></p>
+</li>
+<li>
+<p>Kan også bruke <strong>løpenummer</strong> som identifikator</p>
+</li>
+<li>
+<p><img src="./summary-pictures/løpenummer-identifikator.png" width="50%"> </img></p>
+</li>
+</ul>
+<h4 id="attributter-til-forhold-og-koblingsentiteter">Attributter til forhold og koblingsentiteter</h4>
+<ul>
+<li>
+<p>Utvide modellen med mer spesifikk informasjon som ikke er funnet i noen av identitetene</p>
+</li>
+<li>
+<p><strong>Entitisering</strong>: Erstatter en-til-mange forhold med forhold til begge entitetene</p>
+</li>
+<li>
+<p>Ny enhet kalles <strong>assosiativ enhet</strong> eller <strong>koblingsenhet</strong></p>
+</li>
+<li>
+<p>Før:</p>
+<ul>
+<li><img src="./summary-pictures/Entitetisering-1.png" width="50%"> </img></li>
+</ul>
+</li>
+<li>
+<p>Etter:</p>
+<ul>
+<li><img src="./summary-pictures/Entitetisering-2.png" width="50%"> </img></li>
+</ul>
+</li>
+</ul>
+<h3 id="datamodellering-med-uml">Datamodellering med UML</h3>
+<ul>
+<li>Unified modeling language</li>
+<li><img src="./summary-pictures/UML-1.png" width="50%"> </img>
+<ul>
+<li><strong>0..</strong>
+<ul>
+<li>Null eller mange</li>
+</ul>
+</li>
+<li>Utlån er en assosiativ entitet, se striplet linje
+<ul>
+<li>Entiteten blir identifisert med en dato, en e-bok og en låner</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="aggregering">Aggregering</h4>
+<ul>
+<li>Entitet er &quot;en-del-av&quot;
+<ul>
+<li><img src="./summary-pictures/aggregering.png" width="50%"> </img></li>
+</ul>
+</li>
+</ul>
+<h4 id="komposisjon">Komposisjon</h4>
+<ul>
+<li>Sterkere form for aggregering</li>
+<li>Livsløpet til to entiteter sammenfaller, forsvinner den ene, mister den andre identiteten sin
+<ul>
+<li><img src="./summary-pictures/komposisjon.png" width="50%"> </img></li>
+</ul>
+</li>
+</ul>
+<h3 id="subtyper">Subtyper</h3>
+<ul>
+<li>&quot;Delmengder&quot;</li>
+<li>Spesialisering av en annen entitet</li>
+<li>Subtyper arver egenskaper til supertypen og kan ha ekstra attributter</li>
+<li>&quot;er en&quot;</li>
+<li><img src="./summary-pictures/subtyper.png" width="50%"> </img></li>
+</ul>
+<h3 id="abstraksjonsmekanismer">Abstraksjonsmekanismer</h3>
+<ul>
+<li>
+<p><strong>Aggregering</strong></p>
+<ul>
+<li>&quot;Har en&quot;</li>
+</ul>
+</li>
+<li>
+<p><strong>Kategorisering/instansiering</strong></p>
+<ul>
+<li>&quot;Ansatt er en kategorisering av feks &quot;Hans&quot; og &quot;Lise&quot;</li>
+</ul>
+</li>
+</ul>
+<h3 id="chen-notasjon">Chen-notasjon</h3>
+<ul>
+<li>Annen dialekt av ER</li>
+<li>Forhold tegnes som romber</li>
+<li>Kardinalitet blir angitt med &quot;1&quot; og &quot;N&quot;</li>
+<li><img src="./summary-pictures/chen-notasjon.png" width="50%"> </img></li>
+</ul>
+<h4 id="forhold-i-chen-notasjon">Forhold i Chen-notasjon</h4>
+<ul>
+<li>Attributter tegnes i ovaler utenfor entiteter</li>
+<li><img src="./summary-pictures/forhold-chen.png" width="50%"> </img></li>
+</ul>
+<h4 id="svake-entiteter-i-chen">Svake entiteter i Chen</h4>
+<ul>
+<li>Doble linjer er svake entiteter</li>
+<li><img src="./summary-pictures/svake-entiteter-chen.png" width="50%"> </img></li>
+</ul>
+<h4 id="ikke-atom%C3%A6re-attributter-i-chen">Ikke atomære attributter i Chen</h4>
+<ul>
+<li><strong>Sammensatte attributter</strong>: En attributt kan være en kombinasjon av flere andre attributter</li>
+<li><strong>Avledede attributter</strong>: En attributt kan beregnes fra en annen</li>
+<li><strong>Flerverdiattributter</strong>: En attributt kan være sammensatt av flere verdier</li>
+<li><img src="./summary-pictures/ikke-atomære-attributter-chen.png" width="30%"> </img></li>
+</ul>
+<h2 id="kapittel-8---fra-modell-til-database">Kapittel 8 - Fra modell til database</h2>
+<h3 id="oppsummeringer-av-enkle-regler">Oppsummeringer av enkle regler</h3>
+<ul>
+<li>Entiteter blir til tabeller</li>
+<li>Atributter blir til kolonner</li>
+<li>Identifikatorer blir til primærnøkler</li>
+<li>Mange-til-mange forhold blir til &quot;koblingstabeller&quot;. Identifikatorene for de involverte entitene blir til en sammensatt primærnøkkel</li>
+</ul>
+<h3 id="en-til-mange-forhold">En-til-mange forhold</h3>
+<ul>
+<li>Identifikatoren på én-side blir kopiert til tabellen på mange-siden, og det blir en fremmednøkkel mot én-siden</li>
+<li>Primærnøkkelen blir kopiert til mange-siden, men ikke omvendt</li>
+<li>Ikke et krav at fremmednøkkelen heter det samme</li>
+</ul>
+<img src="./summary-pictures/en-til-mange-forhold.png" width="50%">
+<ul>
+<li>Ved en avdeling jobber det mange ansatte</li>
+<li>En bestemt ansatt er tilsatt på kun en avdeling</li>
+<li>Ansatt er på mange siden av forholdet og avdeling er på en-siden av forholdet</li>
+</ul>
+<img src="./summary-pictures/en-til-mange-forhold-PK.png" width="50%">
+<ul>
+<li>Her er fremmednøkler på en siden</li>
+</ul>
+<h3 id="oversettelse-av-svake-entiteter-og-identifierserende-forhold">Oversettelse av svake entiteter og identifierserende forhold</h3>
+<ul>
+<li>I et identifieserende en-til-mange forhold, vil den svake identiteten alltid være på mange siden</li>
+<li>I et identifiserende en-til-en forhold med en svak identitet, vil den svake identiteten også motta fremmednøkkel fra en den andre identiteten</li>
+</ul>
+<h3 id="mange-til-mange-forhold">Mange-til-mange forhold</h3>
+<ul>
+<li>
+<p>Mange-til-mange forhold kan bli til:</p>
+<ol>
+<li>
+<p>En tabell satt sammen av primærnøklene til de to andre tabellene</p>
+<ul>
+<li>Primærnøklene blir satt sammen fra primærnøklene til de to involverte tabellene, som hver for seg blir fremmednøkler tilbake til disse
+<ul>
+<li>
+<p>Ansatt(<u>AnsNr</u>, Fornavn, Etternavn, Stilling)</p>
+</li>
+<li>
+<p>Prosjekt(<u>ProsjNr</u>, Startdato, Sluttdato, Budsjett)</p>
+</li>
+<li>
+<p>ProsjektDeltakelse(<u>AnsNr*, ProsjNr*</u>)</p>
+</li>
+<li>
+<img src="./summary-pictures/koblingstabell.png" width="50%">
+</li>
+<li>
+<p>(Mulig den i midten skal være prosjektdeltakelse og ikke ansatt(blame the slides))</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>En koblingsentitet og to en-til-mange forhold</p>
+<ul>
+<li>Koblingsentiteten vil inngå i to mange-til-en forhold
+<ul>
+<li>Ansatt(<u>AnsNr</u>, Fornavn, Etternavn, Stilling)</li>
+<li>Prosjekt(<u>ProsjNr</u>, Startdato, Sluttdato, Budsjett)</li>
+<li>ProsjektDeltakelse(<u>AnsNr*,ProsjNr*</u>, AntallTimer)</li>
+<li>
+<img src="./summary-pictures/mange-til-mange-entitisering.png" width="50%">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="en-til-en-forhold">En-til-en forhold</h3>
+<ul>
+<li>Kan håndteres på flere måter:
+<ul>
+<li>
+<p>Idenfikatoren i A blir kopiert til B og blir fremmednøkkel mot A</p>
+</li>
+<li>
+<p>Idenfikatoren i B blir kopiert til A og blir fremmednøkkel mot B</p>
+</li>
+<li>
+<p>Fremmednøkler kopieres begge veier</p>
+</li>
+<li>
+<p>Oppretter en koblingstabell</p>
+</li>
+<li>
+<p>Slå sammen felles identiteter til en felles tabell</p>
+<ul>
+<li>
+<img src="./summary-pictures/en-til-en-forhold.png" width="40%">
+</li>
+<li>
+<p>Ikke all ansatte er avdelingsledere</p>
+</li>
+<li>
+<p>Enhver avdeling har nøyaktig en leder</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Alternativt:</p>
+<ul>
+<li>Ansatt(<u>AnsNr</u>, Fornavn, Etternavn, Stilling)</li>
+<li>Avdeling(<u>AvdKode</u>, AvdNavn, AnsNr*)</li>
+<li>
+<img src="./summary-pictures/en-til-en-forhold-alternativ.png" width="40%">
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="h%C3%A5ndtere-minimumskardinalitet-i-databaser">Håndtere minimumskardinalitet i databaser</h3>
+<ul>
+<li>Dersom det er en-til-en og begge fremmednøklene er satt som <strong>NOT NULL</strong> vil det kunne oppstå problemer ved å registrer data</li>
+<li>Løsning: Gjøre innsetningene en del av transaksjonen og merke nøklene <strong>DEFERRABLE</strong></li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Hovedstad
+  <span class="hljs-keyword">ADD</span> <span class="hljs-keyword">CONSTRAINT</span> HovedstadLandFK
+  <span class="hljs-keyword">FOREIGN</span> <span class="hljs-keyword">KEY</span>(LandKode)
+  <span class="hljs-keyword">REFERENCES</span> Land(LandKode)
+  <span class="hljs-keyword">INITIALLY</span> <span class="hljs-keyword">DEFERRED</span> DEFERRABLE;
+</div></code></pre>
+<ul>
+<li>For å slette tabeller lenket sammen slik må fremmednøklene slettes først</li>
+</ul>
+<pre class="hljs"><code><div><span class="hljs-keyword">ALTER</span> <span class="hljs-keyword">TABLE</span> Hovedstad
+  <span class="hljs-keyword">DROP</span> <span class="hljs-keyword">CONSTRAINT</span> HovedstadLandFK;
+</div></code></pre>
+<h3 id="todo-subtyper">TODO Subtyper</h3>
+<h3 id="todo-ikke-atmo%C3%A6re-attributter">TODO Ikke-atmoære attributter</h3>
+<h3 id="normalisering">Normalisering</h3>
+<h4 id="reduans-og-funksjonelle-avnhengiheter">Reduans og funksjonelle avnhengiheter</h4>
+<ul>
+<li><strong>Redudans</strong>
+<ul>
+<li>Overflødig eller unødvendig informasjon</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>AnsNr</th>
+<th>Fornavn</th>
+<th>Etternavn</th>
+<th>PostNr</th>
+<th>Poststed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Gunnlaug</td>
+<td>Angeltveit</td>
+<td>3800</td>
+<td>Bø i Telemark</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Vilde</td>
+<td>Aksnes</td>
+<td>3800</td>
+<td>Gvarv</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Henriette</td>
+<td>Brobakken</td>
+<td>3800</td>
+<td>Bø i Telemark</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Ragnvald</td>
+<td>Allum</td>
+<td>3812</td>
+<td>Akkerhaugen</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Oliver</td>
+<td>Abrahamse</td>
+<td>3812</td>
+<td>Akkerhaugen</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Poststed og PostNr er <strong>funksjonelt avhengige</strong> siden de bestemmer hverandre</li>
+<li>Det er redundant å ha med begge kolonnene</li>
+</ul>
+<h4 id="dekomponere-tabeller">Dekomponere tabeller</h4>
+<ul>
+<li>Fjerning av redundans ved å dele opp i flere tabeller</li>
+<li>Overgangen til en ny tabell kalles et <strong>normaliseringssteg</strong></li>
+<li><strong>Normalisering</strong> er å gjenta dette til alle tabeller er helt fri fra redundans</li>
+<li>En oppdeling av en tabell $T$ til to tabeller $T1$ og $T2$ er en <strong>tapsfri dekomposisjon</strong> hvis $T1$ og $T2$ gir $T$ tilbake</li>
+</ul>
+<h4 id="1nf">1NF</h4>
+<ul>
+<li><strong>NF</strong> er definisjonen av et antall <strong>normalformer</strong></li>
+<li><strong>1NF</strong> er på <strong>første normalform</strong></li>
+<li>Første normalform er en tabell som bare inneholder atomære verdier</li>
+<li>For å gjøre om på tabeller som ikke er på <strong>1NF</strong>:
+<ul>
+<li>Flytte verdiliste over til en hjelpetabell med sammensatt primærnøkkel</li>
+</ul>
+</li>
+</ul>
+<h4 id="2nf">2NF</h4>
+<ul>
+<li>
+<p>Gitt en tabell <strong>T(<u>A,B</u>,C,D)</strong></p>
+<ul>
+<li>B $\rightarrow$ D er en <strong>partiell avhengighet</strong> hvis:
+<ol>
+<li><strong>B</strong> er en ekte delmengde av en (sammensatt) primærnøkkel i <strong>T</strong></li>
+<li><strong>D</strong> er ikke med i primærnøkkelen i <strong>T</strong></li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>En tabell er på <strong>2NF</strong> hvis den er på <strong>1NF</strong> og den ikke inneholder <strong>partielle avhengigheter</strong></p>
+</li>
+<li>
+<img src="./summary-pictures/2NF.png" width="20%">
+<ul>
+<li>Linjen over A+B viser at det er <strong>funksjonelle avhengigheter</strong> fra A+B til andre kolonner</li>
+<li>Den røde linjen viser et brudd på <strong>2NF</strong></li>
+</ul>
+</li>
+<li>
+<p>Eksempel:</p>
+<ul>
+<li>Odrelinje(<u>OrdreNr, VNr</u>, Dato, Betegnelse)</li>
+<li>Ordrelinje inneholder VNr $\rightarrow$ Betegnelse, der VNr er en ekte delmengde av primærnøkkelen OrdreNr+VNr</li>
+<li>Dette er et brudd på <strong>2NF</strong> og gjøre tabellen til <strong>1NF</strong></li>
+<li>Løsning:
+<ul>
+<li>Ordrelinje(<u>OrdreNr, VNr*</u>, Dato)</li>
+<li>Vare(<u>VNr</u>, Betegnelse)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="3nf">3NF</h4>
+<ul>
+<li>
+<p>Gitt en tabell <strong>T(<u>A</u>,B,C,D)</strong></p>
+<ul>
+<li>A $\rightarrow$ C er en <strong>transitiv avhengighet</strong> hvis:
+<ol>
+<li>A er en primærnøkkel for T</li>
+<li>Verken B eller C er med i primærnøkkelen i T og B $\rightarrow$ C</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>En tabell er <strong>tredje normalform(3NF)</strong> hvis den er på <strong>2NF</strong> og ikke inneholder noen <strong>transitive avhengigheter</strong></p>
+</li>
+<li>
+<img src="./summary-pictures/3NF.png" width="20%">
+</li>
+<li>
+<p>Eksempel:</p>
+<ul>
+<li>Ansatt(<u>AnsNr</u>, Fornavn, Etternavn, PostNr, Poststed)</li>
+<li>PostNr $\rightarrow$ Poststed er en <strong>transitiv avhengighet</strong> og bryter derfor med <strong>3NF</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="boyce-codd-normalform-bcnf">Boyce-Codd NormalForm (BCNF)</h4>
+<ul>
+<li>
+<p><strong>Determinant</strong></p>
+<ul>
+<li>En kolonne som bestemmer en annen</li>
+<li>A $\rightarrow$ B
+<ul>
+<li>A er determinant</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Supernøkkel</strong></p>
+<ul>
+<li>En kolonne som bestemmer enhver annen kolonne</li>
+<li>En kandidatnøkkel er en minimal supernøkkel</li>
+</ul>
+</li>
+<li>
+<p>En tabell er på <strong>Boyce-Codd form</strong> hvis enhver determinant er en supernøkkel</p>
+</li>
+<li>
+<p>Enhver minimal determinant er en kandidatnøkkel</p>
+</li>
+<li>
+<img src="./summary-pictures/BCNF.png" width="60%">
+* AnsNr er kandidatnøkkel
+  * Det er en funksjonell avhengighet fra AnsNr til alle andre kolonner
+* PostNr $\rightarrow$ Poststed bryter med **BCNF**
+  * PostNr er determinant over Poststed, men ingen andre kolonner
+</li>
+<li>
+<p>En tabell som ikke er på <strong>BCNF</strong> bør deles opp</p>
+</li>
+<li>
+<p>Hvis en tabell tilfredstiller <strong>BCNF</strong> er den ferdig normalisert</p>
+</li>
+<li>
+<p>Fra ukesoppgaver:</p>
+<ol>
+<li>
+<p>Passing (RegistrationNr, Manufacturer, PersonNr, Name, StationNr, Municipality,Date, Time)</p>
+<ul>
+<li>$\downarrow$</li>
+<li>Passing(#RegistrationNr, #Name*, #Date, #Time)</li>
+<li>Cars(#RegistrationNr, Manufacturer PersonNr*)</li>
+<li>Person(#PersonNr, Name)</li>
+<li>Toll(#StationNr, Municipality)</li>
+</ul>
+</li>
+<li>
+<p>MultipeChoice (TestNr,  TestName,  QuestionNr,  QuestionText,  AlternateNr,  Al-ternateText, User, Reply, Correct)</p>
+<ul>
+<li>$\downarrow$</li>
+<li>Test(#TestNr, TestName)</li>
+<li>Question(#TestNr*, #QuestionNr, QuestionText, Correct)</li>
+<li>Alternative(#TestNr*, #QuestionNr, #AlternateNr, AlternateText)</li>
+<li>User(#TestNr*, #QuestionNr*, User, Reply)</li>
+</ul>
+</li>
+<li>
+<p>T(A,B,C,D,E) where A $\rightarrow$ B, C $\rightarrow$ D and C $\rightarrow$ E</p>
+<ul>
+<li>A og C er her kandidatnøkler siden de bestemmer alle de andre kolonnene:</li>
+<li>T1a(A, B)</li>
+<li>T1b(A, C)</li>
+<li>T2(C, D, E)</li>
+</ul>
+</li>
+<li>
+<p>T(A,B,C,D) where A → B, B → C and C → D</p>
+<ul>
+<li>T1(A, B, C)</li>
+<li>T2(C, D)</li>
+<li>$\downarrow$
+<ul>
+<li>T1a(A, B)</li>
+<li>T1b(B, C)</li>
+<li>T2(C, D)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>T(A,B,C,D,E) where A + B → C, B → A, B → D and D → E</p>
+<ul>
+<li>T1(A, B, C, D)</li>
+<li>T2(D, E)</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h2 id="kapittel-9---filer-og-indekser">Kapittel 9 - Filer og indekser</h2>
+<h3 id="lagringsmedier">Lagringsmedier</h3>
+<ul>
+<li>
+<p>Flyktig(volatile) minne - Ustabilt minne som går tapt når maskinen skrus av</p>
+</li>
+<li>
+<p>Ikke-flyktig minne - Beholder data etter strømforsyning er koblet av</p>
+</li>
+<li>
+<p>Hurtigminne(flyktig) i en maskin er bygd opp av ulike typer ram:</p>
+<ul>
+<li>DRAM</li>
+<li>Cache</li>
+<li>Registre</li>
+</ul>
+</li>
+<li>
+<p><strong>Harddisk</strong></p>
+<ul>
+<li>Sirkulære, roterende magnetplater</li>
+<li>Hver plate er delt inn i spor</li>
+<li>Spor i en gitt posisjon danner en sylinder</li>
+<li>Hvert spor er delt inn i sektorer</li>
+<li>En blokk er en sammensetning av ulike sektorer</li>
+<li>Lesing og skriving skjer med lese/skrive armer</li>
+<li>Når en arm er posisjonert over et bestemt spor, vil de dekke en sylinder</li>
+<li>Platene roterer med en konstant hastighet</li>
+<li>Akkesstiden får vi ved å addere tiden for flytting av lesearmene med rotasjonstiden og overføringstiden
+<ul>
+<li>Gjennomsnittstiden for å få tak i en bestemt blokk</li>
+</ul>
+</li>
+<li>En disk blir overtid fragmentert</li>
+</ul>
+</li>
+<li>
+<p><strong>SSD</strong></p>
+<ul>
+<li>Elektronisk lagringsmedia</li>
+<li>Flash-teknologi av typen NAND</li>
+<li>Organisert i blokker som er delt opp i sider</li>
+<li>Kan kun slette hele blokker</li>
+<li>Konstant aksesstid
+<ul>
+<li>Spiller ingen roller hvor noe er lagret på disken</li>
+</ul>
+</li>
+<li>Ytelse måles i IOS(input/output operations per second)</li>
+</ul>
+</li>
+<li>
+<p>Direkteaksess - Data kan bli lest i en vilkårlig rekkefølge</p>
+</li>
+<li>
+<p>Sekvensielle lagringsmedium:</p>
+<ul>
+<li>Må leses fra start til slutt</li>
+<li>Magnetbånd</li>
+</ul>
+</li>
+<li>
+<p>Tre bruksområder:</p>
+<ol>
+<li><strong>Primærminne</strong>
+<ul>
+<li>Data som blir lest inn fra minne for å utføre beregninger</li>
+<li>Oppdatert data blir skrevet ut igjen til disk</li>
+<li>Registering av hvilke data som befinner seg hvor og på hvilken tid</li>
+</ul>
+</li>
+<li><strong>Sekundærminne</strong>
+<ul>
+<li>Permanent lagring på disk</li>
+</ul>
+</li>
+<li><strong>Tertiærminne</strong>
+<ul>
+<li>Disker og optiske medier</li>
+<li>Benyttes for sikkerhetskopiering</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="minnehierarkiet">Minnehierarkiet</h4>
+<ul>
+<li>Sortert fra hurtig og dyrt, til langsomt og billig:
+<ol>
+<li>Cache(ustabilt)</li>
+<li>RAM(ustabilt)</li>
+<li>SSD(stabilt)</li>
+<li>Harddisk(stabilt)</li>
+<li>Optiske medier(stabtilt)</li>
+<li>Magnetbånd(stabilt)</li>
+</ol>
+</li>
+</ul>
+<h4 id="overf%C3%B8ring-mellom-minne-og-disk">Overføring mellom minne og disk</h4>
+<ul>
+<li>Dram er 1000 ganger raskere enn ssd og 100 000 ganger raskere enn harddisker ved direkteoppslag</li>
+<li>Et DBHS vil prøve å redusere antall lese/skrive operasjoner mot disken</li>
+</ul>
+<h4 id="raid">RAID</h4>
+<ul>
+<li>
+<p><strong>MTTF</strong></p>
+<ul>
+<li>Mean time to failure</li>
+<li>TIden det i gjennomsnitt tar før en komponent feiler</li>
+</ul>
+</li>
+<li>
+<p>Speiling er bruke et dobbelt sett med disker for å få MTTF ned</p>
+</li>
+<li>
+<p><strong>RAID</strong>(redundant array of independent disks) er en samling disker som til sammen danner en logisk disk</p>
+</li>
+<li>
+<p><strong>RAID nivåer</strong></p>
+<ul>
+<li><strong>Nivå 1</strong>: Disker blir organisert i par som er speilinger av hverandre uten bruk av striping(sekvensiell lagring mellom diskene)</li>
+<li><strong>Nivå2</strong>: Data blir fordelt utover et antall disker ved striping på bytenivå. Ekstra disker inneholder bare paritetsbytes(redundant data)</li>
+<li><strong>Nivå 5</strong>: Data blir fordelt på samme måte som nivå tre, men data blir fordelt med striping på bytenivå</li>
+</ul>
+</li>
+</ul>
+<h3 id="filstruktur-og-s%C3%B8kemetoder">Filstruktur og søkemetoder</h3>
+<ul>
+<li>En database blir lagret på en fil</li>
+<li>En fil består av et antall poster</li>
+<li>Poster er organisert i en bestemt rekkefølge. Kan derfor snakke om poster i bestemte posisjoner</li>
+<li>Hver post består av et antall felt</li>
+<li>
+<img src="./summary-pictures/lagringsmedier-modell" width='30%'>
+</li>
+</ul>
+<h4 id="representasjon-av-poster">Representasjon av poster</h4>
+<ul>
+<li>Vi velger datatyper for hver kolonner</li>
+<li>Ettersom forskjellige datatyper har forskjellige størrelser, vil ikke all verdier fylle opp all avsatt plass</li>
+<li>Derfor skape blanke tegn for å fylle opp resten av plassen siden kolonnene har fast lengde</li>
+<li><strong>CHAR</strong> og <strong>VARCHAR</strong> har <strong>variabel lengde</strong> - Verdier vil kun bruke så mye plass som er faktisk nødvendig</li>
+</ul>
+<h4 id="ikke-sorterte-filer">Ikke sorterte filer</h4>
+<ul>
+<li>Poster blir organisert i rekkefølgen de blir registrert</li>
+<li><strong>Heap filer</strong></li>
+<li>Effektivt å sett inn nye poster</li>
+<li>Langsomt å søke siden det må <strong>sekvensielt søkes</strong></li>
+<li>I verste fall må alle blokker søkes gjennom</li>
+</ul>
+<h4 id="sorterte-filer">Sorterte filer</h4>
+<ul>
+<li>Poster ordnes med hensyn på en kolonne, feks primærnøkkel til tabellen</li>
+<li><strong>Sortert fil</strong>(sekvensiell fil)</li>
+<li>Gjør det mulig å bruke effektive søketeknikker</li>
+<li><strong>Binærsøk</strong>
+<ul>
+<li>Starter i midten av filen og sammenlikner posisjonen med det vi søker etter</li>
+<li>Deretter går til den delen av filen som inneholder tallet vi er ute etter</li>
+<li>Forsetter slik helt til tallet er funnet</li>
+</ul>
+</li>
+<li>Binærsøk er mye raskere enn sekvensielt søk</li>
+<li>Sekvensieltsøk = $n/2$, binærsøk = $log_2 n$</li>
+<li>Dersom poster er lagret sortert, oppstår det et problem dersom det skal sette inn data i flere av blokkene siden all dataen må effektivt sett bli flyttet for å gjøre plass til de nye postene</li>
+<li>Løsningen er å sette de nye postene i <strong>overflytblokker</strong> og få postene før til å peke på dem, og deretter de nye postene til å peke på hva neste post er</li>
+<li>Etterhvert blir det lange kjeder av pekere, <strong>pekerkjeder</strong>, som blir lite effektive og filen burde derfor etterhvert omorganiseres</li>
+</ul>
+<h4 id="hashing">Hashing</h4>
+<ul>
+<li>Blokkadresser blir regnet ut basert på feltene i filen(<strong>hash-nøkkelen</strong>)</li>
+<li>Effektiviserer søk</li>
+</ul>
+<h3 id="indekser">Indekser</h3>
+<ul>
+<li>Indekser består av <strong>søkenøkler</strong> og <strong>pekere</strong></li>
+<li>Søkenøkler er verdier fra kolonner</li>
+<li>Pekere er adresser til blokker eller poster</li>
+<li>Tenk stikkordsregister:
+<ul>
+<li>Søkenøkler er ord som forekommer i boken</li>
+<li>Pekerene er sidetall</li>
+</ul>
+</li>
+<li>Indekser effektiviserer søk</li>
+<li>Bruker mer lagringsplass</li>
+<li>
+<img src="./summary-pictures/indekser" width="40%">
+</li>
+</ul>
+<h4 id="prim%C3%A6rindekser">Primærindekser</h4>
+<ul>
+<li>En indeks der søkenøkkelen samsvarer med det feltet som datafilen er fysisk ordnet med hensyn på</li>
+<li>Ikke nødvendigvis basert på primærnøkkel til tilhørende tabell eller lagre pekere til alle verdiene i filen</li>
+</ul>
+<h4 id="sekund%C3%A6rindekser">Sekundærindekser</h4>
+<ul>
+<li>Indekser som ikke er primærindekser</li>
+<li>Hjelper med å søke raskere</li>
+<li><strong>Tette indekser</strong>
+<ul>
+<li>Peker til samtlige poster</li>
+</ul>
+</li>
+<li><strong>Ikke-tette indekser</strong>
+<ul>
+<li>Pekere til hver blokk</li>
+</ul>
+</li>
+</ul>
+<h4 id="flerniv%C3%A5indekser">Flernivåindekser</h4>
+<ul>
+<li>
+<p>Indeks på indekser</p>
+</li>
+<li>
+<p>Når indekser blir for store, ofte tette</p>
+</li>
+<li>
+<p>Ved 3 nivåer blir indekser på nivå 3 brukt til å søke på 2, og det som er igjen brukte til å søke på 1</p>
+</li>
+<li>
+<p>Indekser på nivå 1 inneholder pekere ut til blokker eller poster i selve datafilen</p>
+</li>
+<li>
+<p>Bortsett fra på nivå 1 kan man alltid bruke ikke-tette indekser fordi indekser(på lavere nivåer) er sortert</p>
+</li>
+<li>
+<p><strong>Eksempel</strong>:</p>
+<ul>
+<li>En fil med 100 000 poster lagret i 2500 blokker(40 poster i hver blokk)</li>
+<li>Idenksen på nivå 1 er tett, og inneholder 100 000 poster</li>
+<li>Vi kan lagre 100 indeksposter per blokk</li>
+<li>Indeksen får da plass i 1000 blokker</li>
+<li>Indeksen på nivå 2 inneholder en post for hver blokk i den første indeksen(1000) og får derfor plass i 10 poster(en blokk)</li>
+<li>Indeks på nivå 3 har 10 poster(en blokk)</li>
+<li>Vi klarer derfor med 4 diskaksesser å finne en bestemt post</li>
+<li>Med en sekvensielt søk ville det tatt 1250 aksesser i snitt</li>
+</ul>
+</li>
+<li>
+<p><strong>Balansert flernivåindeks</strong> - Alle veier i datafilen er like lange, alle søk tar like lang tid</p>
+</li>
+<li>
+<p><strong>B+ trær</strong>:</p>
+<ul>
+<li>Balansert flernivåindeks</li>
+<li>Består av noder i trestruktur</li>
+<li>Øverste noden er root</li>
+<li>Hver node inneholder maksimalt n søkeverider og n+1 pekere</li>
+<li>
+<img src="./summary-pictures/b+-tre.png" width="50%">
+</li>
+<li>Ved innsetting av nye poster i filen kan det bli nødvendig å splitte noder i søketreet, som kan forplante seg oppover slik at et nytt nivå må legges til</li>
+</ul>
+</li>
+</ul>
+<h4 id="bitmap-indekser">Bitmap-indekser</h4>
+<ul>
+<li>Bedre en B+ til å indeksere kolonner med få forskjellige verdier</li>
+<li>Bitmap-indekser lagrer et bit-mønster som beskriver forekomster av hver enkelt verdi</li>
+<li>Har like mange rader som tabellen den indekserer</li>
+<li>Har like mange kolonner som det er forskjellige verider i tabellkolonnen den er definert for</li>
+<li>Effektiv ved utførelse av spørringer med sammensatte betingelser på indekserte kolonner</li>
+</ul>
+<h4 id="indekser-med-sql">Indekser med SQL</h4>
+<ul>
+<li>
+<p>Opprette indekser:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> EtternavnIdx
+  <span class="hljs-keyword">ON</span> Kunde(Etternavn)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Sjekke at det ikke blir registrert to like verdier i indekskolonnen:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">INDEX</span> TelefonIdx
+  <span class="hljs-keyword">ON</span> Person (Telefon)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Sammensatte indekser:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> NavnIdx
+  <span class="hljs-keyword">ON</span> Kunde (Etternavn, Fornavn)
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="retningslinjer-for-fysisk-design">Retningslinjer for fysisk design</h3>
+<h4 id="valg-av-datatyper">Valg av datatyper</h4>
+<ul>
+<li><strong>Tekst</strong>
+<ul>
+<li>VARCHAR for varibel lengde og CHAR(x=antall tegn) for fast lengde</li>
+<li>Navn, kundenummer, fødselsnummer, telefonnummer og generelt alle andre kolonner med tall der vi ikke trenger å regne på tallene bør lagres som tekst
+̉̉̉</li>
+</ul>
+</li>
+<li><strong>Tall</strong>
+<ul>
+<li>INTEGER OG SMALLINT for å lagre heltall</li>
+<li>INTEGER kan lagre større tall, men bruker mer lagringsplass</li>
+<li>Dersom vi vet at verdiene får plass i SMALLINT, burde det benyttes</li>
+<li>DECIMAL kan lagre komma tall og spesifisere størrelse med DECIMAL(x=antall siffer, y=antall desimaler)</li>
+</ul>
+</li>
+</ul>
+<h4 id="valg-av-filstruktur-og-indekser">Valg av filstruktur og indekser</h4>
+<ul>
+<li>Ikke-sorterte filer kombinert med B+ trær er hensiktsmessig</li>
+<li>Hashing er effektivt ved søk etter konkrete verdier, men ikke intervall søk</li>
+<li>For boolske kolonner er det ingen vits med å opprette en indeks baster på B+ trær, bitmap-indekser er bedre</li>
+<li>To tabeller i et en-til-mange forhold man med fordel flettes på ytre lager, kalt <strong>klyngedanning</strong>(clustering)</li>
+<li>Indekser tar opp lagringsplass og krever vedlikehold ved oppdatering av tabeller</li>
+<li>Ikke lov å opprette indekser på kolonner som inneholder video, bilde eller annen media</li>
+</ul>
+<h2 id="kapittel-10---transaksjoner">Kapittel 10 - Transaksjoner</h2>
+<ul>
+<li>To utforinger for et DBHS for å sikre transaksjoner:
+<ul>
+<li><strong>Feilsituasjoner</strong>
+<ul>
+<li>Systemet må loggføre transaksjoner i tilfelle en transaksjon blir brutt</li>
+</ul>
+</li>
+<li><strong>Samtidige brukere</strong>
+<ul>
+<li>Passe på at ikke to brukere av systemet endrer på samme data</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="h%C3%A5ndtering-av-feilsituasjoner">Håndtering av feilsituasjoner</h3>
+<h4 id="definisjoner-av-transkasjoner">Definisjoner av transkasjoner</h4>
+<ul>
+<li>
+<p><strong>COMMIT</strong>(bekreft) og <strong>ROLLBACK</strong>(angre)</p>
+</li>
+<li>
+<p>Effekten av transaksjon er ikke effekten endelig før <strong>COMMIT</strong> blir utført</p>
+</li>
+<li>
+<p><strong>ROLLBACK</strong> gjør at transaksjonen ikke får noen effekt på databasen</p>
+</li>
+<li>
+<p><strong>START TRANSACTION</strong> i MySQL starter transaksjoner</p>
+<ul>
+<li><strong>START TRANSACTION;</strong></li>
+<li><strong>INSERT ...;</strong></li>
+<li><strong>INSERT ...;</strong></li>
+<li><strong>INSERT ...;</strong></li>
+<li><strong>UPDATE ...;</strong></li>
+<li><strong>UPDATE ...;</strong></li>
+<li><strong>COMMIT;</strong></li>
+</ul>
+</li>
+<li>
+<p>Kommunikasjonen mellom DBHS og bruker kan være satt opp på 2 måter:</p>
+<ol>
+<li>Auto-commit - Hver transaksjon blir betraktet som en transaksjon</li>
+<li>Alle kommandoer fram til commit ELLER rollback tilhører samme transaksjon
+<ul>
+<li>Gjør det også mulig å definere sammensatt transaksjoner uten noen spesifikk startkommando</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="kontrollerte-avbrudd-og-feilsituasjoner">Kontrollerte avbrudd og feilsituasjoner</h4>
+<ul>
+<li>To typer feil: <strong>diskkrasj</strong> og <strong>strømbrudd</strong>, også kjent som <strong>medifeil</strong> og <strong>instansfeil</strong></li>
+</ul>
+<h4 id="transaksjonsloggen">Transaksjonsloggen</h4>
+<ul>
+<li>DHBS må til enhver tid holde styr på hvilke transaksjoner som er igangsatt, men ikke fullført</li>
+<li>&quot;Hvordan ksn vi vite hvor langt den avbrutte transksjonen kom før den ble avbrutt?&quot;</li>
+<li>Løsning: <strong>Loggføring</strong></li>
+<li>Loggføre alle databseoperasjoner før databasen blir oppdatert</li>
+<li>En <strong>transaksjonslogg</strong> er en fil som inneholder data om alle operasjoner som er utført mot databasen</li>
+<li>DBHS registrerer når transaksjoner starter, når dataelementer blir oppdatert og når <strong>COMMIT</strong> eller <strong>ROLLBACK</strong> blir utført</li>
+<li>Transaksjoner i loggen blir tidelt hvert sitt nummer</li>
+<li>Tilstander i loggen:
+<ul>
+<li>
+<p><em>Aktiv</em></p>
+</li>
+<li>
+<p><em>Fullført</em></p>
+</li>
+<li>
+<p><em>Bekreftet</em></p>
+</li>
+<li>
+<p><em>Avbrutt</em></p>
+</li>
+<li>
+<img src="./summary-pictures/transaksjonsløp.png" width="70%">
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="gjennoppbygging-med-transaksjonslogg">Gjennoppbygging med transaksjonslogg</h4>
+<ul>
+<li>
+<p>Etter mediefeil må databasen bygges opp igjen med <strong>sikkerhetskopier</strong></p>
+</li>
+<li>
+<p>Det er 2 måter å bruke transaksjonsloggen til <strong>gjenoppbygging</strong>:</p>
+<ol>
+<li><strong>UNDO</strong>
+<ul>
+<li>Leser loggen baklengs og erstatter nye verdier med gamle</li>
+</ul>
+</li>
+<li><strong>REDO</strong>
+<ul>
+<li>Leser loggen forlengs og gjennomfører avbrutte transaksjoner</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<p>Noen DBHS bruker <strong>ummiddelbar oppdatering</strong> som oppdaterer underveis i transaksjoner</p>
+</li>
+<li>
+<p><strong>Utsatt oppdatering</strong> gjør at oppdateringer blir utsatt til alle operasjoner er registert i loggen</p>
+</li>
+<li>
+<p>Hvordan et database gjennomfører <strong>ROLLBACK</strong>:</p>
+<ul>
+<li>
+<p>Ved <strong>umiddelbar oppdatering</strong> må det transaksjonen utførte på databasen angres med <strong>UNDO</strong></p>
+</li>
+<li>
+<p>Ved <strong>utsatt oppdatering</strong> er det bare å notere <strong>ROLLBACK</strong> i loggen siden databasen enda ikke er oppdatert</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Eksempel:</p>
+<ul>
+<li>
+<img src="./summary-pictures/avbrutte&#32;transaksjoner.png" width="50%">
+</li>
+<li>
+<p>T1 og T2 har skrevet <strong>COMMIT</strong> til loggen og ble bekreftet før feilen skjedde</p>
+</li>
+<li>
+<p>T3 og T4 var under utførrelse under feilen</p>
+</li>
+<li>
+<p>Ved <strong>umiddelbar oppdatering</strong> må effekten av T3 trekkes tilbake i tilfelle den hadde rukket å utføre noen skrive operasjoner</p>
+</li>
+<li>
+<p>Ved <strong>utsatt oppdatering</strong> ville ikke dette vært nødvendig</p>
+</li>
+<li>
+<p>T3 og T4 må så startes på nytt</p>
+</li>
+<li>
+<p>Databasen kan ikke vite om T1 og T2 har oppdatert databasen, og må kjøre disse på nytt basert på registreringen i loggen(REDO)</p>
+</li>
+<li>
+<p>For at databasen ikke må gjøre alle transaksjoner noen gang utført, blir det skrevet <strong>sjekkpunkter</strong> til loggen</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="flerbruksdatabaser">Flerbruksdatabaser</h3>
+<h4 id="prosesser">Prosesser</h4>
+<ul>
+<li>
+<p>Utførelse av et program</p>
+</li>
+<li>
+<p>Datamaskiner håndterer flere prosesser ved hjelp av <strong>tidsdeling</strong></p>
+<ul>
+<li>Maskinen bruker litt tid per prosess</li>
+<li>Veksler mellom prosesser</li>
+</ul>
+</li>
+<li>
+<p><strong>Flerbruksdatabaser</strong> - En database der flere brukere er koblet på samtidig</p>
+</li>
+<li>
+<p>Transaksjoner er databaseinterne prosesser</p>
+</li>
+</ul>
+<h4 id="acid-egenskapene">ACID-egenskapene</h4>
+<ul>
+<li>En transaksjon mot en database bør ha følgende egenskaper:
+<ol>
+<li><strong>Alt eller ingenting(Atomicity)</strong>
+<ul>
+<li>Enten blir transaksjonen utført i sin helhet, eller ikke i det hele tat</li>
+</ul>
+</li>
+<li><strong>Kosistens(Consistency)</strong>
+<ul>
+<li>Hvis databasen er i en konsistent tilstand før transaksjonen blir utført, skal databasen også være konsistent når transaksjonen er ferdig utført</li>
+</ul>
+</li>
+<li><strong>Ingen innblanding(Isolation)</strong>
+<ul>
+<li>Ingen transaksjoner som foregår samtidig skal interferere med hverandre</li>
+</ul>
+</li>
+<li><strong>Varighet(Durability)</strong>
+<ul>
+<li>Når en transaksjon er bekreftet, skal effekten av transaksjonen bli permanent lagret. Dette skal gjelde selv om det oppstår feil på et senere tidspunkt</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="les---beregn---skriv">Les - beregn - skriv</h4>
+<ul>
+<li>
+<p>For hver transaksjon som blir utført må DBHS:</p>
+<ol>
+<li>Lese data og lagre i minne</li>
+<li>Deretter beregne og oppdatere den avsatte plassen i minnet</li>
+<li>Så skrive ny verdi tilbake til disken for permanent lagring</li>
+</ol>
+</li>
+<li>
+<p>Dette er grunnleggende for å se hva slags problemer som kan oppstå når flere brukere oppdaterer samme data på samme tid</p>
+</li>
+</ul>
+<h4 id="utfordringer-med-samtidige-brukere">Utfordringer med samtidige brukere</h4>
+<ul>
+<li>
+<p><strong>Tapt oppdatering(Lost update)</strong></p>
+<ul>
+<li>Flere brukere skal oppdatere samme data</li>
+<li>Operasjonene starter omtrent på likt</li>
+<li>Usynkront lesing og skriving til og fra minne gjør at oppdateringer som brukere skriver kan gå tapt siden de blir overskrevet av hverandre</li>
+</ul>
+</li>
+<li>
+<p><strong>Inkonsistent analyse(Incorrect summary)</strong></p>
+<ul>
+<li>Feil med to transaksjoner der den ene kun avleser databasen</li>
+<li>Ved at data blir lest feil blir innholdet i databasen ikke samsvare med dataen som faktisk har blit lagt inn</li>
+<li>Transaksjonen som leser data har bare fått med seg et mellomresultat og bryter med prinsippet om ingen innblanding</li>
+</ul>
+</li>
+<li>
+<p><strong>Angret oppdatering</strong></p>
+<ul>
+<li>Dersom en transaksjon blir angret med <strong>ROLLBACK</strong> og transaksjonen allerede har skrevet til databasen</li>
+<li>Dersom andre transaksjoner leser dataen før den er trukket tilbake, vil de andre transaksjonene bruke den gamle dataen videre</li>
+<li>Mellomresultatet ble lest og brukt videre</li>
+</ul>
+</li>
+</ul>
+<h4 id="l%C3%A5semekanismer">Låsemekanismer</h4>
+<ul>
+<li>
+<p>Køordning</p>
+</li>
+<li>
+<p><strong>Sekvensiell utførelse</strong></p>
+<ul>
+<li>Transaksjonene blir utført en etter en</li>
+<li>Restriktivt</li>
+</ul>
+</li>
+<li>
+<p><strong>Lås</strong></p>
+<ul>
+<li>Regulerer tilgangen til deler av en databaser</li>
+<li>Transaksjoner som trenger disse delene, vil spørre DBHS om en lås på denne delen</li>
+<li>Transaksjonene blir satt i <strong>ventekø</strong></li>
+<li><strong>Leselåser</strong> og <strong>skrivelåser</strong></li>
+</ul>
+</li>
+<li>
+<p>Størrelsen på område som blir låst, er låsens <strong>granularitet</strong></p>
+<ul>
+<li>Transaksjoner kan låse hele databasen, en hel tabell eller en enkelt rad i en tabell</li>
+</ul>
+</li>
+</ul>
+<h4 id="serialiserende-forl%C3%B8p">Serialiserende forløp</h4>
+<ul>
+<li>Transaksjoner kan være satt sammen av mange enklere operasjoner</li>
+<li>Problemer kan oppstå når flere transaksjoner opererer på flere fellesområder i forskjellige rekkefølger</li>
+<li>Deloperasjonene må utføres i en bestemt rekkefølge kalt <strong>forløp(schedule)</strong></li>
+<li><strong>Sekvensielt forløp</strong>
+<ul>
+<li>Utføre deloperasjoner en etter en</li>
+<li>Korrekte, men ineffektive</li>
+</ul>
+</li>
+<li><strong>Serialiserbart forløp</strong>
+<ul>
+<li>Så mye samtidig, som mulig</li>
+<li>Forløp som om de deloperasjonene skulle bli utført sekvensielt</li>
+</ul>
+</li>
+</ul>
+<h4 id="tofasel%C3%A5sing">Tofaselåsing</h4>
+<ul>
+<li>Transaksjoner ber om samtidlige låser i starten av sitt forløp, og opphever samtlige låser til slutt</li>
+<li>En transaksjon får ikke lov til å sette nye låser etter at den nye låsen er opphevet</li>
+<li>To faser:
+<ul>
+<li><strong>Voksefase</strong>
+<ul>
+<li>Ny låser blir satt</li>
+<li>Når den første låsen blir opphevet, går transaksjonen til minkefasen</li>
+<li>Ikke lov å sette nye låser</li>
+<li>Kan utføre beregninger til enhver tid</li>
+<li>Hvis samtlige trnsaksjoner følger tofaselåsing, får vi serieliserbare forløp</li>
+</ul>
+</li>
+<li><strong>Minkefase</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="vrangl%C3%A5sdeadlock">Vranglås(Deadlock)</h4>
+<ul>
+<li>
+<p>To transaksjoner som gjensidig venter på at den andre skal oppheve sin lås</p>
+</li>
+<li>
+<p><strong>The dining philosophers</strong></p>
+<ul>
+<li>Filosofene tenker og spiser</li>
+<li>Midt på bordet står mat</li>
+<li>Mellom hver filosof ligger en gaffel som filosofene deler med naboen til venstre og høyre for seg</li>
+<li>Filosofene trenger begge gaflene til å spise</li>
+<li>Vranglås oppstår hvis alle fire bestemmer å spise samtidig</li>
+<li>Ingen kommer videre før minst en avbryter</li>
+<li>Filosofene er transaksjoner og maten er dataen</li>
+<li>Tenkefasen er når transaksjonen utfører beregninger</li>
+<li>Spisefasen er når den jobber med data</li>
+<li>To filosofer som deler en gaffel er det samme som to transaksjoner som jobber med samme dataelement</li>
+</ul>
+</li>
+<li>
+<p>DBHS bruker to strategier for å løse vranglåsproblemet:</p>
+<ul>
+<li>Forhindre at vranglås oppstår</li>
+<li>Oppdage og løse opp vranglås</li>
+</ul>
+</li>
+<li>
+<p><strong>Tidsstempler</strong> kan forhindre vranglås</p>
+</li>
+<li>
+<p>Tidsstempelet blir lagret sammen med låsen når transaksjonen får invilget lås på et dataelement</p>
+</li>
+<li>
+<p>DBHS kan også løse opp vranglåser etter de har oppstått med en <strong>ventegraf</strong></p>
+<ul>
+<li>Består av noder og kanter</li>
+<li>DBHS oppdaterer ventegrafen med en kant fra noden merket til transaksjonen som venter til noden merket av transaksjonen som har låst dataelementet</li>
+<li>DBHS vet når en vranglås oppstår siden grafen inneholder en sykel(T1,T4,T2,T1)</li>
+<li>DBHS må så velge å avbryte en transaksjon for så å starte den opp igjen senere</li>
+<li>Utvelgensel av transaksjoner må skje <em>rettferdig</em></li>
+</ul>
+</li>
+</ul>
+<h4 id="isolasjonsniv%C3%A5er-og-optimistisk-l%C3%A5sing">Isolasjonsnivåer og optimistisk låsing</h4>
+<ul>
+<li>
+<p>Man godter en viss innblanding i serialiserende transaksjoner for effektivitetshensyn</p>
+</li>
+<li>
+<p><strong>Usikker lesing</strong> er at en transaksjon kan lese data skervet av en annen transaksjon før sistnevnte har bekreftet med <strong>COMMIT</strong></p>
+</li>
+<li>
+<p><strong>Ikke-repeterbar lesing(non repeatable read)</strong> betyr at den transaksjon kan få to forskjellige svar på samme spørring fordi en annen trnasaksjon har endret databasen og bekreftet med <strong>COMMIT</strong></p>
+</li>
+<li>
+<p><strong>Fantomer(Phantoms)</strong> er rader satt inn av en transaksjon som en annen transaksjon oppdater når den første transaksjonen bekrefter med <strong>COMMIT</strong></p>
+</li>
+<li>
+<p>SQL definerer 4 <strong>isolasjonsnivåer</strong></p>
+</li>
+<li>
+<p>| Isolasjonsnovå  | Fantomer | Ikke-repeterbar lesing | Usikker lesing |<br>
+|                      --- |             --- |                                --- |                     ---|
+| SERIALIZABLE     | Nei    | Nei  |    Nei |
+| REPEATABLE READ|Ja|Nei|Nei
+| READ COMMITTED|Ja|Nei|Nei
+| READ UNCOMMITTED|Ja|Ja|Ja</p>
+</li>
+<li>
+<p>Sette isolasjonsnivå i SQL</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">SET</span> <span class="hljs-keyword">TRANSACTION</span> <span class="hljs-keyword">ISOLATION</span> <span class="hljs-keyword">LEVEL</span>
+  <span class="hljs-keyword">READ</span> COMMITED;
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Interaktive applikasjoner der brukeren fyller ut skjermaer, kan føre til <strong>lange transaksjoner</strong></p>
+</li>
+<li>
+<p>Hvis mange brukere jobber interaktivt, kan det være med fordel å erstatte tradisjonelle låsemekanismer med <strong>optimistisk låsing</strong></p>
+<ul>
+<li>En transaksjon får alltid lov å begynne å arbeide på en rad</li>
+<li>Kontrollen med konflikter gjøres når oppdaterte data skal lagres i databasen</li>
+<li>Kan implementeres med <strong>tidsstempler</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="kapittel-11---databaseadministrasjon">Kapittel 11 - Databaseadministrasjon</h2>
+<h3 id="oppbygningen-av-et-databasesystem">Oppbygningen av et databasesystem</h3>
+<h4 id="data-og-metadata">Data og metadata</h4>
+<ul>
+<li>
+<p>DBHS samler inn statistisk data om innholdet i databasen som blir brukt til spørreomptimalisering</p>
+</li>
+<li>
+<p><strong>Metadata</strong>:</p>
+<ul>
+<li>Data som beskriver data og samlingen av slike data for <strong>metadatabasen</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Systemkatalogen</strong>:</p>
+<ul>
+<li>Data som sier hvilke rettigheter forskjellige brukere har til ulike deler av databasen</li>
+<li><strong>Metadatabasen</strong> er en del av denne</li>
+<li>Lagres på tabellform</li>
+<li>Kan hente data ut med SQL</li>
+<li><em>Eksempel oppbyggning:</em>
+<ul>
+<li>Tabell(<u>Tabellnavn</u>, Eier*, DatoLaget)</li>
+<li>Kolonner(<u>Tabellnavn*, Kolonnenavn</u>, Datatype)</li>
+<li>Bruker(<u>Brukernavn</u>, Passord, Lagringsplass)</li>
+<li>Tabellrettighet(<u>Brukernavn*, Tabellnavn*, RettighetW</u>)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="oppgavene-til-et-dbhs">Oppgavene til et DBHS</h4>
+<ul>
+<li>
+<p>En <strong>sluttbruker</strong> kommuniserer med databasesystemet med en <strong>brukerapplikasjon</strong>, med menyer, skjermbilder og rapporter. Applikasjonen kommuniserer med databasesystemet ved hjelp av SQL</p>
+</li>
+<li>
+<p><strong>Utvikler</strong> er en samlebetegnelse på systemutviklere, databasedesignere og programmerere</p>
+</li>
+<li>
+<p><strong>Utviklingsverktøy</strong> inneholder mkeanismer for datamodellering og implementasjon av databaser og applikasjoner</p>
+</li>
+<li>
+<p><strong>Databaseadministratoren(DBA)</strong> har ansvar for dagling drift av databasesystemet</p>
+</li>
+<li>
+<p>Felles for gruppene er at brukerverktøyene og databasesystemet kommuniserer ved hjelp av SQL. Ingen manipulerer direkte</p>
+</li>
+<li>
+<img src="./summary-pictures/DBHS.png" width="50%">
+<ul>
+<li>Brukeren skriver inn en SQL-setning til <strong>SQL-Tolkeren</strong>, som sjekker om syntaksen er korrekt og evt gir feilmeldinger, <strong>parsering</strong></li>
+<li>Oppbygningen av databasen er lagret i <strong>sytemkatalogen</strong></li>
+<li>SQL-tolkeren leser fra systemkatalogen for å sjekke at tabeller og kolonner referert i spørringen eksisterer</li>
+<li>Korrekte spørringen blir sendt til <strong>spørreoptimalisering</strong> for å finne en mest mulig effektiv strategi for utførrelse</li>
+<li>Den optimaliserte spørringen blir overført til <strong>SQL-maskinen(delprogram i DBHS)</strong> for utførrelse</li>
+<li><strong>Filhåndtereren</strong> sørger for lesing fra og skriving til filer</li>
+<li><strong>Bufferhåndtereren</strong> har som oppgave å vite hvilke blokker som til en hver tid er i minne. Hvis en blokke allerede er i minne, vil det spare tid å bruke den direkte istedenfor å lade den fra disk. Har også som oppgave å velge hvilke blokker som skal leses inn og skrives ut på hvilke tidspunkter</li>
+<li><strong>Adganskontroll</strong> har som oppgave å kontrollere brukernavn og passord ved pålogging siden ikke alle brukere har like rettigheter mot databasen</li>
+<li><strong>Rettighetskontroll</strong> har som oppgave å sjekke at brukerne kun får utføre operasjoner i henhold til rettighetene de er tildelt</li>
+<li><strong>Integritetskontroll</strong> sjekker at alle definerte forretningsrelger blir overholdt(valideringsregler, entitesintegritet, referanseintegritet,...)</li>
+<li><strong>Loggskriveren</strong> logger og skriver til disk i tilfelle noe skulle gå galt</li>
+</ul>
+</li>
+</ul>
+<h4 id="oppgavene-til-databaseadministratoren">Oppgavene til databaseadministratoren</h4>
+<ul>
+<li><strong>DBA</strong> har overordnet ansvar for instalasjon og drift av datasystemer</li>
+<li>Strategiske delen av jobben kan være en egen stilling, <strong>dataadministrator(DA)</strong></li>
+<li>Arbeidsoppgaver for <strong>DBA</strong>:
+<ul>
+<li>Valg, installasjon og oppgradering DBHS</li>
+<li>Fysisk databasedesign</li>
+<li>Kapasitetsplanlegging og optimalisering</li>
+<li>Sikkerhetskopiering og gjenoppbygging etter feil</li>
+<li>Brukeradministrasjon</li>
+<li>Overvåking</li>
+</ul>
+</li>
+</ul>
+<h4 id="sikkerhetskopiering-og-gjenoppbygging">SIkkerhetskopiering og gjenoppbygging</h4>
+<ul>
+<li>Måter å sikkerhetskopierer på:
+<ul>
+<li><strong>Fullstending/inkrementell</strong>
+<ul>
+<li>Fullstendig blir hele databasen sikkerhetskopiert</li>
+<li>Inkrementell blir bare det som er endret siden forrige gang kopiert</li>
+<li>Kan kombinere begge to</li>
+</ul>
+</li>
+<li><strong>Varm/kald</strong>
+<ul>
+<li>Kald: Alle brukere må logge seg av og databasen tas ned før sikkerhetskopiering starter</li>
+<li>Varm: Sikkerhetskopiering mens databasen er i bruk</li>
+</ul>
+</li>
+<li><strong>Fysisk/logisk</strong>
+<ul>
+<li>Fysisk: Databasetabeller blir lagret på filer</li>
+<li>Logisk: Sikkerhetskopiering i form av SQL spørringer(<strong>CREATE TABLE</strong> og <strong>INSERT</strong>)</li>
+</ul>
+</li>
+<li>Mange virksomheter har krav til <strong>oppetid</strong></li>
+<li>Sikkerhetskopiering og <strong>replikering</strong> er ikke det samme</li>
+</ul>
+</li>
+</ul>
+<h4 id="brukeradministrasjon">Brukeradministrasjon</h4>
+<ul>
+<li>
+<p>Innebærer å opprette brukerkontoer med brukerenavn og passord, og tildele brukere rettigheter i databasen</p>
+</li>
+<li>
+<p>Definere forhold mellom brukerrettigheter og <strong>databaseobjekter</strong></p>
+</li>
+<li>
+<p>Rettigjeter er grunnleggende operasjoner på databaseobjekter</p>
+</li>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">USER</span> ola <span class="hljs-keyword">IDENTIFIED</span> <span class="hljs-keyword">BY</span> hemmelig
+</div></code></pre>
+</li>
+<li>
+<p>Kan tildele rettigheter med <strong>GRANT</strong></p>
+<ul>
+<li>
+<pre class="hljs"><code><div>    <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ON</span> Ansatt <span class="hljs-keyword">TO</span> ola
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Hvis man vil at en bruker skal kunne gi priviligegier videre, legger man til <strong>WITH GRANT OPTION</strong></p>
+</li>
+<li>
+<p>Kan trekke tilbake priviliegier med <strong>REVOKE</strong></p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">REVOKE</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ON</span> Ansatt <span class="hljs-keyword">FROM</span> ola
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Forskjellige <strong>objektrettigheter</strong> til en tabell:</p>
+<ul>
+<li><strong>SELECT</strong></li>
+<li><strong>UPDATE</strong></li>
+<li><strong>INSERT</strong></li>
+<li><strong>DELETE</strong></li>
+<li><strong>ALTER TABLE</strong></li>
+</ul>
+</li>
+<li>
+<p>I noen systemer kan man gi brukere <strong>systemrettigheter</strong></p>
+<ul>
+<li><strong>CREATE SESSION</strong>: Rett til å logge seg på</li>
+<li><strong>CREATE ANY TABLE</strong>: Rett til å definere nye tabeller</li>
+<li><strong>ALTER ANY TABLE</strong>: Rett til å endre definisjonen av alle tabeller</li>
+<li><strong>INSERT ANY TABLE</strong>: Rett til å sette inn nye rader i alle tabeller</li>
+</ul>
+</li>
+<li>
+<p>Gi bruker rettigheter til en kolonne</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">UPDATE</span> (Antall) <span class="hljs-keyword">ON</span> Vare <span class="hljs-keyword">TO</span> ola
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Opprette rettigheter på views:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> BilligeVarer <span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">SELECT</span>*
+    <span class="hljs-keyword">FROM</span> Vare
+    <span class="hljs-keyword">WHERE</span> Pris &lt; <span class="hljs-number">100</span>
+    <span class="hljs-keyword">WITH</span> <span class="hljs-keyword">CHECK</span> <span class="hljs-keyword">OPTION</span>;
+
+  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> BilligeVarer <span class="hljs-keyword">TO</span> ola
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Lage roller som kan gis til brukere:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">ROLE</span> selger;
+  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> Ordre <span class="hljs-keyword">TO</span> selger;
+  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> Vare <span class="hljs-keyword">TO</span> selger;
+  <span class="hljs-keyword">GRANT</span> selger <span class="hljs-keyword">TO</span> ola;
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>To roller har behov for rettigheter:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">ROLE</span> innsyn;
+  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">ROLE</span> programmerer;
+  <span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">ROLE</span> sekretær;
+  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ON</span> Ansatt <span class="hljs-keyword">TO</span> innsyn;
+  <span class="hljs-keyword">GRANT</span> <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">ON</span> Vare <span class="hljs-keyword">TO</span> innsyn;
+  <span class="hljs-keyword">GRANT</span> innsyn <span class="hljs-keyword">TO</span> programmerer;
+  <span class="hljs-keyword">GRANT</span> innsyn <span class="hljs-keyword">TO</span> sekretær;
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="kapasitetsplanlegging-og-optimalisering">Kapasitetsplanlegging og optimalisering</h4>
+<ul>
+<li>DBA har ansvar for kapasitetsplanlegging
+<ul>
+<li>Valg av maskinvare, nettverk, minne, diskplass osv..</li>
+</ul>
+</li>
+<li>DBHS har som regel rapporteringsmuligheter som kan brukes til <strong>optimalisering</strong> av databasen</li>
+<li>Noen systemer har <strong>optimaliseringshint</strong> for SQL-spørringer for å gjøre de mer optimalisert</li>
+<li><strong>Denormalisering</strong> - Slå sammen tabeller for å unngå likekoblinger</li>
+</ul>
+<h3 id="databasel%C3%B8sninger-og-systemarkitektur">Databaseløsninger og systemarkitektur</h3>
+<h4 id="klienttjener-arkitektur">Klient/tjener-arkitektur</h4>
+<ul>
+<li>
+<p>System bestående av en tjener og flere klienter</p>
+</li>
+<li>
+<p>Klienter sender forespørseler til tjeneren</p>
+</li>
+<li>
+<p>Tjeneren utfører oppgavene og sender en respons tilbake</p>
+</li>
+<li>
+<img src="./summary-pictures/klient-tjener.png" width="30%">
+</li>
+<li>
+<p><strong>Datatjenere</strong> svarer SQL spørringer</p>
+<ul>
+<li>Kan være et SQL vindu eller en egen applikasjon</li>
+</ul>
+</li>
+<li>
+<p>I sin enkleste form kalles klient/tjener-arkitektur for <strong>tolagsarkitektur</strong></p>
+</li>
+<li>
+<p>Dersom det er flere tjenere, f.eks en databasetjener, en applikasjonstjener og en klientmasking, får man en <strong>flerlagsarkitektur</strong></p>
+</li>
+</ul>
+<h4 id="parallelle-og-distribuerte-databaser">Parallelle og distribuerte databaser</h4>
+<ul>
+<li>
+<p>Parallellprosessering er å bryte ned en oppgave i deloppgaver og behandle disse oppgavene på flere prosessorer for bedre ytelse</p>
+</li>
+<li>
+<p>Det finnes flere løsninger:</p>
+<ul>
+<li><strong>Delt minne</strong> - Hver prosessor har sin egen disk</li>
+<li><strong>Delt disk</strong> - Hver prosessor har sitt eget minne</li>
+<li><strong>Ingen deling</strong> - Hver prosessor har eget minne og disk</li>
+</ul>
+</li>
+<li>
+<p><strong>Delt minne</strong> og <strong>Delt disk</strong> er <strong>tette koblinger</strong></p>
+</li>
+<li>
+<p><strong>Ingen deling</strong> er en <strong>løs kobling</strong></p>
+</li>
+<li>
+<p>Prosessene må koordineres = mere komplekst</p>
+</li>
+<li>
+<p>I databasesystemer kan parallellprosessering foregå ved å:</p>
+<ul>
+<li>Foredele ulike transaksjoner og ulike spørringer til ulike prosessorer(inter query)</li>
+<li>Bryte ned spørringen til flere deloppgaver og fordele til prosessorer(inter query)</li>
+</ul>
+</li>
+<li>
+<p>I <strong>distrubuerte databasesystemer</strong> er databasen lagret på flere maskiner knyttet sammen i et nettverk, typisk et <strong>fjernnett(WAN)</strong></p>
+</li>
+<li>
+<p>DBHS i slike systemer heter <strong>distrubuert databaseahåndteringssystem(DDBHS)</strong></p>
+</li>
+<li>
+<p>Data kan fordeles hos nodene i et DDBS på flerer måter:</p>
+<ul>
+<li><strong>Horisontal fragmentering</strong> - En tabell blir delt opp etter rader og de forskjellige radene lagres hos de forskjellige nodene</li>
+<li><strong>Vertikal fragmentering</strong> - En tabell blir delt opp etter kolonner og fordelt hos nodene</li>
+<li><strong>Kombinert fragmentering</strong> - En tabell blir delt opp etter både rader og kolonner</li>
+<li><strong>Replikering</strong> - En tabell, eller deler av en tabell, blir lagret på flere noder(flere kopier)</li>
+</ul>
+</li>
+<li>
+<p><strong>Distrubuert gjennomsiktighet</strong> - Distrubuert databasesystem skal hos brukere oppfattes som et logisk databasesystem</p>
+</li>
+<li>
+<p>Hvilke data som er lagret hos hvilken node er lagret hos systemkatalogen</p>
+</li>
+<li>
+<p><strong>Transaksjonshåndtering</strong> - Når data blir oppdatert hos en noder, må oppdateringen også skje hos de andre nodene</p>
+<ul>
+<li>Skal enten blir fullstendig gjennomført, eller ikke i det hele tatt</li>
+<li>En transaksjon skal bli gjennomført i sin helhet av alle noder, eller ikke i det hele tatt av noen noder</li>
+<li><strong>Tofase-commit</strong> - Noden der transaksjonen blir initiert, inntar en koordinatorrolle</li>
+</ul>
+</li>
+<li>
+<p><strong>Spørreoptimalisering</strong> - Finne effektive måter å gjennomføre SQL spørringer på</p>
+</li>
+</ul>
+<h4 id="minnedatabaser">Minnedatabaser</h4>
+<ul>
+<li>En minnedatabase holder hele databasen i minne</li>
+<li>Hurtige</li>
+<li>Kan få sikker lagring med loggføring</li>
+<li><strong>Caching</strong> - Kopier av visse data blir plassert på et raskt lagringsmedium</li>
+</ul>
+<h3 id="databaser-i-skyen">Databaser i skyen</h3>
+<ul>
+<li>
+<p><strong>IaaS</strong></p>
+<ul>
+<li>Infrastructure as a service</li>
+<li>Gis tilgang på en eller flere maskiner</li>
+<li>Må selv installere OS og programvare</li>
+<li>Leverandøren gir hardware</li>
+</ul>
+</li>
+<li>
+<p><strong>SaaS</strong></p>
+<ul>
+<li>Software as a service</li>
+<li>En måte å tilby programvare på</li>
+<li>Kjøper bare programvare ikke hardware</li>
+</ul>
+</li>
+<li>
+<p><strong>PaaS</strong></p>
+<ul>
+<li>Platform as a service</li>
+<li>Får maskiner, OS og ferdig utviklingsmiljø</li>
+</ul>
+</li>
+<li>
+<p><strong>DBaas</strong></p>
+<ul>
+<li>Database as a service</li>
+</ul>
+</li>
+</ul>
+<h4 id="opprette-og-skalere-skydatabaser">Opprette og skalere skydatabaser</h4>
+<ul>
+<li>
+<p>En DBaas-løsning er en ferdig installert DBHS der leverandøren sørger for oppgradering av både DBHS pg inderliggende OS</p>
+</li>
+<li>
+<p>Det er enkelt å <strong>skalere</strong> skytjenester</p>
+</li>
+<li>
+<p>Skalering kan gjøres <strong>horisontalt</strong> og <strong>vertikalt</strong></p>
+<ul>
+<li><strong>Horisontalt</strong> - Utvide med flere maskiner</li>
+<li><strong>Vertikalt</strong> - Oppgradere eksisterende systemer</li>
+</ul>
+</li>
+<li>
+<p><strong>Sharding</strong> er en form for horisontal fragmentering som kan utnytte en løsning der en database er fordelt på flere maskiner</p>
+</li>
+<li>
+<p>Skyløsninger gjør det enklere med <strong>replikering</strong> av databasen på flere maskiner, der en maskin tar over hvis en annen feiler(failover)</p>
+</li>
+<li>
+<p><strong>Geografisk replikering</strong> - Ha en oppdatert kopi av databasen på et datasenter i en annen geografisk region</p>
+</li>
+<li>
+<p><strong>Mikrotjenester</strong> - Deling av større applikasjoner fordelt fra mindre og selvstendige byggeklosser der en mikrotjeneste er en slik byggekloss</p>
+</li>
+<li>
+<p><strong>Container</strong> - Lettvektsutgave av en virtuell maskin som gjære det mulig å shippe en mikrotjeneste med alt den avhenger av</p>
+<ul>
+<li><strong>Docker</strong> og <strong>Kubernetes</strong></li>
+</ul>
+</li>
+</ul>
+<h4 id="sikkerhetskopiering-til-skyen">Sikkerhetskopiering til skyen</h4>
+<ul>
+<li>Utfordinger til sikkerhetskopiering i skyen
+<ul>
+<li><strong>Skalering</strong>
+<ul>
+<li>Skytjenester har bra skalering</li>
+</ul>
+</li>
+<li><strong>Infrastruktur</strong>
+<ul>
+<li>Sikker transport og arkivering av fysiske lagringsmedier er krevende</li>
+<li>Skytjenester gjør at man slipper å håndtere dette selv</li>
+</ul>
+</li>
+<li><strong>Kimprimering og kryptering</strong>
+<ul>
+<li>Det er viktig at dataen er sikker og er komprimert for hastighet</li>
+</ul>
+</li>
+<li><strong>Gjenoppbygging</strong>
+<ul>
+<li>Raskere oppbyggning i sammenlikning med fysiske medier</li>
+</ul>
+</li>
+<li><strong>Volum</strong>
+<ul>
+<li>Kan være vanskelig for store databaser å ta sikkerhetskopi innenfor tidsvinduet man har til rådighet</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="sp%C3%B8rreoptimalisering">Spørreoptimalisering</h3>
+<ul>
+<li>
+<p>Å finne en effektiv måte å utføre SQL-spørringer</p>
+</li>
+<li>
+<p>Eksempel:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">SELECT</span> O.OrdreDato
+  <span class="hljs-keyword">FROM</span> Kunde <span class="hljs-keyword">AS</span> K <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span>
+          (Ordre <span class="hljs-keyword">AS</span> O <span class="hljs-keyword">INNER</span> <span class="hljs-keyword">JOIN</span> Ordrelinje <span class="hljs-keyword">AS</span> OL
+          <span class="hljs-keyword">ON</span> O.OrdreNr = OL.OrdreNr)
+        <span class="hljs-keyword">ON</span> K.KNR = O.KNr
+  <span class="hljs-keyword">WHERE</span> K.Etternavn = <span class="hljs-string">'MO'</span>
+  <span class="hljs-keyword">AND</span> OL.VNr = <span class="hljs-string">'10830'</span>
+</div></code></pre>
+<ul>
+<li>Spørringen blir utført i følgende steg:
+<ol>
+<li>Likekoblingene i From-delen blir utført innenfra og ut. Først kobles Ordre og Ordrelinje, og dette mellomresultatet kobles deretter med Kunde</li>
+<li>Resultatet av å koble de tre tabellene blir filtrert gjennom den sammensatte WHERE-betingelsen, noe som gir nok et mellomresultat</li>
+<li>Til slutt blir det filtrerte koblingsresultatet lest og verdiene i kolonnen OrdreDato plukket ut</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Svært ineffektivt siden resultatet vil inneholde et srtort antall irrelevante rader</p>
+<ul>
+<li>DBHS analyserer SQL-koden for å finne den mest effektive rekkefølgen å utføre deloperasjoner på</li>
+<li>Prosessen kallen <strong>spørreoptimalisering</strong></li>
+<li>Deles inn i 2 faser
+<ul>
+<li>Oversettelse av SQL-setning til et uttrykk i relasjonsalgebra</li>
+<li>Omskrivning av uttrykkene til en form som lar seg utføre mer effektivt</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="kapittel-12---webapplikasjoner">Kapittel 12 - Webapplikasjoner</h2>
+<h3 id="webteknologi">Webteknologi</h3>
+<h4 id="html">HTML</h4>
+<ul>
+<li>
+<p>HyperText Markup Language</p>
+</li>
+<li>
+<p><strong>Dokumentformat</strong></p>
+</li>
+<li>
+<p>HTML5 er siste versjon</p>
+</li>
+<li>
+<p>Dokumenter består av <strong>elementer</strong></p>
+</li>
+<li>
+<p>Alle ord er omsluttet i <strong>tagger</strong>: &lt;&gt;</p>
+</li>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-meta">&lt;!Doctype <span class="hljs-meta-keyword">html</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Mitt nettsted <span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Lær mer om internettet!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"http://www.w3.org/"</span>&gt;</span> Hjemmesiden til WC3
+              <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span> inneholder mye informasjon om HTML. Her er en
+              <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"intro.html"</span>&gt;</span>kort introduksjon til HTML <span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<ul>
+<li>Hvert HTML-element kan ha et antall navngitte <strong>attributter</strong> som blir tildelt <strong>verdi</strong></li>
+<li><strong>Hyperlenker</strong> - Referanse til en annen side ved at attributtet <strong>href</strong> blir tilordnet en <strong>URL(Uniform resource locator)</strong></li>
+<li>URL bygger på hierarkisk på<strong>domenenavn</strong></li>
+<li>Protokoll://domene/katalogsti/filnavn.html</li>
+</ul>
+</li>
+</ul>
+<h4 id="http">HTTP</h4>
+<ul>
+<li>
+<p>HypterText Transfer Protocol</p>
+</li>
+<li>
+<p>Styrer kommunikasjonen mellom tjener og klient(typisk nettleser)</p>
+</li>
+<li>
+<p>Bygger på TCP/IP</p>
+</li>
+<li>
+<p>HTTP meldinger består av:</p>
+<ul>
+<li>Meldingshode</li>
+<li>Meldingskropp</li>
+<li>Forespørsel eller respons</li>
+</ul>
+</li>
+<li>
+<pre class="hljs"><code><div><span class="hljs-keyword">POST</span> <span class="hljs-string">www.hobbyhuset.no/vareliste.html</span> HTTP/1.1
+<span class="hljs-attribute">Accept</span>: text/html
+</div></code></pre>
+</li>
+<li>
+<p>HTTP svarkoder</p>
+<ul>
+<li>200</li>
+<li>404</li>
+<li>500</li>
+<li>503</li>
+</ul>
+</li>
+<li>
+<p>HTTP respons:</p>
+</li>
+<li>
+<pre class="hljs"><code><div>HTTP/1.1 <span class="hljs-number">200</span> OK
+<span class="hljs-attribute">Content-type</span>: text/html
+
+<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+...
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</span></div></code></pre>
+</li>
+</ul>
+<h3 id="databaser-og-applikasjoner">Databaser og applikasjoner</h3>
+<ul>
+<li>Et <strong>informasjonssystem</strong> består av komponenter for å samle inn, lagre, behandle, overføre, søke etter og presentere informasjon som blir brukt i en virksomhet</li>
+<li>Sluttbrukere trenger applikasjoner for å snakke med databasen siden de ikke kan SQL</li>
+<li>I databaseapplikasjoner blir SQL kombinert med andre språk for å lage applikasjoner</li>
+</ul>
+<h4 id="fysisk-og-logisk-arkitektur">Fysisk og logisk arkitektur</h4>
+<ul>
+<li>
+<p><strong>Fysisk arkitektur</strong> - Hvordan et system er delt opp og fordelt på forskjellige maskiner og knyttet sammen i nettverk</p>
+</li>
+<li>
+<p>Klient $\leftrightarrow$ [Applikasjon] $\leftrightarrows$ [Databasesystem]</p>
+<ul>
+<li>Appliksjonen spiller rollen som klient, og sender SQL-spørringer til databasetjeneren</li>
+<li>Tjenere utfører spørringene og sender spørreresultater tilbake</li>
+</ul>
+</li>
+<li>
+<p>Webløsning:</p>
+<ul>
+<li>[Nettleser]$\leftrightarrows$ [Webtjener]$\leftrightarrows$ [Databasesystem]</li>
+<li>Nettleseren overfører inndate fra brukeren til webtjeneren</li>
+<li>Webtjeneren bygger opp en SQL-spørring som ednes til databasetjeneren</li>
+</ul>
+</li>
+<li>
+<p>For nettsteder med stor trafikk kan det lønne seg med en applikasjonstjener</p>
+<ul>
+<li>[Nettleser] $\leftrightarrows$ [Webtjener] $\leftrightarrows$ [Applikasjonstjener] $\leftrightarrows$ [Databasesystem]</li>
+</ul>
+</li>
+<li>
+<p>Webløsninger kan deles opp i lag for <strong>database</strong>, <strong>forretningslogikk</strong> og <strong>brukergrensesnitt</strong></p>
+</li>
+</ul>
+<h4 id="plattform-og-utviklingsstakker">Plattform og utviklingsstakker</h4>
+<ul>
+<li>En <strong>plattform</strong> er en kombinasjon av maskinvare og basis programvare</li>
+<li>Programmer som kan flyttes fra en plattform til en annen uten endring er <strong>plattformuavhengige</strong></li>
+<li>En <strong>utviklingsstakk</strong> er en kombinasjon av slike programmer</li>
+<li>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Eksempel på utviklinkgsstakk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">PHP</td>
+</tr>
+<tr>
+<td style="text-align:center">APACHE</td>
+</tr>
+<tr>
+<td style="text-align:center">MySQL</td>
+</tr>
+<tr>
+<td style="text-align:center">Linux</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+<h3 id="introduksjon-til-php">Introduksjon til PHP</h3>
+<ul>
+<li>
+<p>PHP: Hyptertext Proprocessor</p>
+</li>
+<li>
+<p>Skriptspråk</p>
+</li>
+<li>
+<p>Hello world i PHP</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+<span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;h1&gt; Hello World!&lt;/h1&gt;'</span>);
+<span class="hljs-meta">?&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="dynamiske-nettsider">Dynamiske nettsider</h4>
+<ul>
+<li>PHP forespørsler blir sendt til en <strong>PHP-tolker</strong>
+<ul>
+<li>Utdata er HTML som  webtjener sender videre til nettleseren</li>
+</ul>
+</li>
+<li><strong>Tjenersideprosessering</strong> - Ser man på kildekoden for en PHP generert nettsiden, vil bare HTML kode komme opp</li>
+<li><em>print</em> produserer HTML kode</li>
+<li><strong>Dynamiske nettsider</strong> er generert av scripts</li>
+</ul>
+<h4 id="behandle-html-skjemaer">Behandle HTML-skjemaer</h4>
+<ul>
+<li>
+<p>HTML-skjemaer brukes for å hente inndata fra brukeren</p>
+</li>
+<li>
+<p>Definert med <strong>form-elementer</strong></p>
+</li>
+<li>
+<p><strong>Form-elementer</strong> kan inneholde et antall <strong>GUI-komponenter</strong></p>
+<ul>
+<li>F.eks tekstbokser, nedtrekkslister og kommandoknapper</li>
+</ul>
+</li>
+<li>
+<p><strong>HTML POST-skjema</strong></p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  &lt;!DOCTYPE html&gt;
+  &lt;html&gt;
+  &lt;body&gt;
+      &lt;form method = <span class="hljs-string">"POST"</span> action = <span class="hljs-string">"varepriser.php"</span>&gt;
+      &lt;p&gt;Vare:&lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"vare"</span> size=<span class="hljs-string">"15"</span>/&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"Finn pris!"</span>/&gt;&lt;/p&gt;
+  &lt;/body&gt;
+  &lt;/html&gt;
+</div></code></pre>
+<!DOCTYPE html>
+  <html>
+  <body>
+      <form method = "POST" action = "varepriser.php">
+      <p>Vare:<input type="text" name="vare" size="15"/></p>
+      <p><input type="submit" value="Finn pris!"/></p>
+  </body>
+  </html>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>HTML GET-skjema</strong></p>
+<ul>
+<li>
+<pre class="hljs"><code><div>&lt;html&gt;&lt;body&gt;
+&lt;form method=<span class="hljs-string">"GET"</span> action=<span class="hljs-string">"skjemabehandler.php"</span>&gt;
+  &lt;p&gt; Navn:
+      &lt;input type=<span class="hljs-string">"text"</span>  name=<span class="hljs-string">"navn"</span>  size=<span class="hljs-string">"20"</span>&gt; &lt;/p&gt;
+  &lt;p&gt; &lt;input type=<span class="hljs-string">"submit"</span>  value=<span class="hljs-string">"Søk"</span> name=<span class="hljs-string">"sok"</span>&gt;
+    &lt;input type=<span class="hljs-string">"reset"</span> value=<span class="hljs-string">"Rensk"</span> name=<span class="hljs-string">"rensk"</span>&gt; &lt;/p&gt;
+&lt;/form&gt;
+&lt;/body&gt;&lt;/html&gt;
+</div></code></pre>
+  <html><body>
+      <form method="GET" action="skjemabehandler.php">
+      <p> Navn:
+          <input type="text"  name="navn"  size="20"> </p>
+      <p> <input type="submit"  value="Søk" name="sok">
+        <input type="reset" value="Rensk" name="rensk"> </p>
+    </form>
+    </body></html>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Form</strong> rammer inn søkeskjemaet med tekstboksen der brukeren skriver inn varenavnet og kommandoknappene for å starte søket</p>
+</li>
+<li>
+<p><strong>Action-attributtet</strong> inneholder URL til PHP-scriptet som behandler søket</p>
+<ul>
+<li>vare=input fra brukeren</li>
+<li>PHP-scriptet utfører en <strong>SELECT</strong> mot databasen</li>
+</ul>
+</li>
+</ul>
+<h4 id="behandle-skjemadata">Behandle skjemadata</h4>
+<ul>
+<li>
+<pre class="hljs"><code><div>&lt;html&gt;
+&lt;body&gt;
+&lt;h1&gt;Kundedata&lt;/h1&gt;
+<span class="hljs-meta">&lt;?php</span>
+    $fornavn = $_GET[<span class="hljs-string">"navn"</span>];
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">"&lt;p&gt;Fornavn:  "</span> . $fornavn  . <span class="hljs-string">"&lt;/p&gt;"</span>);
+<span class="hljs-meta">?&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<ul>
+<li>$_GET inneholder skjemada når GET er brukt
+<ul>
+<li>$_GET er en assosiativ tabell (parameter =&gt; verdi)</li>
+<li>Med GET er skjemadata synlig i URLen(//..//skjemabehandler.php?navn=Kari)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="metode-post">Metode POST</h4>
+<ul>
+<li>Kan overføre større datamengder enn ved GET</li>
+<li>$_POST er ogsp en assosiativ tabell (parameter =&gt; verdi)</li>
+<li>Skjermadata er ikke synlig i URLen</li>
+<li>Hindrer at andre får tak i sensitiv informasjon ved å se på skjermen</li>
+<li>Skjermadata er ikke kryptert</li>
+</ul>
+<h4 id="get-post-og-request">$_GET, $_POST og $_REQUEST</h4>
+<ul>
+<li>
+<p>$_GET: Skjemadata overført med metode GET</p>
+</li>
+<li>
+<p>$_POST: Skjermadata overført med metode POST</p>
+</li>
+<li>
+<p>$_COOKIES: Informasjonskapsler</p>
+</li>
+<li>
+<p>$_REQUEST: Summen av $_GET, $_POST OG $_COOKIES</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-comment">// POST-forespørsel</span>
+&lt;form method=<span class="hljs-string">"POST"</span> action=<span class="hljs-string">"skjemabehandler.php"</span>&gt;
+  &lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"navn"</span> size=<span class="hljs-string">"20"</span>&gt;
+  &lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"Søk"</span> name=<span class="hljs-string">"sok"</span>&gt;
+&lt;/form&gt;
+
+<span class="hljs-comment">// GET-forespørsel</span>
+http:<span class="hljs-comment">//../skjemabehandler.php?navn=Ola</span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="databasetabeller-som-assosiative-tabeller">Databasetabeller som assosiative tabeller</h4>
+<ul>
+<li>
+<p>En database består av et antall rader:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div> $dbtab = <span class="hljs-keyword">array</span>($rad1, $rad2, $rad3);
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Hver <em>rad</em> kan håndteres som en mapping fra kolonneneavn til verdi:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>$rad1 = <span class="hljs-keyword">array</span>(<span class="hljs-string">"nr"</span>=&gt; <span class="hljs-number">1</span>m <span class="hljs-string">"navn"</span>=&gt;<span class="hljs-string">"Per"</span>)
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<pre class="hljs"><code><div>$dbtab = <span class="hljs-keyword">array</span>(
+  <span class="hljs-keyword">array</span>(<span class="hljs-string">"nr"</span> =&gt;<span class="hljs-number">1</span>m <span class="hljs-string">"navn"</span> =&gt; <span class="hljs-string">"Per"</span>), <span class="hljs-keyword">array</span>(), ...
+);
+</div></code></pre>
+</li>
+</ul>
+<h3 id="databaseprogrammer-i-php">Databaseprogrammer i PHP</h3>
+<ul>
+<li>
+<p><strong>MySQLi</strong> er et programbibliotek for å jobbe med MySQL-databaser fra</p>
+</li>
+<li>
+<p>Typisk oppbygning av PHP-script</p>
+<ol>
+<li>Åpne forbindelse med databasen</li>
+<li>Få tak i skjema som brukeren har skrevet inn</li>
+<li>Bygg opp en SQL-spørring basert på inndata fra brukeren</li>
+<li>Send SQL-spørring til databasen for utførelse</li>
+<li>Behandle spørreresultatet og skriv ut en ny nettside(HTML)</li>
+<li>Lukk forbindelse til databasen</li>
+</ol>
+</li>
+<li>
+<img src="./summary-pictures/php-databaser.png" width="60%">
+</li>
+</ul>
+<h3 id="programmering-i-php">Programmering i PHP</h3>
+<h4 id="dagens-dato">Dagens dato</h4>
+<pre class="hljs"><code><div>&lt;html&gt;
+&lt;body&gt;
+
+<span class="hljs-meta">&lt;?php</span>
+      <span class="hljs-comment">// Bruker funksjonen DATE for å hente dagens dato</span>
+      <span class="hljs-comment">// på formen dd.mm.åååå. Lagrer i variabelen $dato.</span>
+      $dato = DATE(<span class="hljs-string">"d.m.Y"</span>);<span class="hljs-comment">// Skriver ut dagens dato i HTML h1-overskrift.</span>
+      <span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;h1&gt;Dagens dato: $dato&lt;/h1&gt;"</span>;
+  <span class="hljs-meta">?&gt;</span>
+  
+&lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+<h4 id="variabler-i-php">Variabler i PHP</h4>
+<ul>
+<li>
+<p>Alle variabler starter med <strong>$</strong></p>
+</li>
+<li>
+<p>Punktum slår sammen tekstverdier</p>
+</li>
+<li>
+<p>Variabler kan endre verdi</p>
+</li>
+<li>
+<pre class="hljs"><code><div>&lt;html&gt;
+&lt;body&gt;
+<span class="hljs-meta">&lt;?php</span>
+$navn = <span class="hljs-string">'Ola'</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'&lt;h1&gt;Hei '</span> . $navn . <span class="hljs-string">'&lt;/h1&gt;'</span>;
+$navn = <span class="hljs-string">'Kari'</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">'&lt;h1&gt;Hei '</span> . $navn . <span class="hljs-string">'&lt;/h1&gt;'</span>;
+<span class="hljs-meta">?&gt;</span>
+&lt;/body&gt; &lt;/html&gt;
+</div></code></pre>
+</li>
+<li>
+<p>En tekst omsluttet av doble apostrofer kan inneholde variabler</p>
+</li>
+<li>
+<p>Linjeskift gjøres med <strong>\n</strong></p>
+</li>
+</ul>
+<h4 id="datatyper-i-php">Datatyper i PHP</h4>
+<ul>
+<li>Trenger ikke å deklarere variabler i PHP</li>
+<li>Datatyper
+<ul>
+<li>boolean, integer, float, string</li>
+<li>array, object ...</li>
+</ul>
+</li>
+<li>PHP-tolkeren utleder datatypen fra sammenheng</li>
+</ul>
+<h4 id="operatorer-i-php">Operatorer i PHP</h4>
+<ul>
+<li>
+<p>Aritmetiske operatorer</p>
+<ul>
+<li>
+<p> + - * / % </p>
+</li>
+</ul>
+</li>
+<li>
+<p>Sammenligningsoperatorer</p>
+<ul>
+<li>
+<p>> >= == != < <=
+</li>
+</ul>
+</li>
+<li>
+<p>Inkrement og dekrement</p>
+<ul>
+<li>++ --</li>
+</ul>
+</li>
+<li>
+<p>Logiske operatorer</p>
+<ul>
+<li>&amp;&amp; || !</li>
+</ul>
+</li>
+<li>
+<p>Spesielle operatorer</p>
+<ul>
+<li><strong>.</strong> <strong>.=</strong> - Slå sammen tekst / legg til tekst</li>
+<li>+= *=</li>
+</ul>
+</li>
+</ul>
+<h4 id="innebygde-funksjoner-i-php">Innebygde funksjoner i PHP</h4>
+<ul>
+<li>
+<p>Tekst</p>
+<ul>
+<li>str_pad, strlen, substr, substr_replace, trim, ucfirst, ...</li>
+</ul>
+</li>
+<li>
+<p>Dato og tid</p>
+<ul>
+<li>date, getdate, gettimeofdat, strtotime, ...</li>
+</ul>
+</li>
+<li>
+<p>Matematikk</p>
+<ul>
+<li>abs, ceil, cos, exp, floor, log, ...</li>
+</ul>
+</li>
+<li>
+<p>Eksempler:</p>
+<ul>
+<li>
+<p>$s = substr('abcdef', 1,3); // $ =='bcd*</p>
+</li>
+<li>
+<p>$today = getdate();</p>
+</li>
+<li>
+<p>$avst = sqrt(exp($x2.$x1,2) + exp($y2-$y1,2))
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="konvertering-i-php">Konvertering i PHP</h4>
+<ul>
+<li>
+<p>Skjemadata</p>
+<ul>
+<li>$side = $_GET['txt_side'];</li>
+<li>$areal = $side * $side</li>
+</ul>
+</li>
+<li>
+<p>Implisitt konvertering</p>
+<ul>
+<li>$tall = '2' +'2';</li>
+</ul>
+</li>
+<li>
+<p>Eksplisitt konvertering(typetvang, type casting)</p>
+<ul>
+<li>$tall = (int) '85';</li>
+</ul>
+</li>
+<li>
+<p>Funksjoner for å avlese datatyper</p>
+<ul>
+<li>is_int($tall), is_numeric($side), ..</li>
+</ul>
+</li>
+</ul>
+<h4 id="presentasjon-av-tall-i-php">Presentasjon av tall i PHP</h4>
+<ul>
+<li>
+<p>Parametre til funksjonen number_format</p>
+<ul>
+<li>Anrall desimaler</li>
+<li>Tegn for desimalpunktum</li>
+<li>Tusenskilletegn</li>
+</ul>
+</li>
+<li>
+<p>$pris =123456.789</p>
+</li>
+<li>
+<p>print(number_format($pris,2,' ',', ' ') )</p>
+<ul>
+<li>123 456.78</li>
+</ul>
+</li>
+</ul>
+<h4 id="valgsetninger-i-php">Valgsetninger i PHP</h4>
+<ul>
+<li>
+<p>Bruker skriver inn navnet, programmet skriver pris:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  $alder = $_GET[<span class="hljs-string">'alder'</span>];             <span class="hljs-comment">// Fra skjema</span>
+  $pris = <span class="hljs-number">80</span>;                        <span class="hljs-comment">// Full pris</span>
+  <span class="hljs-keyword">if</span> ($alder &lt; <span class="hljs-number">7</span>)   {
+  $pris = <span class="hljs-number">0</span>;                     <span class="hljs-comment">// [0..6] går gratis</span>
+   }
+  <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">if</span> ($alder &lt;= <span class="hljs-number">12</span> || $alder &gt; <span class="hljs-number">67</span>)
+        $pris = $pris * <span class="hljs-number">0.5</span>;    <span class="hljs-comment">// Halv pris</span>
+  }
+  <span class="hljs-keyword">print</span> (<span class="hljs-string">'Pris: '</span> . $pris);
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="while-l%C3%B8kker-i-php">While-løkker i PHP</h4>
+<ul>
+<li>
+<p>Bruker skriver inn øvre grense(positivt heltall), programmet skriver ut summen av tallene fra 1 ... max</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>$max = $_GET[<span class="hljs-string">'max'</span>];    <span class="hljs-comment">//fra skjema</span>
+$tall = <span class="hljs-number">1</span>;
+$sum = <span class="hljs-number">0</span>;
+
+<span class="hljs-keyword">while</span> ($tall &lt;= $max){
+  $sum = $sum + $tall;
+  $tall = $tall +<span class="hljs-number">1</span>;
+}
+<span class="hljs-keyword">print</span>(<span class="hljs-string">'Sum1..'</span>  . $max  . <span class="hljs-string">'='</span> . $sum);
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="tabeller-i-php">Tabeller i PHP</h4>
+<ul>
+<li>
+<p>Tabeller egnser seg for gjennomløp med for-løkker</p>
+</li>
+<li>
+<pre class="hljs"><code><div><span class="hljs-comment">// Nedbør (mm) pr. dag i en gitt uke</span>
+$nedboer = <span class="hljs-keyword">array</span>(<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">23</span>,<span class="hljs-number">0</span>,<span class="hljs-number">17</span>,<span class="hljs-number">4</span>);
+
+$antall = sixeof($nedboer):
+<span class="hljs-keyword">for</span> ($i=<span class="hljs-number">0</span>; $i&lt;$antall; $i++)  {
+  $sum += $nedboer[$i]
+}
+$snitt = $sum / $antall;
+
+<span class="hljs-keyword">print</span>(<span class="hljs-string">'Totalt: '</span> . $sum . <span class="hljs-string">' snitt: '</span> . $snitt);
+</div></code></pre>
+</li>
+</ul>
+<h4 id="gjennoml%C3%B8p-med-foreach">Gjennomløp med foreach</h4>
+<ul>
+<li>
+<p>For å produsere punktliste</p>
+<ul>
+<li>Skrite ut &lt; ul &gt; helt først og &lt; /ul&gt; helt til slutt</li>
+<li>Så må vi omslutte hver verdi med &lt; li&gt; og &lt; /li &gt;</li>
+</ul>
+</li>
+<li>
+<pre class="hljs"><code><div>$tabell = <span class="hljs-keyword">array</span>(<span class="hljs-number">3</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,<span class="hljs-number">23</span>,<span class="hljs-number">0</span>,<span class="hljs-number">17</span>,<span class="hljs-number">4</span>);
+<span class="hljs-keyword">print</span> <span class="hljs-string">'&lt;ul&gt;'</span>;
+<span class="hljs-keyword">foreach</span> ($tabell <span class="hljs-keyword">as</span> $enVerdi) {
+  <span class="hljs-keyword">print</span> <span class="hljs-string">'&lt;li&gt;'</span> . $enverdi . <span class="hljs-string">'&lt;/li&gt;'</span>;
+}
+<span class="hljs-keyword">print</span> <span class="hljs-string">'&lt;/ul&gt;'</span>;
+</div></code></pre>
+</li>
+</ul>
+<h4 id="navneliste-l%C3%B8kke-gjentakelse">Navneliste (løkke, gjentakelse)</h4>
+<ul>
+<li>
+<p>Programmet skriver alle navn i en tabell(array)</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$navnTabell =
+    <span class="hljs-keyword">array</span>(<span class="hljs-string">"Per"</span>, <span class="hljs-string">"Kari"</span>, <span class="hljs-string">"Ola"</span>, <span class="hljs-string">"Lise"</span>, <span class="hljs-string">"Karianne"</span>);
+
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;table width=\ "</span><span class="hljs-number">1</span>\<span class="hljs-string">"&gt;"</span>;
+<span class="hljs-keyword">foreach</span> ($navnTabell <span class="hljs-keyword">as</span> $fornavn)
+{
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;tr&gt;"</span>;
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;td&gt;$fornavn&lt;/td&gt;"</span>;
+  <span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;/tr&gt;"</span>;
+}
+<span class="hljs-keyword">echo</span> <span class="hljs-string">"&lt;/table&gt;"</span>;
+</div></code></pre>
+</li>
+</ul>
+<h4 id="produsere-en-html-tabell">Produsere en HTML-tabell</h4>
+<ul>
+<li>
+<p>Må nøste to løkker</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$tab1 = <span class="hljs-keyword">array</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>);
+$tab2 = <span class="hljs-keyword">array</span>(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>);
+<span class="hljs-keyword">print</span> <span class="hljs-string">'&lt;table&gt;'</span>;
+<span class="hljs-keyword">foreach</span> ($tab1 <span class="hljs-keyword">as</span> $v1) {
+  <span class="hljs-keyword">print</span> <span class="hljs-string">'&lt;tr&gt;'</span>;
+  <span class="hljs-keyword">foreach</span> ($tab2 <span class="hljs-keyword">as</span> $v2){
+    <span class="hljs-keyword">print</span> <span class="hljs-string">'&lt;td&gt;'</span>  . $v1*$v2 . <span class="hljs-string">'&lt;/td&gt;'</span>;
+  }
+  <span class="hljs-keyword">print</span> <span class="hljs-string">'&lt;/tr&gt;'</span>;
+}
+<span class="hljs-keyword">print</span> <span class="hljs-string">'&lt;/table&gt;'</span>;
+</div></code></pre>
+</li>
+</ul>
+<h4 id="assosiative-tabeller">Assosiative tabeller</h4>
+<ul>
+<li>
+<p>I assosiative tabeller kan man velge indeksering vekk fra bare heltall</p>
+</li>
+<li>
+<p>Eksempel:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>$nedboer = <span class="hljs-keyword">array</span> (
+  <span class="hljs-string">"mandag"</span> =&gt; <span class="hljs-number">3</span>,
+  <span class="hljs-string">"tirsdag"</span> =&gt; <span class="hljs-number">0</span>,
+  <span class="hljs-string">"onsdag"</span> =&gt; <span class="hljs-number">0</span>,
+  <span class="hljs-string">"torsdag"</span> =&gt; <span class="hljs-number">23</span>,
+  <span class="hljs-string">"fredag"</span> =&gt; <span class="hljs-number">0</span>,
+  <span class="hljs-string">"lørdag"</span> =&gt; <span class="hljs-number">17</span>,
+  <span class="hljs-string">"søndag"</span> =&gt; <span class="hljs-number">4</span>
+  );
+
+$man = $nedboer[<span class="hljs-string">"mandag"</span>]; <span class="hljs-comment">//Slår  opp</span>
+$nedboer[<span class="hljs-string">"mandag"</span>] += <span class="hljs-number">2</span>;  <span class="hljs-comment">//Oppdaterer</span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="foreach-i-assosiative-tabeller">Foreach i assosiative tabeller</h4>
+<ul>
+<li>
+<p>Gjennomløper med en mønstergjenkjenningsteknikk</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$sum = <span class="hljs-number">0</span>;
+$nedboer = <span class="hljs-keyword">array</span>(..); <span class="hljs-comment">//Se forrige script</span>
+<span class="hljs-keyword">foreach</span> ($nedboer <span class="hljs-keyword">as</span> $ukedag =&gt; $mm){
+  <span class="hljs-keyword">print</span>($ukedag . <span class="hljs-string">" "</span> . $mm . <span class="hljs-string">" mm"</span>);
+  $sum += $mm
+}
+<span class="hljs-keyword">print</span>(<span class="hljs-string">"Totalt "</span> . $sum  . <span class="hljs-string">" mm nedbør"</span>);
+</div></code></pre>
+<ul>
+<li>Tankegang:
+<ul>
+<li>En assosiativ tabell er en mapping fra nøkkel til verdi</li>
+<li>Ukedager til nedbørsmengde</li>
+<li>Løkkekroppen blir utført for hvert par nøkkel =&gt; verdi</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="isset-og-arraykeyexists">isset og array_key_exists</h4>
+<ul>
+<li>
+<p>Finnes en bestemt nøkkel i en assosiativ matrise?</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$d = <span class="hljs-string">"juledag"</span>;
+<span class="hljs-keyword">if</span> (!array_key_exists($d, $nedboer))
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"Ukjent ukedag"</span>);
+</div></code></pre>
+</li>
+<li>
+<p>Har vi fått inndata fra bruker?</p>
+</li>
+<li>
+<pre class="hljs"><code><div><span class="hljs-keyword">if</span> (! <span class="hljs-keyword">isset</span>($_GET[<span class="hljs-string">"txtAntall"</span>]) )
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"Du vet du skal skrive et tall ikke sant? smh"</span>)
+</div></code></pre>
+</li>
+</ul>
+<h4 id="opprette-databaseforbindelse">Opprette databaseforbindelse</h4>
+<ul>
+<li>
+<p>Koble opp til MySQL-tjener:</p>
+<ul>
+<li>Adressen til tjener</li>
+<li>Brukernavn</li>
+<li>Passord</li>
+<li>Velge database</li>
+</ul>
+</li>
+<li>
+<p>i PHP:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>$forbindelse =
+  mysql_connect(<span class="hljs-string">"localhost"</span>, <span class="hljs-string">"bruker, "</span>passord<span class="hljs-string">");
+  mysql_select_db("</span>test);
+
+<span class="hljs-comment">// Lukke forbindelse</span>
+mysql_close( $forbindelse );
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="select-sp%C3%B8rringer-i-php">SELECT-spørringer i PHP</h4>
+<ul>
+<li>
+<p>Sender med SQL-spørringen som parameter til mysql_query</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$sql = <span class="hljs-string">"SELECT * FROM Vare;"</span>;
+$resultat = mysql_query( $sql);
+</div></code></pre>
+</li>
+<li>
+<p>Antall retunerte rader:</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$antall = mysql_num_rows ($resultat);
+</div></code></pre>
+</li>
+</ul>
+<h4 id="databaseforbindelse">Databaseforbindelse</h4>
+<ul>
+<li>
+<p>I kallet på mysql_query</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$forbindelse =
+mysql_connect(<span class="hljs-string">"localhost"</span>,<span class="hljs-string">"bruker"</span>,<span class="hljs-string">"passord"</span>);
+mysql_select_db(<span class="hljs-string">"test"</span>);
+$sql = <span class="hljs-string">"SELECT * FROM Vare;"</span>;
+$resultat = mysql_query($sql);
+
+<span class="hljs-comment">// Eksplisitt:</span>
+$resultat = mysql_query($sql, $forbindelse);
+</div></code></pre>
+</li>
+</ul>
+<h4 id="bygge-sql-sp%C3%B8rringer-fra-skjemadata">Bygge SQL-spørringer fra skjemadata</h4>
+<ul>
+<li>
+<p>Lagre skjemadata i PHP-variabel:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>$sok = $_REQUEST[<span class="hljs-string">"txtSok"</span>];
+
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Bygg SQL - merk enkle og doble apostrofer og blanke tegn</p>
+</li>
+<li>
+<pre class="hljs"><code><div>  $sql = <span class="hljs-string">"SELECT * FROM Vare "</span>  .
+  <span class="hljs-string">"WHERE Betegnelse LIKE '"</span> . $sok  . <span class="hljs-string">"%';"</span>;
+
+</div></code></pre>
+</li>
+<li>
+<p>Test: Skrive ut SQL-koden</p>
+<ul>
+<li>
+<pre class="hljs"><code><div><span class="hljs-keyword">print</span>(<span class="hljs-string">"&lt;p&gt;Testutskrift:"</span>  . $sql  . <span class="hljs-string">"&lt;/p&gt;);
+</span></div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="behandle-sp%C3%B8rreresultater">Behandle spørreresultater</h4>
+<ul>
+<li>
+<p>Anta $resultat er et spørreresultat med en kolonne Betegnelse:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>$linje =
+  mysql_fetch_array($resultat, MYSQL_ASSOC);
+<span class="hljs-keyword">while</span>( $linje )
+{
+  $navn = $linje[<span class="hljs-string">"Betegnelse"</span>];
+  <span class="hljs-keyword">print</span>( $navn . <span class="hljs-string">"&lt;br&gt;"</span>);
+  $linje =
+    mysql_fetch_array($resultat, MYSQL_ASSOC);
+    }
+    ```
+
+</div></code></pre>
+</li>
+<li>
+<p>Alternativer: MYSQL_NUM, MYSQL_BOTH</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Det er ikke nødvendig å vite navnet på kolonnene:</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$linje=mysql_fetch_array($res, MYSQL_ASSOC));
+<span class="hljs-keyword">while</span> ($linje)
+{
+  <span class="hljs-keyword">foreach</span> ($linje <span class="hljs-keyword">as</span> $verdi)
+  {
+    <span class="hljs-keyword">print</span>($verdi  .   <span class="hljs-string">" "</span>)
+  }
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"&lt;br&gt;"</span>);
+  $linje=mysql_fetch_array($res, MYSQL_ASSOC);
+}
+</div></code></pre>
+</li>
+</ul>
+<h4 id="fra-sp%C3%B8rreresultat-til-html-tabell">Fra spørreresultat til HTML-tabell</h4>
+<ul>
+<li>Skriv ut &lt; table&gt;
+<ul>
+<li>Hent første rad</li>
+<li>Skriv ut &lt; tr&gt;
+<ul>
+<li>Hent første verdi</li>
+<li>Skriv ut &lt; td&gt;</li>
+<li>Skriv ut første verdi</li>
+<li>Skriv ut &lt; /td&gt;</li>
+<li>... (verdi 2, verdi 3, ... )</li>
+</ul>
+</li>
+<li>Skriv ut &lt; /tr&gt;</li>
+<li>... (rad 2, rad 3, ... )</li>
+</ul>
+</li>
+<li>Skriv ut   &lt; /table&gt;</li>
+</ul>
+<h4 id="update-og-delete">UPDATE og DELETE</h4>
+<ul>
+<li>
+<p>Gir ikke et spørreresultat, men kan finne ut hvor mange rader som ble berørt</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$sql = <span class="hljs-string">"DELETE FROM Vare;"</span>;
+$resultat = mysql_query( $sql );
+<span class="hljs-keyword">if</span> ( $resultat)
+  <span class="hljs-keyword">print</span>(mysql_affected_rows())  . <span class="hljs-string">" rader ble slettet!"</span>);
+<span class="hljs-keyword">else</span>
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"Noe gikk galt"</span>);
+</div></code></pre>
+</li>
+<li>
+<p>UPDATE og DELETE berører samtlige rader hvis vi ikke legger på en WHERE-betingelse</p>
+</li>
+</ul>
+<h4 id="insert">INSERT</h4>
+<ul>
+<li>
+<p>Setter som regel inn 1 rad basert på skjemadata:</p>
+</li>
+<li>
+<pre class="hljs"><code><div>$varekode = $_REQUEST[<span class="hljs-string">"varekode"</span>];
+$betegnelse = $_REQUEST[<span class="hljs-string">"betegnelse"</span>];
+$sql = <span class="hljs-string">"INSERT INTO Vare(Varekode, Betegnelse)  "</span> .
+            <span class="hljs-string">"VALUES ("</span>  . $varekode . <span class="hljs-string">" ' "</span>) . $betegnelse  . <span class="hljs-string">" ' "</span> . <span class="hljs-string">");"</span>;
+$resultat = mysql_query( $sql )
+</div></code></pre>
+</li>
+<li>
+<p>Merk:</p>
+<ul>
+<li>Apostrofer rundt tekstverdier, men ikke rundt tall</li>
+<li>Øvrige kolonner i den nye raden blir satt til NULL</li>
+</ul>
+</li>
+</ul>
+<h4 id="autonummerering">Autonummerering</h4>
+<ul>
+<li>
+<p>I MySQL angis autonummerering som en kolonne-egenskap</p>
+<ul>
+<li>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Ansatt
+( AnsNr <span class="hljs-built_in">INTEGER</span> AUTO_INCREMENT, ....);
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Kolonner som er autnummererte tas ikke med i INSERT</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> Ansatt(Fornavn, Etternavn)
+  <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">'Per'</span>, <span class="hljs-string">'Hansen'</span>);
+</div></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Hvordan få tak i sist genererte ansattnr:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>  mysql_query($sql);
+  $sisteAnsNr = mysql_insert_id();
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="ukesoppgaver-kapittel-9">Ukesoppgaver Kapittel 9</h3>
+<ol>
+<li>Create a PHP script that prints a multiplication table from 1 to 10.Tip:  Use two nested for loops.  Change the script so that the upper limit is read viaa  URL  parameter.   If  the  upper  limit  is  greater  than  20  an  error  meaage  should  beprinted</li>
+</ol>
+<ul>
+<li>
+<p>Svar:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+
+&lt;head&gt;
+&lt;title&gt;INF115&lt;/title&gt;
+&lt;meta http-equiv=<span class="hljs-string">"Content-Type"</span> content=<span class="hljs-string">"text/html; charset=UTF-8"</span>/&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+&lt;h1&gt;Exercise <span class="hljs-number">9.1</span>&lt;/h1&gt;
+
+<span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">if</span> (!<span class="hljs-keyword">isset</span>($_GET[<span class="hljs-string">'max'</span>]) || $_GET[<span class="hljs-string">'max'</span>] &lt; <span class="hljs-number">1</span> || $_GET[<span class="hljs-string">'max'</span>] &gt; <span class="hljs-number">20</span>)
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;p&gt;URL-parameter maximum must be between 1 and 20!&lt;/p&gt;'</span>);
+<span class="hljs-keyword">else</span> {
+  $max = $_GET[<span class="hljs-string">'max'</span>];
+
+  <span class="hljs-comment">/*
+  * Set table 1*1 to $max*$max
+  * Variant 1: Calculation in the cells
+  */</span>
+
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;table border="5"&gt;'</span>);
+
+  <span class="hljs-keyword">for</span> ($i=<span class="hljs-number">1</span>; $i&lt;=$max; $i++) {
+    <span class="hljs-keyword">for</span> ($j=<span class="hljs-number">1</span>; $j&lt;=$max; $j++) {
+      <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;td&gt;'</span> . $i . <span class="hljs-string">'*'</span> . $j . <span class="hljs-string">'='</span> . $i*$j . <span class="hljs-string">'&lt;/td&gt;'</span>);
+    }
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;/tr&gt;'</span>);
+  }
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;/table&gt;'</span>);
+
+
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;hr/&gt;'</span>);
+
+  <span class="hljs-comment">/*
+  * Set table 1*1 to $max*$max
+  * Variant 2: With headlines
+  */</span>
+
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;table border="5"&gt;'</span>);
+
+  <span class="hljs-comment">// With the first row as headers</span>
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;tr&gt;'</span>);
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">"&lt;td&gt;&amp;nbsp;&lt;/td&gt;"</span>);
+  <span class="hljs-keyword">for</span> ($i=<span class="hljs-number">1</span>; $i&lt;=$max; $i++) {
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;td&gt;&lt;b&gt;'</span> . $i . <span class="hljs-string">'&lt;/b&gt;&lt;/td&gt;'</span>);
+  }
+
+  <span class="hljs-comment">// The contents of the multiplication table</span>
+  <span class="hljs-keyword">for</span> ($i=<span class="hljs-number">1</span>; $i&lt;=$max; $i++) {
+    <span class="hljs-comment">// The column on the left is "headers"</span>
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;tr&gt;'</span>);
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;td&gt;&lt;b&gt;'</span> . $i . <span class="hljs-string">'&lt;/b&gt;&lt;/td&gt;'</span>);
+
+    <span class="hljs-comment">// Then we print out $i*1, $i*2,...,$i*$max</span>
+    <span class="hljs-keyword">for</span> ($j=<span class="hljs-number">1</span>; $j&lt;=$max; $j++) {
+      <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;td&gt;'</span> . $i*$j . <span class="hljs-string">'&lt;/td&gt;'</span>);
+    }
+    <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;/tr&gt;'</span>);
+  }
+  <span class="hljs-keyword">print</span>(<span class="hljs-string">'&lt;/table&gt;'</span>);
+
+}
+<span class="hljs-meta">?&gt;</span>
+
+&lt;/body&gt;
+&lt;/html&gt;
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>
+<p>Create  a  PHP  script  that  checks  the  uploaded  username  and  password  against  thefollowing associative table:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div>$Users = <span class="hljs-keyword">array</span>
+(
+’Ola’ =&gt; ’Hemmelig ’,
+’Mari’ =&gt; ’Iram’
+);
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>Assume that the variables username and password are POST variables.  Create a HTMLform to test the script.</p>
+</li>
+<li>
+<p>Svar:</p>
+<ul>
+<li>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>INF115<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">http-equiv</span>=<span class="hljs-string">"Content-Type"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"text/html; charset=UTF-8"</span>/&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"standard.css"</span> <span class="hljs-attr">rel</span>=<span class="hljs-string">"stylesheet"</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text/css"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Exercise 9.2<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">method</span>=<span class="hljs-string">"POST"</span> <span class="hljs-attr">action</span>=<span class="hljs-string">"ex9_2.php"</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">border</span>=<span class="hljs-string">"0"</span> <span class="hljs-attr">width</span>=<span class="hljs-string">"50%"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>username:<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"username"</span> <span class="hljs-attr">size</span>=<span class="hljs-string">"10"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">tr</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span>Password:<span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"password"</span> <span class="hljs-attr">size</span>=<span class="hljs-string">"10"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">td</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"submit"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"login"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"sendButton"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"reset"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"clear form"</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"clearButton"</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>
