@@ -208,15 +208,27 @@
     - [Enkle datatyper ved restriksjon](#enkle-datatyper-ved-restriksjon)
     - [Komplekse datatyper](#komplekse-datatyper)
     - [Attributter](#attributter)
-  - [Begreper spørsmål og mulig oppgaver](#begreper-spørsmål-og-mulig-oppgaver)
-    - [Generelt](#generelt)
-      - [Programmeringsspråk](#programmeringsspråk)
-      - [Datarepresentasjon](#datarepresentasjon)
-    - [SQL](#sql)
-    - [Relasjonsmodellen og relasjonsalgebra](#relasjonsmodellen-og-relasjonsalgebra)
-    - [Datamodellering og databasedesign](#datamodellering-og-databasedesign)
-    - [HTML/XML](#htmlxml)
-    - [PHP](#php)
+    - [Uke 11](#uke-11)
+  - [11-1](#11-1)
+  - [11-2](#11-2)
+  - [11-3](#11-3)
+    - [11.3.a](#113a)
+    - [11.3.b](#113b)
+    - [11.3.c](#113c)
+    - [11.3.d](#113d)
+  - [Obligatoriske Oppgaver](#obligatoriske-oppgaver)
+    - [Oblig 1](#oblig-1)
+    - [Obligatorisk Oppgave 3](#obligatorisk-oppgave-3)
+  - [1 PHP and HTML Form](#1-php-and-html-form)
+    - [1.1](#11)
+    - [1.2](#12)
+    - [1.3](#13)
+    - [2.1](#21)
+    - [2.2](#22)
+    - [2.3](#23)
+    - [3.1](#31)
+    - [3.2](#32)
+    - [3.3](#33)
 
 ## Kapittel 1 - Introduksjon
 
@@ -1071,6 +1083,7 @@ INSERT INTO Prishistorikk(VNr, Dato, GammelPris)
 ```
 
 ### Aggregeringssytemer
+
 * **OLTP**
   * On-line transactional processing
   * System med hyppige oppdateringer
@@ -1715,9 +1728,9 @@ ALTER TABLE Hovedstad
 * Enhver minimal determinant er en kandidatnøkkel
 
 * <img src="./summary-pictures/BCNF.png" width="60%">
-  * AnsNr er kandidatnøkkel
+  *AnsNr er kandidatnøkkel
     * Det er en funksjonell avhengighet fra AnsNr til alle andre kolonner
-  * PostNr $\rightarrow$ Poststed bryter med **BCNF**
+  *PostNr $\rightarrow$ Poststed bryter med **BCNF**
     * PostNr er determinant over Poststed, men ingen andre kolonner
 * En tabell som ikke er på **BCNF** bør deles opp
 * Hvis en tabell tilfredstiller **BCNF** er den ferdig normalisert
@@ -3183,7 +3196,7 @@ ALTER TABLE Hovedstad
 
 ### Ukesoppgaver Kapittel 9
 
-1.  Create a PHP script that prints a multiplication table from 1 to 10.Tip:  Use two nested for loops.  Change the script so that the upper limit is read viaa  URL  parameter.   If  the  upper  limit  is  greater  than  20  an  error  meaage  should  beprinted
+1. Create a PHP script that prints a multiplication table from 1 to 10.Tip:  Use two nested for loops.  Change the script so that the upper limit is read viaa  URL  parameter.   If  the  upper  limit  is  greater  than  20  an  error  meaage  should  beprinted
 
 * Svar:
 
@@ -3341,7 +3354,7 @@ ALTER TABLE Hovedstad
 ### Oppbygging av XML-dokumenter
 
 * XML har HTML-syntaks
-  * Elementer og attributter 
+  * Elementer og attributter
   * Må ha en rot
   * Alle elementer må ha slutt-tagg
   * Elementer kan ikke overlappe
@@ -3352,7 +3365,7 @@ ALTER TABLE Hovedstad
   <melding dato ="07.04.2020" rom="5-116">
     <avsender fnavn ="Kari" enavn="Lie"/>
     <beskjed>XML-forelesning om 5 min!</beskjed>
-  </melding> 
+  </melding>
   ```
 
 ### Navnerom
@@ -3362,10 +3375,12 @@ ALTER TABLE Hovedstad
 * Kan ha to elementer med samme navn så lenge de er definert i forskjellige navnerom
 
 * ```XML
+*
  <studium xmlns = "http://www.usn.no/kurs/"
     xmlns:k = "http://www.usn.no/skipsfart/"
  </studium>
   <k:kurs>Nordvest</k:kurs> ...
+
   ```
 
 ### Lovlig struktur av XML-dokumenter
@@ -3551,12 +3566,12 @@ ALTER TABLE Hovedstad
     <xs:element name="etternavn" type="navn_t"/>
     <xs:element name="tlf" type="tlf_t" />
    </xs:sequence>
-  </xs:complexType> 
+  </xs:complexType>
   ```
 
   * Basert på:
 
-  * ```XML 
+  * ```XML
     <xs:simpleType name="navn_t">
       <xs:restriction base="xs:string">
         <xs:maxLength value="20"/>
@@ -3651,7 +3666,7 @@ ALTER TABLE Hovedstad
 
 * Identifiser to plasser hvor vi har møtt ”trær transformasjoner” i kurset.
   * Hierrarisk datastruktur
-  * 
+  *
 
 * Hvorfor trenger vi prefikset kolonnenavn? Finnes det noe lignende i XML?
   * Prefikset kolonnenavn gjør det mulig å skille mellom kolonner med samme navn mellom flere tabeller. Feks V.VNr fra fra Vare tabellen
@@ -3669,7 +3684,7 @@ ALTER TABLE Hovedstad
     * Views er virtuelle tabeller laget fra eksisterende tabeller og kolonner.
 
     * ```SQL
-      CREATE VIEW Example(VNr, Navn, Antall) AS 
+      CREATE VIEW Example(VNr, Navn, Antall) AS
         SELECT ...
         FROM ...
         WHERE ...
@@ -3680,7 +3695,7 @@ ALTER TABLE Hovedstad
     3. Aliaser. I noen tilfeller der databaser er store eller har kompliserte navn, kan det lønne seg å gi spørringen et alias, slik at det skal være lettere å kommunisere med databasen.  
   
   * Beskriv hvordan et DBHS kan utføre spørringer mot utsnitt
-    * Views blir lagret logisk av DBHS i systemtabellen. Spørringen som definerer viewet blir utført og deretter selve spørringen(som leser mellomresultat) 
+    * Views blir lagret logisk av DBHS i systemtabellen. Spørringen som definerer viewet blir utført og deretter selve spørringen(som leser mellomresultat)
 
 ### Relasjonsmodellen og relasjonsalgebra
 
@@ -3697,7 +3712,7 @@ ALTER TABLE Hovedstad
   2. Omskrivning av uttrykkene til en form som lar seg utføre mer effektivt
 
 * Beskriv tre regler som blir brukt i "regelbasert optimalisering"
-  * 
+  *
 
 ### Datamodellering og databasedesign
 
@@ -3705,7 +3720,7 @@ ALTER TABLE Hovedstad
   * Svake entiteter er avhengig av andre entiteter for å eksistere der forholdet mot en svak entitet er identifiserende. [Kinosal] <-- [Kino]
 
 * Hvorfor bør ikke fremmednøkkler dukke opp i ER diagrammer?(Delspørsmål: Hva slags forhold i et ER diagram kan oversettes direkte til fremmednøkler?)
-  * 
+  *
 
 * Hva er en subtype av en entitet? Hva arver subtyper? I hvilke situasjoner kan det være lurt å innføre subtyper?
   * En subtype er en delmengde av en entitet. En subtype arver egenslaper til supertypen. Subtyper kan være lurt dersom man trenger å dele opp en tabell i flere "kategorier" som inngår under samme tabell, men allikevel har forskjeller som er verdt å skille mellom
@@ -3775,7 +3790,7 @@ ALTER TABLE Hovedstad
 * Hva står ACID for? Forklart de fire ACID-egenskapene.
   1. Alt eller ingenting(Atomicity)
      * Enten blir en transaksjon utført i sin helhet, eller ikke i det hele tat
-  2. Konsistens(consistency) 
+  2. Konsistens(consistency)
      * Hvis databasen er i en konsistent tilstand før transaksjonen blir utført, skal databasen også være konsistent når transaksjonen er ferdig utført
   3. Ingen innblanding(isolation)
      * Ingen transaksjoner som foregår samtidig skal interferere med hverandre
@@ -3893,10 +3908,806 @@ ALTER TABLE Hovedstad
   * En tabell som er assosiativ gjør det mulig å velge indekser vekk fra bare tall
 
 * Hva er en utviklingsstakk? Gi et eksempel
-  * En utviklingsstakk er en kombinasjon av plattformuavhengige programmer. 
+  * En utviklingsstakk er en kombinasjon av plattformuavhengige programmer.
 
 * Hva er SQL-injection?
-  * SQL-injections er en måte å få sensitiv data ut fra en database ved å misbruke hvordan en applikasjon kommunisere med SQL databasen på. SQL-injections skjer ved å skrive inn SQL queries inn i en inputt på applikasjonen. En dårlig konfigurert server vil ikke kunne skille mellom data og query, og vil derfor tolke kommandoen som er faktisk SQL query og deretter skrive ut sensitiv data. 
+  * SQL-injections er en måte å få sensitiv data ut fra en database ved å misbruke hvordan en applikasjon kommunisere med SQL databasen på. SQL-injections skjer ved å skrive inn SQL queries inn i en inputt på applikasjonen. En dårlig konfigurert server vil ikke kunne skille mellom data og query, og vil derfor tolke kommandoen som er faktisk SQL query og deretter skrive ut sensitiv data.
 
 * Hva er HEX-conversion? Forklar hvordan HEX-conversion forhindrer SQL-injection
-  * HEX-conversion er å oversette tekst til hexadesimalt format. Ved hexkonvertering blir alle tegn "escapet" 
+  * HEX-conversion er å oversette tekst til hexadesimalt format. Ved hexkonvertering blir alle tegn "escapet"
+
+## Ukesoppgaver
+
+### Uke 3
+
+#### Uke-3 Problems
+
+1.
+   * A primary key is a tabel value to uniquely identify each row
+   * " * " can be used to as a way to select all columns in a table, or to be used as an operator in expressions
+   * Operator precendence is the precendenc different operators in an sql expressions gets executed.
+     * **-2-4*-5** = 18
+     * **(-2-4)*-5** = 30
+     * **-(2-4 *-5)** = -22
+
+2.
+a) SELECT COUNT(*) FROM Film;
+b) SELECT * FROM Film WHERE Year = '1984';
+c) SELECT * FROM Film WHERE Country = 'USA' AND (Year BETWEEN '1980' AND '1989')
+d) SELECT * FROM Film WHERE Run_time > '130' AND (40 > 2020 - Year)
+e) SELECT * FROM Film WHERE Director = 'James Cameron' OR Director =  'George Lucas';
+f) SELECT DISTINCT Country FROM Film ORDER BY Country ASC;
+g) SELECT COUNT(*) FROM Film WHERE Price IS NULL;
+h) SELECT COUNT(*) FROM Film WHERE Price > 100 AND Price IS NOT NULL;
+i) SELECT Title FROM Film WHERE Title LIKE 'The%';
+j) SELECT Director, COUNT(*) as Films, AVG(Price) FROM Film GROUP BY Director Having Films > 1;
+k) SELECT Country, Max(Price)-Min(Price) AS Difference FROM Film;
+l)
+m)
+
+### Uke 4
+
+1 
+a)
+
+- Game_info:
+- Game_store;
+- Sales:
+
+ ```SQL
+
+ CREATE TABLE Game_info
+(
+        Publisher VARCHAR(50),
+        Boardgame VARCHAR(50),
+        Designer VARCHAR(50) not null,
+        Year_published INTEGER(4) not null,
+        Game_type VARCHAR(50) not null,
+        Language VARCHAR(50),
+        PRIMARY KEY (Publisher, Boardgame)
+)
+
+CREATE TABLE Game_store
+(
+        Store_number INTEGER AUTO_INCREMENT,
+        Store_name VARCHAR(50) not null,
+        City_name VARCHAR(50) not null,
+        PRIMARY KEY (Store_number)
+)
+
+
+CREATE TABLE Sales
+(
+    Publisher VARCHAR(50),
+    Boardgame VARCHAR(50),
+    Store_number INTEGER,
+    Year INTEGER(4),
+    Month VARCHAR(9),
+    Quantity INTEGER,
+    PRIMARY KEY(Publisher, Boardgame, Store_number, Year, Month),
+        
+        FOREIGN KEY (Publisher, Boardgame)
+        REFERENCES Game_info (Publisher, Boardgame),
+    
+	FOREIGN KEY (Store_number)
+	REFERENCES Game_store(Store_number)
+)
+```
+
+b)
+
+```SQL
+INSERT INTO Game_info 
+VALUES ('BestGames', 'RoboRally2', 'Tommy Wiseau', '2001-09-11', 'Horror','Polish');
+```
+
+c)
+
+```SQL
+UPDATE Game_info
+SET Publisher = 'Neil Breen'
+WHERE Boardgame = 'RoboRally2';
+```
+
+d)
+
+```SQL
+DELETE FROM Game_info
+WHERE Boardgame = 'RoboRally2';
+```
+
+2
+
+```SQL
+INSERT INTO Game_info (Boardgame, Year_published, Designer, Publisher, Game_type, Language)
+VALUES ('Agricola', '2007', 'Uwe Rosenberg', 'LookoutGames', 'Strategy', 'German');
+
+INSERT INTO Game_info(Boardgame, Year_published, Designer, Publisher, Game_type, Language)
+VALUES ('Pandemic', '2008', 'MattLeacock', 'Z-ManGames', 'Cooperative', 'Norwegian');
+
+INSERT INTO Game_info(Boardgame, Year_published, Designer, Publisher, Game_type, Language)
+VALUES ('Codenames', '2015', 'Vlaada Chvátil', 'Czech Games Edition', 'Partygame', 'English');
+
+INSERT INTO Game_info(Boardgame, Year_published, Designer, Publisher, Game_type, Language)
+VALUES ('Five Tribes', '2014', 'Bruno Cathala', 'Days of Wonder' , 'Strategy', 'English');
+
+INSERT INTO Game_store(Store_number, Store_name, City_name)
+VALUES('1','Outland', 'Bergen');
+
+INSERT INTO Game_store(Store_number, Store_name, City_name)
+VALUES('2', 'Tromsø Bruktbokhandel','Tromsø');
+
+INSERT INTO Sales(Publisher, Boardgame, Store_number, Year, Month, Quantity)
+VALUES ('LookoutGames', 'Agricola', '2', '2014', '8', '2');
+
+INSERT INTO Sales(Publisher, Boardgame, Store_number, Year, Month, Quantity)
+VALUES ('LookoutGames', 'Agricola', '3', '2014', '3', '1');
+
+INSERT INTO Sales(Publisher, Boardgame, Store_number, Year, Month, Quantity)
+VALUES ('Czech Games Edition','Codenames','2','2015','2','1');
+```
+
+3
+
+```SQL
+       a) CONSTRAINT rule_year_published CHECK (year_published BETWEEN 1980 AND 2010)
+       b) CONSTRAINT rule_game_type CHECK (Game_type IN ("strategy", "family", "party", "thematic"))
+       c) CONSTRAINT rule_language CHECK (Language IN ("English", "Norwegian"))
+       d) CONSTRAINT rule_store_number CHECK (Store_number >= AND Store_number <= 20 )
+       e) CONSTRAINT rule_sales_year CHECK (Sales_year BETWEEN 2011 AND 2018)
+  ```
+
+### Uke 11
+
+## 11-1
+
+* Passing (RegistrationNr, Manufacturer, PersonNr, Name, StationNr, Municipality,Date, Time)
+  * Passing(#RegistrationNr, #Name*, #Date, #Time)
+  * Cars(#RegistrationNr, Manufacturer PersonNr*)
+  * Person(#PersonNr, Name)
+  * Toll(#StationNr, Municipality)
+
+## 11-2
+
+* MultipeChoice (TestNr,  TestName,  QuestionNr,  QuestionText,  AlternateNr,  Al-ternateText, User, Reply, Correct)
+  * Test(#TestNr, TestName)
+  * Question(#TestNr*, #QuestionNr, QuestionText, Correct)
+  * Alternative(#TestNr*, #QuestionNr, #AlternateNr, AlternateText)
+  * User(#TestNr*, #QuestionNr*, User, Reply)
+
+## 11-3
+
+### 11.3.a
+
+* T(A,B,C,D,E) where A $\rightarrow$ B, C $\rightarrow$ D and C $\rightarrow$ E
+  * A og C er her kandidatnøkler siden de bestemmer alle de andre kolonnene:
+    * T(A,B)
+    * T2(A,C)
+    * T3(C,D,E)
+
+### 11.3.b
+
+* T(A,B,C,D) where A → B, B → C and C → D
+  * T1(A, B, C)
+  * T2(C, D)
+    * T1a(A, B)
+    * T1b(B, C)
+    * T2(C, D)
+
+### 11.3.c
+
+* T(A,B,C,D,E) where A + B → C, B → A, B → D and D → E
+  * T1(A, B, C, D)
+  * T2(D, E)
+
+### 11.3.d
+
+* T(A,B,C,D) which does not contain any functional dependencies.
+
+## Obligatoriske Oppgaver
+
+### Oblig 1
+
+1.
+a)
+
+SELECT COUNT(*) AS Amount
+FROM Codons;
+
+b)
+
+SELECT Name
+FROM Amino_acid_properties
+WHERE Charge='positive' AND Molecular_mass > '150'
+
+c)
+
+SELECT Name
+FROM Nucleotides
+WHERE TYPE = 'Purine'
+ORDER BY Symbol ASC
+
+d)
+
+SELECT Codon_sequence
+FROM Codons
+WHERE Position2 = Position3
+
+e)
+
+SELECT Codon_sequence, Amino_acid_id
+FROM Codons
+WHERE (Position1 != Position2)
+    AND (Position2 != Position3)
+    AND (Position3 != Position1)
+
+2.
+a)
+
+CREATE TABLE Amino_acid_nomenclature
+(
+    Amino_id VARCHAR(4) NOT NULL ,
+    Symbol VARCHAR(5),
+    Name VARCHAR(20),
+    Code VARCHAR(10) NOT NULL,
+    PRIMARY KEY (Amino_id),
+
+    FOREIGN KEY (Name)
+    REFERENCES Amino_acid_properties(Name)
+
+);
+
+b)
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a1','A','Alanine','Ala');
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a2','C','Cysteine','Cys');
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a3','D','Aspartic acid','Asp');
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a4','E','Glutamic acid','Glu')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a5','F','Phenylalanine','Phe')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a6','G','Glycine','Gly')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a7','H','Histidine','His')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a8','I','Isoleucine','Ile')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a9','K','Lysine','Lys')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a10','L','Leucine','Leu')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a11','M','Methionine','Met')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a12','N','Asparagine','Asn')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a13','P','Proline','Pro')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a14','Q','Glutamine','Gln')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a15','R','Arginine','Arg')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a16','S','Serine','Ser')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a17','T','Threonine','Thr')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a18','V','Valine','Val')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a19','W','Tryptophan','Trp')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Symbol, Name, Code)
+VALUES('a20','Y','Tyrosine','Tyr')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Code)
+VALUES('a21','Stop')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Code)
+VALUES('a22','Stop')
+
+INSERT INTO Amino_acid_nomenclature(Amino_id, Code)
+VALUES('a23','Stop')
+
+c)
+
+i)
+
+ALTER TABLE Amino_acid_properties
+ADD CONSTRAINT rule_molecular_mass
+CHECK(Molecular_mass BETWEEN 70 AND 210)
+
+ii)
+
+ALTER TABLE Amino_acid_properties
+ADD CONSTRAINT rule_charge
+CHECK(Charge = 'uncharged' OR Charge = 'positive' OR Charge = 'negative')
+
+d)
+
+ALTER TABLE Codons
+ADD FOREIGN KEY (Amino_acid_id)
+REFERENCES Amino_acid_nomenclature(Amino_id)
+
+3.
+a)
+
+SELECT C.Codon_id
+FROM Codons AS C, Amino_acid_nomenclature AS A
+WHERE A.Code = 'Stop'
+
+b)
+
+SELECT DISTINCT C.Codon_sequence
+FROM Codons AS C, Nucleotides AS N
+WHERE C.Position1 = 'C'
+
+c)
+
+SELECT C.Codon_sequence
+FROM Codons as C
+    LEFT OUTER JOIN (
+        Amino_acid_nomenclature AS AAN LEFT OUTER JOIN Amino_acid_properties AAP
+                ON AAN.Name = AAP.Name
+        )
+    ON C.Amino_acid_id = AAN.Amino_id
+WHERE AAP.Molecular_mass IS NOT NULL
+ORDER BY AAP.Molecular_mass ASC
+
+d)
+
+SELECT COUNT(DISTINCT (Codon_sequence)) AS 'Amount'
+FROM Amino_acid_properties AS A, Codons as C
+WHERE A.Charge = 'uncharged' AND C.Position3 = 'A'
+
+e)
+
+SELECT C.Codon_sequence, AAN.Name
+FROM Codons AS C
+    LEFT OUTER JOIN (
+        Amino_acid_nomenclature AS AAN
+         LEFT OUTER JOIN Amino_acid_properties AAP
+                ON AAN.Name = AAP.Name
+        )
+    ON C.Amino_acid_id = AAN.Amino_id
+WHERE (AAP.Charge = 'negative') AND (AAP.Molecular_mass BETWEEN 130 AND 150)
+
+4.
+
+a)
+
+SELECT COUNT(*)
+FROM Nucleotides AS N
+WHERE N.Type = 'Purine' OR N.Type = 'Pyrimidine'
+
+b)
+
+SELECT C.Codon_sequence
+FROM Codons as C LEFT OUTER JOIN Amino_acid_nomenclature AAN ON C.Amino_acid_id = AAN.Amino_id
+WHERE C.Position1 = C.Position2 AND C.Position1 = C.Position3
+ORDER BY AAN.Name
+
+c)
+
+SELECT C.Codon_sequence
+FROM Nucleotides AS N RIGHT OUTER JOIN (Codons as C
+    LEFT OUTER JOIN (
+        Amino_acid_nomenclature AS AAN LEFT OUTER JOIN Amino_acid_properties AAP
+                ON AAN.Name = AAP.Name
+        )
+    ON C.Amino_acid_id = AAN.Amino_id) ON C.Position1 = N.Symbol
+
+WHERE (AAP.Polarity = 'polar' OR AAP.Name LIKE '%ine') AND (C.Position1 = 'A' OR C.Position1 ='G')
+
+d)
+
+SELECT COUNT(C.Codon_id) AS 'Polar or non polar'
+FROM Codons as C
+    LEFT OUTER JOIN (
+        Amino_acid_nomenclature AS AAN LEFT OUTER JOIN Amino_acid_properties AAP
+                ON AAN.Name = AAP.Name
+        )
+    ON C.Amino_acid_id = AAN.Amino_id
+WHERE AAP.Polarity = 'polar' OR AAP.Polarity = 'non polar'
+
+e)
+
+SELECT AAP.Polarity, AAP.Charge, COUNT(*)
+FROM Codons as C
+    LEFT OUTER JOIN (
+        Amino_acid_nomenclature AS AAN LEFT OUTER JOIN Amino_acid_properties AAP
+                ON AAN.Name = AAP.Name)
+    ON C.Amino_acid_id = AAN.Amino_id
+WHERE AAP.Polarity OR AAP.Charge IS NOT NULL
+GROUP BY AAP.Polarity DESC, AAP.Charge DESC
+
+### Obligatorisk Oppgave 3
+
+## 1 PHP and HTML Form
+
+### 1.1
+
+```PHP
+<?php
+    print('<b>Hello World!<b>');
+?>
+```
+
+### 1.2
+
+```PHP
+<html><body>
+
+<?php
+echo    '<form  method="post">';
+echo    '<p>Name: <input type="text" name="name" /></p>';
+echo   '<p>Year of birth: <input type="text" name="birth" /></p>';
+echo    '<p>Current age: <input type="text" name="age" /></p>';
+
+echo    '<input type="submit" name="submit" value="Submit" />';
+echo    ' <input type="reset" name="reset" value="Reset" />';
+echo   '</form>';
+echo ' ';
+$name = $birth = $age = "";
+
+function test_input($string) {
+    $string = trim($string);
+    $string = stripslashes($string);
+    $string = htmlspecialchars($string);
+    return $string;
+  }
+  
+  function validate_age($current_age, $birth_year){
+    $current_year = date("Y");
+    if($current_year - $current_age == $birth_year){
+        return true;
+    }
+    if($current_year - ($current_age-1) == $birth_year){
+         return true;
+        }else {
+            return false;
+        }
+    }
+
+  if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    if (empty($_POST["name"])){
+        exit( "Name cannot be empty! <br>Please enter a name in the input box");
+
+    }else {
+        $name = test_input($_POST["name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+            exit("Only letters and white space allowed! <br>Please enter a name with <u>only characters</u>");
+        }
+    }
+
+    if (empty($_POST["birth"])){
+        exit( "Year of birth can not be empty! <br> Please enter your full year of birth(e.g 1995)");
+
+    }else{
+        $birth = test_input($_POST["birth"]);
+        if ( filter_var($birth, FILTER_VALIDATE_INT) === false ) {
+            exit( "Year of birth is not an integer <br>Please enter only numbers from 0-9 in the input box");
+          }
+    }
+
+    if (empty($_POST["age"])){
+        exit( "Current age can not be empty!<br>Please enter an age in the input box");
+
+    }else{
+        $age = test_input($_POST["age"]);
+
+        if(validate_age($age, $birth) == false){
+            exit("Current age and year of birth does not match! <br>Please recheck your year of birth and current age and try again");
+        }
+
+       elseif ( filter_var($birth, FILTER_VALIDATE_INT) === false ) {
+            exit( "Current age is not an integer <br> Please enter only numbers from 0-9 in the input box");
+
+        }
+    }
+ }
+
+
+?>
+</body></html>
+```
+
+### 1.3
+
+```PHP
+<html><body>
+
+<?php
+
+echo '<form method="post">
+<p>What is your preferred language?</p><br>';
+echo '<input type="Radio" name="language" value="english">English<br>';
+echo '<input type="Radio" name="language" value="norwegian">Norwegian<br>';
+echo '<br><input type="submit" name="submit" value="Submit"/>';
+echo '</form>';
+
+$selected = $_POST["language"];
+
+if($selected == "english"){
+    echo    '<form  method="post">';
+    echo    '<p>Name: <input type="text" name="name" /></p>';
+    echo   '<p>Year of birth: <input type="text" name="birth" /></p>';
+    echo    '<p>Current age: <input type="text" name="age" /></p>';
+    echo    '<input type="submit" name="submit" value="Submit" />';
+    echo    ' <input type="reset" name="reset" value="Reset" />';
+    echo   '</form>';
+
+}
+
+if($selected == "norwegian"){
+    echo    '<form  method="post">';
+    echo    '<p>Navn: <input type="text" name="name" /></p>';
+    echo   '<p>Fødselsår: <input type="text" name="birth" /></p>';
+    echo    '<p>Nåværende alder: <input type="text" name="age" /></p>';
+    echo    '<input type="submit" name="submit" value="Submit" />';
+    echo    ' <input type="reset" name="reset" value="Reset" />';
+    echo   '</form>';
+}
+?>
+
+</body></html>
+```
+
+### 2.1
+
+```PHP
+<?php
+
+$host = "localhost";
+$db = "employees";
+$user="root";
+$password = "";
+
+$conn = new mysqli($host, $user, $password, $db);
+
+if(!$conn){
+    die("Connection failed: "   .   $conn->connect_error);
+}
+
+$sql = 'SELECT first_name, last_name FROM employees.employees ORDER BY last_name asc';
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0){
+    echo '<table>';
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<tr><td>"  . $row['first_name'] . "</td><td>" .  $row['last_name']   .   "</td></tr>";
+    }
+}else{
+      echo "0 results";
+    }
+echo'</table>';
+
+
+
+mysqli_close($conn);
+
+?>
+```
+
+### 2.2
+
+```PHP
+<?php
+
+$host = "localhost";
+$db = "employees";
+$user="root";
+$password = "";
+
+$conn = new mysqli($host, $user, $password, $db);
+
+if(!$conn){
+    die("Connection failed: "   .   $conn->connect_error);
+}
+
+$sql = 'SELECT DISTINCT(title) FROM employees.titles';
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0){
+    echo '<table>';
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<tr><td>"  . $row['title'] . "</td></tr>";
+    }
+}else{
+      echo "0 results";
+    }
+echo'</table>';
+
+
+
+mysqli_close($conn);
+
+?>
+```
+
+### 2.3
+
+```PHP
+<?php
+
+$host = "localhost";
+$db = "employees";
+$user="root";
+$password = "";
+
+$conn = new mysqli($host, $user, $password, $db);
+
+if(!$conn){
+    die("Connection failed: "   .   $conn->connect_error);
+}
+
+$sql = "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = 'employees'";
+$result = mysqli_query($conn, $sql);
+$table_list = array();
+
+if (mysqli_num_rows($result) > 0){
+    echo '<table>';
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<tr><td>"  . $row['TABLE_NAME'] . "</td></tr>";
+    }
+}else{
+      echo "0 results";
+    }
+echo'</table>';
+
+
+
+mysqli_close($conn);
+
+?>
+```
+
+### 3.1
+
+```PHP
+<?php
+
+$host = "localhost";
+$db = "employees";
+$user="root";
+$password = "";
+
+$conn = new mysqli($host, $user, $password, $db);
+
+if(!$conn){
+    die("Connection failed: "   .   $conn->connect_error);
+}
+
+$sql ='SELECT TABLE_NAME, COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA ="employees" ';
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0){
+    echo '<table>';
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<tr><td>"  . $row['TABLE_NAME'] . "</td><td>"  . $row['COLUMN_NAME'] .  "</td></tr>";
+    }
+}else{
+      echo "0 results";
+    }
+echo'</table>';
+
+
+
+mysqli_close($conn);
+
+?>
+```
+
+### 3.2
+
+```PHP
+<?php
+
+$host = "localhost";
+$db = "employees";
+$user="root";
+$password = "";
+
+$conn = new mysqli($host, $user, $password, $db);
+
+if(!$conn){
+    die("Connection failed: "   .   $conn->connect_error);
+}
+
+$sql ='SELECT D.dept_name AS DepartmentName,
+    CONCAT( E.first_name," ", E.last_name) AS Manager,
+    COUNT(*) AS EmployeeCount
+FROM dept_emp DE
+    INNER JOIN departments D on DE.dept_no = D.dept_no
+    INNER JOIN dept_manager DM on D.dept_no = DM.dept_no
+    INNER JOIN employees E on DE.emp_no = E.emp_no
+WHERE D.dept_name = "Marketing"
+GROUP BY DE.dept_no ';
+
+$result = mysqli_query($conn, $sql);
+
+if (mysqli_num_rows($result) > 0){
+    echo '<table>';
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<tr><td>"  . $row['DepartmentName'] . "</td><td>"  . $row['Manager'] .    "</td><td>"  . $row['EmployeeCount']  .  "</td></tr>";
+    }
+}else{
+      echo "0 results";
+    }
+echo'</table>';
+
+
+
+mysqli_close($conn);
+
+?>
+```
+
+### 3.3
+
+```PHP
+<?php
+
+$host = "localhost";
+$db = "employees";
+$user="root";
+$password = "";
+
+$conn = new mysqli($host, $user, $password, $db);
+
+if(!$conn){
+    die("Connection failed: "   .   $conn->connect_error);
+}
+
+
+$sql = "SELECT `gender`, COUNT(`emp_no`) AS Number,
+floor((YEAR(`birth_date`) / 10))*10 AS Decade
+FROM `employees`
+GROUP BY `gender`, Decade
+ORDER BY `gender`";
+
+$result = mysqli_query($conn, $sql);
+
+
+
+
+if (mysqli_num_rows($result) > 0){
+    echo '<table>';
+    echo '<title>3_3</title>';
+    echo '<table>' . '<tr>' .
+            '<th> Gender</th> '.
+             '<th> Amount</th> ' .
+              '<th> Decade</th> ';
+    while($row = mysqli_fetch_assoc($result)){
+        echo "<tr><td>"  . $row['gender'] . "</td><td>"  . $row['Number'] .    "</td><td>"  . $row['Decade']  .  "</td></tr>";
+    }
+}else{
+      echo "0 results";
+    }
+echo'</table>';
+
+mysqli_close($conn);
+
+
+?>
+```
