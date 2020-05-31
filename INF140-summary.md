@@ -1,120 +1,130 @@
 # INF140 Summary
 
-- [INF140 Summary](#inf140-summary)
-  - [Overview of Cybersecurity](#overview-of-cybersecurity)
-    - [What is cybersecurity](#what-is-cybersecurity)
-    - [Key questions in cybersecurity](#key-questions-in-cybersecurity)
-    - [CIA Triad](#cia-triad)
-    - [Pakerian hexad](#pakerian-hexad)
-    - [Security attributes](#security-attributes)
-    - [What can adversaries do](#what-can-adversaries-do)
-    - [Security vs privacy](#security-vs-privacy)
-    - [Vulnerabilities](#vulnerabilities)
-    - [Security threats](#security-threats)
-    - [Security risks (vulnerabilities x threats x impacts)](#security-risks-vulnerabilities-x-threats-x-impacts)
-    - [Security controls(countermeasures, safeguard)](#security-controlscountermeasures-safeguard)
-    - [Multi-layered defense](#multi-layered-defense)
-    - [Security control protections](#security-control-protections)
-    - [Risks](#risks)
-      - [Risk management](#risk-management)
-      - [Risk assessment](#risk-assessment)
-      - [Quantitative and qualitative analysis](#quantitative-and-qualitative-analysis)
-    - [Threat models](#threat-models)
-  - [Identification and Authentication](#identification-and-authentication)
-    - [Identification](#identification)
-    - [Requirements on Identification](#requirements-on-identification)
-    - [Authentication](#authentication)
-      - [User Authentication](#user-authentication)
-      - [Means of Authentication](#means-of-authentication)
-      - [Password Bases Authentication](#password-bases-authentication)
-        - [Storing Passwords in Clear Text](#storing-passwords-in-clear-text)
-        - [Storing Passwords as Encrypted text](#storing-passwords-as-encrypted-text)
-        - [Storing Passwords as Hashed Text](#storing-passwords-as-hashed-text)
-        - [Cracking passwords](#cracking-passwords)
-        - [Salting Passwords](#salting-passwords)
-        - [Password Storage Best Practice](#password-storage-best-practice)
-        - [Passwords Vulnerabilities and Countermeasures](#passwords-vulnerabilities-and-countermeasures)
-        - [Other Common Characteristics of Passwords](#other-common-characteristics-of-passwords)
-        - [Password Selection Strategies](#password-selection-strategies)
-        - [Passwords:  Do’s and Don't s](#passwords-dos-and-dont-s)
-      - [Token-Bases Authentication](#token-bases-authentication)
-        - [Memory Cards](#memory-cards)
-        - [Smart Cards](#smart-cards)
-      - [Bio-metric Authentication](#bio-metric-authentication)
-  - [Access Control](#access-control)
-    - [Access Control and Other Security Functions](#access-control-and-other-security-functions)
-    - [Access Control in the Real World](#access-control-in-the-real-world)
-      - [Physical Access Control](#physical-access-control)
-      - [Technical Access Control](#technical-access-control)
-    - [General Requirements of Access Control](#general-requirements-of-access-control)
-    - [Basic Elements of Access Control Systems](#basic-elements-of-access-control-systems)
-    - [Access Control Models](#access-control-models)
-  - [Malicious Software](#malicious-software)
-    - [Malware (Malicious software/code)](#malware-malicious-softwarecode)
-      - [Classification of malware](#classification-of-malware)
-    - [Viruses](#viruses)
-      - [Compression Virus](#compression-virus)
-      - [Types of Viruses By target](#types-of-viruses-by-target)
-      - [Propagation of viruses](#propagation-of-viruses)
-      - [Types of Viruses by Concealment Strategy](#types-of-viruses-by-concealment-strategy)
-    - [Worms](#worms)
-      - [Worm Replication](#worm-replication)
-    - [Trojan Horses](#trojan-horses)
-    - [Types of Malware Damage](#types-of-malware-damage)
-      - [Zombies and Bots](#zombies-and-bots)
-        - [Use of Botnets](#use-of-botnets)
-      - [Information Theft](#information-theft)
-      - [Phishing](#phishing)
-      - [Other Malware](#other-malware)
-    - [Comparison of Malware](#comparison-of-malware)
-    - [Malware Countermeasure Approaches](#malware-countermeasure-approaches)
-      - [Development of Anti-virus Software](#development-of-anti-virus-software)
-      - [Generic Decryption](#generic-decryption)
-      - [Host-Based Behavior](#host-based-behavior)
-    - [Malware Security Issues](#malware-security-issues)
-  - [Firewalls](#firewalls)
-    - [Why firewalls](#why-firewalls)
-    - [Firewall characteristics](#firewall-characteristics)
-    - [Firewall capabilities](#firewall-capabilities)
-    - [Firewall limitations](#firewall-limitations)
-    - [Types of firewalls](#types-of-firewalls)
-      - [Packet Filtering Firewall](#packet-filtering-firewall)
-        - [Packet filtering rules](#packet-filtering-rules)
-      - [iptables](#iptables)
-      - [iptables concepts](#iptables-concepts)
-      - [iptables Chains](#iptables-chains)
-      - [iptables rules](#iptables-rules)
-      - [Common iptables Syntax](#common-iptables-syntax)
-      - [Issues with Packet Filtering Firewalls](#issues-with-packet-filtering-firewalls)
-    - [Stateful Packet Inspection](#stateful-packet-inspection)
-    - [Application proxy](#application-proxy)
-    - [Circuit-level proxy](#circuit-level-proxy)
-    - [Firewall Architecture](#firewall-architecture)
-    - [General Firewall Issues](#general-firewall-issues)
-  - [Authentication in Networks](#authentication-in-networks)
-    - [Overview of authentication](#overview-of-authentication)
-    - [Authentication in WPA2](#authentication-in-wpa2)
-    - [Entity authentication in networks](#entity-authentication-in-networks)
-    - [Types of authentication protocols](#types-of-authentication-protocols)
-      - [Secret info-based authentication](#secret-info-based-authentication)
-        - [AAA architecture protocols](#aaa-architecture-protocols)
-        - [892.1X(EAPOL)](#8921xeapol)
-        - [Extensible Authentication Protocol(EAP)](#extensible-authentication-protocoleap)
-        - [RADIUS](#radius)
-    - [Virtual Private Network (VPN)](#virtual-private-network-vpn)
-    - [Tunneling](#tunneling)
-    - [Network access server(NAS)](#network-access-servernas)
-    - [Network Access Enforcement Methods](#network-access-enforcement-methods)
-  - [Public Key Certificates](#public-key-certificates)
-    - [Distribution of Public Keys](#distribution-of-public-keys)
-      - [Public announcements](#public-announcements)
-      - [Publicly Available Directory](#publicly-available-directory)
-      - [Public-Key Authority](#public-key-authority)
-      - [Public-Key Certificates](#public-key-certificates-1)
-    - [X.509 Certificates](#x509-certificates)
-      - [Multiple Certificate Authorities](#multiple-certificate-authorities)
-    - [Public Key Infrastructure](#public-key-infrastructure)
-    - [PGP - Web of Trust](#pgp---web-of-trust)
+* [INF140 Summary](#inf140-summary)
+  * [Overview of Cybersecurity](#overview-of-cybersecurity)
+    * [What is cybersecurity](#what-is-cybersecurity)
+    * [Key questions in cybersecurity](#key-questions-in-cybersecurity)
+    * [CIA Triad](#cia-triad)
+    * [Pakerian hexad](#pakerian-hexad)
+    * [Security attributes](#security-attributes)
+    * [What can adversaries do](#what-can-adversaries-do)
+    * [Security vs privacy](#security-vs-privacy)
+    * [Vulnerabilities](#vulnerabilities)
+    * [Security threats](#security-threats)
+    * [Security risks (vulnerabilities x threats x impacts)](#security-risks-vulnerabilities-x-threats-x-impacts)
+    * [Security controls(countermeasures, safeguard)](#security-controlscountermeasures-safeguard)
+    * [Multi-layered defense](#multi-layered-defense)
+    * [Security control protections](#security-control-protections)
+    * [Risks](#risks)
+      * [Risk management](#risk-management)
+      * [Risk assessment](#risk-assessment)
+      * [Quantitative and qualitative analysis](#quantitative-and-qualitative-analysis)
+    * [Threat models](#threat-models)
+  * [Identification and Authentication](#identification-and-authentication)
+    * [Identification](#identification)
+    * [Requirements on Identification](#requirements-on-identification)
+    * [Authentication](#authentication)
+      * [User Authentication](#user-authentication)
+      * [Means of Authentication](#means-of-authentication)
+      * [Password Bases Authentication](#password-bases-authentication)
+        * [Storing Passwords in Clear Text](#storing-passwords-in-clear-text)
+        * [Storing Passwords as Encrypted text](#storing-passwords-as-encrypted-text)
+        * [Storing Passwords as Hashed Text](#storing-passwords-as-hashed-text)
+        * [Cracking passwords](#cracking-passwords)
+        * [Salting Passwords](#salting-passwords)
+        * [Password Storage Best Practice](#password-storage-best-practice)
+        * [Passwords Vulnerabilities and Countermeasures](#passwords-vulnerabilities-and-countermeasures)
+        * [Other Common Characteristics of Passwords](#other-common-characteristics-of-passwords)
+        * [Password Selection Strategies](#password-selection-strategies)
+        * [Passwords:  Do’s and Don't s](#passwords-dos-and-dont-s)
+      * [Token-Bases Authentication](#token-bases-authentication)
+        * [Memory Cards](#memory-cards)
+        * [Smart Cards](#smart-cards)
+      * [Bio-metric Authentication](#bio-metric-authentication)
+  * [Access Control](#access-control)
+    * [Access Control Key Points](#access-control-key-points)
+    * [Access Control and Other Security Functions](#access-control-and-other-security-functions)
+    * [Access Control in the Real World](#access-control-in-the-real-world)
+      * [Physical Access Control](#physical-access-control)
+      * [Technical Access Control](#technical-access-control)
+    * [General Requirements of Access Control](#general-requirements-of-access-control)
+    * [Basic Elements of Access Control Systems](#basic-elements-of-access-control-systems)
+    * [Access Control Models](#access-control-models)
+      * [Discretionary Access Control (DAC)](#discretionary-access-control-dac)
+        * [Access Matrix](#access-matrix)
+      * [Role-Based Access Control](#role-based-access-control)
+        * [Constraints in RBAC](#constraints-in-rbac)
+      * [Mandatory Access Control (MAC)](#mandatory-access-control-mac)
+        * [Implementations of MAC](#implementations-of-mac)
+      * [Attribute-Based Access Control](#attribute-based-access-control)
+    * [Access Control in Operating Systems](#access-control-in-operating-systems)
+    * [Main Characteristics of Access Control Models](#main-characteristics-of-access-control-models)
+  * [Malicious Software](#malicious-software)
+    * [Malware (Malicious software/code)](#malware-malicious-softwarecode)
+      * [Classification of malware](#classification-of-malware)
+    * [Viruses](#viruses)
+      * [Compression Virus](#compression-virus)
+      * [Types of Viruses By target](#types-of-viruses-by-target)
+      * [Propagation of viruses](#propagation-of-viruses)
+      * [Types of Viruses by Concealment Strategy](#types-of-viruses-by-concealment-strategy)
+    * [Worms](#worms)
+      * [Worm Replication](#worm-replication)
+    * [Trojan Horses](#trojan-horses)
+    * [Types of Malware Damage](#types-of-malware-damage)
+      * [Zombies and Bots](#zombies-and-bots)
+        * [Use of Botnets](#use-of-botnets)
+      * [Information Theft](#information-theft)
+      * [Phishing](#phishing)
+      * [Other Malware](#other-malware)
+    * [Comparison of Malware](#comparison-of-malware)
+    * [Malware Countermeasure Approaches](#malware-countermeasure-approaches)
+      * [Development of Anti-virus Software](#development-of-anti-virus-software)
+      * [Generic Decryption](#generic-decryption)
+      * [Host-Based Behavior](#host-based-behavior)
+    * [Malware Security Issues](#malware-security-issues)
+  * [Firewalls](#firewalls)
+    * [Why firewalls](#why-firewalls)
+    * [Firewall characteristics](#firewall-characteristics)
+    * [Firewall capabilities](#firewall-capabilities)
+    * [Firewall limitations](#firewall-limitations)
+    * [Types of firewalls](#types-of-firewalls)
+      * [Packet Filtering Firewall](#packet-filtering-firewall)
+        * [Packet filtering rules](#packet-filtering-rules)
+      * [iptables](#iptables)
+      * [iptables concepts](#iptables-concepts)
+      * [iptables Chains](#iptables-chains)
+      * [iptables rules](#iptables-rules)
+      * [Common iptables Syntax](#common-iptables-syntax)
+      * [Issues with Packet Filtering Firewalls](#issues-with-packet-filtering-firewalls)
+    * [Stateful Packet Inspection](#stateful-packet-inspection)
+    * [Application proxy](#application-proxy)
+    * [Circuit-level proxy](#circuit-level-proxy)
+    * [Firewall Architecture](#firewall-architecture)
+    * [General Firewall Issues](#general-firewall-issues)
+  * [Authentication in Networks](#authentication-in-networks)
+    * [Overview of authentication](#overview-of-authentication)
+    * [Authentication in WPA2](#authentication-in-wpa2)
+    * [Entity authentication in networks](#entity-authentication-in-networks)
+    * [Types of authentication protocols](#types-of-authentication-protocols)
+      * [Secret info-based authentication](#secret-info-based-authentication)
+        * [AAA architecture protocols](#aaa-architecture-protocols)
+        * [892.1X(EAPOL)](#8921xeapol)
+        * [Extensible Authentication Protocol(EAP)](#extensible-authentication-protocoleap)
+        * [RADIUS](#radius)
+    * [Virtual Private Network (VPN)](#virtual-private-network-vpn)
+    * [Tunneling](#tunneling)
+    * [Network access server(NAS)](#network-access-servernas)
+    * [Network Access Enforcement Methods](#network-access-enforcement-methods)
+  * [Public Key Certificates](#public-key-certificates)
+    * [Distribution of Public Keys](#distribution-of-public-keys)
+      * [Public announcements](#public-announcements)
+      * [Publicly Available Directory](#publicly-available-directory)
+      * [Public-Key Authority](#public-key-authority)
+      * [Public-Key Certificates](#public-key-certificates-1)
+    * [X.509 Certificates](#x509-certificates)
+      * [Multiple Certificate Authorities](#multiple-certificate-authorities)
+    * [Public Key Infrastructure](#public-key-infrastructure)
+    * [PGP - Web of Trust](#pgp---web-of-trust)
 
 ## Overview of Cybersecurity
 
@@ -610,6 +620,37 @@
 
 * The prevention of unauthorized use of a resource, including the prevention of use of a resource in an unauthorized manner
 
+### Access Control Key Points
+
+* Access control prevents unauthorized use of resources(objects) to subjects
+* Subjects are processes on behalf of users and applications
+* Classes of subjects
+  * Owner
+  * Group
+  * World
+* Objects
+  * Files
+  * Database records
+  * Disk blocks
+  * Memory segments
+  * Processes
+* Access rights
+  * Read
+  * Write
+  * Execute
+  * Delete
+  * Create
+* DAC
+  * Access rights may be granted to other subjects(common in OS's and DB's)
+* RBAC
+  * Subjects take on roles
+    * Access rights assigned to roles
+* MAC
+  * Subjects/objects assigned to different levels
+  * Subjects can not modify assignment
+* ABAC
+  * Access based on attributes of subjects, objects and even actions and context
+
 ### Access Control and Other Security Functions
 
 * Identification
@@ -670,7 +711,7 @@
   * Files
   * File partitions
   * Directories
-  * Email inboxes
+  * Email inbox
   * Programs
   * Communication ports
 
@@ -684,11 +725,11 @@
 ### Access Control Models
 
 * Discretionary Access Control(DAC)
-* Use identity of requestor andaccess rules (that determine what requestor is allowedto do) to control access
-  * Entities may allow otherentities to access resources
+* Use identity of requester or  and access rules (that determine what requester is allowed to do) to control access
+  * Entities may allow other entities to access resources
 
 * Mandatory Access Control(MAC)
-  * Compare security labels withsecurity clearances to determine access
+  * Compare security labels with security clearances to determine access
     * Entities can not grant access to resources to other entities
 
 * Role-based Access Control
@@ -697,6 +738,144 @@
 * Attribute-based Access Control
   * Use attributes of any part of a system to define allowable access
 
+* These models differ from each other with respect to who can grant permission to whom for access to the resources
+* These models are not mutually exclusive
+
+#### Discretionary Access Control (DAC)
+
+* DAC
+  * An entity may be granted access rights that permit the entity
+    * If the choose so, to enable another entity to access a resource
+* Common access control scheme in operating systems and database management systems
+
+##### Access Matrix
+  
+* Specifies access rights of subjects on objects
+* In practice an access matrix is sparse, implement as either
+  * Access Control Lists
+    * For each object, list subjects and their access rights
+  * Capability Lists
+    * For each subject, list objects and the rights the subject have on that object
+  * Alternative implementation
+    * Authorization table listing subject, access mode and object
+      * Easily implemented in database
+
+* User    |File 1   | File 2 B | File 3
+    --------|---------|----------|---------
+    User A  | Own | Own/Read/Write | Read
+    User B  | --  | Write | Read/Write/Execute
+    User C  |Read| --  |  --
+
+* Authorization table
+
+* Subject | Access Mode | Object
+  ---------|----------|---------
+  A | Own | File 1
+  A | Read | File 1
+  A | Write | File 1
+  A | Write | File 2
+  A | Read | File 2
+  B | Read | File 1
+  B | Write | File 3
+  C | Own | File 3
+  C | Read | File 3
+  C | Write | File 3
+
+#### Role-Based Access Control
+
+* RBAC
+  * Users are assigned to roles
+    * Access rights are assigned to roles instead of users/identities
+  * Roles are typically used assigned to jobs within an organization
+  * Users may be assigned multiple roles
+    * Static
+    * Dynamic
+  * Sessions are temporary assignments of user to role(s)
+  * Access control matrix can map users to roles and roles to object
+
+##### Constraints in RBAC
+
+* Constraints define relationship between roles or conditions on roles
+* A higher role included all access rights of lower roles
+* Mutually exclusive roles
+  * Users can only be assigned to one role in the set
+
+* **Cardinality**
+  * Maximum number of assignments
+    * Maximum number of users assigned to a role
+    * Maximum number of roles a user can be assigned to
+    * Maximum number of roles that can be granted a particular access right
+
+* Prerequisite
+  * Condition upon which user can be assigned to a role
+    * E.g users can only be assigned a senior if they already are assigned as a junior role
+
+#### Mandatory Access Control (MAC)
+
+* Based on **multilevel security**
+  * Top secret -> secret -> confidential -> unclassified
+  * Subject has security clearance of a given level
+  * Object has security classification of a given level
+* Two required properties for confidentiality
+  1. No read up
+     * Subjects can only read an object of less than or equal their own security level
+  2. No write down
+     * Subjects can only write into objects of greater than or equal their own security level
+
+* Clearance and classification is determined by administrator decisions
+  * Users can not override security policy
+* Bell-LaPadula model formally defines multilevel security and MAC
+
+##### Implementations of MAC
+
+* SELinux
+  * Linux kernel modules available to most distroes
+* AppArmor
+  * Some Linux distroes
+* TrustedBSD
+  * FreeBSD
+  * OpenBSD
+  * OSX
+* Mandatory Integrity Control
+  * Vista
+  * Windows 7
+  * Windows 8
+
+#### Attribute-Based Access Control 
+
+* ABAC uses attributes of any part of any system to define allowable access
+* Attributes can belong to subjects, objects, actions, or contexts
+  * Subject
+    * Clearance
+    * Position
+    * Title
+    * Department
+    * Location
+    * etc...
+* ABAC provides the most granularity of any of the access control models
+
+### Access Control in Operating Systems
+
+* Different models are built into the core or the kernel of the operating system
+* For every access attempt, before a subject can communicate with an object, the security kernel reviews the rules of the access control model to determine whether the request is allowed
+* Access control are generally enforced more strictly in UNIX and LINUX systems than in Windows
+  * (No shit!)
+
+### Main Characteristics of Access Control Models
+
+* **DAC**
+  * Data owners decide who has access to resources
+  * ACLs are used to enforce these access decisions
+
+* **MAC**
+  * Operating system enforces the systems security policies through the use of security labels
+
+* **RBAC**
+  * Access decisions are based on each subject's role and/or function position
+    * Rule-based Access Control adds on to RBAC by imposing rules that further restrict access decisions
+
+* **ABAC**
+  * Access decisions are based on attributes of any component of or action on the system
 
 ## Malicious Software
 
