@@ -114,10 +114,61 @@
 ### Security control protections
   
 * Preventive
+  * Physical
+    * Locks
+    * Badge systems
+    * Biometric systems
+    * Mantrap doors
+  * Administrative
+    * Security policy
+    * Separation of duties
+    * Information classification
+    * Personnel procedures
+    * Testing
+    * Security awareness training
+  * Technical
+    * ACLs
+    * Encryption
+    * Antivirus software
+    * Smart cards
+    * Dial-up-call-back systems
+
 * Detective
+  * Physical
+    * Motion detectors
+    * Closed-circuit TV's
+  * Administrative
+    * Monitoring and supervising
+    * Job rotation
+    * Investigations
+  * Technical
+    * Audit logs
+    * IDs
+
 * Corrective
+  * Physical
+    * None
+  * Administrative
+    * None
+  * Technical
+    * Server images
+
 * Deterrent
+  * Physical
+    * Fences
+    * Lighting
+  * Administrative
+    * None
+  * Technical
+    * None
+
 * Recovery
+  * Physical
+    * Off site facility
+  * Administrative
+    * None
+  * Technical
+    * Data backup
 
 ### Risks
 
@@ -566,6 +617,168 @@
     * Useful software that also performs harmful functions
 
 ### Trojan Horses
+
+* A Trojan horse is a useful or seemingly useful program that contains hidden code od a malicious nature that executes when the program is invoked
+* It does not propagate itself as viruses or worms
+* It will be eliminated if the host program is deleted
+
+### Types of Malware Damage
+
+* Action taken by malware on system - Corrupt the system
+* Data destruction
+  * Delete
+  * Overwrite data
+    * Encrypt data and then demand payment to decrypt
+
+* Real world damage
+  * Corrupt BIOS code so the computers cannot boot
+  * Control industrial systems to operate such that they fail
+
+* Logic bomb
+  * Activate when certain conditions are met
+    * Presence/absence of files
+    * Date/time
+    * Particular software or user
+
+#### Zombies and Bots
+
+* Take over another internet attached computer and uses that computer to launch or manage attacks
+* Botnet
+  * Collection of bots capable of action in coordinated manner
+
+##### Use of Botnets
+
+* Distributed denial-of-service(DDOS) attacks
+* Spamming
+* Traffic sniffing
+* Keylogging
+* Spreading new malware
+* Installing advertisement add-ons and browser plugins
+* Attacking IRC chat networks
+* Manipulating online polls/games
+
+#### Information Theft
+
+* Keyloggers
+  * Captures keystrokes to allow attacker to monitor sensitive information
+  * Typically uses some form of filtering mechanism that only return information close to keywords
+
+* Spyware
+  * Subverts the compromised machine to allow monitoring of a wide ranger of activity on the system
+  * Monitoring history and content of browsing activity
+  * Redirecting certain web page requests to fake sites
+  * Dynamically modifying data exchanged between the browser and certain web sites of interest
+
+#### Phishing
+
+* Exploits social engineering to leverage the user's trust by masquerading as communication form a trusted source
+* Include an URL in a spam e-mail that links to a fake web site that mimics the login page of a banking site, gaming site, or similar site
+* Suggests that urgent actions is required by the user to authenticate their account
+* Attacker exploits their account
+* Spear-phishing
+  * Recipient are carefully researched by the attacker
+  * E-mail is crafted to specifically suit its recipient, often quoting a range of information to convince them of its authenticity
+
+#### Other Malware
+
+* Backdoor
+* Trapdoor
+* Mobile code
+* Drive-by-downloads
+* Flooders
+* Rootkit
+
+### Comparison of Malware
+
+* Virus
+  * Hides inside another program
+  * Propagates itself into other programs and systems
+  * Potentially causes destruction against assets in information systems
+
+* Worm
+  * An independent program
+  * Propagates itself into other programs and systems
+  * Potentially causes destruction against assets in information systems
+
+* Trojan Horse
+  * Hides inside another program
+  * Potentially cause destruction against assets in the information systems
+
+### Malware Countermeasure Approaches
+
+* Prevention is the ideal solution, but almost always impossible
+  * Elements of prevention
+    * Policy
+    * Awareness
+    * Vulnerability mitigation
+    * Apply access controls
+    * User awareness and training
+* Detection, identification and removal
+* Requirements of countermeasures
+  * Generality
+  * Timeliness
+  * Resiliency
+  * Minimal denial-of-service costs
+  * Transparency
+  * Global and local coverage
+* Multiple approaches to meet requirements
+  * Host-based scanner
+  * Perimeter scanning
+  * Distributed intelligence gathering
+
+#### Development of Anti-virus Software
+
+* 1st generation - Simple scanners
+  * Requires a malware signature to identify the malware
+  * Limited to the detection of known malware
+
+* 2nd generation - Heuristic scanners
+  * Uses heuristic rules to search for probable malware instances
+  * Another approach is integrity checking
+
+* 3rd generation - Activity traps
+  * Memory-resident programs that identify malware by its actions rather than its structure in an infected program
+
+* 4th generation - Full-featured protection
+  * Packages consisting of a variety of anti-virus techniques used in conjunction
+  * Include scanning and activity trap components and access control capability
+
+#### Generic Decryption
+
+* A polymorphic  virus must decrypt itself to activate
+* Generic decryption runs executable code in a virtual machine and monitors instructions
+  * CPU emulator - Virtual machine software
+  * Virus signature scanner - Scans for signatures
+  * Emulation control module - Controls execution of target code
+
+* If decryption is performed, the malware is exposed and detected
+* Enables anti-virus program to easily detect complex polymorphic viruses and other malware while maintaining fast scanning speeds
+* How long to run each interpretation?
+  * Too long - Systems performance is degraded
+  * Too short - Malware might not be spotted
+
+#### Host-Based Behavior
+
+* Integrates with OS and monitors program behavior in real-time
+* Blocks potentially malicious actions before the affect the system
+  * Attempts to open , view, delete and modify files
+  * Attempt to format disks
+  * Modifications to logic of executable files
+  * Modification of critical system settings
+  * Scripting of email or IM clients to send executable files
+  * Initiation of network connection
+* Does not depend on signatures of fingerprinting
+* Allows malicious code to run, some actions may be undetected
+
+### Malware Security Issues
+
+* Cat and mouse
+  * Many countermeasures rely on knowledge of existing malware, producers of malware try to defeat countermeasures
+
+* Performance degradation and denial-of-service
+  * Countermeasures often affect normal system behavior
+
+* What can you actually trust?
 
 ## Firewalls
 
