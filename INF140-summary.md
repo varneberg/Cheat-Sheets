@@ -503,6 +503,69 @@
 * Multipartite Virus
   * Infects files in multiple way
 
+#### Propagation of viruses
+
+* Randomly select *.exe to insert itself to the target when it’s executed by other program
+* Resides in memory and attaches itself to the target when an external drive is inserted to the computer
+* Spread through infected software that appears to be useful and free software publicly available
+* An email attachment
+* A macro virus spreads when users share files
+
+#### Types of Viruses by Concealment Strategy
+
+* Encrypted Virus
+  * A portion of the virus creates a random encryption key and encrypts the remainder of the virus
+
+* Stealth Virus
+  * A form of virus explicitly designed to hide itself from detection by anti-virus software
+
+* Polymorphic Virus
+  * A virus that mutates with every infection
+
+* Metamorphic Virus
+  * A virus that mutates and rewrites itself at each iteration and may change behavior as well as appearance
+
+### Worms
+
+* A computer worm is a computer program that
+  * Can run independently
+  * Can propagate a complete working version of itself onto other hosts in a network
+  * May consume computer resources destructively
+
+* Program that actively seeks out more machines to infect and each infected machine
+* Serves as an automated launching pad for attacks on other machines
+* Exploits software vulnerabilities in client or server programs
+* Can use network connections to spread from system to systems
+* Spreads through shared media (USB drives, CD, DVD or other data disks)
+* E-mail worms spread in macro or script code included in attachments and instant messenger file transfers
+* Upon activation the worm may replicate and propagate again
+* Usually carries some form of payload
+
+#### Worm Replication
+
+* E-mail or instant messaging
+  * Worm e-mails a copy of itself to other systems
+    * Sends itself as an attachment via an instant message service
+
+* File sharing
+  * Creates a copy of itself or infects a file as a virus on a removable media
+
+* Remote execution capability
+  * Worm executes a copy of itself on another system
+
+* Remote file access capability
+  * Worm uses a remote file access or transfer service to copy itself from one system to the next
+
+* Remote login capability
+  * Worm logs onto a remote system as a user ant then uses commands to copy itself from one system to the other
+
+* Propagation by social engineering
+  * Tricking user to assist in the compromise of own systems
+  * Spam email
+  * Trojan Horses
+    * Useful software that also performs harmful functions
+
+### Trojan Horses
 
 ## Firewalls
 
