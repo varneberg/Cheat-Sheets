@@ -30,5 +30,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# VSCode
+.vscode
 # End of https://www.gitignore.io/api/macos
 
