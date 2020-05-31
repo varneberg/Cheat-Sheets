@@ -13,7 +13,7 @@
 * U.S.NIST:
   * The protection afforded to an automated information system in order to attain the applicable objectives of preserving the integrity, availability and confidentiality of information system resources
 
-### Key questions in cybersec
+### Key questions in cybersecurity
   
 * What do we want to protect
 * Why do we need to protect them
@@ -118,7 +118,7 @@
 * Corrective
 * Deterrent
 * Recovery
- 
+
 ### Risks
 
 * Physical damage
@@ -437,6 +437,72 @@
   * Iris
   * Signature
   * Voice
+
+## Malicious Software
+
+### Malware (Malicious software/code)
+  
+* Software or firmware intended to perform an unauthorized process that will have an adverse impact on the confidentiality, integrity, or availability of an information system
+* A virus, worm, Trojan horse, or other code-based entity that infects a host. Spyware and some forms of adware are also examples of malicious code
+
+#### Classification of malware
+  
+* Propagation
+  * How the malware spreads
+  * Virus
+  * Worms
+
+* Payload
+  * Actions malware takes when reaching its victim
+  * System corruption
+  * Zombies and bots
+  * Information theft
+  * Stealthing
+
+* Countermeasure
+  * Anti-virus software
+
+### Viruses
+
+* A computer virus is computer program that:
+  * Hides inside another program
+  * Propagates itself to other programs and/or other computers
+  * Often includes some destructive code
+
+* Phases of a virus
+  1. Dormant
+     * Virus is is idle and waiting for some event to be activated
+  2. Propagation
+     * Virus copies itself into other programs or areas of operating system
+  3. Triggering
+     * Virus is activated to perform some function
+     * Similar triggers to logic bombs, but also number
+  4. Execution
+     * Main function is performed(harmless/destructive)
+
+#### Compression Virus
+
+* This simple virus can be detected because file length is different from original program
+* This detection can be avoided using compression
+  * Assume program P1 is infected with virus CV1.
+    1. For each uninfected file P2, the virus compresses P2 to produce P2’
+    2. Virus CV is pre-pended to P2’ (so resulting size is same as P2)
+    3. P1’ is uncompressed and (4) executed
+
+#### Types of Viruses By target
+
+* Boot Sector Infector
+  * Infects a master boot record or boot record and spreads when a system is booted from the disk containing the virus
+
+* File Infector
+  * Infects files that the operating system or shell considers to be executable
+
+* Macro Virus
+  * Infects files with macro or scripting code that is interpreted by an application
+
+* Multipartite Virus
+  * Infects files in multiple way
+
 
 ## Firewalls
 
