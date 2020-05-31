@@ -59,6 +59,24 @@
       * [Attribute-Based Access Control](#attribute-based-access-control)
     * [Access Control in Operating Systems](#access-control-in-operating-systems)
     * [Main Characteristics of Access Control Models](#main-characteristics-of-access-control-models)
+  * [Accountability and Auditing](#accountability-and-auditing)
+    * [Cybersecurity Principle No1](#cybersecurity-principle-no1)
+    * [Accountability](#accountability)
+      * [Security Benefits of Accountability](#security-benefits-of-accountability)
+        * [Non-repudiation](#non-repudiation)
+        * [Deterrence](#deterrence)
+        * [Intrusion Detection and Prevention](#intrusion-detection-and-prevention)
+        * [Admissibility of Records](#admissibility-of-records)
+      * [How is Accountability Achieved](#how-is-accountability-achieved)
+    * [Auditing](#auditing)
+      * [How Auditing Should be Done](#how-auditing-should-be-done)
+        * [What Should be Audited](#what-should-be-audited)
+        * [System-level Events](#system-level-events)
+        * [Application-level events](#application-level-events)
+        * [User-level Events](#user-level-events)
+    * [Monitoring](#monitoring)
+    * [Logging](#logging)
+    * [Accountability and Auditing TLDR;](#accountability-and-auditing-tldr)
   * [Malicious Software](#malicious-software)
     * [Malware (Malicious software/code)](#malware-malicious-softwarecode)
       * [Classification of malware](#classification-of-malware)
@@ -665,7 +683,7 @@
   * Independent review of system records and activities in order to test for adequacy of system control
   * Ensure compliance to policy
   * Detect breaches and recommend new changes
-  *(Security administrator) -> (Authorization database) -> (Access control function) -> (System resources) | (Access control function) <- (Authentication function) <- (User)
+  * (Security administrator) -> (Authorization database) -> (Access control function) -> (System resources) | (Access control function) <- (Authentication function) <- (User)
 
 ### Access Control in the Real World
 
@@ -673,26 +691,26 @@
 
 * Controlling access of individuals and vehicles into buildings and places
   * Use employee card to enter a building(the issue of tailgating) or use key to open a door
-  * Grant acccess only during certain time period
-  * Access control in aitport
-    * Passport + boarding passs, security check, passport control
+  * Grant access only during certain time period
+  * Access control in airport
+    * Passport + boarding pass, security check, passport control
 
 #### Technical Access Control
 
-* Log on a system to access resrouces(frontend)
-* Filtering certain incoming trafics(backend)
+* Log on a system to access resources(frontend)
+* Filtering certain incoming traffic(backend)
 * File permission in OS
 * a lot more
 
-### General Requirements of Access Control 
+### General Requirements of Access Control
 
 * Reliable input (the primary purpose of identification and authentication)
 * Fine specifications for precise levels of access
-* Least priviledge (also know as zero-access principle)
+* Least privilege (also know as zero-access principle)
 * Separation of duty
 * Open and closed policies(blacklist and whitelist)
 * Policy combinations and conflict resolution
-* Adminstrative policies
+* Administrative policies
 
 ### Basic Elements of Access Control Systems
 
@@ -841,7 +859,7 @@
   * Windows 7
   * Windows 8
 
-#### Attribute-Based Access Control 
+#### Attribute-Based Access Control
 
 * ABAC uses attributes of any part of any system to define allowable access
 * Attributes can belong to subjects, objects, actions, or contexts
@@ -876,6 +894,161 @@
 
 * **ABAC**
   * Access decisions are based on attributes of any component of or action on the system
+
+## Accountability and Auditing
+
+### Cybersecurity Principle No1
+
+    An asset should only be accessed by an authenticated entity in an authorized manner
+
+* Steps of access control
+  1. Identification->
+  2. Authentication->
+  3. Authorization->
+  ->Resource->
+  4. Accountability
+
+### Accountability
+
+    The requirement for actions of an entity to be traced uniquely to that entity, which supports
+
+* Non-repudiation
+* Deterrence
+* Fault isolation
+* Intrusion detection and prevention
+* After-action recovery and legal action
+* Provides the means to trace activities in our environment back to their source
+* Depends on identification, authentication, and access control being present so that one can know who a given transaction is associated with and what permissions were used to allow them to carry it out
+* Providing sufficient control in place to deter or prevent those that would break the rules and abuse the resources they have access to
+
+#### Security Benefits of Accountability
+
+##### Non-repudiation
+  
+* A situation in which sufficient evidence exists to prevent and individual from successfully denying
+  * That he or she has made certain statements
+  * That he or she has taken certain actions
+    * E.g logs or digital signature by cryptographic techniques
+
+##### Deterrence
+
+* Laying out clear rules about how resources should be accessed
+* Announcing clearly that all access activities are monitored, and there will be penalties for acting against the rules
+
+* With the aim of warning individuals, who are authorized or unauthorized to access resources, to think twice before straying outside the lines
+
+##### Intrusion Detection and Prevention
+
+* Intrusion detection performs strictly as a monitoring and alert tool, only notifying us that an attack or undesirable activity is taking place
+* Intrusion prevention, often working from information sent by the intrusion detection, can actually take action based on what is happening in the environment
+* E.g In response to an attack overt the network, an IPS might refuse traffic from the source of the attach
+
+##### Admissibility of Records
+
+* Accountability methods, with a regulated and consistent tracking system, can provide a solid and and documented chain of custody for evidence collection, dictating that all evidence be labeled with information indicating who secured and validated it
+
+#### How is Accountability Achieved
+
+* Accountability is tracked by recording user, system, and application activities
+* It is done through auditing functions and mechanisms within an operating system or application
+* Audit trails contain information about
+  * Operating system activities
+  * Application events
+  * User actions
+
+### Auditing
+
+    Auditing is and independent review and examination of records and activities
+
+* To assess the adequacy of system controls
+* To ensure compliance with established policies and operational procedures
+* To recommend necessary changes in
+  * Controls
+  * Policies
+  * or Procedures
+
+#### How Auditing Should be Done
+
+* Points to be in mind
+  * Store the audits securely
+  * The right audit tools will keep the size of the logs under control
+  * The logs must be protected from any unauthorized changes in order to safeguard data
+  * Review the data in the right manner
+  * The ability to delete logs is only available to administrators
+  * Logs should contain activities of all high-privileged accounts(root, admins)
+
+##### What Should be Audited
+
+* Auditing can vary a lot from organization to organization
+* A general category of items and actions to be audited include
+  * System-level events
+  * Application-level events
+  * User-level events
+
+##### System-level Events
+
+* System performance
+* Log in attempts
+* Log in ID
+* Date and time of each log in attempt
+* Lockouts of users and terminals
+* Use of administration utilities
+* Devices used
+* Functions performed
+* Requests to alter configuration files
+
+##### Application-level events
+
+* Error messages
+* Files opened and closed
+* Modifications of files
+* Security violations within applications
+
+##### User-level Events
+
+* Identification and authentication attempts
+* Files, services, and resources used
+* Commands initiated
+* Security violations
+
+### Monitoring
+
+* Subset of auditing
+* Tends to focus on observing the environment in order to discover undesirable conditions such as 
+  * Failures
+  * Resource shortages
+  * Security issues
+  * Trends that might signal the arrival of such conditions
+* Typically watching specific items of data collected such as
+  * Resource usage on computers and network latency
+  * Attacks occurring repeatedly against servers with network interfaces exposed to the internet
+
+* Clipping level(threshold)
+  * Once a threshold value is passed, the activity is considered to be an event that is logged, investigated, or both
+
+### Logging
+
+* Gives history of the activities that have taken place in the environment being logged
+* Logging mechanisms can be setup to log anything from solely critical events to every actions carried out by the system or software such as
+  * Software error logs
+  * Hardware failures
+  * Users logging in and out
+  * Resource access
+  * Tasks requiring increased privileges in most logs
+* Available to administrators for review
+* Usually not modifiable by the users of the system
+* May be asked to analyze in relation to a particular incident or situation
+
+### Accountability and Auditing TLDR;
+
+* Accountability
+  * Ensures users are accountable for their actions
+  * Is important for deterrence and digital forensics
+  * Is implemented by monitoring, logging and auditing
+
+* Auditing
+  * Audit trails user, system, and application activities by monitoring and logging
+  * Automates tools and human involvements are usually needed for auditing
 
 ## Malicious Software
 
