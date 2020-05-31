@@ -211,11 +211,232 @@
 * Many systems rely on a combination of user ID and password
 * System stores username and password initially
 * User submits username/password to system and the system compares against stored values
-* ID :
+* Identity(ID) :
   * Determine whether the user is authorized to gain access
   * Determines privileges of user(e.g normal or superuser)
-  * User in access control to grant permissions to resources for user 
+  * User in access control to grant permissions to resources for user
 
+##### Storing Passwords in Clear Text
+
+* *ID,P*
+* Insider attack: Normal user reads the database and learns other users passwords
+  * Countermeasure: Access control on password database
+
+* Insider attack: Admin user reads the database and learns other users passwords
+  * Countermeasure: non-admin users must not be trusted.
+
+* Outsider attack: Attacker gains unauthorized access to database and learns all passwords
+  * Countermeasure: Do not store passwords as clear text 
+
+##### Storing Passwords as Encrypted text
+
+* *ID,E(K,P)*
+* Encrypted passwords are stored
+* When user submits password, it is encrypted and compared to the stored value
+* Drawback: Secret key, K, must be stored somewhere. If an attacker can read the database, then they might also be able to access and read the key as well
+
+##### Storing Passwords as Hashed Text
+
+* *ID, H(P)*
+* Hashed of passwords are stored
+* When user submits password, it is hashed and compared to the stored value
+* Practical properties of hash functions:
+  * Variable sized input
+    * Produce a fixed length, small output
+  * No collisions
+  * One way function
+* If an attacker gains database access, practically impossible to take a hash value and directly determine the original password
+
+##### Cracking passwords
+
+* **Brute force attack**
+  * Duration = size of password space / speed of hash
+
+* **Dictionary attack**
+  * Speeds up brute force attack
+  * Uses common passwords from a dictionary of know passwords
+  
+* **Rainbow table attack**
+  * Pre-calculated hashes by someone else
+  * Possible passwords and corresponding hashes stored in database
+  * Attacker performs lookup on database for target hash
+  * Could be 100s and 1000s of terabytes big
+  * Trade-off between time and memory cost
+    * Reduce search time, but increase storage space
+  * Countermeasures:
+    * Longer passwords
+    * Slower hash algorithms
+    * Salting passwords before hashing
+
+##### Salting Passwords
+
+* *ID, Salt, H(P || Salt)*
+* When ID and password initially created, generate random s-bit value (salt), concatenate with password and then hash
+* When user submits password, the salt from the password database is concatenated, hashed and compared
+* If attacker gains database access and they get to know the hash
+  * Same effort to fine password as a brute force attack
+* Rainbow tables are no longer feasible
+  * Space required increased by a factor of $2^s$
+
+##### Password Storage Best Practice
+
+* When storing user login information, always store a hash of a salted password
+* Password policies
+* Salt: Random, generated when ID/password are first stored
+  * 32 bits or longer
+* Hash function: Slow, adaptive speed(work factor)
+  * E.g bcrypt/scrypt, PBKDF2
+* Design for failure: Assume password database will eventually be compromised
+
+##### Passwords Vulnerabilities and Countermeasures
+
+* Offline Dictionary Attack  
+  * Attacker obtains access toID/password (hash) database 
+    * Use dictionary to find passwords
+  * Countermeasures:  
+    * Control access to database
+      * Reissue passwords if compromised
+      * Strong hashes and salts
+
+* Specific Account Attack
+  * Attacker submits password guesses on specific account
+  * Countermeasure:  
+    * Lock account after too many failed attempts 
+
+* Popular Password Attack  
+  * Try popular password with many IDs
+  * Countermeasures:
+    * Control password selection
+    * Block computers that make multiple attempts
+
+* Password guessing against single user
+  * Gain knowledge about user and user that to guess password
+  * Countermeasure
+    * Control password selection
+      * Train users in password selection
+
+* Computer hijacking
+  * Attacker gains access to computer that user currently are logged in to
+  * Countermeasure:
+    * Auto-log out
+
+* Exploiting user mistakes
+  * User writes down password, shares with friends, and is tricked into revealing passwords, user pre-configured passwords
+  * Countermeasures:
+    * User training
+      * Passwords + other authentication
+
+* Salt Implementation
+  * short salt length, hard coded salt value
+  * Countermeasures
+    * Personnel training
+
+* Exploiting Multiple Password Use
+  * Passwords re-used across different systems/accounts, make easier for attacker to access resources once one password discovered
+  * Countermeasures
+    * Control selection of passwords on multiple account/devices
+
+* Electronic Monitoring
+  * Attacker intercepts passwords sent across network
+  * Countermeasures
+    * encrypt communications that send passwords
+
+##### Other Common Characteristics of Passwords
+
+* Most use only alphanumeric characters
+* Most are in (password) dictionaries
+* Many users re-use passwords across systems
+* Some very common passwords:  123456, password,12345678, qwerty, abc123, letmein, iloveyou, . . .
+* When forced to change passwords, most users change a single character
+
+##### Password Selection Strategies
+
+* User education
+  * Ensure users are aware of importance of hard-to-guess passwords
+    * Advise users on strategies for selecting passwords
+
+* Computer-generated passwords
+  * Generate random or pronounceable passwords (but poorly accepted by users)
+  
+* Reactive password checking
+  * Regularly check user’s passwords, inform them if weak passwords
+  
+* Proactive password checking
+  * Advise user on strength when selecting a password
+
+##### Passwords:  Do’s and Don't s
+
+* Passwords Do’s
+  * Choose Long and Complex Passwords
+  * DO use passwords of at least eight characters or longer if set by a person
+  * DO use passwords of at least six characters or longer if set by a system or service
+  * DO allow support for at least a 64 character length
+  * DO use a combination of all ascii character types
+  * A Good Strategy:
+    * Manipulate a personal, memorable sentence/poem with numbers and symbols
+      * E.g.:“Tobeornottobe, itisaquestion!” byo→0,b→6,s→$
+  
+  * **Secure Practices**
+    * DO create distinct passwords for different accounts
+    * DO check strength of passwords:https://howsecureismypassword.net/
+    * DO verify your password is not listed in known password dictionaries:  https://haveibeenpwned.com/Passwords
+
+* Passwords DO NOT’s
+  * Password Selection
+    * DO NOT use dictionary words
+    * DO NOT use pets, people, places, events, etc
+    * DO NOT reuse passwords
+    * DO NOT use adjacent keyboard strings:  qwerty1234
+  * Password Usage
+    * DO NOT write down your passwords, stick to your screen, hide under your keyboard
+    * DO NOT reuse passwords
+    * DO NOT change your password often
+    * DO NOT completely share your strategy with others
+
+#### Token-Bases Authentication
+
+* Objects that a user possesses for purpose of user authentication are called tokens
+
+##### Memory Cards
+
+* Can store but do not process data
+* Most common is magnetic stripe card
+* Can include internal electronic memory
+* Can be used alone for physical access
+  * Hotel room, ATM ...
+* Provides significantly greater security when combined with a password or PIN
+* Drawbacks
+  * Required a special reader
+  * Loss of token
+  * User dissatisfaction
+
+##### Smart Cards
+
+* Physical characteristics
+  * Include an embedded microprocessor
+  * A smart token that looks like a bank card
+  * Can look like calculators, keys, small portable objects
+* Interface
+  * Manual interfaces include a keypad and display for interaction
+  * Electronic interfaces communicate with a compatible reader/writer
+* Authentication protocol
+  * Static
+  * Dynamic password generator
+  * Challenge-response
+
+#### Bio-metric Authentication
+
+* Attempts to authenticate an individual based on unique physical characteristics
+* Based on pattern recognition
+* Technically complex and expensive when compared to passwords and tokens
+* Physical characteristics used include
+  * Facial characteristics
+  * Fingerprints
+  * Hand geometry
+  * Retinal pattern
+  * Iris
+  * Signature
+  * Voice
 
 ## Firewalls
 
