@@ -41,6 +41,8 @@
         * [Memory Cards](#memory-cards)
         * [Smart Cards](#smart-cards)
       * [Bio-metric Authentication](#bio-metric-authentication)
+  * [Access Control](#access-control)
+    * [Access Control and Other Security Functions](#access-control-and-other-security-functions)
   * [Malicious Software](#malicious-software)
     * [Malware (Malicious software/code)](#malware-malicious-softwarecode)
       * [Classification of malware](#classification-of-malware)
@@ -107,8 +109,6 @@
       * [Multiple Certificate Authorities](#multiple-certificate-authorities)
     * [Public Key Infrastructure](#public-key-infrastructure)
     * [PGP - Web of Trust](#pgp---web-of-trust)
-
-
 
 ## Overview of Cybersecurity
 
@@ -226,6 +226,7 @@
 * Preventive
   * Physical
     * Locks
+    * Security guards
     * Badge systems
     * Biometric systems
     * Mantrap doors
@@ -599,6 +600,26 @@
   * Signature
   * Voice
 
+## Access Control
+
+* The prevention of unauthorized use of a resource, including the prevention of use of a resource in an unauthorized manner
+
+### Access Control and Other Security Functions
+
+* Identification
+  * A claim of an entity's identity
+* Authentication
+  * Verification that the credential of a user or other entity are valid
+* Authorization
+  * Granting of a right or permission to a system entity to access a resource
+* Access control
+  * Gran access right or permission at a more granular level
+* Audit
+  * Independent review of system records and activities in order to test for adequacy of system control
+  * Ensure compliance to policy
+  * Detect breaches and recommend new changes
+  *(Security administrator) -> (Authorization database) -> (Access control function) -> (System resources) | (Access control function) <- (Authentication function) <- (User)
+
 ## Malicious Software
 
 ### Malware (Malicious software/code)
@@ -728,9 +749,11 @@
 
 ### Trojan Horses
 
-* A Trojan horse is a useful or seemingly useful program that contains hidden code od a malicious nature that executes when the program is invoked
+* A Trojan horse is a useful or seemingly useful program that contains hidden code of a malicious nature that executes when the program is invoked
 * It does not propagate itself as viruses or worms
 * It will be eliminated if the host program is deleted
+* Can take advantage of security flaws
+  * Anonymizer proxy (Google chrome, Internet Explorer)
 
 ### Types of Malware Damage
 
