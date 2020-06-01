@@ -1475,7 +1475,7 @@
 
 ### IP, TCP, UDP Headers
 
-<img src = "/INF140/INF140-summary-pictures/ip-tcp-udp-headers.png" width="70%">
+<img src = "/INF140/INF140-summary-pictures/ip-tcp-udp-headers.png" width="50%">
 
 #### Packet filtering rules
   
