@@ -328,6 +328,9 @@
 
 #### 4.1.a - Rule1: Block ping(icmp) between subnets
 
+* ```iptables -A FORWARD -i eth1 eth2 -j DROP```
+
+
 #### 4-1.b - Rule 2: Blocks icmp packets coming into firewall
 
 #### 4-1.c - Rule 3: Blocks ping packets coming out of firewall
