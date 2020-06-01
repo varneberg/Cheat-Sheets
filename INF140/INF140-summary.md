@@ -1,16 +1,21 @@
 # INF140 Summary
 
 * [INF140 Summary](#inf140-summary)
+  * [Cybersecurity Summary](#cybersecurity-summary)
+    * [Security Attributes](#security-attributes)
+    * [Assets in Cyberspace](#assets-in-cyberspace)
+    * [Security Threats](#security-threats)
+    * [Network Security](#network-security)
   * [Overview of Cybersecurity](#overview-of-cybersecurity)
     * [What is cybersecurity](#what-is-cybersecurity)
     * [Key questions in cybersecurity](#key-questions-in-cybersecurity)
     * [CIA Triad](#cia-triad)
     * [Pakerian hexad](#pakerian-hexad)
-    * [Security attributes](#security-attributes)
+    * [Security attributes](#security-attributes-1)
     * [What can adversaries do](#what-can-adversaries-do)
     * [Security vs privacy](#security-vs-privacy)
     * [Vulnerabilities](#vulnerabilities)
-    * [Security threats](#security-threats)
+    * [Security threats](#security-threats-1)
     * [Security risks (vulnerabilities x threats x impacts)](#security-risks-vulnerabilities-x-threats-x-impacts)
     * [Security controls(countermeasures, safeguard)](#security-controlscountermeasures-safeguard)
     * [Multi-layered defense](#multi-layered-defense)
@@ -76,8 +81,7 @@
         * [User-level Events](#user-level-events)
     * [Monitoring](#monitoring)
     * [Logging](#logging)
-    * [Accountability and Auditing TLDR;](#accountability-and-auditing-tldr)
-  * [Data Security(TODO)](#data-securitytodo)
+    * [Accountability and Auditing TLDR](#accountability-and-auditing-tldr)
   * [Cryptography](#cryptography)
     * [Security by Cryptography](#security-by-cryptography)
     * [Encryption for Confidentiality](#encryption-for-confidentiality)
@@ -123,8 +127,9 @@
     * [Public and Private Keys](#public-and-private-keys)
       * [Assumptions:  Public Key Encryption](#assumptions-public-key-encryption)
       * [Requirements of Public-Key Cryptography](#requirements-of-public-key-cryptography)
-      * [TODO Diffie-Hellman Key Exchange](#todo-diffie-hellman-key-exchange)
-      * [TODO Distributing Public Keys](#todo-distributing-public-keys)
+      * [Diffie-Hellman Key Exchange](#diffie-hellman-key-exchange)
+      * [Distributing Public Keys](#distributing-public-keys)
+    * [Digital Signatures](#digital-signatures)
   * [Malicious Software](#malicious-software)
     * [Malware (Malicious software/code)](#malware-malicious-softwarecode)
       * [Classification of malware](#classification-of-malware)
@@ -198,6 +203,8 @@
       * [Multiple Certificate Authorities](#multiple-certificate-authorities)
     * [Public Key Infrastructure](#public-key-infrastructure)
     * [PGP - Web of Trust](#pgp---web-of-trust)
+  * [Web Security](#web-security)
+    * [Comparison of Threats on the Internet](#comparison-of-threats-on-the-internet)
   * [Multiple-Choice Questions (Single Correct Alternative)](#multiple-choice-questions-single-correct-alternative)
     * [Cybersecurity Awareness](#cybersecurity-awareness)
       * [Cybersecurity Ethics](#cybersecurity-ethics)
@@ -216,6 +223,82 @@
         * [4-1.c - Rule 3: Block ping packets coming out of firewall](#4-1c---rule-3-block-ping-packets-coming-out-of-firewall)
         * [4-1.d - Rule 4: Prevent node 1 from SSHing to outside nodes](#4-1d---rule-4-prevent-node-1-from-sshing-to-outside-nodes)
         * [4-1.e - Rule 5: Inside hosts can access outside websites](#4-1e---rule-5-inside-hosts-can-access-outside-websites)
+  * [Multiple-Choice Questions (Multiple Correct Alternatives)](#multiple-choice-questions-multiple-correct-alternatives)
+
+## Cybersecurity Summary
+
+### Security Attributes
+
+* CIA Triad
+  * Confidentiality
+  * Integrity
+  * Availability
+
+* Access-control
+  * Identification
+  * Authentication
+  * Authorization
+  * Accountability
+
+### Assets in Cyberspace
+
+* users
+* service, data
+* applications/processes
+* OS's, firmwares
+* hardware
+* communication infrastructure: networks, facilities
+
+### Security Threats
+
+* Threats
+  * any potential danger that is associated with the exploitation of a vulnerability/weakness
+  * local
+    * users’ misbehavior, password cracking, virus, worms, Trojan horses, root toolkit, exploit kit, DoS
+  * in networks
+    * backdoor, remote access, session hijacking,sniffing, spoofing, phishing, social engineering, DDoS,Zombies/Botnes
+<!-- pagebreak -->
+
+* inherent Security Weakness in Network Protocols
+  * missing authentications of sender in protocols (ARP, TCP,email, HTTP)
+<!-- pagebreak -->
+
+* Malicious Software and Behavior
+  * Virus, Worms, Trojan Horses, Backdoors, RAT, Rootkits
+  * Spoofing, Sniffing, Session Hijacking
+  * Zombie, Botnets, information thefts (phishing, social engineering, spam, spyware), ransomware
+<!-- pagebreak -->
+
+* Attacks
+  * ARP spoofing
+  * DNS poisoning
+    * flood of Ping,TCP(SYN,ACK,FIN)
+  * Distributed DoS
+<!-- pagebreak -->
+
+* Damages: data unusable/damaged/lost, process crashed, system halted
+
+### Network Security
+
+<img src="./INF140-summary-pictures/network-security.png">
+
+* Keywords
+  * TCP/IP
+  * Network protocols
+    * DHCP
+    * DNS
+    * TCP
+    * UDP
+    * ICMP
+    * IP
+    * ARP
+
+* Network Security Kits
+  * network access control
+    * traffic control
+      * firewall (packet filtering, SPI, proxy-based)
+      * entity authentication: IEEE 802.X (EAP+RADIUS)
+  * security protocols: WPA2, IPSec, TLS, SSH, PGP
 
 ## Overview of Cybersecurity
 
@@ -365,7 +448,7 @@
 
 ### Security control protections
   
-* Preventive
+* Preventative
   * Physical
     * Locks
     * Security guards
@@ -682,8 +765,10 @@
   
   * **Secure Practices**
     * DO create distinct passwords for different accounts
-    * DO check strength of passwords:https://howsecureismypassword.net/
-    * DO verify your password is not listed in known password dictionaries:  https://haveibeenpwned.com/Passwords
+    * DO check strength of passwords
+      * https://howsecureismypassword.net/
+    * DO verify your password is not listed in known password dictionaries
+      * https://haveibeenpwned.com/Passwords
 
 * Passwords DO NOT’s
   * Password Selection
@@ -1147,7 +1232,7 @@
 * Usually not modifiable by the users of the system
 * May be asked to analyze in relation to a particular incident or situation
 
-### Accountability and Auditing TLDR;
+### Accountability and Auditing TLDR
 
 * Accountability
   * Ensures users are accountable for their actions
@@ -1157,8 +1242,6 @@
 * Auditing
   * Audit trails user, system, and application activities by monitoring and logging
   * Automates tools and human involvements are usually needed for auditing
-
-## Data Security(TODO)
 
 ## Cryptography
 
@@ -1781,12 +1864,44 @@ of 512 bits long
   * Computational complexity of algorithm gives an indication
   * Easy if can be solved in polynomial time as function of input
 
-#### TODO Diffie-Hellman Key Exchange
+#### Diffie-Hellman Key Exchange
 
-#### TODO Distributing Public Keys
+<img src ="./INF140-summary-pictures/diffie-helman.png">
+<img src ="./INF140-summary-pictures/diffie-helman-2.png">
 
+* Diffie and Hellman proposed public key crypto-system in 1976
+* Algorithm for exchanging secret key (not for secrecy of data)
+* Based on discrete logarithms
+* Easy to calculate exponential modulo a prime
+* Unfeasible to calculate inverse, i.e. discrete logarithm
 
+#### Distributing Public Keys
 
+* By design, public keys are made public
+* Issue
+  * how to ensure public key of A actually belongs to A (and not someone pretending to be A)
+* Approaches for public key distribution
+  1. Public announcement (web page, email, newspaper)
+  2. Publish in electronic directory (which manually authenticates users)
+  3. Public key authority
+     * Users manually publish key at authority, and gain authorities public key
+     * Users automatically request other users public keys from authority
+  4. Public key certificates
+     * Users manually register with authority
+     * Authority issues certificates to users
+       * users public key signed by authority
+     * Users automatically exchange certificates
+
+### Digital Signatures
+
+* Aim of a signature
+  * prove to anyone that a message originated at (or is approved by) a particular user
+* Symmetric key cryptography
+  * Two users,A and B, share a secret key K
+  * Receiver of message (user A) can verify that message came from the other user (B)
+  * User C cannot prove that the message came from B(it may also have came from A)
+* Public key cryptography can provide signature
+  * only one user has the private key
 
 ## Malicious Software
 
@@ -2509,6 +2624,18 @@ of 512 bits long
 
 * Users trust other users with their public keys and shares accordingly
 
+## Web Security
+
+### Comparison of Threats on the Internet
+
+<img src = "./INF140-summary-pictures/internet-threats.png">
+
+* Keywords
+  * Integrity
+  * Confidentiality
+  * Dos
+  * Authentication
+  
 ## Multiple-Choice Questions (Single Correct Alternative)
 
 ### Cybersecurity Awareness
@@ -3478,4 +3605,309 @@ of 512 bits long
 * Change default policy as DROP and write packet filtering rules for the following goals
 * ```iptables -F```
 * ```iptables -P INPUT DROP```
-* ```iptables -A INPUT -p tcp -dport 80 -j ACCEPT```
+* ```iptables -A INPUT -p tcp -dport 80 -j ACCEPT``
+
+## Multiple-Choice Questions (Multiple Correct Alternatives)
+
+1. Which of the following are common features of a computer virus and a trojan horse?
+
+        A.      residing in a software
+        B.      replicating itself in the infected system and network
+        C.      exploiting system flaws and vulnerabilities in a system 
+        D.      running itself when certain condition is triggered
+        E.      sending message to a remote controller
+
+        Answer: A, D, E
+
+2. Which of the following belong to the social engineering attack?
+
+        A.      an attacker uses a telephone system to gain access to private personal and financial information from the public
+        B.      an attacker sends an e-mail that appears to come from a legitimate business requesting “verification” of information
+        C.      an attacker pretends to be another person with the goal of gaining access physically to a system or building
+        D.      an attacker sends highly customized emails to few end users to obtain their private information
+        E.      an attacker sends an advertisement to a large number of recipients
+        F.      an attacker inserts a virus-infected USB stick to a file system
+
+        Answer: B, C, D
+
+3. Which of the following are security controls of user authentication?
+
+        A.      an employee uses his/her employee card to enter an office
+        B.      a person provides user name and password when login to a website
+        C.      a person enters the letters from the image of ``I am not a robot" in a login page
+        D.      a person opens his/her mobile phone with fingerprint
+        E.      a user in a system is promted “Permission Denied” when he/she opens a file in the system
+
+        Answer: A, B, D, E 
+
+4. Which of the following processes use an access control list?
+
+        A.      a student logs in to mittuib with his/her student credentials
+        B.      a student downloads some lecture slides at mittuib
+        C.      a student check his/her grade for a course at mittuib
+        D.      a student wants to see a student fellow’s grade at mittuib but is rejected
+        E.      a lecture uploads lecture notes for his/her course at mittuib
+
+        Answer: A, B, C, D, E
+
+5. Which of the following access control methods used in a compute system?
+
+        A.      manpower-based access control
+        B.      attribute-based access control
+        C.      role-based access control
+        D.      rule-based access control
+        E.      discretionary access control
+
+            Answer: B,C,E
+
+6. Which of the following security controls heavily depend on cryptographic primitives?
+
+        A.      accountability
+        B.      authorization
+        C.      authentication
+        D.      availability
+        E.      integrity
+
+        Answer: C, E
+
+7. Which of the following security controls are elements of access control?
+
+        A.      accountability
+        B.      authorization
+        C.      authentication
+        D.      availability
+
+        Answer: A, B, C
+
+8. Which of the following are in the category of preventative security control?
+
+        A.      user authentication
+        B.      data encryption
+        C.      data backup
+        D.      firewall
+        E.      intrusion detection system
+        F.      anti-malware software
+        G.      least-privilege access control
+
+        Answer: A, B, D, F, G
+
+9. Which of the following firewalls act as both client and server in controlling network traffic?
+
+        A.      packet filtering firewalls
+        B.      stateful packet inspection firewalls
+        C.      application-proxy firewalls
+        D.      circuit-proxy firewalls
+
+        Answer: C, D 
+
+10. Which of the following commands use the ICMP protocol?
+
+        A.      traceroute www.uib.no
+        B.      ping www.uib.no
+        C.      hping3 -S –flood -p 80 www.uib.no
+        D.      netstat www.uib.no
+
+        Answer: A, B, C
+
+11. Which of the following attacks can be enabled by ARP spoofing?
+
+        A.      SYN Flooding
+        B.      DNS poisoning
+        C.      packet sniffing
+        D.      Denial of Service
+
+        Answer:  C, D
+
+12. Suppose a user’s password is hashed with SHA256 and the hash is then stored in a system. In practice, which of the following will significantly reduce the quality of the hash and may lead to a successful password cracking?
+
+        A.      the user’s password consists of only 20 lower-case letters
+        B.      upper-case letters in the user’s password are converted to lower-case letters before the password is hashed
+        C.      SHA256 is replaced with a fast hash function with 64-bit digest
+        D.      a dynamically varing salt is added the the calculation of the password hash
+        E.      the user’s password is a combination of lower-case letters, upper case letters, digits, punctuations and its length is 6
+
+        Answer: B, C, E
+
+13. In a Linux system, suppose a user’s password is stored in /etc/shadow as:
+    Password:
+         $6$lM97wGbU5S.Funda$8HxX3gD5UjdwnXD7mHu7Foh9s6w.NCn5cxifoki7pr0m01Re5VG/yad86LjKmpJuXB/66ks1Y7T5y6cjV6.351:18313:0:99999:7:::
+        Which of the following statements about the above password file are not correct?
+
+        A.      there is no login name in the file
+        B.      ‘Password’ is the user name
+        C.      ‘$6$’ indicates the number of bytes in the salt
+        D.      ‘$6$’ indicates the hash type used in the calculation
+        E.      ‘18313’ indicates the number of hash iterations in the file
+
+        Answer: A, C, B(apparantly?)
+
+14. Which of the following are security requirements of a cryptographic Hash function?
+
+        A.      it has variable input length
+        B.      it has fixed output length
+        C.      it should be pre-image resistant
+        D.      it should be collision resistant
+        E.      it should have distinct outputs for any two different input
+        F.      it should be distingushible from randomly generated string
+
+        Answer: A, B, C, D, 
+
+15. Which of the following can be used for protecting data integrity?
+
+        A.      user authentication
+        B.      symmetric encryption
+        C.      digital signature
+        D.      message authentication code
+        E.      hash function
+
+        Answer: C, D
+
+16. Which of the following are entity authentications in network access control?
+
+        A.      firewalls
+        B.      WPA2 with IEEE 802.X
+        C.      IEEE 802.11
+        D.      RADIUS
+        E.      Password-based Authentication Protocol
+        F.      Virtual Private Network
+
+        Answers: B, D, E
+
+17. Which of the following characteristics are provided by the series of WiFi Protected Access?
+
+        A.      IEEE 802.1X, WEP, MAC
+        B.      IEEE 802.1X, EAP, TKIP
+        C.      IEEE 802.1X, EAP, WEP
+        D.      IEEE 802.1X, EAP, CCMP
+        
+        Answer: B, D
+
+18. Which of the following characteristics are provided by RADIUS?
+        accountability
+        authorization
+        availability
+        authentication
+        anti-malware
+
+19. Which of the following statements about HTTPS are correct?
+
+        A.      it provides data confidentiality and integrity in communcations
+        B.      it enables the web client to authenticate the web server by its X.509 public-key certificate
+        C.      it enables the web client to authenticate the web server by its PGP public-key certificate
+        D.      it helps the server prevent DDoS attack
+        E.      it enables the client to remotely login to the server in a secure manner
+
+        Answer: A, B, E
+
+20. Which of the following statements about public-key certificate are correct?
+
+        A.      it is used to authenticate an entity in a network
+        B.      it is widely used because public-key ciphers are more secure than symmetric ciphers
+        C.      it is widely used because it makes key distribution more easily in the Internet
+        D.      it is used to prevent man-in-the-middle attack in a network
+
+        Answer: A, C, D
+        B.      ping www.uib.no
+        C.      hping3 -S –flood -p 80 www.uib.no
+        D.      netstat www.uib.no
+
+        Answer: A, B, C
+
+11. Which of the following attacks can be enabled by ARP spoofing?
+
+        A.      SYN Flooding
+        B.      DNS poisoning
+        C.      packet sniffing
+        D.      Denial of Service
+
+        Answer:  C, D
+
+12. Suppose a user’s password is hashed with SHA256 and the hash is then stored in a system. In practice, which of the following will significantly reduce the quality of the hash and may lead to a successful password cracking?
+
+        A.      the user’s password consists of only 20 lower-case letters
+        B.      upper-case letters in the user’s password are converted to lower-case letters before the password is hashed
+        C.      SHA256 is replaced with a fast hash function with 64-bit digest
+        D.      a dynamically varing salt is added the the calculation of the password hash
+        E.      the user’s password is a combination of lower-case letters, upper case letters, digits, punctuations and its length is 6
+
+        Answer: B, C, E
+
+13. In a Linux system, suppose a user’s password is stored in /etc/shadow as:
+    Password:
+         $6$lM97wGbU5S.Funda$8HxX3gD5UjdwnXD7mHu7Foh9s6w.NCn5cxifoki7pr0m01Re5VG/yad86LjKmpJuXB/66ks1Y7T5y6cjV6.351:18313:0:99999:7:::
+        Which of the following statements about the above password file are not correct?
+
+        A.      there is no login name in the file
+        B.      ‘Password’ is the user name
+        C.      ‘$6$’ indicates the number of bytes in the salt
+        D.      ‘$6$’ indicates the hash type used in the calculation
+        E.      ‘18313’ indicates the number of hash iterations in the file
+
+        Answer: A, C, B(apparantly?)
+
+14. Which of the following are security requirements of a cryptographic Hash function?
+
+        A.      it has variable input length
+        B.      it has fixed output length
+        C.      it should be pre-image resistant
+        D.      it should be collision resistant
+        E.      it should have distinct outputs for any two different input
+        F.      it should be distingushible from randomly generated string
+
+        Answer: A, B, C, D, 
+
+15. Which of the following can be used for protecting data integrity?
+
+        A.      user authentication
+        B.      symmetric encryption
+        C.      digital signature
+        D.      message authentication code
+        E.      hash function
+
+        Answer: C, D
+
+16. Which of the following are entity authentications in network access control?
+
+        A.      firewalls
+        B.      WPA2 with IEEE 802.X
+        C.      IEEE 802.11
+        D.      RADIUS
+        E.      Password-based Authentication Protocol
+        F.      Virtual Private Network
+
+        Answers: B, D, E
+
+17. Which of the following characteristics are provided by the series of WiFi Protected Access?
+
+        A.      IEEE 802.1X, WEP, MAC
+        B.      IEEE 802.1X, EAP, TKIP
+        C.      IEEE 802.1X, EAP, WEP
+        D.      IEEE 802.1X, EAP, CCMP
+        
+        Answer: B, D
+
+18. Which of the following characteristics are provided by RADIUS?
+        accountability
+        authorization
+        availability
+        authentication
+        anti-malware
+
+19. Which of the following statements about HTTPS are correct?
+
+        A.      it provides data confidentiality and integrity in communcations
+        B.      it enables the web client to authenticate the web server by its X.509 public-key certificate
+        C.      it enables the web client to authenticate the web server by its PGP public-key certificate
+        D.      it helps the server prevent DDoS attack
+        E.      it enables the client to remotely login to the server in a secure manner
+
+        Answer: A, B, E
+
+20. Which of the following statements about public-key certificate are correct?
+
+        A.      it is used to authenticate an entity in a network
+        B.      it is widely used because public-key ciphers are more secure than symmetric ciphers
+        C.      it is widely used because it makes key distribution more easily in the Internet
+        D.      it is used to prevent man-in-the-middle attack in a network
+
+        Answer: A, C, D
