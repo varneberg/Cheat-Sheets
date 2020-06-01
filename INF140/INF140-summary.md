@@ -110,13 +110,20 @@
     * [Firewall capabilities](#firewall-capabilities)
     * [Firewall limitations](#firewall-limitations)
     * [Types of firewalls](#types-of-firewalls)
-      * [Packet Filtering Firewall](#packet-filtering-firewall)
-        * [Packet filtering rules](#packet-filtering-rules)
+    * [Packet Filtering Firewall](#packet-filtering-firewall)
+    * [IP, TCP, UDP Headers](#ip-tcp-udp-headers)
+      * [Packet filtering rules](#packet-filtering-rules)
       * [iptables](#iptables)
       * [iptables concepts](#iptables-concepts)
       * [iptables Chains](#iptables-chains)
       * [iptables rules](#iptables-rules)
       * [Common iptables Syntax](#common-iptables-syntax)
+      * [iptables Examples](#iptables-examples)
+        * [Drop ICMP Packets](#drop-icmp-packets)
+        * [Allow Access Only to Web Server](#allow-access-only-to-web-server)
+        * [View Current Rules](#view-current-rules)
+        * [Delete All Previous Rules](#delete-all-previous-rules)
+        * [Block Packets Through Router](#block-packets-through-router)
       * [Issues with Packet Filtering Firewalls](#issues-with-packet-filtering-firewalls)
     * [Stateful Packet Inspection](#stateful-packet-inspection)
     * [Application proxy](#application-proxy)
@@ -1459,14 +1466,18 @@
 * Application proxy: Relay for application traffic
 * Circuit-level Proxy: Relay for transport connections
 
-#### Packet Filtering Firewall
+### Packet Filtering Firewall
   
 * Security policy implemented by set of rules
 * Rules define which packets can pass through the firewall
 * Firewalls inspects each arriving packet(all directions), compares to rule set, and takes actions according to those rules
 * Default policies: Actions for packets for which no rule matches(Drop packet is recommended)
 
-##### Packet filtering rules
+### IP, TCP, UDP Headers
+
+<img src = "/INF140/INF140-summary-pictures/ip-tcp-udp-headers.png" width="70%">
+
+#### Packet filtering rules
   
 * Packet Information
   * IP address
@@ -1528,6 +1539,71 @@
   * inif, outif: interface name
   * param, value: protocol specific parameter and value
   * target: ACCEPT, DROP, RETURN
+
+#### iptables Examples
+
+##### Drop ICMP Packets
+
+* Drops all icmp packets sent by this computer
+* Design
+  * Assumes default policy is ACCEPT
+  * Assumes filter table is empty -> append new rule
+  * Packets sent -> OUTPUT chain
+  * Protocol is icmp
+  * Target is DROP
+
+* Implementation
+  * ```iptables -A OUTPUT -p icmp -j DROP```
+
+##### Allow Access Only to Web Server
+
+* Aim
+  * Prevent others from sending to this computer, except to the local HTTP web server
+
+* Design
+  * Packets received -> INPUT chain
+  * HTTP uses TCP -> protocol is tcp
+  * Web server listens on port 80 -> destination port is 80
+  * Set the default policy to DROP
+  * Target it ACCEPT
+
+* Implementation
+  * ```iptables -P INPUT DROP```
+  * ```iptables -A INPUT -p tcp --dport 80 -j ACCEPT```
+
+##### View Current Rules 
+
+* Aim
+  * List the current set of rules, showing actual addresses
+
+* Design
+  * Numeric addresses -> -n
+
+* Implementation
+  * ```iptables -L -n```
+
+##### Delete All Previous Rules
+
+* Aim
+  * Delete all (flush) the rules from the default filter table, and reset policy to default ACCEPT
+
+* Implementation
+  * ```iptables -F```
+  * ```iptables -P INPUT ACCEPT```
+  * ```iptables -L```
+
+##### Block Packets Through Router
+
+* Aim
+  * On this router, block all packets arriving on interface eth0 and destined to subnet 2.2.2.0/24 (and then view the rules)
+
+* Design
+  Packets forwarded through routers -> FORWARD chain
+  Verbose output needed to see interfaces -> -v
+
+* Implementation
+  * ```iptables -A FORWARD -i eth0 -d 2.2.2.0/24 -j DROP```
+  * ```iptables -L FORWARD -n -v```
 
 #### Issues with Packet Filtering Firewalls
 
