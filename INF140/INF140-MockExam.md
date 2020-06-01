@@ -326,16 +326,24 @@
 
 #### 4.1.a - Rule1: Block ping(icmp) between subnets
 
-* ```iptables -A FORWARD -p icmp -i eth1 -d eth2 0.0.0.0/24 -j DROP```
-* ```iptables -A FORWARD -p icmp -i eth2 -d 0.0.0.0/24 eth1 -j DROP```
+* ```iptables -A FORWARD -p icmp -i eth1:1.1 -d eth2:2.1 0.0.0.0/24 -j DROP```
+* ```iptables -A FORWARD -p icmp -i eth2:2.1 -d 0.0.0.0/24 eth1:1.1 -j DROP```
 
+#### 4-1.b - Rule 2: Block icmp packets coming into firewall
 
-#### 4-1.b - Rule 2: Blocks icmp packets coming into firewall
+* ```iptables -A INPUT -p icmp -j DROP```
 
-#### 4-1.c - Rule 3: Blocks ping packets coming out of firewall
+#### 4-1.c - Rule 3: Block ping packets coming out of firewall
+
+* ```iptables -A OUTPUT -p icmp -j DROP```
 
 #### 4-1.d - Rule 4: Prevent node 1 from SSHing to outside nodes
 
-#### 4-1.e - Rule 5: Change default policy DROP
+* ```iptables -A FORWARD -i eth1:11 -p tcp -dport 22 -d eth2:2.1 0.0.0.0/24```
 
-* Change default policy as DROP and write packet filtering tules for the following goals
+#### 4-1.e - Rule 5: Inside hosts can access outside websites
+
+* Change default policy as DROP and write packet filtering rules for the following goals
+* ```iptables -F```
+* ``` iptables -P INPUT DROP```
+* ```iptables -A INPUT -p tcp -dport 80 -j ACCEPT```
