@@ -81,6 +81,45 @@
   * [Cryptography](#cryptography)
     * [Security by Cryptography](#security-by-cryptography)
     * [Encryption for Confidentiality](#encryption-for-confidentiality)
+    * [Encryption Terminology](#encryption-terminology)
+    * [Requirements and Assumptions for Cryptology](#requirements-and-assumptions-for-cryptology)
+    * [Characterizing Cryptographic Systems](#characterizing-cryptographic-systems)
+    * [Symmetric Key Encryption for Confidentiality](#symmetric-key-encryption-for-confidentiality)
+      * [Attacks on Symmetric Keys](#attacks-on-symmetric-keys)
+      * [Block vs Stream Ciphers](#block-vs-stream-ciphers)
+      * [Examples of Substitution Ciphers](#examples-of-substitution-ciphers)
+        * [Caesar Cipher](#caesar-cipher)
+        * [Mono-alphabetic (Substitution) Ciphers](#mono-alphabetic-substitution-ciphers)
+        * [Playfair Cipher](#playfair-cipher)
+          * [Vigenere Cipher](#vigenere-cipher)
+      * [Modern Block Ciphers](#modern-block-ciphers)
+      * [Data Encryption Standard (DES)](#data-encryption-standard-des)
+        * [DES Round Function](#des-round-function)
+      * [Triple-DES (3DES)](#triple-des-3des)
+      * [Advanced Encryption Standard (AES)](#advanced-encryption-standard-aes)
+      * [DES vs AES](#des-vs-aes)
+      * [Attacks on Block Ciphers](#attacks-on-block-ciphers)
+        * [Assumptions: Knowledge of Attacker](#assumptions-knowledge-of-attacker)
+      * [Using Block Ciphers on Real Data](#using-block-ciphers-on-real-data)
+      * [Stream Ciphers](#stream-ciphers)
+        * [RC4](#rc4)
+    * [Authentication and Hash Functions](#authentication-and-hash-functions)
+      * [Hash Functions (Message Digest)](#hash-functions-message-digest)
+      * [Hash Attacks](#hash-attacks)
+      * [Hash Algorithms](#hash-algorithms)
+        * [MD5](#md5)
+        * [SHA](#sha)
+        * [SHA256](#sha256)
+      * [Hash Functions Requiered Properties](#hash-functions-requiered-properties)
+      * [Authentication using Symmetric Key Encryption](#authentication-using-symmetric-key-encryption)
+      * [Authentication using Message Authentication Codes](#authentication-using-message-authentication-codes)
+      * [MAC Algorithms](#mac-algorithms)
+        * [MAC Attacks](#mac-attacks)
+      * [Authentication with Symmetric Key and MACs](#authentication-with-symmetric-key-and-macs)
+        * [Authentication using Hash Functions](#authentication-using-hash-functions)
+      * [HMAC](#hmac)
+      * [Summary on Symmetric Cryptographic Primitives](#summary-on-symmetric-cryptographic-primitives)
+      * [Password-Based Key Derivation Functions (PBKDF)](#password-based-key-derivation-functions-pbkdf)
   * [Malicious Software](#malicious-software)
     * [Malware (Malicious software/code)](#malware-malicious-softwarecode)
       * [Classification of malware](#classification-of-malware)
@@ -1124,10 +1163,529 @@
 
 ### Encryption for Confidentiality
 
+* <img src="/INF140/INF140-summary-pictures/encryption-confidentiality.png">
 * Aim: Assure confidential information not made available to unauthorized individuals(**data confidentiality**)
 * How: Encrypt the original data
   * Anyone can see the encrypted data, but only authorized individuals can decrypt to see the original data
 * Used for bots sending data across networks and storing data on a computer system
+
+### Encryption Terminology
+
+* Plaintext
+  * original message
+* Ciphertext
+  * encrypted or coded message
+* Encryption
+  * convert from plaintext to ciphertext(enciphering)
+* Decryption
+  * restore the plaintext from ciphertext(deciphering)
+* Key
+  * information used in cipher known only to sender/receiver 
+* Cipher
+  * a particular algorithm (cryptographic system)
+* Cryptography
+  study of algorithms used for encryption
+* Cryptanalysis
+  * study of techniques for decryption without knowledge of plaintext
+* Cryptology  areas of cryptography and cryptanalysis
+
+### Requirements and Assumptions for Cryptology
+
+* Requirements for secure use of symmetric encryption
+  1. Strong encryption algorithm
+  2. Sender/receiver know secret key (and keep it secret)
+
+* Assumptions
+  * Cipher is known
+  * Secure channel to distribute keys
+
+### Characterizing Cryptographic Systems
+
+* Operations used for encryption
+  * Substitution
+    * replace one element in plaintext with another
+  * Transposition
+    * re-arrange elements
+  * Product systems
+    * multiple stages of substitutions and transpositions
+  * Mathematical Transformation
+    * trap-door one-way function
+
+* Number of keys used
+  * Symmetric
+    * sender/receiver use same key (single-key,secret-key, shared-key, conventional)
+  * Public-key
+    * sender/receiver use different keys (asymmetric
+
+### Symmetric Key Encryption for Confidentiality
+
+<img src = "/INF140/INF140-summary-pictures/symmetric-key-encryption-confidentiality.png">
+
+* Requirements
+  * Strong encryption algorithm:
+    * given algorithm, ciphertext and known pairs of (plaintext, ciphertext),attacker should be unable to find plaintext or key
+  * Shared secret keys:  sender and receiver both have shared a secret key; no-one else knows the key
+
+#### Attacks on Symmetric Keys
+
+* Goal of the Attacker
+  * Discover the plaintext (good)
+  * Discover the key (better)
+* Assumed Attacker Knowledge
+  * Ciphertext
+  * Algorithm
+  * Other pairs of (plaintext, ciphertext) using same key
+<!-- pagebreak -->
+
+* Attack Methods
+  * Brute-force attack
+    * Try every possible key on ciphertext
+  * Cryptanalysis
+    * Exploit characteristics of algorithm to deduce plaintext or key
+  * Assumption:
+    * attacker can recognize correct plaintext
+
+#### Block vs Stream Ciphers
+
+* Block Ciphers
+  * Encrypt plaintext block by block, typically 64 or 128 bits
+  * Encryption performed by scrambling plaintext and key
+  * Different operation modes with probabilistic encryption for improved security
+  * Widely used in e-commerce
+<!-- pagebreak -->
+
+* Stream Ciphers
+  * Encrypt plaintext by bits/bytes/words
+  * Encryption performed by XOR plaintext with keystream(created by pseudo-random number generator)
+  * Fast algorithms/implementations in hardware
+  * Cannot re-use keys
+
+#### Examples of Substitution Ciphers
+
+##### Caesar Cipher
+
+* Earliest known cipher, used by Julius Caesar (Roman general 2000 years ago)
+* Replace each letter by the letter three positions along in alphabet
+
+* Allow shift by k positions
+* Assume each letter assigned number (a= 0,b= 1, . . . )
+  * C=E(k,p) = (P+K) mod 26
+  * P=D(k,C) = (C−K) mod 26
+<!-- pagebreak -->
+
+* Security
+  * vulnerable to the brute force attacks
+
+##### Mono-alphabetic (Substitution) Ciphers
+
+* Mono-alphabetic
+  * use a single alphabet for both plaintext and ciphertext
+* Arbitrary substitution
+  * one element maps to any other element
+    * n element alphabet allows n! permutations or keys
+
+* Example
+  * Plain: A B C D E  ...  W X Y Z
+  * Cipher : D Z G L S  ...  B T F Q
+
+* Security
+  * Caesar cipher: 26 keys
+  * Mono-alphabetic (English alphabet) 
+    * 26! keys(>4×1026)
+  * Vulnerable to frequency attacks
+
+##### Playfair Cipher
+
+* Initialization
+   1. Create 5x5 matrix and write keyword (row by row)
+   2. Fill out remainder with alphabet, not repeating any letters
+   3. Special: Treat I and J as same letter
+
+* Encryption
+   1. Operate on pair of letters (digram) at a time
+   2. Special: if digram with same letters, separate by special letter (e.g. x
+   3. Plaintext in same row: replace with letters to right
+   4. Plaintext in same column: replace with letters below
+   5. Else, replace by letter in same row as it and the same column as other the plaintext letter
+
+* Example
+  * Plaintext: helloworld
+  * Keyword: security
+    * Plaintext:`HE LX XL OW OR LD`
+    * Ciphertext:`FU OQ QO ...  QL`
+
+* Security
+  * frequency attack: diagram of 676 entries
+  * relatively easy (digrams, trigrams, expected words)
+
+###### Vigenere Cipher
+
+* Set of 26 general Caesar ciphers
+* Letter in key determines the Caesar cipher to use
+* Example:
+  * key = `uib`
+  * Plain :`INTERNETTECHNOLOGIES`
+  * Key:`UIBUIBUIBUIBUIBUIBUIBUI`
+  * Cipher :  `CVUYZOYBUYKIHWMIOJYA`
+
+* Multiple ciphertext letters for each plaintext letter
+  * e.g.,the first I → C and the second I → J
+
+* Is it breakable?
+  * Yes
+  * Monoalphabetic or Vigenere cipher?
+    * Letter frequency analysis
+  * Determine length of keyword
+  * For keyword length m, Vigenere is m mono-alphabetic substitutions
+  * Break the mono-alphabetic ciphers separately
+  * **Weakness is repeating, structured keyword**
+<!-- pagebreak -->
+
+* How to destroy the structure of keyword in the key string
+  * combine the keyword and plaintext:
+    * Autokey cipher
+  * have sufficiently long key:
+    * Vernam cipher
+
+#### Modern Block Ciphers
+
+<img src="/INF140/INF140-summary-pictures/modern-block-ciphers.png">
+
+* Encrypt a block of plaintext as a whole to produce same sized ciphertext
+* Typical block sizes are 64 or 128 bits
+* Modes of operation used to apply block ciphers to larger plaintexts
+* Two widely used standard:  DES and AES
+
+#### Data Encryption Standard (DES)
+
+<img src="/INF140/INF140-summary-pictures/des-overview.png">
+
+* Designed by IBM and NSA; standardized by NIST in 1977 as FIPS-46
+* 1999: NIST recommended Triple-DES;
+  * DES only for legacy systems
+  * 2005: FIPS-46 standard withdrawn
+* Block size
+  * `64 bits`
+* Key length:  
+  * `56 bits`
+  * 64 bits, but 8 are parity
+* Feistel structure
+* Decryption is almost identical to encryption
+  * single implementation for both algorithms
+* **Key size is insecure**, algorithm considered secure
+* Status:  not recommended
+
+<!-- pagebreak -->
+
+##### DES Round Function
+
+<img src="/INF140/INF140-summary-pictures/des-round-function.png">
+<img src="/INF140/INF140-summary-pictures/des-round-function-2.png">
+
+#### Triple-DES (3DES)
+
+<img src="INF140-summary-pictures/3DES.png">
+
+* Standardized by ANSI/NIST in 1998/99
+* Applies DES three times:
+  * Encrypt, Decrypt, Encrypt
+* Block size
+  * `64 bits`
+* Key length
+  * `168 bits`
+  * options for 112 and 56 bits
+* **Three times slower than DES**
+<!-- pagebreak -->
+
+* Status
+  * Banks still use in many applications
+    * available as an option in many products
+
+#### Advanced Encryption Standard (AES)
+
+* NIST held competition to select algorithm to replace DES/3DES in 1997
+  * Won by Rijndael algorithm by Rijmen and Daemen
+  * 2001: Standardized as FIPS-197
+* Block size
+  * `128`
+* Key length
+  * `128, 192, 256 bits`
+* Substitution-permutation network
+<!-- pagebreak -->
+
+* Status
+  * used in many products, e.g. WiFi (WPA), full disk encryption (BitLocker, FileVault2, dm-crypt,LUKS), Internet security (HTTPS), . . .
+
+#### DES vs AES
+
+* DES
+  * Standardized in 1977
+  * `64-bit blocks`
+  * `56-bit key`
+    * 16 x 48-bit round keys
+  * Feistel StructureI
+    * processes 32 bits
+    * bitwise operation
+    * 8 S-boxes (6→4)
+    * Sbox not involved in generating round keys
+
+* AES
+  * Standardized in 2001
+  * `128-bit blocks`
+  * `128/192/256-bit key`
+    * 10/12/14 128-bit rkeys
+  * SPN structure
+    * F processes 128 bits
+    * bytewise operation
+    * one S-box (8→8)
+    * Sbox used in generating round keys
+    * 1 state/4 words/16 bytes/128 bits
+
+#### Attacks on Block Ciphers
+
+* Brute Force Attack
+  * Approach
+    * try all keys in key space
+  * Metric
+    * number of operations (time)
+  * k bit key requires $2^k$ operations
+  * Depends on key length and computer speed
+
+<img src="INF140-summary-pictures/block-ciphers-brute-force.png">
+
+* Age of Earth:  4×109 years
+* Age of Universe:  1.3×1010years
+<!-- pagebreak -->
+
+* Cryptanalysis
+  * Approach
+    * Find weaknesses in algorithms
+    * Methods
+      * Linear cryptanalysis
+      * differential cryptanalysis
+      * meet-in-the-middle attack
+      * side-channel attacks
+      * ...
+    * Metrics
+      * Number of operations
+      * Amount of memory
+      * Number of known plaintexts/cipher texts
+
+<img src="INF140-summary-pictures/block-ciphers-cryptanalysis.png">
+
+##### Assumptions: Knowledge of Attacker
+
+* All algorithms used in cryptography, e.g. encryption/decryption algorithms, hash functions, are public.
+* An attacker knows which algorithm is being used, and any public parameters of the algorithm.
+* An attacker can intercept any message sent across a network.
+* An attacker does not know secret values (e.g.symmetric secret key $K_{AB}$ or private key $P_{RA}$).
+* Brute force attacks requiring greater than $2^{80}$ operations are impossible
+
+#### Using Block Ciphers on Real Data
+
+* Block ciphers typical operate on 64 or 128 bit blocks
+* Modes of operation are used to apply ciphers on multiple blocks
+  * Electronic Code Book (ECB), Cipher Block Chaining(CBC), Cipher Feedback Mode (CFB), OutputFeedback Mode (OFB), Counter (CTR), XTS-AES
+<!-- pagebreak -->
+
+* Trade-offs
+  * security
+  * parallelism
+  * error propagation
+* Often require Initialization Vector (IV)
+* CFB, OFB and CTR can turn block cipher into stream cipher
+
+#### Stream Ciphers
+
+<img src="INF140-summary-pictures/stream-ciphers.png">
+
+* Encrypt one byte at a time by XOR with pseudo-random byte (keystream)
+* Generally faster implementations than block ciphers
+* Keystream should not repeat (large period)
+  * use different key or nonce when re-using cipher
+
+##### RC4
+
+* Designed by Ron Rivest in 1987
+* Used in secure web browsing and wireless LANs
+* Can use variable size key
+  * `8 to 2048 bits`
+* Several theoretical limitations of RC4
+
+### Authentication and Hash Functions
+
+* Receiver wants to verify
+  1. Contents of the message have not been modified (data authentication)
+  2. Source of message is who they claim to be (source authentication)
+<!-- pagebreak -->
+
+* Different approaches available
+  * Hash Functions
+  * Symmetric Key Encryption
+  * Message Authentication Codes
+  * Public Key Encryption (see Digital Signatures)
+
+#### Hash Functions (Message Digest)
+
+<img src = "INF140-summary-pictures/hash-functions.png">
+
+* A cryptographic hash function, H(), takes
+  * a variable sized input message, *M*,
+and produces a fixed size, small output hash, *h*, i.e.
+
+    * $h=H(M)$
+
+#### Hash Attacks
+
+* Security Requirement
+* Preimage resistant:
+  * For any given h, computationally unfeasible to find y such that $H(y)=h$
+    * one-way property
+* Second preimage resistant 
+  * For any given x, computationally unfeasible to find $y \neq x$ with $H(y) = H(x)$
+    * weak collision resistant
+  * Collision resistant
+    * Computationally unfeasible to find any pair (x,y) such that $H(x) = H(y$)
+      * strong collision resistant
+<!-- pagebreak -->
+
+* Brute Force Attacks
+  * Depend on hash value length of n bits
+  * Preimage and second preimage resistant:  $2^n$
+  * Collision resistant:  $2^{n/2}$
+
+#### Hash Algorithms
+
+##### MD5
+
+* Message Digest algorithm 5
+* Developed by Ron Rivest in 1991
+* Standardized by IETF in RFC 1321
+* Generates 128-bit hash
+* Was commonly used by applications, passwords, file integrity
+  * no longer recommended
+* Collision and other attacks possible
+  * tools publicly available to attack MD5
+
+##### SHA
+
+* Secure Hash Algorithm, developed by NIST
+* Standardized by NIST in FIPS 180 in 1993
+* Improvements over time:
+  * SHA-0, SHA-1, SHA-2,SHA-3
+* SHA-1 (and SHA-0) are considered insecure
+  * no longer recommended
+* SHA-2 considered secure
+* SHA-3 has been standardized and deployed
+  * e.g.  the cryptocurrency Etherum
+
+<img src ="INF140-summary-pictures/sha.png">
+
+##### SHA256
+
+<img src="/INF140/INF140-summary-pictures/sha256.png">
+
+* An input M is padded such that the length is a multiple
+of 512 bits long
+* *M* is parsed into message blocks M1,M2,...,MN
+* The messages blocks are processed one at a time:
+
+  * $H_i=H_{i - 1} + C_{M_{i}}(H_{i − 1})$
+  * where '+' is word-wise mod 232 addition and C is a compression function with 256-bit output
+
+<img src="/INF140/INF140-summary-pictures/sha256-compression.png">
+
+#### Hash Functions Requiered Properties
+
+<img src="/INF140/INF140-summary-pictures/hash-functions-properties.png">
+
+#### Authentication using Symmetric Key Encryption
+
+<img src="/INF140/INF140-summary-pictures/symmetric-key-authentication.png">
+
+* Assumption:
+  decryption using wrong key or modified ciphertext will produce unintelligible output
+  Symmetric key encryption can provide
+    data authentication
+    source authentication (as well as confidentiality)
+
+#### Authentication using Message Authentication Codes
+
+<img src="/INF140/INF140-summary-pictures/<message-authentication-codes-authentication.png">
+
+* Append small, fixed-size block of data to message
+  * cryptographic checksum or MAC
+    * *MAC=F(K,M)*
+  * M= input message
+  * F= MAC function
+  * K= shared secret key of k bits
+  * MAC= message authentication code (or tag) of n bits
+  * MAC function also called keyed hash function
+  * MAC function similar to encryption, but does not need to be reversibleIEasier to design stronger MAC functions than encryption functions
+
+#### MAC Algorithms
+
+* Data Authentication Algorithm (DAA)
+  * based on DES
+  * considered insecure
+* Cipher-Based Message Authentication Code (CMAC)
+  * mode of operation used with Triple-DES and AES
+  * OMAC, PMAC, UMAC, VMAC, ...
+  * HMAC
+    * MAC function derived from cryptographic hash functions
+    * MD5/SHA are fast in software (compared to block ciphers)
+    * Libraries for hash functions widely available
+    * Security of HMAC depends on security of hash function used
+
+##### MAC Attacks
+
+* Security Requirements
+  * Key is secret and difficult to find from pairs of (M,MAC)
+  * Given pairs of (M, MAC), difficult to find the MAC of another message
+<!-- pagebreak -->
+
+* Brute Force Attacks on MACs
+  * Option 1
+    * Try all possible keys for one or more pairs of(MAC, M)
+    * effort ≈ $2^k$
+  * Option 2
+    * Try many values of M to find correct MAC
+      * effort ≈ $2^n$
+  * Effort to break MAC:min(2k,2n)
+
+#### Authentication with Symmetric Key and MACs
+
+An entity receiving ciphertext that successfully decrypts with symmetric secret keyKABkknows that the original message has not been modified and that it originated atone of the owners of the secret key (i.e.A or B).IAn entity receiving a message with attached MAC that successfully verifies, knows that the message has not been modified and originated at one of the owners of the MAC secret key
+
+##### Authentication using Hash Functions
+
+<img src="/INF140/INF140-summary-pictures/authentication-hash-functions.png">
+
+Hash functionH:  variable-length block of data M input; fixed-size hash value h=H(M) outputIApplyingH to large set of inputs should produce evenly distributed and random looking outputsICryptographic hash function:  computationally unfeasible to find:1.M that maps to known h(one-way property)2.M1andM2that produce same h(collision-free property)IAppend hash value to message; receiver verifies if message changed
+
+#### HMAC
+
+<img src="/INF140/INF140-summary-pictures/hmac.png">
+
+#### Summary on Symmetric Cryptographic Primitives
+
+<img src = "INF140-summary-pictures/symmetric-cryptographic-primitives.png">
+
+Common Features:
+iterative operations on the input (and key if in place)
+output random-like binary strings
+this feature enables the design of one primitive based on other secure primitives
+
+#### Password-Based Key Derivation Functions (PBKDF)
+
+<img src = "./INF140-summary-pictures/pbkdf.png">
+
+MK = PBKDF2(P, S, C, dkLen)IP: Password; S: Salt; C: number of iterationsIdkLen:  intended length of derived key (<232)Ilen := dkLen/hLenIint(i):=32-bit encoding of the integeri
+
+
+
+
+
 
 
 ## Malicious Software
@@ -1571,7 +2129,7 @@
   * ```iptables -P INPUT DROP```
   * ```iptables -A INPUT -p tcp --dport 80 -j ACCEPT```
 
-##### View Current Rules 
+##### View Current Rules
 
 * Aim
   * List the current set of rules, showing actual addresses
@@ -1656,7 +2214,7 @@
 * Common to separate internal network into two zones:
   1. Public-facing servers
   2. End-user computers and internal servers
-* Public-facing servers are put in the DE-Militarized Zone (DMZ) 
+* Public-facing servers are put in the DE-Militarized Zone (DMZ)
 
 ### General Firewall Issues
 
