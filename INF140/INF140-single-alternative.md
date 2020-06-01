@@ -8,8 +8,10 @@
         
         A.  Bored and lonely anti-social teenagers who hack as a challenge and sometimes for profit.
         B.  Computer savvy people who hack individuals and businesses as a form of competition.
-        C.  Highly-organised crime gangs run like businesses who deploy highly automated and sometimes highly targeted attacks against individuals and businesses for profit.
+        C.  Highly-organized crime gangs run like businesses who deploy highly automated and sometimes highly targeted attacks against individuals and businesses for profit.
         D.  All of the above.
+
+        Answer:
 
 2. You have inadvertently opened a web link contained in a suspicious email and now your computer is behaving strangely. What should course of action should you follow next?
 
@@ -18,19 +20,25 @@
         C.  You need to contact your IT help desk or Information Security team.
         D.  Keep an eye on the performance of your computer.
 
+        Answer:
+
 3. Who are the targets of modern day hackers?
 
         A.  Banks and finance companies who process a lot of payments.
         B.  Any organisation or individual is liable to be the victim of hackers.
         C.  Companies which hold a lot of proprietary information.
         D.  Companies which hold credit card numbers of customers.
+        
+        Answer:
 
 4. When receiving a suspicious email, what is the best way to validate a legitimate email vs. a phishing email?
-        
+
         A.  Bad spelling, poor syntax and grammar are one of the tell-tale signs of a fake email.
         B.  Look at the email headers to see where it really came from.
         C.  Look for poorly replicated logos.
         D.  Contact the sender on some other medium besides email to verify whether they sent you the email.
+        
+        Answer:
 
 5. Unexpectedly, you get an email from a colleague who requests you to urgently click on an email link which they have sent you. What is the safest option?
 
@@ -39,18 +47,23 @@
         C.  Reply to the sender to double-check if the link is safe to open as they might have sent it accidentally.
         D.  Do not click the link. Phone the sender for verification.
 
+        Answer: 
+
 6. Where should you store the encryption passphrase for your laptop?
-        
+
         A.  On a sticker underneath your laptop’s battery as it’s not visible to anyone using the laptop.
         B.  On a sticky note attached to the base of your laptop.
         C.  In a password-protected Word file stored on your laptop.
         D.  Use the password management tool supplied/authorised by your organisation.
 
+        Answer:
+
 7. You have a highly sensitive document which you need to email to a trusted third-party. What is the safest way to send this?
-        Make sure you scan the document with your anti-virus software first.
-        Send the document from your work email account.
-        Encrypt the document first. Then send the password to the third-party using a different communication method.
-        Send the document using a file sharing application.
+
+        A.      Make sure you scan the document with your anti-virus software first.
+        B.      Send the document from your work email account.
+        C.      Encrypt the document first. Then send the password to the third-party using a different communication method.
+        D.      Send the document using a file sharing application.
 
 8. A colleague calls you telling you they have an urgent deadline to meet. But unfortunately, they have forgotten their password to the client database. What should you do to help?
         Go to a computer terminal and log the user in so they can meet their deadline.

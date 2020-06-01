@@ -4,10 +4,10 @@
 
 1. Unexpectedly, you get an email from a colleague who requests you to urgently click on an email link which they have sent you.What is the safest option?
 
-        A. The link is from a known person therefore it’s safe to open.
+        A.  The link is from a known person therefore it’s safe to open.
         B.  If  the  link  was  malicious  the  organisation’s  firewall  would  haveflagged or blocked it, therefore it’s safe to open.
         C.  Reply to the sender to double-check if the link is safe to open asthey might have sent it accidentally.
-        D.  Do not click the link.Phone the sender for verification
+        D.  Do not click the link. Phone the sender for verification
 
         Answer: D
 
@@ -45,7 +45,7 @@
         C.  The intentional or accidental substitution of data
         D.  The extraction of data to share with unauthorized entities
 
-        Asnwer: C
+        Asnwer: D
 
 6. Existence of weakness in a system or network is called
 
@@ -55,7 +55,6 @@
         D.  Attack
 
         Answer: B
-
 
 7. Suicide Hackers are those
 
@@ -76,7 +75,7 @@
 
         Answer: C
 
-9. Trojans normally do not do one of the following.  What is that?
+9. Trojans normally do not do one of the following. What is that?
 
         A.  Deleting Data
         B.  Protecting Data
@@ -94,14 +93,14 @@
 
         Answer: B
 
-11. Backdoors cannot be designed as
+11. Backdoors cannot be designed as(stupid question tho)
 
         A.  the hidden part of a program
         B.  as a part of Trojans
         C.  embedded code of the firmware(hardware backdoor)
         D.  embedded with anti-malware
 
-        Answer: 
+        Answer: D
 
 12. The intent  of a ____ is  to  overkill  the  targeted  server’s  band-width and other resources of the target website.
 
@@ -130,7 +129,7 @@
 
         Answer: C
 
-15. [___]is a naming system given to different computers which adapt to human-readable domain names.
+15. ___is a naming system given to different computers which adapt to human-readable domain names.
 
         A.  HTTP
         B.  DNS
@@ -139,7 +138,7 @@
 
         Answer: B
 
-16. [______] is a means of storing & transmitting information in a specific format so that only those for whom it is planned can understand or process it.
+16. ______ is a means of storing & transmitting information in a specific format so that only those for whom it is planned can understand or process it.
 
         A.  Malware Analysis
         B.  Cryptography
@@ -148,7 +147,7 @@
         
         Answer: B
 
-17. [_________] are difficult to identify as they keep on changing their type and signature.
+17. _________ are difficult to identify as they keep on changing their type and signature.
 
         A.  Non-resident virus
         B.  Boot Sector Virus
@@ -157,7 +156,7 @@
 
         Answer: C
 
-18. A [_____] is a small malicious program that runs hidden in a legitimate like software.
+18. A _____ is a small malicious program that runs hidden in a legitimate like software.
 
         A.  Virus
         B.  Trojan
@@ -166,14 +165,14 @@
 
         Answer: B
 
-19. [_____] is  not  an  attack  technique  where  numerous  TCP  segments are spoofed with a bogus source address which is then sent to a server.
+19. _____ is  not  an  attack  technique  where  numerous  TCP  segments are spoofed with a bogus source address which is then sent to a server.
 
         A.  SYN flooding attack
         B.  ACK flooding attack
         C.  Fin flooding attack
         D.  Ping flooding attack
 
-        Answer: C
+        Answer: D
 
 20. Which of the protocol is not used at the network layer of the TCP/IP model?
 
@@ -197,15 +196,14 @@
         
         Answer: A, B, D
 
-
 2. Which statements about public-key certificates are correct?
 
         A. It is used to authenticate an entity in a network
-        B. It is widely used because public-key ciphers are more secure than    symmetric ciphers
-        C. It is widely used because public-key ciphers are more secure than    symmetric ciphers
+        B. It is widely used because public-key ciphers are more secure than symmetric ciphers
+        C. it is widely used because it makes key distribution more easily in the Internet
         D. It is used to prevent man-in-the-middle attacks in a network
 
-        Answer:
+        Answer: A, D (?)
 
 3. Which of the following firewalls act both client and server roles in controlling network traffic?
 
@@ -222,10 +220,10 @@
         B.  upper-case letters in the user’s password are converted to lower-case letters before the password is hashed
         C.  SHA256 is replaced with a fast hash function with 64-bit digest
         D.  The user’s password has length < 8
-        E.  A dynamically varying salt is added the the calculation of the pass-word hash
+        E.  A dynamically varying salt is added the the calculation of the password hash
         F.  The user’s password is a combination of lower-case letters, uppercase letters, digits, punctuations and its length is 6
 
-        Answer: B, C, D, F
+        Answer: B, C, D(Stemmer nok ikke, men bra praksis å ha allikevel), F
 
 5. Which of the following are types of preventative security control?
 
@@ -234,10 +232,10 @@
         C. Data backup
         D. Firewall
         E. Intrusion detection system
-        F.  Anti-malware system
+        F. Anti-malware system
         G. Least-privilege access control
 
-        Answer: B, D, F, G
+        Answer: A, B, D, F, G
 
 6. Which of the following are common features of a computer virus and a Trojan horse?
 
@@ -247,7 +245,7 @@
         D. Running itself when certain condition is triggered
         E. Sending message to a remote controller
         
-        Answer: A, B, D, E
+        Answer: A, D, E
 
 7. Which of the following are security controls of user authentication?
 
@@ -294,27 +292,27 @@
 ### Question 1
 
 * In a computer system, access is the flow of information between two entities.
-* A/An [ **Client** ] is an active entity that requests access to a/an [ **asset**  ].
-* A/An [  ] is a passive entity that contains information or needed functionality.
+* A/An [ **subject** ] is an active entity that requests access to a/an [ **asset**  ].
+* A/An [ **object** ] is a passive entity that contains information or needed functionality.
 * Access control is a broad term that covers several different types of mechanisms that enforce access control features on computer systems, networks,and information.
 * When a user wants to access a system, progressively,there will be four security controls in the system: [ **cryptography** ], [ **security protocols** ], [ **firewall** ] and [ **access control** ].
 * An access control mechanism dictates how subjects access objects.
 * There are different access models.
-* A system that uses [ **Discretionary access control** ] enables the owner of the resource to specify which subjects can access specific resources.
-* In, [ **Mandatory Access Control** ] users do not have the discretion of determining who can access objects.
+* A system that uses [ **discretionary access control** ] enables the owner of the resource to specify which subjects can access specific resources.
+* In, [ **mandatory Access Control** ] users do not have the discretion of determining who can access objects.
 * Instead, this model greatly reduces the amount of rights, permissions, and functionality a user has for security purposes.
 
 ### Question 2
 
 * The  Transmission  Control  Protocol/Internet  Protocol  (TCP/IP)  is  a suite of protocols that governs the way data travels from one device to another.
-* Different from the Open Systems Interconnection (OSI) model, the TCP/IP model has five layers, which from bottom to top are[ **Hardware** ], [ **Network interface** ], [ **Internet** ], [ **(Host-to-Host) Transport** ] and [ **Application** ].
+* Different from the Open Systems Interconnection (OSI) model, the TCP/IP model has five layers, which from bottom to top are[ **hardware** ], [ **Network interface** ], [ **internet** ], [ **(Host-to-Host) transport** ] and [ **application** ].
 * Cryptography  plays  a  critical  role  in  secure  communications.    * In theTLS/SSL protocol suit, both RSA and Diffie-Hellman are used for key ex-change between the client and the server.
 * Suppose the client and the server choose Diffie-Hellman for key  exchange.
-* The  public  parameter  is  set  asp= 1013 with generator 2.
+* The  public  parameter  is  set  asp = 1013 with generator 2.
 * Assume the client generates a private key Kc= 13 and the server generates a private keyKs = 11.
-* Then the client’s public key is [ **** ]and the server’s public key is [ **** ].
-* After they exchange these public keys, they share a secret information:[ **** ]
-* If the shared secret information, with ASCII encoding, is taken as the input for MD5 to generate a 128-bit encryption key for AES, then the encryption key in hexadecimal form is [ **** ]
+* Then the client’s public key is [ **2^(mod 1013)** ] and the server’s public key is [ **2^(mod 1013)** ].
+* After they exchange these public keys, they share a secret information:[ **$2^{13+11} \mod 1013 = 2^{24} \mod 1013$** ]
+* If the shared secret information, with ASCII encoding, is taken as the input for MD5 to generate a 128-bit encryption key for AES, then the encryption key in hexadecimal form is [ **63 34 30 31 35 62 37 66 33 36 38 65 36 62 34 38 37 31 38 30 39 66 34 39 64 65 62 65 30 35 37 39** ]
 
 ## Part 4
 
@@ -328,7 +326,8 @@
 
 #### 4.1.a - Rule1: Block ping(icmp) between subnets
 
-* ```iptables -A FORWARD -i eth1 eth2 -j DROP```
+* ```iptables -A FORWARD -p icmp -i eth1 -d eth2 0.0.0.0/24 -j DROP```
+* ```iptables -A FORWARD -p icmp -i eth2 -d 0.0.0.0/24 eth1 -j DROP```
 
 
 #### 4-1.b - Rule 2: Blocks icmp packets coming into firewall

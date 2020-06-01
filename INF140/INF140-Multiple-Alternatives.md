@@ -5,11 +5,12 @@
 ### Cybersecurity Attacks and Controls
 
 1. Which of the following are common features of a computer virus and a trojan horse?
-        residing in a software
-        replicating itself in the infected system and network
-        exploiting system flaws and vulnerabilities in a system
+
+        A.      residing in a software
+        B.      replicating itself in the infected system and network
+        C.      exploiting system flaws and vulnerabilities in a system
         running itself when certain condition is triggered
-        sending message to a remote controller
+        D.      sending message to a remote controller
 
 2. Which of the following belong to the social engineering attack?
         an attacker uses a telephone system to gain access to private personal and financial information from the public
@@ -25,7 +26,7 @@
         a person enters the letters from the image of ``I am not a robot" in a login page
         a person opens his/her mobile phone with fingerprint
         a user in a system is promted “Permission Denied” when he/she opens a file in the system
-    
+
 4. Which of the following processes use an access control list?
         a student logins mittuib with his/her student credentials
         a student downloads some lecture slides at mittuib
@@ -39,14 +40,14 @@
         role-based access control
         rule-based access control
         discretionary access control
-    
+
 6. Which of the following security controls heavily depend on cryptographic primitives?
         accountability
         authorization
         authentication
         availability
         integrity
-    
+
 7. Which of the following security controls are elements of access control?
         accountability
         authorization
@@ -89,10 +90,11 @@
 
 13. In a Linux system, suppose a user’s password is stored in /etc/shadow as:
     Password:$6$lM97wGbU5S.Funda$8HxX3gD5UjdwnXD7mHu7Foh9s6w.NCn5cxifoki7pr0m01Re5VG/yad86LjKmpJuXB/66ks1Y7T5y6cjV6.351:18313:0:99999:7::: Which of the following statements about the above password file are not correct?
-        there is no login name in the file
-        ‘Password’ is the user name
-        ‘$6$’ indicates the number of bytes in the salt
-        ‘$6$’ indicates the hash type used in the calculation
+        
+        A.      there is no login name in the file
+        B.      ‘Password’ is the user name
+        C.      ‘$6$’ indicates the number of bytes in the salt
+        D.      ‘$6$’ indicates the hash type used in the calculation
         ‘18313’ indicates the number of hash iterations in the file
     
 14. Which of the following are security requirements of a cryptogrpahic Hash function?
