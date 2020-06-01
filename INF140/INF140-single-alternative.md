@@ -169,7 +169,7 @@
         Answer: B
 
 4. What is the ethics behind training how to hack a system?
-        
+
         A.      To think like hackers and to help defend such attacks
         B.      To hack a system without the permission
         C.      To hack a network that is vulnerable
@@ -180,272 +180,445 @@
 ### Cybersecurity attributes, vulnerabilities and controls
 
 1. According to the CIA Triad, which of the below-mentioned element is not considered in the triad?
-        
+
         A.      Confidentiality
         B.      Integrity
         C.      Authenticity
         D.      Availability
 
-        Answer: 
-2. When you use the word ________ it means you are protecting your data from getting disclose -
-        Confidentiality
-        Integrity
-        Authentication
-        Availability
-3. When integrity is lacking in a security system, _________ occurs.
-        Database hacking
-        Data deletion
-        Data tampering
-        Data leakage
+        Answer: C 
 
-4. Why the elements confidentiality, integrity, authentication, authorization and availability are considered fundamental?
-        They help understanding hacking better
-        They help understanding threats better
-        They help understands security and its components better
-        They help to understand the cyber-crime better
+2. When you use the word ________ it means you are protecting your data from getting disclose -
+
+        A.      Confidentiality
+        B.      Integrity
+        C.      Authentication
+        D.      Availability
+
+        Asnwer: A
+
+3. When integrity is lacking in a security system, _________ occurs.
+
+        A.      Database hacking
+        B.      Data deletion
+        C.      Data tampering
+        D.      Data leakage
+
+        Asnwer: C 
+
+4. Why are the elements confidentiality, integrity, authentication, authorization and availability are considered fundamental?
+
+        A.      They help understanding hacking better
+        B.      They help understanding threats better
+        C.      They help understands security and its components better
+        D.      They help to understand the cyber-crime better
+
+        Answer: C
 
 5. This helps in identifying the origin of information and authentic user. This referred to here as __________
-        Confidentiality
-        Integrity
-        Authentication
-        Availability
+
+        A.      Confidentiality
+        B.      Integrity
+        C.      Authentication
+        D.      Availability
+
+        Answer: A
 
 6. Which of these is not a proper method of maintaining confidentiality?
-        Biometric verification
-        ID and password based verification
-        2-factor authentication
-        switching off the phone
+        A.      Biometric verification
+        B.      ID and password based verification
+        C.      2-factor authentication
+        D.      switching off the phone
+
+        Answer: D
 
 7. One common way to maintain data availability is __________
-        Data clustering
-        Data mirroring and backup
-        Data recovery
-        Data Altering
+
+        A.      Data clustering
+        B.      Data mirroring and backup
+        C.      Data recovery
+        D.      Data Altering
+        
+        Answer: B
 
 8. The integrity of data is not related to which of the following?
-        Unauthorized manipulation or changes to data
-        The modification of data without authorization
-        The intentional or accidental substitution of data
-        The extraction of data to share with unauthorized entities
+
+        A.      Unauthorized manipulation or changes to data
+        B.      The modification of data without authorization
+        C.      The intentional or accidental substitution of data
+        D.      The extraction of data to share with unauthorized entities
+
+        Answer: C
 
 9. Existence of weakness in a system or network is called _______
-        Threat
-        Vulnerability
-        Exploit
-        Attack
+
+        A.      Threat
+        B.      Vulnerability
+        C.      Exploit
+        D.      Attack
+
+        Answer: B
 
 10. A/An ________ in a system is a potential danger that a vulnerability will be exploited.
-        Threat
-        Vulnerability
-        Exploit
-        Attack
+
+        A.      Threat
+        B.      Vulnerability
+        C.      Exploit
+        D.      Attack
+
+        Answer: C
 
 11. ________ is a way to breach the security by using the vulnerability of that system.
-        Threat
-        Vulnerability
-        Exploit
-        Attack
+
+        A.      Threat
+        B.      Vulnerability
+        C.      Exploit
+        D.      Attack
+
+        Answer: C
 
 12. The new reinforced lock and cage serve as which of the following?
 
-        Logical controls
+        A.      Logical controls
+        B.      Physical controls
+        C.      Administrative controls
+        D.      Compensating controls
 
-        Physical controls
-
-        Administrative controls
-
-        Compensating controls
+        Answer: B
 
 13. The operating system access controls comprise which type of control in the following?
-        Logical controls
-        Physical controls
-        Administrative controls
-        Compensating controls
+
+        A.      Logical controls
+        B.      Physical controls
+        C.      Administrative controls
+        D.      Compensating controls
+
+        Answer: A
 
 14. Which is the most valuable technique in practice when determining if a specific security control should be implemented?
-        Risk analysis
-        Cost/benefit analysis
-        Annualized loss expectancy results
-        Identifying the vulnerabilities and threats causing the risk
+
+        A.      Risk analysis
+        B.      Cost/benefit analysis
+        C.      Annualized loss expectancy results
+        D.      Identifying the vulnerabilities and threats causing the risk
+
+       Answer: A
 
 ### Cybersecurity Attacks
 
 1. The full form of Malware is ________
-        Malfunctioned Software
-        Multipurpose Software
-        Malicious Software
-        None of above
-    
+
+        A.      Malfunctioned Software
+        B.      Multipurpose Software
+        C.      Malicious Software
+        D.      None of above
+
+        Answer: C
+
 2. Compromising a user's session for exploiting the user's data and do malicious activities or misuse user's credentials is called ___________
-        Session Hijacking
-        Session Fixation
-        Cookie stuffing
-        Session Spying
+
+        A.      Session Hijacking
+        B.      Session Fixation
+        C.      Cookie stuffing
+        D.      Session Spying
+        
+        Answer: A
 
 3. What kind of cybersecurity risks can be minimized by using a Virtual Private Network (VPN)?
-        Use of insecure Wi-Fi networks
-        Key-logging
-        De-anonymization by network operators
-        Phishing attacks
-    Which of the following exploits computer networks and security holes to reproduce itself ?
-        Worm
-        Trojan Horse
-        Virus
-        Email Virus
-    A/An __________ is a piece of software or a segment of command that usually take advantage of a bug to cause unintended actions and behaviors.
-        malware
-        trojan
-        worms
-        exploit
-    Which of this is an example of physical hacking?
-        Remote Unauthorised access
-        Inserting malware loaded USB to a system
-        SQL Injection on SQL vulnerable site
-        DDoS (Distributed Denial of Service) attack
-    Which method of hacking will record all your keystrokes?
-        Keyhijacking
-        Keyjacking
-        Keylogging
-        Keyboard monitoring
-    Stuxnet is a _________
-        Worm
-        Virus
-        Trojan
-        Antivirus
-    WannaCry is a
-        Adware
-        Spyware
-        Ransomware
-        Riskware
-    ________ automates an action or attack so that repetitive tasks are done at a faster rate.
-        Auto-bots
-        Cookie-bots
-        Robots
-        Bots
-    A computer ________ is a malicious code which self-replicates by copying itself to other programs.
-        program
-        virus
-        application
-        worm
-    Which of the following is not a type of virus?
-        Boot sector
-        Polymorphic
-        Multipartite
-        Trojans
-    _______________ infects the master boot record and it is challenging and a complex task to remove this virus.
-        Boot Sector Virus
-        Polymorphic
-        Multipartite
-        Trojans
-    ______________ are difficult to identify as they keep on changing their type and signature.
-        Non-resident virus
-        Boot Sector Virus
-        Polymorphic Virus
-        Multipartite Virus
-    A ___________ is a small malicious program that runs hidden in a legitimate-like software.
-        Virus
-        Trojan
-        Shareware
-        Adware
-    ____________ can work in background and steals sensitive dat -
-        Virus
-        Shareware
-        Trojan
-        Adware
-    Trojans normally do not do one of the following. What is that?
-        Deleting Data
-        Protecting Data
-        Modifying Data
-        Copying Data
-    A _______________ provides malicious users remote control over the targeted computer.
-        DDoS-Trojan
-        Backdoor Trojan
-        Trojan-Banker
-        Trojan-Downloader
-    Which of the following malwares can modify data on your system, so that your system doesn't run correctly or you can no longer access specific data, and it even asks for ransom in order to give your access?
-        Trojans-IM
-        Backdoor Trojans
-        Trojan-Downloader
-        Ransom Trojan
-    A ___________ is a method in which a computer security mechanism is bypassed untraceable for accessing the computer or its information.
-        front-door
-        backdoor
-        clickjacking
-        key-logging
-    Backdoors cannot be designed as ______________
-        the hidden part of a program
-        as a part of Trojans
-        embedded code of the firmware
-        embedded with anti-malware
-    ______________ is an internet scam done by cyber-criminals where the user is convinced digitally to provide confidential information.
-        Phishing attack
-        DoS attack
-        Website attack
-        MiTM attack
-    Which of the following type of data, phishers cannot steal from its target victims?
-        bank details
-        phone number
-        passwords
-        apps installed in the mobile
-    The intent of a ______________ is to overkill the targeted server's bandwidth and other resources of the target website.
-        Phishing attack
-        DoS attack
-        Website attack
-        MiTM attack
-    DoS is abbreviated as _____________________
-        Denial of Service
-        Distribution of Server
-        Distribution of Service
-        Denial of Server
-    A DoS attack coming from a large number of IP addresses, making it hard to manually filter or crash the traffic from such sources is known as a _____________
-        GoS attack
-        PDoS attack
-        DoS attack
-        DDoS attack
-    Which of the following is a type of transport layer DoS?
-        HTTP flooding
-        Ping flooding
-        TCP flooding
-        DNS query flooding
-    __________ is a naming system given to different computers which adapt to human-readable domain names.
-        HTTP
-        DNS
-        WWW
-        ISP
-    Which of the following is a kind of attack which uses DNS based vulnerabilities for diverting the traffic of the internet
-        DNS poisoning
-        DNS re-routing
-        DNS cracking
-        Domain link poisoning
-    ______________ is a means of storing & transmitting information in a specific format so that only those for whom it is planned can understand or process it.
-        Malware Analysis
-        Cryptography
-        Reverse engineering
-        Exploit writing
-    Which of the following is normally not used to provide data integrity?
-        Symmetric Encryption
-        Asymmetric Encryption
-        Hash function
-        Message Authentication Code
-    ___________ is not an attack technique where numerous TCP segments are spoofed with a bogus source address which is then sent to a server.
-        SYN flooding attack
-        ACK flooding attack
-        Fin flooding attack
-        Ping flooding attack
-    Which of the protocol is not used in the network layer of the TCP/IP model?
-        ICMP
-        IP
-        IGMP
-        HTTP
-    Which of the following the correct order of layers in TCP/IP model from top to down?
-        Application, Transport, Network, Data, Physical
-        Application, Transport, Data, Network, Physical
-        Application, Data, Network, Transport, Physical
-        Application, Network, Transport, Data, Physical
-    Which of the following attacks pretends to associate a certain IP address to its MAC address in a LAN?
-        DNS spoofing
-        DHCP spoofing
-        ARP spoofing
-        SYN spoofing
+
+        A.      Use of insecure Wi-Fi networks
+        B.      Key-logging
+        C.      De-anonymization by network operators
+        D.      Phishing attacks
+
+        Answer: A
+
+4. Which of the following exploits computer networks and security holes to reproduce itself ?
+
+        A.      Worm
+        B.      Trojan Horse
+        C.      Virus
+        D.      Email Virus
+
+        Answer: A
+
+5. A/An __________ is a piece of software or a segment of command that usually take advantage of a bug to cause unintended actions and behaviors.
+  
+        A.      malware
+        B.      trojan
+        C.      worms
+        D.      exploit
+
+        Answer: D
+
+6. Which of this is an example of physical hacking?
+
+        A.      Remote Unauthorised access
+        B.      Inserting malware loaded USB to a system
+        C.      SQL Injection on SQL vulnerable site
+        D.      DDoS (Distributed Denial of Service) attack
+
+        Answer:B
+
+7. Which method of hacking will record all your keystrokes?
+
+        A.      Keyhijacking
+        B.      Keyjacking
+        C.      Keylogging
+        D.      Keyboard monitoring
+    
+        Answer: C
+
+8. Stuxnet is a _________
+
+        A.      Worm
+        B.      Virus
+        C.      Trojan
+        D.      Antivirus
+
+        Answer: A
+
+9. WannaCry is a
+
+        A.      Adware
+        B.      Spyware
+        C.      Ransomware
+        D.      Riskware
+
+        Answer: C
+
+10. ________ automates an action or attack so that repetitive tasks are done at a faster rate.
+
+        A.      Auto-bots
+        B.      Cookie-bots
+        C.      Robots
+        D.      Bots
+
+        Answer:D
+
+11. A computer ________ is a malicious code which self-replicates by copying itself to other programs.
+
+        A.      program
+        B.      virus
+        C.      application
+        D.      worm
+
+        Answer: B
+
+12. Which of the following is not a type of virus?
+
+        A.      Boot sector
+        B.      Polymorphic
+        C.      Multipartite
+        D.      Trojans
+
+        Answer: D
+
+13. _______________ infects the master boot record and it is challenging and a complex task to remove this virus.
+
+        A.      Boot Sector Virus
+        B.      Polymorphic
+        C.      Multipartite
+        D.      Trojans
+
+        Answer: A
+
+14. ______________ are difficult to identify as they keep on changing their type and signature.
+
+        A.      Non-resident virus
+        B.      Boot Sector Virus
+        C.      Polymorphic Virus
+        D.      Multipartite Virus
+
+        Answer: C 
+
+15. A ___________ is a small malicious program that runs hidden in a legitimate-like software.
+
+        A.      Virus
+        B.      Trojan
+        C.      Shareware
+        D.      Adware
+
+        Answer: A
+
+16. ____________ can work in background and steals sensitive data
+
+        A.      Virus
+        B.      Shareware
+        C.      Trojan
+        D.      Adware
+
+        Answer: Trojan
+
+17. Trojans normally do not do one of the following. What is that?
+
+        A.      Deleting Data
+        B.      Protecting Data
+        C.      Modifying Data
+        D.      Copying Data
+
+        Answer: B
+
+18. A _______________ provides malicious users remote control over the targeted computer.
+
+        A.      DDoS-Trojan
+        B.      Backdoor Trojan
+        C.      Trojan-Banker
+        D.      Trojan-Downloader
+
+        Answer: B
+
+19. Which of the following malware can modify data on your system, so that your system doesn't run correctly or you can no longer access specific data, and it even asks for ransom in order to give your access?
+
+        A.      Trojans-IM
+        B.      Backdoor Trojans
+        C.      Trojan-Downloader
+        D.      Ransom Trojan
+
+        Answer: D
+
+20. A ___________ is a method in which a computer security mechanism is bypassed untraceable for accessing the computer or its information.
+
+        A.      front-door
+        B.      backdoor
+        C.      clickjacking
+        D.      key-logging
+        
+        Answer: B
+
+21. Backdoors cannot be designed as ______________
+
+        A.      the hidden part of a program
+        B.      as a part of Trojans
+        C.      embedded code of the firmware
+        D.      embedded with anti-malware
+
+        Answer: D(even tho they technically can. Try to goole "anti virus software" and move to page 1000 and download it for instance)
+
+22. ______________ is an internet scam done by cyber-criminals where the user is convinced digitally to provide confidential information.
+
+        A.      Phishing attack
+        B.      DoS attack
+        C.      Website attack
+        D.      MiTM attack
+
+        Answer: A
+
+23. Which of the following type of data, phishers cannot steal from its target victims?
+
+        A.      bank details
+        B.      phone number
+        C.      passwords
+        D.      apps installed in the mobile
+
+        Answer: D
+
+24. The intent of a ______________ is to overkill the targeted server's bandwidth and other resources of the target website.
+
+        A.      Phishing attack
+        B.      DoS attack
+        C.      Website attack
+        D.      MiTM attack
+
+        Answer: B 
+
+25. DoS is abbreviated as _____________________
+
+        A.      Denial of Service
+        B.      Distribution of Server
+        C.      Distribution of Service
+        D.      Denial of Server
+
+        Answer: A
+
+26. A DoS attack coming from a large number of IP addresses, making it hard to manually filter or crash the traffic from such sources is known as a _____________
+
+        A.      GoS attack
+        B.      PDoS attack
+        C.      DoS attack
+        D.      DDoS attack
+
+        Answer: D
+
+27. Which of the following is a type of transport layer DoS?
+
+        A.      HTTP flooding
+        B.      Ping flooding
+        C.      TCP flooding
+        D.      DNS query flooding
+
+        Answer: C
+
+28. __________ is a naming system given to different computers which adapt to human-readable domain names.
+
+        A.      HTTP
+        B.      DNS
+        C.      WWW
+        D.      ISP
+
+        Answer: B
+
+29. Which of the following is a kind of attack which uses DNS based vulnerabilities for diverting the traffic of the internet
+
+        A.      DNS poisoning
+        B.      DNS re-routing
+        C.      DNS cracking
+        D.      Domain link poisoning
+
+        Answer: A
+
+30. ______________ is a means of storing & transmitting information in a specific format so that only those for whom it is planned can understand or process it.
+
+        A.      Malware Analysis
+        B.      Cryptography
+        C.      Reverse engineering
+        D.      Exploit writing
+
+        Answer: B
+
+31. Which of the following is normally not used to provide data integrity?
+
+        A.      Symmetric Encryption
+        B.      Asymmetric Encryption
+        C.      Hash function
+        D.      Message Authentication Code
+
+        Answer: A
+
+32. ___________ is not an attack technique where numerous TCP segments are spoofed with a bogus source address which is then sent to a server.
+
+        A.      SYN flooding attack
+        B.      ACK flooding attack
+        C.      Fin flooding attack
+        D.      Ping flooding attack
+    
+        Answer: D
+
+33. Which of the protocol is not used in the network layer of the TCP/IP model?
+
+        A.      ICMP
+        B.      IP
+        C.      IGMP
+        D.      HTTP
+
+        Answer: D
+
+34. Which of the following the correct order of layers in TCP/IP model from top to down?
+
+        A.      Application, Transport, Network, Data, Physical
+        B.      Application, Transport, Data, Network, Physical
+        C.      Application, Data, Network, Transport, Physical
+        D.      Application, Network, Transport, Data, Physical
+        
+        Answer: B
+
+35. Which of the following attacks pretends to associate a certain IP address to its MAC address in a LAN?
+
+        A.      DNS spoofing
+        B.      DHCP spoofing
+        C.      ARP spoofing
+        D.      SYN spoofing
+
+        Answer: C
 
 A majority of questions are taken from Quiz of Cybersecurity

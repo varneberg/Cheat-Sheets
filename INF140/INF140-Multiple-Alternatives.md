@@ -8,9 +8,10 @@
 
         A.      residing in a software
         B.      replicating itself in the infected system and network
-        C.      exploiting system flaws and vulnerabilities in a system
-        running itself when certain condition is triggered
+        C.      exploiting system flaws and vulnerabilities in a system running itself when certain condition is triggered
         D.      sending message to a remote controller
+
+        Answer: 
 
 2. Which of the following belong to the social engineering attack?
         an attacker uses a telephone system to gain access to private personal and financial information from the public
