@@ -110,7 +110,7 @@
         * [MD5](#md5)
         * [SHA](#sha)
         * [SHA256](#sha256)
-      * [Hash Functions Requiered Properties](#hash-functions-requiered-properties)
+      * [Hash Functions Required Properties](#hash-functions-required-properties)
       * [Authentication using Symmetric Key Encryption](#authentication-using-symmetric-key-encryption)
       * [Authentication using Message Authentication Codes](#authentication-using-message-authentication-codes)
       * [MAC Algorithms](#mac-algorithms)
@@ -120,6 +120,11 @@
       * [HMAC](#hmac)
       * [Summary on Symmetric Cryptographic Primitives](#summary-on-symmetric-cryptographic-primitives)
       * [Password-Based Key Derivation Functions (PBKDF)](#password-based-key-derivation-functions-pbkdf)
+    * [Public and Private Keys](#public-and-private-keys)
+      * [Assumptions:  Public Key Encryption](#assumptions-public-key-encryption)
+      * [Requirements of Public-Key Cryptography](#requirements-of-public-key-cryptography)
+      * [TODO Diffie-Hellman Key Exchange](#todo-diffie-hellman-key-exchange)
+      * [TODO Distributing Public Keys](#todo-distributing-public-keys)
   * [Malicious Software](#malicious-software)
     * [Malware (Malicious software/code)](#malware-malicious-softwarecode)
       * [Classification of malware](#classification-of-malware)
@@ -1595,7 +1600,7 @@ of 512 bits long
 
 <img src="/INF140/INF140-summary-pictures/sha256-compression.png">
 
-#### Hash Functions Requiered Properties
+#### Hash Functions Required Properties
 
 <img src="/INF140/INF140-summary-pictures/hash-functions-properties.png">
 
@@ -1655,35 +1660,112 @@ of 512 bits long
 
 #### Authentication with Symmetric Key and MACs
 
-An entity receiving ciphertext that successfully decrypts with symmetric secret keyKABkknows that the original message has not been modified and that it originated atone of the owners of the secret key (i.e.A or B).IAn entity receiving a message with attached MAC that successfully verifies, knows that the message has not been modified and originated at one of the owners of the MAC secret key
+* An entity receiving ciphertext that successfully decrypts with symmetric secret key $K_{AB}$ knows that the original message has not been modified and that it originated atone of the owners of the secret key (i.e. $A$ or $B$).
+* An entity receiving a message with attached MAC that successfully verifies, knows that the message has not been modified and originated at one of the owners of the MAC secret key
 
 ##### Authentication using Hash Functions
 
 <img src="/INF140/INF140-summary-pictures/authentication-hash-functions.png">
 
-Hash functionH:  variable-length block of data M input; fixed-size hash value h=H(M) outputIApplyingH to large set of inputs should produce evenly distributed and random looking outputsICryptographic hash function:  computationally unfeasible to find:1.M that maps to known h(one-way property)2.M1andM2that produce same h(collision-free property)IAppend hash value to message; receiver verifies if message changed
+* Hash function *H*:
+  * variable-length block of data M input
+    * fixed-size hash value $h=H(M)$ output
+  * Applying $H$ to large set of inputs should produce evenly distributed and random looking outputs
+  * Cryptographic hash function
+    * computationally unfeasible to find
+      1. M that maps to known $h$(one-way property)
+      2. $M_1$ and $M_2$ that produce same $h$(collision-free property)
+  * Append hash value to message; receiver verifies if message changed
 
 #### HMAC
 
 <img src="/INF140/INF140-summary-pictures/hmac.png">
 
+* HMAC(K,m) = H((K ⊕ opad) || H((K ⊕ ipad )||m))
+
 #### Summary on Symmetric Cryptographic Primitives
 
 <img src = "INF140-summary-pictures/symmetric-cryptographic-primitives.png">
 
-Common Features:
-iterative operations on the input (and key if in place)
-output random-like binary strings
-this feature enables the design of one primitive based on other secure primitives
+* Common Features:
+  * iterative operations on the input (and key if in place)
+  * output random-like binary strings
+    * this feature enables the design of one primitive based on other secure primitives
 
 #### Password-Based Key Derivation Functions (PBKDF)
 
 <img src = "./INF140-summary-pictures/pbkdf.png">
 
-MK = PBKDF2(P, S, C, dkLen)IP: Password; S: Salt; C: number of iterationsIdkLen:  intended length of derived key (<232)Ilen := dkLen/hLenIint(i):=32-bit encoding of the integeri
+* MK = PBKDF2(P, S, C, dkLen)
+  * P: Password
+  * S: Salt
+  * C: number of iterations
+  * dkLen: intended length of derived key ( < $2^{32}$)
+  * len := dkLen/hLen
+  * int(i):= 32-bit encoding of the integer i
 
+### Public and Private Keys
 
+* **Public Key**
+  * For secrecy
+    * used in encryption
+  * For authentication
+    * used in decryption
+  * Available to anyone
+<!-- pagebreak -->
 
+* **Private Key**
+  * For secrecy
+    * used in decryption
+  * For authentication:
+    * used in decryption
+  * Secret, known only by owner
+
+* Public-Private Key Pair
+  * User $A$ has pair of related keys, public and private
+    * ($PU_A$,$PR_A$)
+
+#### Assumptions:  Public Key Encryption
+
+* There is a pair of keys, public ($PU$) and private ($PR$).One key from the pair is used for encryption, the other is used for decryption. Each entity has their own pair
+  * e.g. ($PU_A$,$PR_A$).
+* Encrypting a plaintext message, $M$, with a key,produces ciphertext C
+  * e.g.$C=E(PU_A,M)$
+* Decrypting ciphertext with the correct key will produce the original plaintext. The decryptor will be able to recognize that the plaintext is correct (and therefore the key is correct)
+  * E.g.$M=D(PR_A,C)$.
+* Decrypting ciphertext using the incorrect key will not produce the original plaintext. The decryptor will be able to recognize that the key is wrong, i.e. the decryption will produce unrecognizable output.
+
+#### Requirements of Public-Key Cryptography
+
+1. Computationally easy for $B$ to generate pair $(PU_b,PR_b)$
+2. Computationally easy for $A$, knowing $P_U$ band message $M$, to generate ciphertext
+   * $C=E(PU_b,M)$
+3. Computationally easy for $B$ to decrypt ciphertext using $PR_b$
+    * $M=D(PR_b,C) =D[PR_b,E(PU_b,M)]$
+4. Computationally unfeasible for attacker, knowing $PU_b$ and $C$, to determine $PR_b$
+5. Computationally unfeasible for attacker, knowing $PU_b$ and $C$, to determine $M$
+6. (Optional) Two keys can be applied in either order
+   * $M=D[PU_b,E(PR_b,M)] =D[PR_b,E(PU_b,M)]$
+
+* 6 requirements lead to need for trap-door one-way function
+  * Every function value has unique inverse
+  * Calculation of function is easy
+  * Calculation of inverse is unfeasible, unless certain information is known
+    * $Y=f_k(X)$
+      * easy, if $k$ and $Y$ are known
+    * $X={f_k}^{−1}(Y)$
+      * easy, if $k$ and $Y$ are known
+    * $X={f_k}^{−1}(Y)$
+      * unfeasible, if $Y$ is known but $k$ is not
+<!-- pagebreak -->
+
+* What is easy? What is unfeasible?
+  * Computational complexity of algorithm gives an indication
+  * Easy if can be solved in polynomial time as function of input
+
+#### TODO Diffie-Hellman Key Exchange
+
+#### TODO Distributing Public Keys
 
 
 
@@ -2231,7 +2313,7 @@ MK = PBKDF2(P, S, C, dkLen)IP: Password; S: Salt; C: number of iterationsIdkLen:
 * Controls access/usage of resources in local and remote systems
 * What to authenticate:
   * User authentication to get access to local/remote resource
-  * Entity authentication communicating with each other and claiming tobe who they are
+  * Entity authentication communicating with each other and claiming to be who they are
 
 ### Authentication in WPA2
 
@@ -2269,7 +2351,7 @@ MK = PBKDF2(P, S, C, dkLen)IP: Password; S: Salt; C: number of iterationsIdkLen:
 ##### 892.1X(EAPOL)
   
 1. EAP data is encapsulated in EAP over LAN (EAPOL)
-2. Then re-encapsulated between the authenticator and thauthentication server using RADIUS/Diameter
+2. Then re-encapsulated between the authenticator and the authentication server using RADIUS/Diameter
 3. The supplicant is approved/rejected to access resources
 
 ##### Extensible Authentication Protocol(EAP)

@@ -5,13 +5,13 @@
 ### Cybersecurity Awareness
 
 1. Which of the following statements best describes modern hacker?
-        
+
         A.  Bored and lonely anti-social teenagers who hack as a challenge and sometimes for profit.
         B.  Computer savvy people who hack individuals and businesses as a form of competition.
         C.  Highly-organized crime gangs run like businesses who deploy highly automated and sometimes highly targeted attacks against individuals and businesses for profit.
         D.  All of the above.
 
-        Answer:
+        Answer: D
 
 2. You have inadvertently opened a web link contained in a suspicious email and now your computer is behaving strangely. What should course of action should you follow next?
 
@@ -20,7 +20,7 @@
         C.  You need to contact your IT help desk or Information Security team.
         D.  Keep an eye on the performance of your computer.
 
-        Answer:
+        Answer: C
 
 3. Who are the targets of modern day hackers?
 
@@ -29,7 +29,7 @@
         C.  Companies which hold a lot of proprietary information.
         D.  Companies which hold credit card numbers of customers.
         
-        Answer:
+        Answer: B
 
 4. When receiving a suspicious email, what is the best way to validate a legitimate email vs. a phishing email?
 
@@ -38,7 +38,7 @@
         C.  Look for poorly replicated logos.
         D.  Contact the sender on some other medium besides email to verify whether they sent you the email.
         
-        Answer:
+        Answer: D
 
 5. Unexpectedly, you get an email from a colleague who requests you to urgently click on an email link which they have sent you. What is the safest option?
 
@@ -47,16 +47,16 @@
         C.  Reply to the sender to double-check if the link is safe to open as they might have sent it accidentally.
         D.  Do not click the link. Phone the sender for verification.
 
-        Answer: 
+        Answer: D
 
-6. Where should you store the encryption passphrase for your laptop?
+6. Where should you store the encryption pass phrase for your laptop?
 
         A.  On a sticker underneath your laptop’s battery as it’s not visible to anyone using the laptop.
         B.  On a sticky note attached to the base of your laptop.
         C.  In a password-protected Word file stored on your laptop.
         D.  Use the password management tool supplied/authorised by your organisation.
 
-        Answer:
+        Answer: D
 
 7. You have a highly sensitive document which you need to email to a trusted third-party. What is the safest way to send this?
 
@@ -65,87 +65,128 @@
         C.      Encrypt the document first. Then send the password to the third-party using a different communication method.
         D.      Send the document using a file sharing application.
 
+        Answer: C
+
 8. A colleague calls you telling you they have an urgent deadline to meet. But unfortunately, they have forgotten their password to the client database. What should you do to help?
-        Go to a computer terminal and log the user in so they can meet their deadline.
-        Suggest to your colleague that they call your IT helpdesk for a password reset link.
-        Give them your login credentials temporarily so your colleague can meet their deadline.
-        Put your login credentials on an encrypted USB memory stick and hand it to them.
+
+        A.      Go to a computer terminal and log the user in so they can meet their deadline.
+        B.      Suggest to your colleague that they call your IT help desk for a password reset link.
+        C.      Give them your login credentials temporarily so your colleague can meet their deadline.
+        D.      Put your login credentials on an encrypted USB memory stick and hand it to them.
+
+        Answer: B
 
 9. You have just moved to a new department and have been issued with a new set of passwords. Which one of these methods offers you the safest option for storing them?
-        Write them down in a notebook beside your desk for handy reference.
-        Use a sticky note making sure you place under your keyboard instead of on or near your computer.
-        Store them in an Excel file on your computer but give the file name something unrelated to passwords.
-        Use the password management tool supplied/authorised by your organisation.
+
+        A.      Write them down in a notebook beside your desk for handy reference.
+        B.      Use a sticky note making sure you place under your keyboard instead of on or near your computer.
+        C.      Store them in an Excel file on your computer but give the file name something unrelated to passwords.
+        D.      Use the password management tool supplied/authorized by your organization.
+
+        Answer: D
 
 10. You have an old laptop with work-related files still stored on it. You want to give the system away to charity. What is the safest way to keep the file contents confidential?
-        Login to the computer to delete the files and un-install programs.
-        Login to the computer, delete the files and then empty the recycle bin.
-        Install a new copy of the operating system on the computer.
-        Remove the hard disk and give it to your IT or helpdesk team to destroy the content securely.
+
+        A.      Login to the computer to delete the files and uninstall programs.
+        B.      Login to the computer, delete the files and then empty the recycle bin.
+        C.      Install a new copy of the operating system on the computer.
+        D.      Remove the hard disk and give it to your IT or help desk team to destroy the content securely.
+        
+        Answer: D
 
 11. You’ve just got a warning from your bank that suspicious activity has been detected and to login immediately using a URL (link) provided. What is the best course of action to take?
-        Login immediately and change your password to a more complex one.
-        Contact your bank using the telephone number on the back of your credit card.
-        Login to your bank account immediately and check your balance.
-        Check the headers in the email and then login.
 
-12. Who deploy Malwares to a system or network?
-        Criminal organizations, Black hat hackers, software developers, cyber-terrorists
-        Criminal organizations, White hat hackers, malware developers, cyber-terrorists
-        Criminal organizations, gray hat hackers, Malware developers, Penetration testers
-        Criminal organizations, Black hat hackers, malware developers, cyber-terrorists
+        A.      Login immediately and change your password to a more complex one.
+        B.      Contact your bank using the telephone number on the back of your credit card.
+        C.      Login to your bank account immediately and check your balance.
+        D.      Check the headers in the email and then login.
+
+        Answer: B  
+
+12. Who deploy malware to a system or network?
+
+        A.      Criminal organizations, Black hat hackers, software developers, cyber-terrorists
+        B.      Criminal organizations, White hat hackers, malware developers, cyber-terrorists
+        C.      Criminal organizations, gray hat hackers, Malware developers, Penetration testers
+        D.      Criminal organizations, Black hat hackers, malware developers, cyber-terrorists
+
+        Answer: D
 
 13. Your existing password is “Northwave” and your IT department has requested that you change it. Which one of these would be the safest to use?
-        Yellowbuscamerahorse
-        Northwave1
-        Northwave!
-        W@venorth
+
+        A.      Yellowbuscamerahorse
+        B.      Northwave1
+        C.      Northwave!
+        D.      W@venorth
+
+        Answer: D
 
 14. A supplier has sent you a USB memory stick in the post which contains drawings of a project that you're collaborating on. What is the safest course of action?
-        Perform a virus scan of the memory stick before opening any of its files.
-        Use the USB port in front of your computer instead of the back which enables you to disconnect the memory stick quickly if it’s infected.
-        Do not use the USB stick. Request the supplier to the send the file via email or upload it to a secure file sharing service.
-        Insert the USB memory stick but don’t click on any of the files.
+
+        A.      Perform a virus scan of the memory stick before opening any of its files.
+        B.      Use the USB port in front of your computer instead of the back which enables you to disconnect the memory stick quickly if it’s infected.
+        C.      Do not use the USB stick. Request the supplier to the send the file via email or upload it to a secure file sharing service.
+        D.      Insert the USB memory stick but don’t click on any of the files.
+
+        Answer: C
+
 15. Patching is important to your computer because
-        Patches remove viruses
-        It reduces spam in your inbox
-        It makes your computer less vulnerable to virus attacks
-        It provides new system functions
+
+        A.      Patches remove viruses
+        B.      It reduces spam in your inbox
+        C.      It makes your computer less vulnerable to virus attacks
+        D.      It provides new system functions
+
+        Answer: C
 
 #### Cybersecurity Ethics
 
 1. Suicide Hackers are those _________
-        who break a system for some specific purpose with or without keeping in mind that they may suffer long term imprisonment due to their malicious activity
-        individuals with no knowledge of codes but an expert in using hacking tools
-        who know the consequences of their hacking activities and hence try to prevent them by erasing their digital footprints
-        who are employed in an organization to do malicious activities on other firms
+
+        A.      who break a system for some specific purpose with or without keeping in mind that they may suffer long term imprisonment due to their malicious activity
+        B.      individuals with no knowledge of codes but an expert in using hacking tools
+        C.      who know the consequences of their hacking activities and hence try to prevent them by erasing their digital footprints
+        D.      who are employed in an organization to do malicious activities on other firms
+
+        Answer: A
 
 2. They are nefarious hackers, and their main motive is to gain financial profit by doing cyber crimes. Who are "they" referred to here?
-        Gray Hat Hackers
-        White Hat Hackers
-        Black Hat Hackers
-        All of the above
+
+        A.      Gray Hat Hackers
+        B.      White Hat Hackers
+        C.      Black Hat Hackers
+        D.      All of the above
+
+        Answer: C
 
 3. Hackers who help in finding bugs and vulnerabilities in a system & don't intend to crack a system are termed as ________
-        Black Hat hackers
-        White Hat Hackers
-        Grey Hat Hackers
-        Red Hat Hackers
+
+        A.      Black Hat hackers
+        B.      White Hat Hackers
+        C.      Grey Hat Hackers
+        D.      Red Hat Hackers
+
+        Answer: B
 
 4. What is the ethics behind training how to hack a system?
-        To think like hackers and to help defend such attacks
-        To hack a system without the permission
-        To hack a network that is vulnerable
-        To corrupt software or service using malware
+        
+        A.      To think like hackers and to help defend such attacks
+        B.      To hack a system without the permission
+        C.      To hack a network that is vulnerable
+        D.      To corrupt software or service using malware
+        
+        Answer: A
 
 ### Cybersecurity attributes, vulnerabilities and controls
 
 1. According to the CIA Triad, which of the below-mentioned element is not considered in the triad?
-        Confidentiality
-        Integrity
-        Authenticity
-        Availability
+        
+        A.      Confidentiality
+        B.      Integrity
+        C.      Authenticity
+        D.      Availability
 
+        Answer: 
 2. When you use the word ________ it means you are protecting your data from getting disclose -
         Confidentiality
         Integrity
